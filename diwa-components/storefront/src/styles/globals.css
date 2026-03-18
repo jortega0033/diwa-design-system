@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/*
+ * Diwa token stylesheet is loaded via <link> in layout.tsx (not @import here,
+ * because the /stencil/* proxy only rewrites at request time, not at build time).
+ * All --diwa-* custom properties are therefore available at runtime on :root.
+ */
+
+/* ─── Base styles ──────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--diwa-font-family-base, 'Inter', system-ui, sans-serif);
+  background: var(--diwa-bg-base, #0b0b0c);
+  color: var(--diwa-text-primary, #e6e6e7);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--diwa-font-family-base, 'Inter', system-ui, sans-serif);
+  font-weight: var(--diwa-font-weight-semibold, 600);
+}
+
+h1, h2 {
+  letter-spacing: -0.01em;
+}
+
+/* ─── Focus visible ─────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: var(--diwa-focus-ring-width, 1px) solid var(--diwa-border-focus, #10a37f);
+  outline-offset: var(--diwa-focus-ring-offset, 1px);
+}
+
+/* ─── colour-scheme hints (enables native form control theming) ─────────────── */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* ─── Scrollbar styling ─────────────────────────────────────────────────────── */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--diwa-contrast-low, #27272a) transparent;
+}
+
+/* ─── react-syntax-highlighter: inherit background from token ──────────────── */
+
+pre.react-syntax-highlighter-line-numbers {
+  background: var(--diwa-bg-base) !important;
+}

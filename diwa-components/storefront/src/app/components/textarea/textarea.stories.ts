@@ -1,0 +1,53 @@
+import type { Story } from '@/models/story';
+import type { PropDefinition } from '@/models/propDefinition';
+import type { ElementConfig } from '@/utils/generator/generator';
+
+export const textareaStory: Story<'diwa-textarea'> = {
+  state: {
+    properties: {
+      label: 'Message',
+      description: 'Describe your request in detail.',
+      placeholder: 'Enter your message here...',
+      state: 'none',
+      message: '',
+      required: false,
+      disabled: false,
+      readOnly: false,
+      resize: 'vertical',
+      rows: 4,
+      compact: false,
+    },
+  },
+  generator: ({ properties } = {}): ElementConfig<'diwa-textarea'>[] => [
+    {
+      tag: 'diwa-textarea' as const,
+      properties: {
+        label: properties?.label as string | undefined,
+        description: properties?.description as string | undefined,
+        placeholder: properties?.placeholder as string | undefined,
+        state: properties?.state as string | undefined,
+        message: properties?.message as string | undefined,
+        required: properties?.required as boolean | undefined,
+        disabled: properties?.disabled as boolean | undefined,
+        'read-only': properties?.readOnly as boolean | undefined,
+        resize: properties?.resize as string | undefined,
+        rows: properties?.rows as number | undefined,
+        compact: properties?.compact as boolean | undefined,
+      },
+    },
+  ],
+};
+
+export const textareaPropDefinitions: PropDefinition[] = [
+  { name: 'label', type: 'string', defaultValue: 'Message' },
+  { name: 'description', type: 'string', defaultValue: 'Describe your request in detail.' },
+  { name: 'placeholder', type: 'string', defaultValue: 'Enter your message here...' },
+  { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none' },
+  { name: 'message', type: 'string', defaultValue: '' },
+  { name: 'required', type: 'boolean', defaultValue: false },
+  { name: 'disabled', type: 'boolean', defaultValue: false },
+  { name: 'readOnly', type: 'boolean', defaultValue: false },
+  { name: 'resize', type: 'select', options: ['none', 'both', 'vertical', 'horizontal'], defaultValue: 'vertical' },
+  { name: 'rows', type: 'number', defaultValue: 4 },
+  { name: 'compact', type: 'boolean', defaultValue: false },
+];

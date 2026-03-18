@@ -1,0 +1,252 @@
+/**
+ * diwa-button-styles.ts
+ * ======================
+ * CSS-in-JS style function for <diwa-button>.
+ *
+ * Returns a complete, scoped CSS string injected into the component's Shadow DOM
+ * via a <style innerHTML={...}> element in render(). This follows the shared
+ * Diwa component styling architecture used across web components.
+ *
+ * All colour values use CSS custom properties (--diwa-*) — raw values are never
+ * hardcoded. This means theming is entirely handled by the token cascade: when the
+ * host element carries data-theme="light", the [data-theme="light"] overrides
+ * defined in app.css cascade into the Shadow DOM via custom property inheritance.
+ *
+ * The function accepts the full prop surface for future conditional optimisation
+ * (e.g. generating only variant- or size-specific CSS to reduce payload), but
+ * currently outputs the complete ruleset regardless of prop values.
+ */
+
+import type { ButtonSize, ButtonVariant } from './types';
+import { getFocusStyle, getReducedMotionStyle } from '../../utils/styles';
+
+/**
+ * Generates scoped CSS for the <diwa-button> shadow tree.
+ *
+ * @param _variant  — current ButtonVariant (reserved for conditional CSS)
+ * @param _size     — current ButtonSize    (reserved for conditional CSS)
+ * @param _disabled — disabled state        (reserved for conditional CSS)
+ * @param _loading  — loading state         (reserved for conditional CSS)
+ */
+export const getComponentCss = (
+  _variant: ButtonVariant,
+  _size: ButtonSize,
+  _disabled: boolean,
+  _loading: boolean,
+): string => `
+  /* ── Host ──────────────────────────────────────────────────────────── */
+
+  :host {
+    display: inline-flex;
+    position: relative;
+    font-family: var(--diwa-font-family-base);
+    outline: none;
+  }
+
+  :host([hidden]) {
+    display: none;
+  }
+
+  /* ── Inner element (the real <button> or <a> in Shadow DOM) ─────────── */
+
+  .inner {
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--diwa-space-2);
+
+    /* Sizing defaults (md) */
+    height: var(--diwa-button-height, 40px);
+    padding: 0 var(--diwa-button-padding-x, 16px);
+    box-sizing: border-box;
+    width: 100%;
+
+    /* Shape */
+    border-radius: var(--diwa-button-radius, var(--diwa-radius-md));
+    border: var(--diwa-border-width-thin) solid transparent;
+    font-size: var(--diwa-font-size-base);
+    font-weight: var(--diwa-button-font-weight, var(--diwa-font-weight-medium));
+    font-family: inherit;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+
+    /* Interaction */
+    cursor: pointer;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+
+    /* Motion */
+    transition: var(--diwa-transition-colors), box-shadow var(--diwa-transition-fast);
+
+    /* Reset native button styles */
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  /* ── Focus ring ─────────────────────────────────────────────────────── */
+
+  ${getFocusStyle('.inner')}
+
+  /* ── Variant: primary ───────────────────────────────────────────────── */
+
+  :host([variant="primary"]) .inner {
+    background-color: var(--diwa-button-bg, var(--diwa-accent));
+    color: var(--diwa-button-color, var(--diwa-text-inverse));
+    border-color: transparent;
+  }
+
+  :host([variant="primary"]) .inner:hover:not(:disabled) {
+    background-color: var(--diwa-button-bg-hover, var(--diwa-accent-hover));
+  }
+
+  :host([variant="primary"]) .inner:active:not(:disabled) {
+    background-color: var(--diwa-accent-active);
+    transform: translateY(1px);
+  }
+
+  /* ── Variant: secondary ─────────────────────────────────────────────── */
+
+  :host([variant="secondary"]) .inner {
+    background-color: transparent;
+    color: var(--diwa-accent);
+    border-color: var(--diwa-accent);
+  }
+
+  :host([variant="secondary"]) .inner:hover:not(:disabled) {
+    background-color: var(--diwa-accent-bg);
+    border-color: var(--diwa-accent-hover);
+  }
+
+  :host([variant="secondary"]) .inner:active:not(:disabled) {
+    background-color: var(--diwa-accent-muted);
+    transform: translateY(1px);
+  }
+
+  /* ── Variant: ghost ─────────────────────────────────────────────────── */
+
+  :host([variant="ghost"]) .inner {
+    background-color: transparent;
+    color: var(--diwa-text-secondary);
+    border-color: transparent;
+  }
+
+  :host([variant="ghost"]) .inner:hover:not(:disabled) {
+    background-color: var(--diwa-bg-hover);
+    color: var(--diwa-text-primary);
+  }
+
+  :host([variant="ghost"]) .inner:active:not(:disabled) {
+    background-color: var(--diwa-bg-active);
+    transform: translateY(1px);
+  }
+
+  /* ── Variant: danger ────────────────────────────────────────────────── */
+
+  :host([variant="danger"]) .inner {
+    background-color: var(--diwa-danger);
+    color: var(--diwa-text-inverse);
+    border-color: transparent;
+  }
+
+  :host([variant="danger"]) .inner:hover:not(:disabled) {
+    background-color: var(--diwa-danger-hover);
+  }
+
+  :host([variant="danger"]) .inner:active:not(:disabled) {
+    background-color: var(--diwa-danger-active);
+    transform: translateY(1px);
+  }
+
+  /* ── Size: sm ───────────────────────────────────────────────────────── */
+
+  :host([size="sm"]) .inner {
+    height: var(--diwa-button-height-sm, 32px);
+    padding: 0 var(--diwa-button-padding-x-sm, 10px);
+    font-size: var(--diwa-font-size-md);
+  }
+
+  /* ── Size: lg ───────────────────────────────────────────────────────── */
+
+  :host([size="lg"]) .inner {
+    height: var(--diwa-button-height-lg, 44px);
+    padding: 0 var(--diwa-space-10);
+    font-size: var(--diwa-font-size-lg);
+  }
+
+  /* ── State: disabled ────────────────────────────────────────────────── */
+
+  :host([disabled]) .inner,
+  .inner:disabled {
+    opacity: var(--diwa-opacity-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* ── State: loading ─────────────────────────────────────────────────── */
+
+  :host([loading]) .inner {
+    cursor: wait;
+    pointer-events: none;
+  }
+
+  /* ── Spinner ────────────────────────────────────────────────────────── */
+
+  .spinner {
+    width: var(--diwa-spinner-size-sm);
+    height: var(--diwa-spinner-size-sm);
+    flex-shrink: 0;
+    border: var(--diwa-border-width-base) solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: diwa-spin var(--diwa-spinner-duration, 0.7s) linear infinite;
+  }
+
+  @keyframes diwa-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── Icon slots ─────────────────────────────────────────────────────── */
+
+  .icon-start,
+  .icon-end {
+    display: contents;
+    flex-shrink: 0;
+    line-height: 0;
+  }
+
+  /* ── Label: visually hidden (sr-only / icon-only mode) ──────────────── */
+
+  .label--hidden {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  /* ── Icon-only mode ─────────────────────────────────────────────────── */
+
+  :host([hide-label]) .inner {
+    width: var(--diwa-button-height, 40px);
+    padding: 0;
+  }
+
+  :host([hide-label][size="sm"]) .inner {
+    width: var(--diwa-button-height-sm, 32px);
+  }
+
+  :host([hide-label][size="lg"]) .inner {
+    width: var(--diwa-button-height-lg, 44px);
+  }
+
+  /* ── Reduced motion ─────────────────────────────────────────────────── */
+
+  ${getReducedMotionStyle('.inner', '.label', '.spinner')}
+`;

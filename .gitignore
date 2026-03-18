@@ -1,0 +1,17 @@
+# Workspace-level ignores
+**/node_modules/
+**/.next/
+**/.turbo/
+**/coverage/
+**/.cache/
+**/dist/
+**/dist-custom-elements/
+**/www/
+**/.stencil/
+**/storybook-static/
+**/npm-debug.log*
+**/pnpm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+.DS_Store
+Thumbs.db

@@ -1,0 +1,43 @@
+# Build outputs — never commit generated dist/loader/custom-elements
+dist/
+loader/
+dist-custom-elements/
+www/
+storefront/.next/
+
+# Stencil compiler cache
+.stencil/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Storybook
+storybook-static/
+
+# Test artifacts
+coverage/
+.nyc_output/
+test-results/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Python caches
+__pycache__/
+*.pyc
