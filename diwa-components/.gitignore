@@ -41,3 +41,8 @@ Thumbs.db
 # Python caches
 __pycache__/
 *.pyc
+
+# Private local guidance (never commit)
+.codex/skills/
+issues/
+prompts/
