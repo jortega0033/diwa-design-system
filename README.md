@@ -1,68 +1,52 @@
 # Diwa Design System
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/jortega0033/diwa-design-system)](https://github.com/jortega0033/diwa-design-system/commits/main)
+[![Issues](https://img.shields.io/github/issues/jortega0033/diwa-design-system)](https://github.com/jortega0033/diwa-design-system/issues)
+
 Diwa is an accessibility-first UI system built with Web Components (Stencil), with generated framework wrapper outputs and a live documentation storefront.
 
-## Status
+## What you get
 
-- Core package: active development
-- Storefront docs: active development
-- React/Vue/Angular wrapper folders: generated outputs from Stencil targets in this monorepo
+- Web Components core package (`@diwa/components`)
+- Token-based styling contract (`--diwa-*` CSS variables)
+- Generated React, Vue, and Angular wrappers from Stencil output targets
+- Next.js storefront docs with examples, accessibility, and API guidance
 
-## Monorepo structure
+## Choose your integration path
+
+| Scenario | Recommended path | Notes |
+| --- | --- | --- |
+| Framework-agnostic or vanilla web app | Use `@diwa/components` directly | Most stable public entrypoint |
+| React app using this monorepo | Use generated `diwa-components-react` sources | Generated from Stencil build output |
+| Vue app using this monorepo | Use generated `diwa-components-vue` sources | Generated from Stencil build output |
+| Angular app using this monorepo | Use generated `diwa-components-angular` sources | Generated from Stencil build output |
+
+## Compatibility
+
+| Area | Status |
+| --- | --- |
+| Node.js | `>=20` |
+| npm | `>=10` |
+| Core package | `@diwa/components` in `diwa-components/` |
+| Wrapper publishing | Wrapper folders exist as generated sources in this repo |
+| Docs app | Next.js app in `diwa-components/storefront` |
+
+## Monorepo layout
 
 ```text
 diwa-design-system/
-  diwa-components/            # Main source of truth (Stencil + tokens + tests + docs app)
+  diwa-components/            # Source of truth (Stencil + tokens + tests + docs app)
     src/
     storefront/               # Next.js docs application
     tests/
-    stencil.config.ts         # Output targets (dist + wrapper generation)
-  diwa-components-react/      # Generated React proxy output
-  diwa-components-vue/        # Generated Vue proxy output
-  diwa-components-angular/    # Generated Angular proxy output
+    stencil.config.ts         # dist + wrapper generation config
+  diwa-components-react/      # Generated React proxies
+  diwa-components-vue/        # Generated Vue proxies
+  diwa-components-angular/    # Generated Angular proxies
 ```
 
-## Requirements
-
-- Node.js `>=20`
-- npm `>=10`
-- Python `>=3.10` (only needed for local UX research scripts)
-
-## Quick start (contributors)
-
-```bash
-git clone https://github.com/jortega0033/diwa-design-system.git
-cd diwa-design-system/diwa-components
-npm install
-npm --prefix storefront install
-```
-
-Run component watch + docs app:
-
-```bash
-npm run dev
-```
-
-Local endpoints:
-
-- Docs storefront: `http://localhost:3000`
-- Stencil dev server: `http://localhost:3333`
-
-## Build and test
-
-Run from `diwa-components/`:
-
-```bash
-npm run build
-npm run test
-npm run test:ux
-npm --prefix storefront run type-check
-npm --prefix storefront run build
-```
-
-## Using Diwa in an application
-
-### Web Components (vanilla, or any framework)
+## Install and use (core package)
 
 ```bash
 npm install @diwa/components
@@ -74,58 +58,63 @@ import { defineCustomElements } from "@diwa/components/loader";
 defineCustomElements();
 ```
 
-Then use components in markup:
-
 ```html
 <diwa-button>Continue</diwa-button>
 ```
 
-### React, Vue, Angular
-
-This repo generates framework proxy sources via Stencil output targets into:
-
-- `diwa-components-react/`
-- `diwa-components-vue/`
-- `diwa-components-angular/`
-
-If you are consuming Diwa internally, treat `diwa-components` as the source of truth and keep generated wrapper outputs synchronized with builds.
-
-## Design and UX principles
-
-- Semantic design tokens via `--diwa-*` CSS custom properties
-- Visible keyboard focus and keyboard operability
-- Reduced-motion support
-- Consistent interaction behavior across components
-
-## Storefront documentation
-
-The Next.js storefront includes:
-
-- component configurators
-- examples and usage guidance
-- accessibility and API docs
-- styles/token documentation
-
-Run locally with:
+## Local development
 
 ```bash
-cd diwa-components
-npm --prefix storefront run dev
+git clone https://github.com/jortega0033/diwa-design-system.git
+cd diwa-design-system/diwa-components
+npm install
+npm --prefix storefront install
 ```
+
+Run component build/watch with docs app:
+
+```bash
+npm run dev
+```
+
+Local endpoints:
+
+- Storefront docs: `http://localhost:3000`
+- Stencil dev server: `http://localhost:3333`
+
+## Quality commands
+
+Run from `diwa-components/`:
+
+```bash
+npm run build
+npm run test
+npm run test:ux
+npm --prefix storefront run type-check
+npm --prefix storefront run build
+```
+
+## UX and accessibility baseline
+
+- Visible keyboard focus and keyboard operability
+- Reduced-motion support
+- Consistent interaction behavior
+- Token-first styling (no hardcoded design values)
 
 ## Contributing
 
-Contributions are welcome. Before opening a PR:
+Before opening a PR:
 
-1. Keep changes focused and scoped.
-2. Run build + tests.
-3. Add/update docs when behavior changes.
-4. Include screenshots or short recordings for visual changes.
+1. Keep changes scoped.
+2. Run build and tests.
+3. Update docs for behavior changes.
+4. Include screenshots/recordings for visual changes.
 
-For bugs and feature requests:
+Repository links:
 
 - Issues: https://github.com/jortega0033/diwa-design-system/issues
+- Pull requests: https://github.com/jortega0033/diwa-design-system/pulls
 
 ## License
 
-This project is licensed under MIT.
+MIT.
