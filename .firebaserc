@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "diwa-ai-copilot"
+  },
+  "targets": {
+    "diwa-ai-copilot": {
+      "hosting": {
+        "designDocs": [
+          "landing-diwa-ai-copilot"
+        ]
+      }
+    }
+  }
+}

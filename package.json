@@ -22,6 +22,10 @@
     "test:ux": "npm --workspace @diwacopilot/components run test:ux",
     "type-check": "npm --workspace @diwacopilot/storefront run type-check",
     "build:storefront": "npm --workspace @diwacopilot/storefront run build",
+    "sync:stencil-assets": "node scripts/sync-stencil-assets.cjs",
+    "build:storefront:release": "npm run build:components && npm run sync:stencil-assets && npm run build:storefront",
+    "deploy:storefront": "firebase deploy --only hosting:designDocs --project diwa-ai-copilot",
+    "deploy:storefront:preview": "firebase hosting:channel:deploy preview --only designDocs --project diwa-ai-copilot",
     "legacy:dev": "npm --prefix diwa-components run dev",
     "legacy:build": "npm --prefix diwa-components run build",
     "legacy:test": "npm --prefix diwa-components run test"

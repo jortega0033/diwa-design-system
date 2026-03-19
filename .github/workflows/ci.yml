@@ -62,10 +62,10 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build components
-        run: pnpm --filter @diwa/components run build
+        run: pnpm --filter @diwacopilot/components run build
 
       - name: Build wrappers
         run: pnpm run build:wrappers
 
       - name: Storefront build
-        run: pnpm --filter @diwa/storefront run build
+        run: pnpm --filter @diwacopilot/storefront run build
