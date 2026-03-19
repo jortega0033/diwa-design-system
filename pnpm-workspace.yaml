@@ -1,3 +1,6 @@
 packages:
   - "diwa-components"
   - "diwa-components/storefront"
+  - "diwa-components-react"
+  - "diwa-components-vue"
+  - "diwa-components-angular"

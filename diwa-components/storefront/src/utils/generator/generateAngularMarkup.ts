@@ -19,7 +19,7 @@ export function generateAngularMarkup(
 
   const lines = ["import { ChangeDetectionStrategy, Component } from '@angular/core';"];
   if (diwaImports.length > 0) {
-    lines.push(`import { ${diwaImports.join(', ')} } from '@diwa/components-angular';`);
+    lines.push(`import { ${diwaImports.join(', ')} } from '@diwacopilot/components-angular';`);
   }
   lines.push(
     '',

@@ -1,8 +1,8 @@
 /**
- * @diwa/components/styles
+ * @diwacopilot/components/styles
  * =======================
  * JavaScript-accessible design-token utilities.
- * Import from '@diwa/components/styles' in host apps.
+ * Import from '@diwacopilot/components/styles' in host apps.
  *
  * All values mirror the CSS custom properties in src/global/app.css.
  * Use these when you need token values in JS/TS (e.g. canvas rendering,

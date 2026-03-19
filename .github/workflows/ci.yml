@@ -24,7 +24,7 @@ jobs:
       - name: Install (npm)
         run: npm ci
 
-      - name: Build components
+      - name: Build packages
         run: npm run build
 
       - name: Unit tests
@@ -63,6 +63,9 @@ jobs:
 
       - name: Build components
         run: pnpm --filter @diwa/components run build
+
+      - name: Build wrappers
+        run: pnpm run build:wrappers
 
       - name: Storefront build
         run: pnpm --filter @diwa/storefront run build

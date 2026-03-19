@@ -261,7 +261,7 @@ import {
   fontWeightNormal, fontWeightMedium, fontWeightSemibold, fontWeightBold,
   lineHeightTight, lineHeightNormal, lineHeightRelaxed,
   fontFamilyBase, fontFamilyMono,
-} from '@diwa/components/styles';
+} from '@diwacopilot/components/styles';
 
 /* ─── CSS ─────────────────────────────────────────────────────────────── */
 .heading {
@@ -288,7 +288,7 @@ import {
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwa/components/styles' as *;
+            code: `@use '@diwacopilot/components/styles' as *;
 
 .heading {
   font-family: $diwa-font-family-base;
@@ -319,7 +319,7 @@ import {
   fontWeightNormal, fontWeightSemibold,
   lineHeightTight, lineHeightRelaxed,
   fontFamilyBase, fontFamilyMono,
-} from '@diwa/components/styles';
+} from '@diwacopilot/components/styles';
 
 const headingStyle = {
   fontFamily: fontFamilyBase,

@@ -107,7 +107,7 @@ import {
   getMediaQueryMin,
   getMediaQueryMax,
   getMediaQueryMinMax,
-} from '@diwa/components/styles';
+} from '@diwacopilot/components/styles';
 
 // Returns '@media (min-width: 1000px)'
 const aboveMd = getMediaQueryMin('md');
@@ -141,7 +141,7 @@ const isMobile = window.matchMedia(getMediaQueryMax('sm')).matches;
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwa/components/styles' as *;
+            code: `@use '@diwacopilot/components/styles' as *;
 
 .panel {
   display: grid;
@@ -162,7 +162,7 @@ const isMobile = window.matchMedia(getMediaQueryMax('sm')).matches;
           },
           {
             label: 'React',
-            code: `import { getMediaQueryMin, getMediaQueryMax } from '@diwa/components/styles';
+            code: `import { getMediaQueryMin, getMediaQueryMax } from '@diwacopilot/components/styles';
 import { useEffect, useState } from 'react';
 
 const mqMd = getMediaQueryMin('md'); // '@media (min-width: 1000px)'

@@ -1,0 +1,48 @@
+{
+  "name": "@diwacopilot/components-react",
+  "version": "1.0.0",
+  "description": "React wrapper package for Diwa Web Components.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/patch-generated-react-lib.cjs && tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@diwacopilot/components": "^1.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@diwacopilot/components": "file:../diwa-components",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jortega0033/diwa-design-system.git",
+    "directory": "diwa-components-react"
+  },
+  "bugs": {
+    "url": "https://github.com/jortega0033/diwa-design-system/issues"
+  },
+  "homepage": "https://github.com/jortega0033/diwa-design-system#readme"
+}

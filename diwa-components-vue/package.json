@@ -1,0 +1,44 @@
+{
+  "name": "@diwacopilot/components-vue",
+  "version": "1.0.0",
+  "description": "Vue wrapper package for Diwa Web Components.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@diwacopilot/components": "^1.0.0",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@diwacopilot/components": "file:../diwa-components",
+    "typescript": "^5.7.2",
+    "vue": "^3.5.13"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jortega0033/diwa-design-system.git",
+    "directory": "diwa-components-vue"
+  },
+  "bugs": {
+    "url": "https://github.com/jortega0033/diwa-design-system/issues"
+  },
+  "homepage": "https://github.com/jortega0033/diwa-design-system#readme"
+}

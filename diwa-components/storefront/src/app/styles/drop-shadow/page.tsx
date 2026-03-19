@@ -81,14 +81,14 @@ export default function StylesDropShadowPage() {
       <Section title="Styles">
         <p className="text-sm text-[var(--diwa-text-secondary)] mb-4 leading-relaxed">
           All shadow tokens are available as typed JS style objects from{' '}
-          <code className="font-mono text-[var(--diwa-accent)]">@diwa/components/styles</code>:
+          <code className="font-mono text-[var(--diwa-accent)]">@diwacopilot/components/styles</code>:
         </p>
         <CodeSnippet code={`import {
   dropShadowSmStyle,
   dropShadowMdStyle,
   dropShadowLgStyle,
   dropShadowXlStyle,
-} from '@diwa/components/styles';
+} from '@diwacopilot/components/styles';
 
 /* CSS */
 .modal {
@@ -101,7 +101,7 @@ export default function StylesDropShadowPage() {
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwa/components/styles' as *;
+            code: `@use '@diwacopilot/components/styles' as *;
 
 .card {
   box-shadow: $diwa-shadow-sm;
@@ -118,7 +118,7 @@ export default function StylesDropShadowPage() {
   dropShadowSmStyle,
   dropShadowMdStyle,
   dropShadowLgStyle,
-} from '@diwa/components/styles';
+} from '@diwacopilot/components/styles';
 
 function Card({ children }: { children: React.ReactNode }) {
   return <div style={dropShadowSmStyle}>{children}</div>;

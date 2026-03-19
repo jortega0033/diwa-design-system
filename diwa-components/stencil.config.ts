@@ -1,7 +1,7 @@
 /**
  * stencil.config.ts — The Engine Room
  * ====================================
- * Compiler configuration for @diwa/components.
+ * Compiler configuration for @diwacopilot/components.
  *
  * Output targets:
  *   dist                  → lazy-loaded NPM pkg (bundled apps / vite / webpack)
@@ -10,7 +10,7 @@
  *   www                   → local dev server
  *
  * Framework wrapper packages are generated automatically by the proxy output targets.
- * Each proxy package declares @diwa/components as a peer dependency and lives in a
+ * Each proxy package declares @diwacopilot/components as a peer dependency and lives in a
  * sibling directory (../diwa-components-react, etc.).
  */
 
@@ -101,10 +101,10 @@ export const config: Config = {
      * e.g.: onClick={handler} → addEventListener('click', handler)
      *
      * Output path: ../diwa-components-react/src/components.ts
-     * That sibling package publishes as @diwa/components-react.
+     * That sibling package publishes as @diwacopilot/components-react.
      */
     reactOutputTarget({
-      componentCorePackage: "@diwa/components",
+      componentCorePackage: "@diwacopilot/components",
       proxiesFile: "../diwa-components-react/src/components.ts",
       includeDefineCustomElements: true,
     }),
@@ -115,7 +115,7 @@ export const config: Config = {
      * Output path: ../diwa-components-vue/src/components.ts
      */
     vueOutputTarget({
-      componentCorePackage: "@diwa/components",
+      componentCorePackage: "@diwacopilot/components",
       proxiesFile: "../diwa-components-vue/src/components.ts",
     }),
 
@@ -125,7 +125,7 @@ export const config: Config = {
      * Output path: ../diwa-components-angular/src/directives/proxies.ts
      */
     angularOutputTarget({
-      componentCorePackage: "@diwa/components",
+      componentCorePackage: "@diwacopilot/components",
       outputType: "component",
       directivesProxyFile:
         "../diwa-components-angular/src/directives/proxies.ts",

@@ -287,7 +287,7 @@ document.documentElement.removeAttribute('data-theme');
   // Accent scale (theme-invariant)
   colorAccent50, colorAccent100, colorAccent200, colorAccent300,
   colorAccent400, colorAccent500, colorAccent600, colorAccent700,
-} from '@diwa/components/styles';
+} from '@diwacopilot/components/styles';
 
 /* ─── CSS — always resolve via semantic tokens ────────────────────── */
 .card {
@@ -308,7 +308,7 @@ document.documentElement.removeAttribute('data-theme');
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwa/components/styles' as *;
+            code: `@use '@diwacopilot/components/styles' as *;
 
 /* Scoped theme override for a region */
 .dark-panel  { @include diwa-theme-noir; }
@@ -328,7 +328,7 @@ document.documentElement.removeAttribute('data-theme');
           },
           {
             label: 'React',
-            code: `import { themeNoir, themeLight, colorAccent500 } from '@diwa/components/styles';
+            code: `import { themeNoir, themeLight, colorAccent500 } from '@diwacopilot/components/styles';
 
 function DarkPanel({ children }: { children: React.ReactNode }) {
   return <div style={themeNoir}>{children}</div>;

@@ -16,7 +16,7 @@ export function generateVueMarkup(
   const diwaImports = collectDiwaComponents(filtered);
   const scriptBlock =
     diwaImports.length > 0
-      ? `<script setup lang="ts">\nimport { ${diwaImports.join(', ')} } from '@diwa/components-vue';\n</script>\n\n`
+      ? `<script setup lang="ts">\nimport { ${diwaImports.join(', ')} } from '@diwacopilot/components-vue';\n</script>\n\n`
       : '';
 
   return `${scriptBlock}<template>\n${body}\n</template>`;

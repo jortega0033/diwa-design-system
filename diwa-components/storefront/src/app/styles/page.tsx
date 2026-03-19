@@ -68,7 +68,7 @@ export default function StylesIntroductionPage() {
   color: var(--diwa-text-primary);
 }`} />
           <CodeSnippet code={`// JS / TS
-import { borderRadiusLg, spacing4, getFocusStyle } from '@diwa/components/styles';
+import { borderRadiusLg, spacing4, getFocusStyle } from '@diwacopilot/components/styles';
 
 const cardStyle = {
   borderRadius: borderRadiusLg,

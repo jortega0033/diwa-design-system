@@ -6,31 +6,31 @@ import { sitemap } from '@/sitemap';
 const SUPPORT_ROWS = [
   {
     framework: 'Vanilla JS',
-    packageName: '@diwa/components',
+    packageName: '@diwacopilot/components',
     route: '/developing/vanilla-js',
     status: 'Supported',
   },
   {
     framework: 'Next.js',
-    packageName: '@diwa/components',
+    packageName: '@diwacopilot/components',
     route: '/developing/next-js',
     status: 'Supported',
   },
   {
     framework: 'React',
-    packageName: '@diwa/components + @diwa/components-react',
+    packageName: '@diwacopilot/components + @diwacopilot/components-react',
     route: '/developing/react',
     status: 'Supported',
   },
   {
     framework: 'Angular',
-    packageName: '@diwa/components + @diwa/components-angular',
+    packageName: '@diwacopilot/components + @diwacopilot/components-angular',
     route: '/developing/angular',
     status: 'Supported',
   },
   {
     framework: 'Vue',
-    packageName: '@diwa/components + @diwa/components-vue',
+    packageName: '@diwacopilot/components + @diwacopilot/components-vue',
     route: '/developing/vue',
     status: 'Supported',
   },
@@ -119,16 +119,16 @@ export default function DevelopingIntroductionPage() {
           Use this quick rule set when deciding between direct custom elements and framework wrappers.
         </p>
         <CodeSnippet code={`if (framework === 'vanilla' || framework === 'next-custom-elements') {
-  install('@diwa/components');
+  install('@diwacopilot/components');
   registerWithLoader();
 } else if (framework === 'react') {
-  install('@diwa/components @diwa/components-react');
+  install('@diwacopilot/components @diwacopilot/components-react');
   useReactWrappers();
 } else if (framework === 'angular') {
-  install('@diwa/components @diwa/components-angular');
+  install('@diwacopilot/components @diwacopilot/components-angular');
   useAngularProxies();
 } else if (framework === 'vue') {
-  install('@diwa/components @diwa/components-vue');
+  install('@diwacopilot/components @diwacopilot/components-vue');
   useVueWrappers();
 }`} />
       </Section>

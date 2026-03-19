@@ -13,11 +13,11 @@ Diwa is an accessibility-first UI system built with Web Components (Stencil), ge
 ```text
 diwa-design-system/
   package.json                 # Root workspace orchestration
-  diwa-components/             # Publishable package: @diwa/components
+  diwa-components/             # Publishable package: @diwacopilot/components
   diwa-components/storefront/  # Docs app workspace
-  diwa-components-react/       # Generated React proxies
-  diwa-components-vue/         # Generated Vue proxies
-  diwa-components-angular/     # Generated Angular proxies
+  diwa-components-react/       # Publishable package: @diwacopilot/components-react
+  diwa-components-vue/         # Publishable package: @diwacopilot/components-vue
+  diwa-components-angular/     # Publishable package: @diwacopilot/components-angular
 ```
 
 ## Requirements
@@ -75,23 +75,37 @@ npm run dev
 
 ## Publishing boundary
 
-- Publishable package remains `@diwa/components` from `diwa-components/package.json`.
-- This migration does not change runtime component APIs, props, events, or token contracts.
+- Publishable packages:
+  - `@diwacopilot/components` from `diwa-components/package.json`
+  - `@diwacopilot/components-react` from `diwa-components-react/package.json`
+  - `@diwacopilot/components-vue` from `diwa-components-vue/package.json`
+  - `@diwacopilot/components-angular` from `diwa-components-angular/package.json`
+- Runtime component APIs, props, events, and token contracts are unchanged.
 
 ## Using Diwa in apps
 
 ```bash
-npm install @diwa/components
+npm install @diwacopilot/components
 ```
 
 ```ts
-import { defineCustomElements } from "@diwa/components/loader";
+import { defineCustomElements } from "@diwacopilot/components/loader";
 
 defineCustomElements();
 ```
 
 ```html
 <diwa-button>Continue</diwa-button>
+```
+
+## Framework wrappers
+
+Install only the wrapper you need:
+
+```bash
+npm install @diwacopilot/components @diwacopilot/components-react
+npm install @diwacopilot/components @diwacopilot/components-vue
+npm install @diwacopilot/components @diwacopilot/components-angular
 ```
 
 ## Quality baseline

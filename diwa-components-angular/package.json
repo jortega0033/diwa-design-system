@@ -1,0 +1,46 @@
+{
+  "name": "@diwacopilot/components-angular",
+  "version": "1.0.0",
+  "description": "Angular wrapper package for Diwa Web Components.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=17.0.0 <21.0.0",
+    "@diwacopilot/components": "^1.0.0",
+    "rxjs": "^7.8.0"
+  },
+  "devDependencies": {
+    "@angular/core": "^20.3.10",
+    "@diwacopilot/components": "file:../diwa-components",
+    "rxjs": "^7.8.2",
+    "typescript": "^5.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jortega0033/diwa-design-system.git",
+    "directory": "diwa-components-angular"
+  },
+  "bugs": {
+    "url": "https://github.com/jortega0033/diwa-design-system/issues"
+  },
+  "homepage": "https://github.com/jortega0033/diwa-design-system#readme"
+}

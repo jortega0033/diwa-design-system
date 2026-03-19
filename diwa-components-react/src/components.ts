@@ -3,9 +3,9 @@
 /* auto-generated react proxies */
 import { createReactComponent } from './react-component-lib';
 
-import type { JSX } from '@diwa/components';
+import type { JSX } from '@diwacopilot/components';
 
-import { defineCustomElements } from '@diwa/components/loader';
+import { defineCustomElements } from '@diwacopilot/components/loader';
 
 defineCustomElements();
 export const DiwaAccordion = /*@__PURE__*/createReactComponent<JSX.DiwaAccordion, HTMLDiwaAccordionElement>('diwa-accordion');

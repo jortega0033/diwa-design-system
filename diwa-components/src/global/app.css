@@ -665,7 +665,7 @@
 
 /* ============================================================
    SKELETON LOADING — Keyframe animation
-   Used via getSkeletonStyle() from @diwa/components/styles or
+   Used via getSkeletonStyle() from @diwacopilot/components/styles or
    by directly applying animation: diwa-skeleton-pulse 1.5s ease-in-out infinite
    to any placeholder element.
    The shimmer moves left→right using background-position shift.

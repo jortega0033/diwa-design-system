@@ -13,12 +13,12 @@ export const PARTIAL_DOCS: Record<string, DocDetail> = {
       {
         title: 'Install the core package',
         description: 'Install the package that includes custom elements and the loader entrypoint.',
-        code: 'npm install @diwa/components',
+        code: 'npm install @diwacopilot/components',
       },
       {
         title: 'Create a registration helper',
         description: 'Guard registration so defineCustomElements() is called once even if multiple app modules import your helper.',
-        code: `import { defineCustomElements } from '@diwa/components/loader';
+        code: `import { defineCustomElements } from '@diwacopilot/components/loader';
 
 let didRegister = false;
 

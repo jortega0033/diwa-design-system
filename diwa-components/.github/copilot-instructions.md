@@ -19,9 +19,9 @@ diwa-design-system/
   diwa-components/                  # Publishable package (@diwa/components)
     src/
     storefront/
-  diwa-components-react/            # Generated wrapper sources
-  diwa-components-vue/              # Generated wrapper sources
-  diwa-components-angular/          # Generated wrapper sources
+  diwa-components-react/            # Publishable package (@diwa/components-react)
+  diwa-components-vue/              # Publishable package (@diwa/components-vue)
+  diwa-components-angular/          # Publishable package (@diwa/components-angular)
 ```
 
 ## Command policy

@@ -27,7 +27,7 @@ ${ISSUES_LIST}`,
         title: 'Prepare a reproducible report',
         description: 'Include environment, route/component details, and deterministic steps.',
         code: `### Environment
-- @diwa/components: x.y.z
+- @diwacopilot/components: x.y.z
 - Framework: Next.js / React / Angular / Vue
 - Browser: Chrome xx / Safari xx
 

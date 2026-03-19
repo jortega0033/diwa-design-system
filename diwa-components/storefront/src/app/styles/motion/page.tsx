@@ -285,7 +285,7 @@ import {
   motionEasingBase,
   motionEasingIn,
   motionEasingOut,
-} from '@diwa/components/styles';
+} from '@diwacopilot/components/styles';
 
 // Framer Motion
 <motion.div
@@ -334,7 +334,7 @@ import {
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwa/components/styles' as *;
+            code: `@use '@diwacopilot/components/styles' as *;
 
 .chip {
   transition: transform $diwa-motion-duration-short $diwa-motion-easing-base;
@@ -362,7 +362,7 @@ import {
   motionDurationLong,
   motionEasingBase,
   motionEasingOut,
-} from '@diwa/components/styles';
+} from '@diwacopilot/components/styles';
 import { motion } from 'framer-motion';
 
 function AnimatedPanel({ children }: { children: React.ReactNode }) {

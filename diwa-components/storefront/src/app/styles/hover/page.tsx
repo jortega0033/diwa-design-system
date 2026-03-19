@@ -167,7 +167,7 @@ export default function StylesHoverPage() {
           rounds the overlay to match the host element.
         </p>
         <CodeSnippet code={`// JS
-import { getHoverStyle } from '@diwa/components/styles';
+import { getHoverStyle } from '@diwacopilot/components/styles';
 
 // Returns CSS-in-JS object with pseudo-element hover overlay
 const hoverStyle = getHoverStyle({ borderRadius: 'small' });
@@ -214,7 +214,7 @@ const hoverStyle = getHoverStyle({ borderRadius: 'small' });
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwa/components/styles' as *;
+            code: `@use '@diwacopilot/components/styles' as *;
 
 :host {
   position: relative;
@@ -238,7 +238,7 @@ const hoverStyle = getHoverStyle({ borderRadius: 'small' });
           },
           {
             label: 'React',
-            code: `import { getHoverStyle } from '@diwa/components/styles';
+            code: `import { getHoverStyle } from '@diwacopilot/components/styles';
 
 // Returns a CSS-in-JS pseudo-element overlay descriptor
 const hoverOverlay = getHoverStyle({ borderRadius: 'small' });

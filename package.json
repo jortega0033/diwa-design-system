@@ -5,15 +5,23 @@
   "description": "Root workspace orchestration for Diwa Design System",
   "workspaces": [
     "diwa-components",
-    "diwa-components/storefront"
+    "diwa-components/storefront",
+    "diwa-components-react",
+    "diwa-components-vue",
+    "diwa-components-angular"
   ],
   "scripts": {
-    "dev": "npm --workspace @diwa/components run dev",
-    "build": "npm --workspace @diwa/components run build",
-    "test": "npm --workspace @diwa/components run test",
-    "test:ux": "npm --workspace @diwa/components run test:ux",
-    "type-check": "npm --workspace @diwa/storefront run type-check",
-    "build:storefront": "npm --workspace @diwa/storefront run build",
+    "dev": "npm --workspace @diwacopilot/components run dev",
+    "build:components": "npm --workspace @diwacopilot/components run build",
+    "build:wrapper:react": "npm --workspace @diwacopilot/components-react run build",
+    "build:wrapper:vue": "npm --workspace @diwacopilot/components-vue run build",
+    "build:wrapper:angular": "npm --workspace @diwacopilot/components-angular run build",
+    "build:wrappers": "npm run build:wrapper:react && npm run build:wrapper:vue && npm run build:wrapper:angular",
+    "build": "npm run build:components && npm run build:wrappers",
+    "test": "npm --workspace @diwacopilot/components run test",
+    "test:ux": "npm --workspace @diwacopilot/components run test:ux",
+    "type-check": "npm --workspace @diwacopilot/storefront run type-check",
+    "build:storefront": "npm --workspace @diwacopilot/storefront run build",
     "legacy:dev": "npm --prefix diwa-components run dev",
     "legacy:build": "npm --prefix diwa-components run build",
     "legacy:test": "npm --prefix diwa-components run test"

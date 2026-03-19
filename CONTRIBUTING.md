@@ -48,8 +48,10 @@ npm run dev
 
 ## Package boundary
 
-- `@diwa/components` remains published from `diwa-components`.
-- Wrapper folders (`diwa-components-react`, `diwa-components-vue`, `diwa-components-angular`) stay generated/internal in this phase.
+- `@diwacopilot/components` is published from `diwa-components`.
+- `@diwacopilot/components-react` is published from `diwa-components-react`.
+- `@diwacopilot/components-vue` is published from `diwa-components-vue`.
+- `@diwacopilot/components-angular` is published from `diwa-components-angular`.
 
 ## Local-only governance files
 
