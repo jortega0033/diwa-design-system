@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://designsystem.diwacopilot.com/sitemap.xml

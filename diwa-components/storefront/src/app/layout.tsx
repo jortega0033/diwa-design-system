@@ -35,6 +35,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
          *   localhost:3333/build/diwa-components.css  (globalStyle output)
          */}
         <link rel="stylesheet" href="/stencil/diwa-components.css" />
+        {/* Organization JSON-LD for search engines */}
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: intentional JSON-LD insertion */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: 'Diwa Design System',
+              url: 'https://designsystem.diwacopilot.com',
+            }),
+          }}
+        />
       </head>
       <body suppressHydrationWarning>
         {/*
