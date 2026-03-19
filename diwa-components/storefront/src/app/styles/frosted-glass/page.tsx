@@ -1,6 +1,10 @@
 import React from 'react';
 import { CodeTabs } from '@/components/CodeTabs';
 import { Section, CodeSnippet, DoList, DontList } from '@/components/docs';
+import type { Metadata } from 'next';
+import { stylesSeo } from '@/lib/stylesSeo';
+export const metadata: Metadata = stylesSeo['/styles/frosted-glass'];
+
 
 const BLUR_TOKENS = [
   { token: '--diwa-blur-sm',  value: '4px',  use: 'Tooltips, small dropdowns' },

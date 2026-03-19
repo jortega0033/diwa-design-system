@@ -2,6 +2,10 @@ import React from 'react';
 import { CodeTabs } from '@/components/CodeTabs';
 import { BreakpointDemo } from '@/components/BreakpointDemo';
 import { Section, CodeSnippet, DoList, DontList, DoCard, DontCard } from '@/components/docs';
+import type { Metadata } from 'next';
+import { stylesSeo } from '@/lib/stylesSeo';
+export const metadata: Metadata = stylesSeo['/styles/media-query'];
+
 
 const BREAKPOINTS = [
   { token: '--diwa-breakpoint-xs',  value: '480px',  label: 'xs',  desc: 'Compact portrait — phones' },

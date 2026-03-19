@@ -2,6 +2,10 @@ import Link from 'next/link';
 import React from 'react';
 import { CodeSnippet, Section } from '@/components/docs';
 import { sitemap } from '@/sitemap';
+import type { Metadata } from 'next';
+import { pageSeo } from '@/lib/pageSeo';
+export const metadata: Metadata = pageSeo['/patterns'];
+
 
 const PREREQUISITES = [
   'A UX flow that defines user intent, state changes, and failure paths.',

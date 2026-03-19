@@ -3,6 +3,10 @@
 import React, { useState } from 'react';
 import { CodeTabs } from '@/components/CodeTabs';
 import { Section, CodeSnippet } from '@/components/docs';
+import type { Metadata } from 'next';
+import { stylesSeo } from '@/lib/stylesSeo';
+export const metadata: Metadata = stylesSeo['/styles/motion'];
+
 
 const DEMO_STYLES = `
   /* ── keyframes ───────────────────────────────────────────────────────── */

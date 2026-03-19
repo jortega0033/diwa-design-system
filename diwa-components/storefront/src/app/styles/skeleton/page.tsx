@@ -1,6 +1,10 @@
 import React from 'react';
 import { CodeTabs } from '@/components/CodeTabs';
 import { Section, CodeSnippet, DoList, DontList, DoCard, DontCard } from '@/components/docs';
+import type { Metadata } from 'next';
+import { stylesSeo } from '@/lib/stylesSeo';
+export const metadata: Metadata = stylesSeo['/styles/skeleton'];
+
 
 /* Shimmer keyframe + theme-specific skeletons injected once globally */
 const SKELETON_STYLES = `

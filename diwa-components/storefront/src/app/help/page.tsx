@@ -2,6 +2,10 @@ import Link from 'next/link';
 import React from 'react';
 import { CodeSnippet, Section } from '@/components/docs';
 import { sitemap } from '@/sitemap';
+import type { Metadata } from 'next';
+import { pageSeo } from '@/lib/pageSeo';
+export const metadata: Metadata = pageSeo['/help'];
+
 
 const REPO_BASE = 'https://github.com/jortega0033/diwa-components';
 const ISSUES_LIST = `${REPO_BASE}/issues`;

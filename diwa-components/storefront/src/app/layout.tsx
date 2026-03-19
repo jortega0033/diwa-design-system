@@ -4,11 +4,27 @@ import Script from 'next/script';
 import { StorefrontThemeProvider } from '@/hooks/useStorefrontTheme';
 import { SidebarProvider } from '@/context/SidebarContext';
 import { Canvas } from '@/components/layout/Canvas';
+import { SITE_URL, SITE_NAME } from '@/lib/seo';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-  title: 'Diwa Design System',
-  description: 'Framework-agnostic Web Components — Diwa Design System',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: `%s — ${SITE_NAME}`,
+  },
+  description:
+    'Framework-agnostic web components for building accessible, brand-consistent UIs. React, Angular, Vue, Next.js, and vanilla JS supported.',
+  openGraph: {
+    type: 'website',
+    siteName: SITE_NAME,
+    locale: 'en_US',
+    images: [{ url: `${SITE_URL}/og-images/home.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -2,6 +2,10 @@ import Link from 'next/link';
 import React from 'react';
 import { CodeSnippet, Section, Table } from '@/components/docs';
 import { sitemap } from '@/sitemap';
+import type { Metadata } from 'next';
+import { pageSeo } from '@/lib/pageSeo';
+export const metadata: Metadata = pageSeo['/developing'];
+
 
 const SUPPORT_ROWS = [
   {

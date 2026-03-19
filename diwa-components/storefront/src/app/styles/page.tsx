@@ -2,6 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import { CodeSnippet, Section } from '@/components/docs';
 import { sitemap } from '@/sitemap';
+import type { Metadata } from 'next';
+import { stylesSeo } from '@/lib/stylesSeo';
+export const metadata: Metadata = stylesSeo['/styles'];
+
 
 const STYLE_DESCRIPTIONS: Record<string, string> = {
   '/styles/border': 'Border-radius scale and border-width tokens.',

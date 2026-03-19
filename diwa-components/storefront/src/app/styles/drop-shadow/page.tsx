@@ -1,6 +1,10 @@
 import React from 'react';
 import { CodeTabs } from '@/components/CodeTabs';
 import { Section, CodeSnippet, DoList, DontList } from '@/components/docs';
+import type { Metadata } from 'next';
+import { stylesSeo } from '@/lib/stylesSeo';
+export const metadata: Metadata = stylesSeo['/styles/drop-shadow'];
+
 
 const SHADOW_SCALE = [
   { token: '--diwa-shadow-sm', value: '0 1px 2px rgba(0,0,0,0.4)',   use: 'Badges, chips, subtle cards' },

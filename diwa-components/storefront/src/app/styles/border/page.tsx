@@ -1,6 +1,10 @@
 import React from 'react';
 import { CodeTabs } from '@/components/CodeTabs';
 import { Section, CodeSnippet, DoList, DontList } from '@/components/docs';
+import type { Metadata } from 'next';
+import { stylesSeo } from '@/lib/stylesSeo';
+export const metadata: Metadata = stylesSeo['/styles/border'];
+
 
 const RADIUS_SCALE = [
   { token: '--diwa-radius-sm',   value: '4px',    label: 'sm',   desc: 'Interactive elements — buttons, inputs, tags' },

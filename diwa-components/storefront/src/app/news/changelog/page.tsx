@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
 import { Section } from '@/components/docs';
+import type { Metadata } from 'next';
+import { pageSeo } from '@/lib/pageSeo';
+export const metadata: Metadata = pageSeo['/news/changelog'];
+
 
 type Release = {
   version: string;
