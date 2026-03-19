@@ -4,6 +4,7 @@ import { CodeSnippet } from '@/components/docs';
 import { sitemap } from '@/sitemap';
 import type { Metadata } from 'next';
 import { pageSeo } from '@/lib/pageSeo';
+import { HeroBanner } from '@/components/home/HeroBanner';
 export const metadata: Metadata = pageSeo['/'];
 
 
@@ -71,14 +72,7 @@ export default function HomePage() {
 
   return (
     <div className="max-w-4xl">
-      <h1 className="text-3xl font-bold text-[var(--diwa-text-primary)] mb-3">
-        Getting Started
-      </h1>
-      <p className="text-sm text-[var(--diwa-text-secondary)] mb-10 leading-relaxed max-w-3xl">
-        Diwa is a framework-agnostic design system built with Web Components and shared style tokens.
-        Start with the setup below, then move to Components or Styles depending on whether your first task
-        is implementation or theming.
-      </p>
+      <HeroBanner />
 
       <section className="mb-12">
         <h2 className="text-xl font-semibold text-[var(--diwa-text-primary)] mb-4 pb-2 border-b border-[var(--diwa-border)]">
