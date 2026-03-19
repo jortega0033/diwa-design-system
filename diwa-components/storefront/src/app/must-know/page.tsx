@@ -19,8 +19,8 @@ const FLOW_STEPS = [
   {
     title: 'Validate quality gates',
     description: 'Run performance, accessibility, and compatibility checks before release.',
-    code: `npm test
-npm --prefix storefront run build`,
+      code: `npm test
+npm run build:storefront`,
   },
   {
     title: 'Ship with release discipline',

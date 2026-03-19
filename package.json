@@ -1,0 +1,24 @@
+{
+  "name": "diwa-design-system",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Root workspace orchestration for Diwa Design System",
+  "workspaces": [
+    "diwa-components",
+    "diwa-components/storefront"
+  ],
+  "scripts": {
+    "dev": "npm --workspace @diwa/components run dev",
+    "build": "npm --workspace @diwa/components run build",
+    "test": "npm --workspace @diwa/components run test",
+    "test:ux": "npm --workspace @diwa/components run test:ux",
+    "type-check": "npm --workspace @diwa/storefront run type-check",
+    "build:storefront": "npm --workspace @diwa/storefront run build",
+    "legacy:dev": "npm --prefix diwa-components run dev",
+    "legacy:build": "npm --prefix diwa-components run build",
+    "legacy:test": "npm --prefix diwa-components run test"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

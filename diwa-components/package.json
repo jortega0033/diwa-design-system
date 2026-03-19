@@ -1,12 +1,16 @@
 {
   "name": "@diwa/components",
   "version": "1.0.0",
-  "description": "Diwa Design System — Framework-agnostic Web Components built with Stencil.js",
+  "description": "Diwa Design System - Framework-agnostic Web Components built with Stencil.js",
   "license": "MIT",
   "homepage": "https://diwacopilot.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jortega0033/diwa-components"
+    "url": "git+https://github.com/jortega0033/diwa-design-system.git",
+    "directory": "diwa-components"
+  },
+  "bugs": {
+    "url": "https://github.com/jortega0033/diwa-design-system/issues"
   },
   "files": [
     "dist/",

@@ -333,9 +333,9 @@ npm test`,
       {
         title: 'Upgrade with verification gates',
         description: 'Upgrade dependencies in a branch and validate critical interaction flows before merge.',
-        code: `npm install @diwa/components@latest
-npm test
-npm --prefix storefront run build`,
+          code: `npm install @diwa/components@latest
+  npm test
+npm run build:storefront`,
       },
     ],
     notes: [
@@ -378,8 +378,8 @@ npm --prefix storefront run build`,
       {
         title: 'Pass automated quality gates',
         description: 'Build and test must pass before review is complete.',
-        code: `npm test
-npm --prefix storefront run build`,
+          code: `npm test
+npm run build:storefront`,
       },
       {
         title: 'Pass accessibility and interaction checks',

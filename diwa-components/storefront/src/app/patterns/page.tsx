@@ -28,8 +28,8 @@ const FLOW_STEPS = [
   {
     title: 'Validate interaction quality',
     description: 'Check keyboard order, focus visibility, and reduced-motion behavior on representative flows.',
-    code: `npm test
-npm --prefix storefront run build`,
+      code: `npm test
+npm run build:storefront`,
   },
 ];
 

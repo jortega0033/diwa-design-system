@@ -2,76 +2,59 @@
 applyTo: "**"
 ---
 
-# Diwa Component Library — Global Rules
+# Diwa Component Library Rules
 
-## Workspace layout
+## Workspace root
 
-```
-d:\Projects\diwa-components\
-├── src/
-│   ├── components/          Stencil web components (one folder per component)
-│   ├── utils/               Shared utilities (styles.ts, checkbox-mark.ts)
-│   └── components.d.ts      Auto-generated Stencil component types
-├── storefront/
-│   └── src/
-│       ├── app/
-│       │   └── components/  Storefront documentation pages (one folder per component)
-│       ├── components/
-│       │   ├── docs/        Documentation UI primitives (Section, Table, Code, …)
-│       │   └── playground/  Interactive page components (Configurator, ComponentStory, Playground)
-│       ├── types/
-│       │   └── custom-elements.d.ts  Augments React.JSX.IntrinsicElements
-│       ├── utils/
-│       │   └── generator/generator.tsx  DiwaTagNames union + ElementConfig
-│       └── sitemap.ts       Navigation sitemap — every component must have an entry
-└── prompts/
-    ├── patterns.md          Authoritative patterns & conventions reference
-    ├── component.instructions.md   Component implementation rules
-    ├── storefront.instructions.md  Storefront page rules & page-by-page content spec
-    └── new-component.instructions.md  Step-by-step checklist for adding a new component
+Use this as the default command location:
+
+`D:\Projects\diwa-design-system`
+
+Primary scripts run from root workspace `package.json`.
+
+## Repository layout
+
+```text
+diwa-design-system/
+  diwa-components/                  # Publishable package (@diwa/components)
+    src/
+    storefront/
+  diwa-components-react/            # Generated wrapper sources
+  diwa-components-vue/              # Generated wrapper sources
+  diwa-components-angular/          # Generated wrapper sources
 ```
 
-## Token rule — NEVER hardcode values
+## Command policy
 
-**Never** hardcode hex colours, pixel values, font sizes, spacing values, radii, shadows, or Z-index values in component styles or storefront pages. Always use `--diwa-*` CSS custom properties supplied by `diwa-tokens`.
+Preferred root-first commands:
 
-```css
-/* ✅ correct */
-color: var(--diwa-text-primary);
-padding: var(--diwa-space-fluid-md);
-border-radius: var(--diwa-radius-md);
+- `npm run dev`
+- `npm run build`
+- `npm run test`
+- `npm run test:ux`
+- `npm run type-check`
+- `npm run build:storefront`
 
-/* ❌ wrong */
-color: #1a1a2e;
-padding: 16px;
-border-radius: 8px;
-```
+Legacy compatibility commands in `diwa-components` are allowed, but root workspace commands are the official path.
 
-## Build commands
+## Styling rule
 
-All commands run from `d:\Projects\diwa-components`:
+Never hardcode design values for component styles or docs. Always use semantic `--diwa-*` CSS variables.
 
-| Command | Purpose |
-|---|---|
-| `npx stencil build` | Compile Stencil components (production) |
-| `npx stencil build --dev` | Dev build with watch |
-| `cd storefront && npx next dev --turbo` | Storefront dev server (Turbopack) |
-| `cd storefront && npx next build` | Storefront production build |
+## Component registration rule
 
-After changing any Stencil component, always run `npx stencil build` before restarting the storefront — the storefront imports the compiled output.
+When adding `diwa-<name>`, update both:
 
-## New component registration
+1. `storefront/src/utils/generator/generator.tsx` (`DiwaTagNames`)
+2. `storefront/src/types/custom-elements.d.ts` (`React.JSX.IntrinsicElements`)
 
-When adding a new `diwa-<name>` component, two registrations are required in the storefront:
+Never suppress custom element typing with `@ts-expect-error`.
 
-1. **`storefront/src/utils/generator/generator.tsx`** — append the tag string to the `DiwaTagNames` union type.
-2. **`storefront/src/types/custom-elements.d.ts`** — add an entry under `React.JSX.IntrinsicElements` with the full prop interface.
+## Local-only governance artifacts
 
-Never suppress TypeScript errors with `@ts-expect-error` for custom element JSX usage.
+These folders are local-only and must never be committed:
 
-## Reference documents
-
-- `prompts/patterns.md` — full patterns & conventions (shadow DOM, CSS-in-JS, SVG attrs, storefront wiring)
-- `prompts/component.instructions.md` — rules for files inside `src/components/`
-- `prompts/storefront.instructions.md` — rules for files inside `storefront/src/`
-- `prompts/new-component.instructions.md` — checklist for creating a new component end-to-end
+- `prompts/`
+- `issues/`
+- `.codex/skills/`
+- `design-system/`

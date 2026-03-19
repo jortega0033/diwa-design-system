@@ -41,3 +41,9 @@ Thumbs.db
 # Python caches
 __pycache__/
 *.pyc
+
+# Local-only AI governance artifacts (must never be committed)
+.codex/skills/
+issues/
+prompts/
+design-system/

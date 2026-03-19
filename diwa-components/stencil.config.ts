@@ -74,6 +74,7 @@ export const config: Config = {
      */
     {
       type: "dist-custom-elements",
+      dir: "dist-custom-elements",
       customElementsExportBehavior: "auto-define-custom-elements",
       externalRuntime: false,
       includeGlobalScripts: false,
