@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  npm-verify:
+    name: npm verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install (npm)
+        run: npm ci
+
+      - name: Build components
+        run: npm run build
+
+      - name: Unit tests
+        run: npm run test
+
+      - name: UX tests
+        run: npm run test:ux
+
+      - name: Storefront type-check
+        run: npm run type-check
+
+      - name: Storefront build
+        run: npm run build:storefront
+
+  pnpm-smoke:
+    name: pnpm smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install (pnpm)
+        run: pnpm install --frozen-lockfile
+
+      - name: Build components
+        run: pnpm --filter @diwa/components run build
+
+      - name: Storefront build
+        run: pnpm --filter @diwa/storefront run build

@@ -50,9 +50,9 @@ npm install --save-dev jscodeshift
 # 2) Run codemod (example placeholder)
 npx jscodeshift -t codemods/diwa-vNext.ts src
 
-# 3) Run tests and build
-npm test
-npm --prefix storefront run build`} />
+  # 3) Run tests and build
+  npm test
+npm run build:storefront`} />
         <p className="text-sm text-[var(--diwa-text-secondary)] mt-4 leading-relaxed">
           If no codemod is available for a release, follow the manual rename and behavior checklist in that
           release-specific section.

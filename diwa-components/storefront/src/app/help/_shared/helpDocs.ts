@@ -280,8 +280,8 @@ ${ISSUES_LIST}`,
       {
         title: 'Run quality checks locally',
         description: 'Validate tests and storefront build before opening a pull request.',
-        code: `npm test
-npm --prefix storefront run build`,
+          code: `npm test
+npm run build:storefront`,
       },
       {
         title: 'Open a focused pull request',
