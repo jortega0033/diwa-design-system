@@ -62,6 +62,36 @@ pnpm run build
 pnpm run build:storefront
 ```
 
+## Curated AI Agent Pack
+
+This repo includes a curated Agency setup for component engineering and docs QA loops.
+
+- Curated list: `docs/agency-agents/curated-diwa-design-system.json`
+- Diwa adaptation guardrails: `docs/agency-agents/ADAPTATION_LAYER.md`
+- Install guide: `docs/agency-agents/README.md`
+
+Install project-scoped agent files:
+
+```bash
+npm run agents:install:curated
+```
+
+Install for a single tool:
+
+```bash
+npm run agents:install:curated:cursor
+npm run agents:install:curated:opencode
+npm run agents:install:curated:aider
+npm run agents:install:curated:windsurf
+npm run agents:install:curated:codex
+```
+
+If your `agency-agents` repo is not at `../agency-agents`, run:
+
+```bash
+node scripts/install-agency-curated.cjs --tool cursor --agency-root "D:\Projects\agency-agents"
+```
+
 ## Legacy compatibility flow
 
 The original subpackage command surface is still available for compatibility:
