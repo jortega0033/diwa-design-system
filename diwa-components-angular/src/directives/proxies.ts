@@ -200,6 +200,28 @@ Not bubbles, not composed.
 
 
 @ProxyCmp({
+  inputs: ['align', 'color', 'ellipsis', 'size', 'tag', 'theme', 'weight']
+})
+@Component({
+  selector: 'diwa-heading',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['align', 'color', 'ellipsis', 'size', 'tag', 'theme', 'weight'],
+})
+export class DiwaHeading {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface DiwaHeading extends Components.DiwaHeading {}
+
+
+@ProxyCmp({
   inputs: ['color', 'label', 'name', 'size', 'theme']
 })
 @Component({

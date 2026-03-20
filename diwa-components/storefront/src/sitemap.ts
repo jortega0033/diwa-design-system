@@ -115,6 +115,7 @@ export const sitemap: NavSection[] = [
       { label: 'Checkbox', href: '/components/checkbox/configurator' },
       { label: 'Divider', href: '/components/divider/configurator' },
       { label: 'Flyout', href: '/components/flyout/configurator' },
+      { label: 'Heading', href: '/components/heading/configurator' },
       { label: 'Icon', href: '/components/icon/configurator' },
       { label: 'Inline Notification', href: '/components/inline-notification/configurator' },
       { label: 'Input Date', href: '/components/input-date/configurator' },

@@ -13,6 +13,7 @@ import { ButtonPureAlignLabel, ButtonPureSize, ButtonPureType } from "./componen
 import { CheckboxState } from "./components/diwa-checkbox/types";
 import { DividerOrientation } from "./components/diwa-divider/types";
 import { FlyoutBackdrop, FlyoutPosition } from "./components/diwa-flyout/types";
+import { HeadingAlign, HeadingColor, HeadingSize, HeadingTag, HeadingWeight } from "./components/diwa-heading/types";
 import { InlineNotificationState } from "./components/diwa-inline-notification/types";
 import { InputFieldState, InputState, InputType } from "./components/diwa-input/types";
 import { LinkTarget, LinkVariant } from "./components/diwa-link/types";
@@ -48,6 +49,7 @@ export { ButtonPureAlignLabel, ButtonPureSize, ButtonPureType } from "./componen
 export { CheckboxState } from "./components/diwa-checkbox/types";
 export { DividerOrientation } from "./components/diwa-divider/types";
 export { FlyoutBackdrop, FlyoutPosition } from "./components/diwa-flyout/types";
+export { HeadingAlign, HeadingColor, HeadingSize, HeadingTag, HeadingWeight } from "./components/diwa-heading/types";
 export { InlineNotificationState } from "./components/diwa-inline-notification/types";
 export { InputFieldState, InputState, InputType } from "./components/diwa-input/types";
 export { LinkTarget, LinkVariant } from "./components/diwa-link/types";
@@ -441,6 +443,46 @@ export namespace Components {
           * Per-component theme override (`light` / `dark`).
          */
         "theme": Theme;
+    }
+    /**
+     * @component diwa-heading
+     * A responsive heading renderer that maps a visual size scale onto the
+     * correct semantic HTML heading element. Font sizes use fluid type tokens
+     * that scale between viewport sizes.
+     * Usage:
+     * <diwa-heading size="h1">Page title</diwa-heading>
+     * <diwa-heading size="display" color="secondary">Hero headline</diwa-heading>
+     * <diwa-heading size="h3" tag="h2">Visual h3, semantic h2</diwa-heading>
+     */
+    interface DiwaHeading {
+        /**
+          * Horizontal alignment. `start` and `end` are RTL-aware.
+         */
+        "align": HeadingAlign;
+        /**
+          * Colour alias. Use `inherit` to pass through the surrounding colour unchanged — useful inside cards, hero sections, or other styled containers.
+         */
+        "color": HeadingColor;
+        /**
+          * Clip overflow to a single line with a trailing ellipsis. The host element must have a defined width for this to take effect.
+         */
+        "ellipsis": boolean;
+        /**
+          * Visual size and inferred semantic heading level. Determines the rendered HTML tag when no explicit `tag` prop is given.
+         */
+        "size": HeadingSize;
+        /**
+          * Override the rendered HTML tag. Use when the visual size must differ from the semantic level — e.g. a visually-large `h3` inside a section that already has an `h2`. If omitted, the tag is inferred from `size`.
+         */
+        "tag"?: HeadingTag;
+        /**
+          * Per-component theme override.
+         */
+        "theme": Theme;
+        /**
+          * Font weight.
+         */
+        "weight": HeadingWeight;
     }
     /**
      * @component diwa-icon
@@ -2274,6 +2316,22 @@ declare global {
         new (): HTMLDiwaFlyoutElement;
     };
     /**
+     * @component diwa-heading
+     * A responsive heading renderer that maps a visual size scale onto the
+     * correct semantic HTML heading element. Font sizes use fluid type tokens
+     * that scale between viewport sizes.
+     * Usage:
+     * <diwa-heading size="h1">Page title</diwa-heading>
+     * <diwa-heading size="display" color="secondary">Hero headline</diwa-heading>
+     * <diwa-heading size="h3" tag="h2">Visual h3, semantic h2</diwa-heading>
+     */
+    interface HTMLDiwaHeadingElement extends Components.DiwaHeading, HTMLStencilElement {
+    }
+    var HTMLDiwaHeadingElement: {
+        prototype: HTMLDiwaHeadingElement;
+        new (): HTMLDiwaHeadingElement;
+    };
+    /**
      * @component diwa-icon
      * Renders a Lucide icon as an inline SVG inside Shadow DOM.
      * The icon inherits `color` from the parent via `currentColor` by default.
@@ -3295,6 +3353,7 @@ declare global {
         "diwa-checkbox": HTMLDiwaCheckboxElement;
         "diwa-divider": HTMLDiwaDividerElement;
         "diwa-flyout": HTMLDiwaFlyoutElement;
+        "diwa-heading": HTMLDiwaHeadingElement;
         "diwa-icon": HTMLDiwaIconElement;
         "diwa-inline-notification": HTMLDiwaInlineNotificationElement;
         "diwa-input": HTMLDiwaInputElement;
@@ -3725,6 +3784,46 @@ declare namespace LocalJSX {
           * Per-component theme override (`light` / `dark`).
          */
         "theme"?: Theme;
+    }
+    /**
+     * @component diwa-heading
+     * A responsive heading renderer that maps a visual size scale onto the
+     * correct semantic HTML heading element. Font sizes use fluid type tokens
+     * that scale between viewport sizes.
+     * Usage:
+     * <diwa-heading size="h1">Page title</diwa-heading>
+     * <diwa-heading size="display" color="secondary">Hero headline</diwa-heading>
+     * <diwa-heading size="h3" tag="h2">Visual h3, semantic h2</diwa-heading>
+     */
+    interface DiwaHeading {
+        /**
+          * Horizontal alignment. `start` and `end` are RTL-aware.
+         */
+        "align"?: HeadingAlign;
+        /**
+          * Colour alias. Use `inherit` to pass through the surrounding colour unchanged — useful inside cards, hero sections, or other styled containers.
+         */
+        "color"?: HeadingColor;
+        /**
+          * Clip overflow to a single line with a trailing ellipsis. The host element must have a defined width for this to take effect.
+         */
+        "ellipsis"?: boolean;
+        /**
+          * Visual size and inferred semantic heading level. Determines the rendered HTML tag when no explicit `tag` prop is given.
+         */
+        "size"?: HeadingSize;
+        /**
+          * Override the rendered HTML tag. Use when the visual size must differ from the semantic level — e.g. a visually-large `h3` inside a section that already has an `h2`. If omitted, the tag is inferred from `size`.
+         */
+        "tag"?: HeadingTag;
+        /**
+          * Per-component theme override.
+         */
+        "theme"?: Theme;
+        /**
+          * Font weight.
+         */
+        "weight"?: HeadingWeight;
     }
     /**
      * @component diwa-icon
@@ -5363,6 +5462,7 @@ declare namespace LocalJSX {
         "diwa-checkbox": DiwaCheckbox;
         "diwa-divider": DiwaDivider;
         "diwa-flyout": DiwaFlyout;
+        "diwa-heading": DiwaHeading;
         "diwa-icon": DiwaIcon;
         "diwa-inline-notification": DiwaInlineNotification;
         "diwa-input": DiwaInput;
@@ -5550,6 +5650,17 @@ declare module "@stencil/core" {
              * </diwa-flyout>
              */
             "diwa-flyout": LocalJSX.DiwaFlyout & JSXBase.HTMLAttributes<HTMLDiwaFlyoutElement>;
+            /**
+             * @component diwa-heading
+             * A responsive heading renderer that maps a visual size scale onto the
+             * correct semantic HTML heading element. Font sizes use fluid type tokens
+             * that scale between viewport sizes.
+             * Usage:
+             * <diwa-heading size="h1">Page title</diwa-heading>
+             * <diwa-heading size="display" color="secondary">Hero headline</diwa-heading>
+             * <diwa-heading size="h3" tag="h2">Visual h3, semantic h2</diwa-heading>
+             */
+            "diwa-heading": LocalJSX.DiwaHeading & JSXBase.HTMLAttributes<HTMLDiwaHeadingElement>;
             /**
              * @component diwa-icon
              * Renders a Lucide icon as an inline SVG inside Shadow DOM.

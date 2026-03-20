@@ -2,32 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { sitemap } from '@/sitemap';
-
-const SECTION_PRIORITY: Record<string, number> = {
-  'Getting Started': 1,
-  Developing: 2,
-  Components: 3,
-  Styles: 4,
-  'Must Know': 5,
-  Patterns: 6,
-  Partials: 7,
-  Designing: 8,
-  News: 9,
-  Help: 10,
-};
-
-const SECTION_ITEM_PRIORITY: Record<string, string[]> = {
-  Developing: ['Introduction', 'Next.js', 'React', 'Vanilla JS', 'Angular', 'Vue', 'Components Ready'],
-  Components: ['Introduction', 'Button', 'Input Text', 'Select', 'Checkbox', 'Modal', 'Toast', 'Tabs'],
-  Styles: ['Introduction', 'Theme', 'Spacing', 'Typography', 'Focus', 'Hover', 'Motion', 'Grid'],
-  'Must Know': ['Introduction', 'Initialization', 'Accessibility', 'Performance', 'Browser Compatibility', 'Versioning', 'Security', 'Definition of Done'],
-  Patterns: ['Introduction', 'Forms', 'Notifications'],
-  Partials: ['Introduction', 'Loader Script', 'Initial Styles', 'Component Chunk Links', 'Browser Support Fallback', 'DSR Ponyfill'],
-  News: ['Changelog', 'Roadmap', 'Migration Guide'],
-  Help: ['Introduction', 'FAQ', 'Support', 'Bug Report', 'Feature Request', 'Contribution'],
-};
 
 function ChevronIcon({ open }: { open: boolean }) {
   return (
@@ -61,34 +37,10 @@ function isItemActive(itemHref: string, pathname: string | null): boolean {
 
 export function Navigation() {
   const pathname = usePathname();
-  const orderedSections = React.useMemo(
-    () =>
-      [...sitemap]
-        .map((section) => {
-          const itemPriority = SECTION_ITEM_PRIORITY[section.title] ?? [];
-          const items = [...section.items].sort((a, b) => {
-            const aPriority = itemPriority.indexOf(a.label);
-            const bPriority = itemPriority.indexOf(b.label);
-            const aRank = aPriority === -1 ? Number.MAX_SAFE_INTEGER : aPriority;
-            const bRank = bPriority === -1 ? Number.MAX_SAFE_INTEGER : bPriority;
-            if (aRank !== bRank) return aRank - bRank;
-            return a.label.localeCompare(b.label);
-          });
-
-          return { ...section, items };
-        })
-        .sort((a, b) => {
-          const aPriority = SECTION_PRIORITY[a.title] ?? Number.MAX_SAFE_INTEGER;
-          const bPriority = SECTION_PRIORITY[b.title] ?? Number.MAX_SAFE_INTEGER;
-          if (aPriority !== bPriority) return aPriority - bPriority;
-          return a.title.localeCompare(b.title);
-        }),
-    [],
-  );
 
   // Auto-open sections that contain the active page.
   const [openSections, setOpenSections] = useState<Record<string, boolean>>(() =>
-    orderedSections.reduce<Record<string, boolean>>((acc, section) => {
+    sitemap.reduce<Record<string, boolean>>((acc, section) => {
       acc[section.title] = section.items.some((item) => isItemActive(item.href, pathname));
       return acc;
     }, {}),
@@ -101,7 +53,7 @@ export function Navigation() {
   return (
     <nav className="flex-1 flex flex-col py-3" aria-label="Main navigation">
       <div className="flex-1">
-        {orderedSections.map((section) => {
+        {sitemap.map((section) => {
           const isOpen = openSections[section.title] ?? false;
           return (
             <div key={section.title} className="mb-0.5">

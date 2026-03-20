@@ -15,6 +15,7 @@ export const DiwaButtonPure = /*@__PURE__*/createReactComponent<JSX.DiwaButtonPu
 export const DiwaCheckbox = /*@__PURE__*/createReactComponent<JSX.DiwaCheckbox, HTMLDiwaCheckboxElement>('diwa-checkbox');
 export const DiwaDivider = /*@__PURE__*/createReactComponent<JSX.DiwaDivider, HTMLDiwaDividerElement>('diwa-divider');
 export const DiwaFlyout = /*@__PURE__*/createReactComponent<JSX.DiwaFlyout, HTMLDiwaFlyoutElement>('diwa-flyout');
+export const DiwaHeading = /*@__PURE__*/createReactComponent<JSX.DiwaHeading, HTMLDiwaHeadingElement>('diwa-heading');
 export const DiwaIcon = /*@__PURE__*/createReactComponent<JSX.DiwaIcon, HTMLDiwaIconElement>('diwa-icon');
 export const DiwaInlineNotification = /*@__PURE__*/createReactComponent<JSX.DiwaInlineNotification, HTMLDiwaInlineNotificationElement>('diwa-inline-notification');
 export const DiwaInput = /*@__PURE__*/createReactComponent<JSX.DiwaInput, HTMLDiwaInputElement>('diwa-input');

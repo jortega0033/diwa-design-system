@@ -96,6 +96,17 @@ export const DiwaFlyout = /*@__PURE__*/ defineContainer<JSX.DiwaFlyout>('diwa-fl
 ]);
 
 
+export const DiwaHeading = /*@__PURE__*/ defineContainer<JSX.DiwaHeading>('diwa-heading', undefined, [
+  'theme',
+  'size',
+  'tag',
+  'weight',
+  'align',
+  'color',
+  'ellipsis'
+]);
+
+
 export const DiwaIcon = /*@__PURE__*/ defineContainer<JSX.DiwaIcon>('diwa-icon', undefined, [
   'name',
   'size',

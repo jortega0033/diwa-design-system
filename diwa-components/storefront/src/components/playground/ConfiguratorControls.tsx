@@ -116,40 +116,34 @@ function AccordionSection({
 
   return (
     <div className="border-b border-[var(--diwa-border)]">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 w-full px-4 py-2.5 text-left hover:bg-[var(--diwa-bg-hover)] transition-colors"
-        aria-expanded={open}
-      >
-        <svg
-          className={`w-3 h-3 text-[var(--diwa-text-tertiary)] transition-transform ${open ? 'rotate-90' : ''}`}
-          viewBox="0 0 6 10"
-          fill="none"
+      <div className="flex items-center gap-2 hover:bg-[var(--diwa-bg-hover)] transition-colors">
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className="flex items-center gap-2 flex-1 px-4 py-2.5 text-left min-w-0"
+          aria-expanded={open}
         >
-          <path d="M1 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <span className="text-xs uppercase tracking-widest font-semibold text-[var(--diwa-text-secondary)] flex-1">
-          {title}
-        </span>
-        {modifiedCount > 0 && (
-          <span className="text-[10px] tabular-nums font-medium text-[var(--diwa-accent)] bg-[var(--diwa-accent-bg)] px-1.5 py-0.5 rounded-full">
-            {modifiedCount}
-          </span>
-        )}
-        {onReset && modifiedCount > 0 && (
-          <span
-            onClick={(e) => {
-              e.stopPropagation();
-              onReset();
-            }}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); onReset(); } }}
+          <svg
+            className={`w-3 h-3 shrink-0 text-[var(--diwa-text-tertiary)] transition-transform ${open ? 'rotate-90' : ''}`}
+            viewBox="0 0 6 10"
+            fill="none"
           >
-            <ResetButton onClick={onReset} label={`Reset ${title}`} />
+            <path d="M1 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="text-xs uppercase tracking-widest font-semibold text-[var(--diwa-text-secondary)] flex-1">
+            {title}
           </span>
+          {modifiedCount > 0 && (
+            <span className="text-[10px] tabular-nums font-medium text-[var(--diwa-accent)] bg-[var(--diwa-accent-bg)] px-1.5 py-0.5 rounded-full">
+              {modifiedCount}
+            </span>
+          )}
+        </button>
+        {onReset && modifiedCount > 0 && (
+          <div className="pr-3 shrink-0">
+            <ResetButton onClick={onReset} label={`Reset ${title}`} />
+          </div>
         )}
-      </button>
+      </div>
       {open && <div className="px-4 pb-3 space-y-3">{children}</div>}
     </div>
   );
