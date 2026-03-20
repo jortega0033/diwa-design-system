@@ -2,6 +2,10 @@
 
 Framework-agnostic Diwa Web Components built with Stencil.
 
+## Documentation
+
+**[designsystem.diwacopilot.com](https://designsystem.diwacopilot.com/)** — Full docs, component configurators, design guides, and integration examples.
+
 ## Install
 
 ```bash
