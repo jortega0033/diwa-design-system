@@ -109,9 +109,9 @@ export const tableStripedStory: Story<'diwa-table'> = {
 };
 
 export const tablePropDefinitions: PropDefinition[] = [
-  { name: 'caption', type: 'string', defaultValue: 'Team members' },
-  { name: 'compact', type: 'boolean', defaultValue: false },
-  { name: 'bordered', type: 'boolean', defaultValue: false },
-  { name: 'striped', type: 'boolean', defaultValue: false },
-  { name: 'layout', type: 'select', options: ['auto', 'fixed'], defaultValue: 'auto' },
+  { name: 'caption', type: 'string', defaultValue: 'Team members', group: 'Content', description: 'Accessible table caption (visually hidden).' },
+  { name: 'compact', type: 'boolean', defaultValue: false, group: 'Appearance', description: 'Reduces cell padding for denser layouts.' },
+  { name: 'bordered', type: 'boolean', defaultValue: false, group: 'Appearance', description: 'Adds column and outer borders.' },
+  { name: 'striped', type: 'boolean', defaultValue: false, group: 'Appearance', description: 'Alternating row background for readability.' },
+  { name: 'layout', type: 'select', options: ['auto', 'fixed'], defaultValue: 'auto', group: 'Layout', description: 'CSS table-layout algorithm.' },
 ];

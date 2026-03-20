@@ -36,11 +36,7 @@ export class DiwaTableHeadCell {
         ? sort.direction === 'asc' ? 'ascending' : 'descending'
         : 'none';
 
-    const labelEl = (
-      <span class={hideLabel ? 'sr-only' : undefined}>
-        <slot />
-      </span>
-    );
+    const labelEl = <span class={hideLabel ? 'sr-only' : undefined}><slot /></span>;
 
     const sortIcon = (
       <svg
@@ -72,7 +68,7 @@ export class DiwaTableHeadCell {
         <style innerHTML={getComponentCss(isSortable, multiline)} />
         {isSortable ? (
           <button type="button" class="sort-btn" onClick={this.handleSort}>
-            {labelEl}
+            <span class="sort-label">{labelEl}</span>
             {sortIcon}
           </button>
         ) : (

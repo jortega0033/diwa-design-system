@@ -9,6 +9,10 @@ if (!fs.existsSync(sourceDir)) {
   process.exit(1);
 }
 
+// Clean target first to remove stale chunks from previous builds
+if (fs.existsSync(targetDir)) {
+  fs.rmSync(targetDir, { recursive: true });
+}
 fs.mkdirSync(targetDir, { recursive: true });
 fs.cpSync(sourceDir, targetDir, { recursive: true, force: true });
 

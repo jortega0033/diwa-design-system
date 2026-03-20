@@ -1,16 +1,18 @@
 export const getComponentCss = (sortable: boolean, multiline: boolean): string => `
   :host {
     display: table-cell;
-    padding: var(--diwa-table-padding, var(--diwa-space-fluid-md));
-    background: var(--diwa-table-header-bg, var(--diwa-bg-elevated));
+    margin: 0 !important;
+    padding: ${sortable ? '0' : 'var(--diwa-table-padding-y, 12px) var(--diwa-table-padding-x, 16px)'} !important;
+    white-space: ${multiline ? 'normal' : 'nowrap'} !important;
+    background: var(--diwa-table-header-bg, transparent);
     text-align: start;
     font-size: var(--diwa-font-size-sm);
     font-weight: var(--diwa-font-weight-semibold);
+    letter-spacing: 0.04em;
     color: var(--diwa-text-secondary);
-    border-bottom: var(--diwa-border-width-base) solid var(--diwa-table-border-color, var(--diwa-border));
-    border-right: var(--diwa-table-column-border, none);
-    white-space: ${multiline ? 'normal' : 'nowrap'};
-    vertical-align: middle;
+    border-right: var(--diwa-table-column-border, none) !important;
+    line-height: var(--diwa-line-height-normal);
+    vertical-align: bottom;
   }
   :host(:last-child) { border-right: none; }
   :host([hidden]) { display: none; }
@@ -29,18 +31,27 @@ export const getComponentCss = (sortable: boolean, multiline: boolean): string =
 
   ${sortable ? `
   .sort-btn {
-    display: inline-flex;
-    align-items: center;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: flex-end;
     gap: var(--diwa-space-1);
     background: transparent;
     border: 0;
     cursor: pointer;
     font: inherit;
     color: inherit;
-    padding: 0;
+    margin: 0;
+    padding: var(--diwa-table-padding-y, 12px) var(--diwa-table-padding-x, 16px);
     text-align: start;
     outline-offset: 2px;
     transition: color var(--diwa-transition-base);
+    white-space: ${multiline ? 'normal' : 'nowrap'};
+  }
+  .sort-label {
+    display: inline-flex;
+    min-width: 0;
     white-space: ${multiline ? 'normal' : 'nowrap'};
   }
   .sort-btn:hover {

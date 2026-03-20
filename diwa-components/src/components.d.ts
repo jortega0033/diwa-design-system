@@ -1600,7 +1600,7 @@ export namespace Components {
     }
     /**
      * @component diwa-table
-     * Wrapper for a data table. Uses native HTML table layout via display CSS.
+     * Wrapper for a data table. Uses CSS table layout with ARIA roles.
      * Structure: diwa-table > diwa-table-head > diwa-table-row > diwa-table-head-cell
      *            > diwa-table-body > diwa-table-row > diwa-table-cell
      */
@@ -3022,7 +3022,7 @@ declare global {
     }
     /**
      * @component diwa-table
-     * Wrapper for a data table. Uses native HTML table layout via display CSS.
+     * Wrapper for a data table. Uses CSS table layout with ARIA roles.
      * Structure: diwa-table > diwa-table-head > diwa-table-row > diwa-table-head-cell
      *            > diwa-table-body > diwa-table-row > diwa-table-cell
      */
@@ -4998,7 +4998,7 @@ declare namespace LocalJSX {
     }
     /**
      * @component diwa-table
-     * Wrapper for a data table. Uses native HTML table layout via display CSS.
+     * Wrapper for a data table. Uses CSS table layout with ARIA roles.
      * Structure: diwa-table > diwa-table-head > diwa-table-row > diwa-table-head-cell
      *            > diwa-table-body > diwa-table-row > diwa-table-cell
      */
@@ -5804,7 +5804,7 @@ declare module "@stencil/core" {
             "diwa-switch": LocalJSX.DiwaSwitch & JSXBase.HTMLAttributes<HTMLDiwaSwitchElement>;
             /**
              * @component diwa-table
-             * Wrapper for a data table. Uses native HTML table layout via display CSS.
+             * Wrapper for a data table. Uses CSS table layout with ARIA roles.
              * Structure: diwa-table > diwa-table-head > diwa-table-row > diwa-table-head-cell
              *            > diwa-table-body > diwa-table-row > diwa-table-cell
              */

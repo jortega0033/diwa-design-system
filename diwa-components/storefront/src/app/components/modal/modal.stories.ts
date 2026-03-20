@@ -54,12 +54,12 @@ export const modalStory: Story<'diwa-modal'> = {
 };
 
 export const modalPropDefinitions: PropDefinition[] = [
-  { name: 'open', type: 'boolean', defaultValue: false },
-  { name: 'heading', type: 'string', defaultValue: 'Dialog title' },
-  { name: 'dismissButton', type: 'boolean', defaultValue: true },
-  { name: 'disableBackdropClick', type: 'boolean', defaultValue: false },
-  { name: 'backdrop', type: 'select', options: ['blur', 'shading'], defaultValue: 'blur' },
-  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark' },
+  { name: 'open', type: 'boolean', defaultValue: false, group: 'State', description: 'Controls modal visibility.' },
+  { name: 'heading', type: 'string', defaultValue: 'Dialog title', group: 'Content' },
+  { name: 'dismissButton', type: 'boolean', defaultValue: true, group: 'Behavior', description: 'Shows the close/dismiss button in the header.' },
+  { name: 'disableBackdropClick', type: 'boolean', defaultValue: false, group: 'Behavior', description: 'Prevents closing when clicking the backdrop.' },
+  { name: 'backdrop', type: 'select', options: ['blur', 'shading'], defaultValue: 'blur', group: 'Appearance' },
+  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark', group: 'Appearance' },
 ];
 
 // ── Static example stories ────────────────────────────────────────────────

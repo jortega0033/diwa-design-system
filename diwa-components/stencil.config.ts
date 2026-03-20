@@ -151,6 +151,15 @@ export const config: Config = {
   enableCache: true,
 
   // ──────────────────────────────────────────────────────────────
+  // Dev server — explicit port so the storefront Next.js proxy
+  // (/stencil/* → localhost:3333/build/*) never gets de-synced.
+  // ──────────────────────────────────────────────────────────────
+  devServer: {
+    port: 3333,
+    openBrowser: false,
+  },
+
+  // ──────────────────────────────────────────────────────────────
   // Testing
   // ──────────────────────────────────────────────────────────────
   testing: {

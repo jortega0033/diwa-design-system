@@ -66,6 +66,7 @@ export function Configurator({ story, propDefinitions, previewClassName }: Confi
         propDefinitions={propDefinitions}
         storyState={exampleState}
         setStoryState={setExampleState}
+        defaultState={story.state}
       />
     </div>
   );

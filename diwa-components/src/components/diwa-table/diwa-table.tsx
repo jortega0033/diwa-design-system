@@ -5,7 +5,7 @@ import { getComponentCss } from './diwa-table-styles';
 
 /**
  * @component diwa-table
- * Wrapper for a data table. Uses native HTML table layout via display CSS.
+ * Wrapper for a data table. Uses CSS table layout with ARIA roles.
  * Structure: diwa-table > diwa-table-head > diwa-table-row > diwa-table-head-cell
  *                       > diwa-table-body > diwa-table-row > diwa-table-cell
  */
@@ -28,13 +28,14 @@ export class DiwaTable {
   }
 
   render() {
+    const tableLabel = this.caption || undefined;
+
     return (
       <Host data-theme={this.theme}>
         <style innerHTML={getComponentCss(this.compact, this.layout, this.bordered, this.striped)} />
-        <table class="table">
-          {this.caption && <caption class="sr-only">{this.caption}</caption>}
+        <div class="table" role="table" aria-label={tableLabel}>
           <slot />
-        </table>
+        </div>
       </Host>
     );
   }

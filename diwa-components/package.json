@@ -47,6 +47,7 @@
     "build": "stencil build",
     "build.watch": "stencil build --watch",
     "dev:stencil": "npm run patch:stencil && stencil build --watch --serve",
+    "predev": "node -e \"const fs=require('fs'),p=require('path').join(__dirname,'storefront','public','stencil');if(fs.existsSync(p)){fs.rmSync(p,{recursive:true});console.log('[predev] Cleared storefront/public/stencil/ so dev proxy works')}\"",
     "dev": "concurrently -n \"stencil,storefront\" -c \"blue,green\" \"npm run dev:stencil\" \"npm --prefix storefront run dev\"",
     "test": "vitest run",
     "test:watch": "vitest",
