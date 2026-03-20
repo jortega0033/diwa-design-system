@@ -97,56 +97,72 @@ export namespace Components {
     interface DiwaAccordion {
         /**
           * Reduces padding and font size for denser UI contexts.
+          * @default false
          */
         "compact": boolean;
         /**
           * Visible heading text rendered inside the toggle button.
+          * @default ''
          */
         "heading": string;
         /**
           * Semantic heading level for the toggle button wrapper.
+          * @default 'h2'
          */
         "headingTag": AccordionHeadingTag;
         /**
           * Whether the accordion panel is currently open.  This is a **controlled** prop: the component always reflects its `open` state outward via the `update` event, but never mutates the prop internally. The consumer must update it.
+          * @default false
          */
         "open": boolean;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme": Theme;
     }
     /**
      * @component diwa-badge
-     * A compact, pill-shaped label used to convey status, counts, or metadata.
-     * Renders as an inline element with full Shadow DOM encapsulation.
+     * A compact, pill-shaped status indicator with an optional animated dot.
+     * Use for live status, counts, counts, and key callouts.
+     * Prefer DiwaTag for category labels and filters — Tag has square corners and a
+     * visible border; Badge is always fully rounded with a subtler, muted border.
      * Design token override API (set on :root or any ancestor):
      * --diwa-badge-radius          Border radius (defaults to --diwa-radius-full)
+     * --diwa-badge-border-color    Override the auto-computed border colour
      * --diwa-badge-padding-x       Horizontal padding for md size
      * --diwa-badge-padding-x-sm    Horizontal padding for sm size
      * --diwa-badge-font-size       Font size for md size
      * --diwa-badge-font-size-sm    Font size for sm size
      * --diwa-badge-font-weight     Font weight
      * Usage:
-     * <diwa-badge variant="success">Active</diwa-badge>
+     * <diwa-badge variant="success" dot>Live</diwa-badge>
      * <diwa-badge variant="danger" size="sm">3 errors</diwa-badge>
      * <diwa-badge variant="neutral">Draft</diwa-badge>
      */
     interface DiwaBadge {
+        /**
+          * When true, renders a small animated pulsing dot before the slot content. Use to indicate live status or active processes.
+          * @default false
+         */
+        "dot": boolean;
         /**
           * Accessible label. Use when slot content alone is insufficient (e.g., a numeric count without surrounding context).
          */
         "label"?: string;
         /**
           * Size tier — controls height, padding, and font-size.
+          * @default "md"
          */
         "size": BadgeSize;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Semantic colour variant. Determines background and text colour.
+          * @default "neutral"
          */
         "variant": BadgeVariant;
     }
@@ -172,10 +188,12 @@ export namespace Components {
     interface DiwaButton {
         /**
           * Disabled state. Blocks all pointer and keyboard interaction. When rendered as <a>, sets aria-disabled instead of disabled (the `disabled` attribute is not valid on anchor elements).
+          * @default false
          */
         "disabled": boolean;
         /**
           * When `true`, the default label slot is visually hidden so the button renders as a compact square (icon-only mode). The slot text is kept in the DOM for screen-reader accessible-name calculation.  For best accessibility, always pair with the `label` prop **or** ensure the default slot contains descriptive text, so the button has a name.  Usage:   <diwa-button hide-label label="Save">     <svg slot="icon-start">…</svg>   </diwa-button>
+          * @default false
          */
         "hideLabel": boolean;
         /**
@@ -184,6 +202,7 @@ export namespace Components {
         "href"?: string;
         /**
           * Lucide icon name in kebab-case (e.g. `"star"`, `"arrow-right"`), or `'none'` to show no icon. When set to any value other than `'none'`, renders a `<diwa-icon>` in the leading (icon-start) position.  The `icon-start` slot still works alongside this prop — the prop-rendered icon comes first, followed by any slotted content.
+          * @default 'none'
          */
         "icon": string;
         /**
@@ -192,6 +211,7 @@ export namespace Components {
         "label"?: string;
         /**
           * Loading state. Shows an inline spinner, disables the button, and sets aria-busy="true" to communicate async activity to screen readers.
+          * @default false
          */
         "loading": boolean;
         /**
@@ -200,6 +220,7 @@ export namespace Components {
         "name"?: string;
         /**
           * Size tier — controls height and padding.
+          * @default "md"
          */
         "size": ButtonSize;
         /**
@@ -208,10 +229,12 @@ export namespace Components {
         "target"?: "_blank" | "_self" | "_parent" | "_top";
         /**
           * Per-component theme override.  Setting this reflects data-theme onto the host element, causing the light/dark token overrides in app.css to cascade into the Shadow DOM automatically. Mirrors the `theme` prop on every PDS component.
+          * @default "dark"
          */
         "theme": Theme;
         /**
           * Native button type. Only applies when rendered as <button> (i.e., no `href` prop is set).
+          * @default "button"
          */
         "type": ButtonType;
         /**
@@ -220,6 +243,7 @@ export namespace Components {
         "value"?: string;
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant": ButtonVariant;
     }
@@ -238,18 +262,22 @@ export namespace Components {
     interface DiwaButtonPure {
         /**
           * Forces the button into its active/pressed visual state.
+          * @default false
          */
         "active": boolean;
         /**
           * Controls which side the label appears on relative to the icon. - `"end"` (default): [icon] [label] - `"start"`:         [label] [icon]
+          * @default "end"
          */
         "alignLabel": ButtonPureAlignLabel;
         /**
           * Disabled state. Blocks all pointer and keyboard interaction.
+          * @default false
          */
         "disabled": boolean;
         /**
           * When `true`, the label slot is visually hidden (icon-only mode). Always pair with the `label` prop for screen-reader accessible name.
+          * @default false
          */
         "hideLabel": boolean;
         /**
@@ -258,6 +286,7 @@ export namespace Components {
         "href"?: string;
         /**
           * Lucide icon name in kebab-case (e.g. `"arrow-right"`, `"star"`), or `"none"` to render with no icon. Defaults to `"arrow-right"` — matching PDS.
+          * @default "arrow-right"
          */
         "icon": string;
         /**
@@ -266,6 +295,7 @@ export namespace Components {
         "label"?: string;
         /**
           * Loading state. Replaces the icon with a spinner, blocks interaction, and announces aria-busy to screen readers.
+          * @default false
          */
         "loading": boolean;
         /**
@@ -274,10 +304,12 @@ export namespace Components {
         "name"?: string;
         /**
           * Text size tier. Controls both font-size and icon size.
+          * @default "md"
          */
         "size": ButtonPureSize;
         /**
           * When `true`, the button stretches to fill its container and the space between icon and label expands to fill remaining width.
+          * @default false
          */
         "stretch": boolean;
         /**
@@ -286,14 +318,17 @@ export namespace Components {
         "target"?: "_blank" | "_self" | "_parent" | "_top";
         /**
           * Per-component theme override (light / dark).
+          * @default "dark"
          */
         "theme": Theme;
         /**
           * Native button type. Only applies when rendered as `<button>`.
+          * @default "button"
          */
         "type": ButtonPureType;
         /**
           * Adds an underline decoration to the label text.
+          * @default false
          */
         "underline": boolean;
         /**
@@ -324,50 +359,62 @@ export namespace Components {
     interface DiwaCheckbox {
         /**
           * Whether the checkbox is checked.  Semi-controlled: mutates internally on user interaction and also emits an `update` event so the consumer can sync their state.
+          * @default false
          */
         "checked": boolean;
         /**
           * Reduces the checkbox size from 20 px to 14 px for denser layouts.
+          * @default false
          */
         "compact": boolean;
         /**
           * Puts the checkbox in a disabled state. Blocks interaction.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Hides the label visually while keeping it accessible to screen readers.
+          * @default false
          */
         "hideLabel": boolean;
         /**
           * Indeterminate state — renders a dash icon and sets `aria-checked="mixed"`. Setting this to `true` takes visual precedence over `checked`. The consumer is responsible for clearing it once the user toggles.
+          * @default false
          */
         "indeterminate": boolean;
         /**
           * Visible label text rendered next to the checkbox.
+          * @default ''
          */
         "label": string;
         /**
           * Helper / validation message shown below the checkbox. Only shown when state ≠ 'none'.
+          * @default ''
          */
         "message": string;
         /**
           * Native name attribute (identifies the field in JS / form data).
+          * @default ''
          */
         "name": string;
         /**
           * Marks the field as required. Shows a visual asterisk in the label.
+          * @default false
          */
         "required": boolean;
         /**
           * Validation state: `'none'` (default), `'error'`, or `'success'`.
+          * @default 'none'
          */
         "state": CheckboxState;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Value submitted/emitted when the checkbox is checked.
+          * @default 'on'
          */
         "value": string;
     }
@@ -392,10 +439,12 @@ export namespace Components {
     interface DiwaDivider {
         /**
           * Orientation of the divider line. - `'horizontal'` (default) — a full-width 1 px horizontal rule. - `'vertical'` — a 1 px vertical rule that stretches to the parent's height.   The parent must be a flex or grid container with a defined height.
+          * @default 'horizontal'
          */
         "orientation": DividerOrientation;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -425,22 +474,27 @@ export namespace Components {
     interface DiwaFlyout {
         /**
           * Controls the visual style of the backdrop overlay. `blur`    — frosted glass (default; use when opened by user interaction). `shading` — solid dark scrim (use for system-triggered flyouts).
+          * @default 'blur'
          */
         "backdrop": FlyoutBackdrop;
         /**
           * Heading text displayed in the flyout header.
+          * @default ''
          */
         "heading": string;
         /**
           * Whether the flyout is currently open.  Controlled prop — the consumer must set this to `false` in response to the `dismiss` event (backdrop click, Escape key, or dismiss button).
+          * @default false
          */
         "open": boolean;
         /**
           * Which edge of the viewport the panel slides in from (`start` = left, `end` = right).
+          * @default 'end'
          */
         "position": FlyoutPosition;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -457,18 +511,22 @@ export namespace Components {
     interface DiwaHeading {
         /**
           * Horizontal alignment. `start` and `end` are RTL-aware.
+          * @default 'start'
          */
         "align": HeadingAlign;
         /**
           * Colour alias. Use `inherit` to pass through the surrounding colour unchanged — useful inside cards, hero sections, or other styled containers.
+          * @default 'primary'
          */
         "color": HeadingColor;
         /**
           * Clip overflow to a single line with a trailing ellipsis. The host element must have a defined width for this to take effect.
+          * @default false
          */
         "ellipsis": boolean;
         /**
           * Visual size and inferred semantic heading level. Determines the rendered HTML tag when no explicit `tag` prop is given.
+          * @default 'h2'
          */
         "size": HeadingSize;
         /**
@@ -477,10 +535,12 @@ export namespace Components {
         "tag"?: HeadingTag;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Font weight.
+          * @default 'bold'
          */
         "weight": HeadingWeight;
     }
@@ -505,6 +565,7 @@ export namespace Components {
         "label"?: string;
         /**
           * Lucide icon name in kebab-case. Full list: https://lucide.dev/icons/ Examples: "arrow-right", "check", "user", "trash-2"
+          * @default 'circle'
          */
         "name": string;
         /**
@@ -514,6 +575,7 @@ export namespace Components {
         "size": number;
         /**
           * Per-component theme override. Setting this reflects data-theme onto the host so light/dark token overrides cascade into the Shadow DOM via CSS custom property inheritance.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -541,26 +603,32 @@ export namespace Components {
         "actionLabel"?: string;
         /**
           * Shows a loading indicator on the action button and blocks its interaction. Has no effect when `actionLabel` is not set.
+          * @default false
          */
         "actionLoading": boolean;
         /**
           * Description text. When empty, the default slot is rendered instead — allowing rich markup.
+          * @default ''
          */
         "description": string;
         /**
           * Whether to show the dismiss (×) button. When `false`, the notification can only be removed programmatically.
+          * @default true
          */
         "dismissButton": boolean;
         /**
           * Bold heading text rendered above the description.
+          * @default ''
          */
         "heading": string;
         /**
           * Semantic state — governs colour treatment, icon, and ARIA live role. - `info`    — neutral informational  (role="status", polite) - `success` — positive confirmation  (role="status", polite) - `warning` — non-blocking caution   (role="status", polite) - `error`   — critical or blocking   (role="alert",  assertive)
+          * @default 'info'
          */
         "state": InlineNotificationState;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -592,6 +660,7 @@ export namespace Components {
         "autocomplete"?: string;
         /**
           * Disables the input. Blocks pointer and keyboard interaction.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -616,262 +685,699 @@ export namespace Components {
         "placeholder"?: string;
         /**
           * Makes the input read-only. Content is selectable but not editable.
+          * @default false
          */
         "readonly": boolean;
         /**
           * Marks the field as required. Sets aria-required on the inner input.
+          * @default false
          */
         "required": boolean;
         /**
           * Validation state. Controls border colour and the hint text colour. Pair with the `hint` prop to surface error or success messages.
+          * @default "default"
          */
         "state": InputState;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Native input type. Controls keyboard, validation, and autocomplete behaviour.
+          * @default "text"
          */
         "type": InputType;
         /**
           * Controlled value. Use with onDiwaChange for controlled form patterns.
+          * @default ""
          */
         "value": string;
     }
     interface DiwaInputDate {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
         /**
           * ISO 8601 date string (YYYY-MM-DD) for the maximum allowed date.
          */
         "max"?: string;
+        /**
+          * @default ''
+         */
         "message": string;
         /**
           * ISO 8601 date string (YYYY-MM-DD) for the minimum allowed date.
          */
         "min"?: string;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputEmail {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
+        /**
+          * @default ''
+         */
         "message": string;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputMonth {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
         /**
           * Maximum month in YYYY-MM format.
          */
         "max"?: string;
+        /**
+          * @default ''
+         */
         "message": string;
         /**
           * Minimum month in YYYY-MM format.
          */
         "min"?: string;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputNumber {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
         /**
           * Maximum allowed value.
          */
         "max"?: number;
+        /**
+          * @default ''
+         */
         "message": string;
         /**
           * Minimum allowed value.
          */
         "min"?: number;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
         /**
           * Step increment.
          */
         "step"?: number;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputPassword {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
+        /**
+          * @default ''
+         */
         "message": string;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
         /**
           * Show the eye icon button to toggle password visibility.
+          * @default true
          */
         "showToggle": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputSearch {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
+        /**
+          * @default ''
+         */
         "message": string;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
         /**
           * Show the clear (×) button when the field has a value.
+          * @default true
          */
         "showClearButton": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputTel {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
+        /**
+          * @default ''
+         */
         "message": string;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputText {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
         "maxLength"?: number;
+        /**
+          * @default ''
+         */
         "message": string;
         "minLength"?: number;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
         "spellCheck"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputTime {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
         /**
           * Maximum time in HH:MM format.
          */
         "max"?: string;
+        /**
+          * @default ''
+         */
         "message": string;
         /**
           * Minimum time in HH:MM format.
          */
         "min"?: string;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
         /**
           * Step in seconds.
          */
         "step"?: number;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputUrl {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
+        /**
+          * @default ''
+         */
         "message": string;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     interface DiwaInputWeek {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default ''
+         */
         "description": string;
+        /**
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default ''
+         */
         "label": string;
         /**
           * Maximum week in YYYY-Www format (e.g. 2024-W52).
          */
         "max"?: string;
+        /**
+          * @default ''
+         */
         "message": string;
         /**
           * Minimum week in YYYY-Www format (e.g. 2024-W01).
          */
         "min"?: string;
+        /**
+          * @default ''
+         */
         "name": string;
+        /**
+          * @default ''
+         */
         "placeholder": string;
+        /**
+          * @default false
+         */
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
+        /**
+          * @default 'none'
+         */
         "state": InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
+        /**
+          * @default ''
+         */
         "value": string;
     }
     /**
@@ -886,10 +1392,12 @@ export namespace Components {
     interface DiwaLink {
         /**
           * Compact (smaller) size variant.
+          * @default false
          */
         "compact": boolean;
         /**
           * Disabled state. Sets aria-disabled and prevents interaction.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -898,6 +1406,7 @@ export namespace Components {
         "download"?: string;
         /**
           * Hides the label visually (icon-only mode). Keep slot text for screen readers.
+          * @default false
          */
         "hideLabel": boolean;
         /**
@@ -906,6 +1415,7 @@ export namespace Components {
         "href"?: string;
         /**
           * Lucide icon name (kebab-case, e.g. "arrow-right"), or "none" to hide.
+          * @default "none"
          */
         "icon": string;
         /**
@@ -918,14 +1428,17 @@ export namespace Components {
         "rel"?: string;
         /**
           * Target attribute — where to open the linked URL.
+          * @default "_self"
          */
         "target": LinkTarget;
         /**
           * Per-component theme override.
+          * @default "dark"
          */
         "theme": Theme;
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant": LinkVariant;
     }
@@ -941,10 +1454,12 @@ export namespace Components {
     interface DiwaLinkPure {
         /**
           * Display the link in active/pressed visual state.
+          * @default false
          */
         "active": boolean;
         /**
           * Controls label position relative to the icon. "end" (default): [icon] [label] "start":         [label] [icon]
+          * @default "end"
          */
         "alignLabel": LinkPureAlignLabel;
         /**
@@ -953,6 +1468,7 @@ export namespace Components {
         "download"?: string;
         /**
           * Hides the label visually (icon-only mode). Keep slot text for screen readers.
+          * @default false
          */
         "hideLabel": boolean;
         /**
@@ -961,6 +1477,7 @@ export namespace Components {
         "href"?: string;
         /**
           * Lucide icon name (kebab-case, e.g. "arrow-right"), or "none" to hide icon. Defaults to "arrow-right" — matching PDS p-link-pure.
+          * @default "arrow-right"
          */
         "icon": string;
         /**
@@ -973,22 +1490,27 @@ export namespace Components {
         "rel"?: string;
         /**
           * Text size tier — also scales the icon.
+          * @default "md"
          */
         "size": LinkPureSize;
         /**
           * Stretches the link to fill its container width.
+          * @default false
          */
         "stretch": boolean;
         /**
           * Target attribute — where to open the linked URL.
+          * @default "_self"
          */
         "target": LinkTarget1;
         /**
           * Per-component theme override (light / dark).
+          * @default "dark"
          */
         "theme": Theme;
         /**
           * Shows an underline decoration on the label text.
+          * @default false
          */
         "underline": boolean;
     }
@@ -1013,14 +1535,17 @@ export namespace Components {
     interface DiwaModal {
         /**
           * Controls the visual style of the backdrop overlay.  `blur`    — frosted glass via backdrop-filter (default).             Use when the modal is opened by direct user interaction (e.g. a button click).  `shading` — solid dark scrim via --diwa-bg-shading.             Use for system-triggered modals (e.g. session timeout, cookie consent).
+          * @default 'blur'
          */
         "backdrop": ModalBackdrop;
         /**
           * When true, clicking the backdrop does not emit `dismiss`. Use for required confirmations requiring an explicit user choice.
+          * @default false
          */
         "disableBackdropClick": boolean;
         /**
           * When false, the dismiss (×) button in the header is hidden. Pair with a close action in the footer or programmatic `open = false`.
+          * @default true
          */
         "dismissButton": boolean;
         /**
@@ -1029,10 +1554,12 @@ export namespace Components {
         "heading"?: string;
         /**
           * Whether the modal is open.  Controlled prop — set `open={true}` to open and `open={false}` to close. The component emits `dismiss` when the user requests a close; the consumer must set `open={false}` in response.
+          * @default false
          */
         "open": boolean;
         /**
           * Per-component theme override. Reflects data-theme onto the host element so the light/dark token overrides in app.css cascade into the Shadow DOM via CSS inheritance.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -1057,6 +1584,7 @@ export namespace Components {
         "close": () => Promise<void>;
         /**
           * Compact variant — reduces the trigger height.
+          * @default false
          */
         "compact": boolean;
         /**
@@ -1065,14 +1593,17 @@ export namespace Components {
         "description"?: string;
         /**
           * Disables interaction.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Preferred direction for the dropdown panel. `'auto'` detects viewport space and flips upward if needed.
+          * @default 'auto'
          */
         "dropdownDirection": MultiSelectDropdownDirection;
         /**
           * Hides the label visually while keeping it accessible.
+          * @default false
          */
         "hideLabel": boolean;
         /**
@@ -1085,6 +1616,7 @@ export namespace Components {
         "message"?: string;
         /**
           * HTML name attribute — identifies the field in form submissions.
+          * @default ''
          */
         "name": string;
         /**
@@ -1093,18 +1625,22 @@ export namespace Components {
         "open": () => Promise<void>;
         /**
           * Marks the field as required.
+          * @default false
          */
         "required": boolean;
         /**
           * Validation state.
+          * @default 'none'
          */
         "state": MultiSelectState;
         /**
           * Theme — cascades down to child options.
+          * @default 'dark'
          */
         "theme": MultiSelectTheme;
         /**
           * Currently selected values. Mutable — updated on user interaction.
+          * @default []
          */
         "value": string[];
     }
@@ -1117,18 +1653,22 @@ export namespace Components {
     interface DiwaMultiSelectOption {
         /**
           * Compact variant — reduces the option row height and checkbox size. Inherited from the parent diwa-multi-select.
+          * @default false
          */
         "compact": boolean;
         /**
           * Disables the option — it cannot be selected.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Whether the option is currently keyboard-highlighted. Set exclusively by the parent component.
+          * @default false
          */
         "highlighted": boolean;
         /**
           * Whether the option is currently selected. Maintained by the parent <diwa-multi-select>; consumers can also pre-select options by setting this attribute.
+          * @default false
          */
         "selected": boolean;
         /**
@@ -1137,6 +1677,7 @@ export namespace Components {
         "setFocus": () => Promise<void>;
         /**
           * Theme — inherited from the parent diwa-multi-select.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
@@ -1162,26 +1703,32 @@ export namespace Components {
     interface DiwaPagination {
         /**
           * Index of the currently active page (1-based). Semi-controlled: mutates internally on click and emits `update`.
+          * @default 1
          */
         "activePage": number;
         /**
           * Override the default aria-label wording for prev/next/page buttons and the nav element. Useful for localisation. Default: `{ root: 'Pagination', prev: 'Previous page', next: 'Next page', page: 'Page' }`
+          * @default {     root: 'Pagination',     prev: 'Previous page',     next: 'Next page',     page: 'Page',   }
          */
         "intl": PaginationIntl;
         /**
           * Number of items shown per page.
+          * @default 1
          */
         "itemsPerPage": number;
         /**
           * Show a direct link to the last page (in addition to the prev/next buttons).
+          * @default true
          */
         "showLastPage": boolean;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Total number of items in the data set.
+          * @default 1
          */
         "totalItemsCount": number;
     }
@@ -1191,50 +1738,62 @@ export namespace Components {
     interface DiwaPinCode {
         /**
           * Renders compact input boxes.
+          * @default false
          */
         "compact": boolean;
         /**
           * Supplementary description below the label.
+          * @default ''
          */
         "description": string;
         /**
           * Disables all input boxes.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Hides the visible label while preserving it as accessible name.
+          * @default false
          */
         "hideLabel": boolean;
         /**
           * Visible label text.
+          * @default ''
          */
         "label": string;
         /**
           * Number of input boxes (1–6).
+          * @default 4
          */
         "length": number;
         /**
           * Feedback message.
+          * @default ''
          */
         "message": string;
         /**
           * Whether the pin code is required.
+          * @default false
          */
         "required": boolean;
         /**
           * Validation state.
+          * @default 'none'
          */
         "state": InputFieldState;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Input type — "number" restricts input to digits; "password" masks the value.
+          * @default 'number'
          */
         "type": PinCodeType;
         /**
           * Current value string. Length should match the length prop.
+          * @default ''
          */
         "value": string;
     }
@@ -1245,10 +1804,12 @@ export namespace Components {
         "description"?: string;
         /**
           * Preferred direction the panel opens relative to the trigger.
+          * @default 'bottom'
          */
         "direction": PopoverDirection;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -1266,50 +1827,62 @@ export namespace Components {
     interface DiwaRadioGroup {
         /**
           * Reduces size for denser layouts.
+          * @default false
          */
         "compact": boolean;
         /**
           * Supplementary description rendered below the label.
+          * @default ''
          */
         "description": string;
         /**
           * Layout direction for the radio options.
+          * @default 'column'
          */
         "direction": RadioGroupDirection;
         /**
           * Disables all child items.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Hides the label visually while keeping it accessible.
+          * @default false
          */
         "hideLabel": boolean;
         /**
           * Group label rendered above the options.
+          * @default ''
          */
         "label": string;
         /**
           * Feedback message shown when state is error or success.
+          * @default ''
          */
         "message": string;
         /**
           * Native name attribute shared by all radio inputs in the group.
+          * @default ''
          */
         "name": string;
         /**
           * Whether selecting a value is required.
+          * @default false
          */
         "required": boolean;
         /**
           * Validation state.
+          * @default 'none'
          */
         "state": RadioGroupState;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Currently selected value. Synced down to child items.
+          * @default ''
          */
         "value": string;
     }
@@ -1324,40 +1897,49 @@ export namespace Components {
     interface DiwaRadioGroupItem {
         /**
           * Set by the parent diwa-radio-group — do not set directly.
+          * @default false
          */
         "checked": boolean;
         /**
           * Reduces size for denser layouts.
+          * @default false
          */
         "compact": boolean;
         /**
           * Whether this option is disabled. Also set by the parent group when the whole group is disabled.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Native name — set automatically by the parent group.
+          * @default ''
          */
         "name": string;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * The value submitted/emitted when this item is selected.
+          * @default ''
          */
         "value": string;
     }
     interface DiwaScroller {
         /**
           * Position of gradient fade indicators relative to the scroll area.
+          * @default 'center'
          */
         "alignScrollIndicator": ScrollerScrollIndicatorPosition;
         /**
           * Whether to show the native horizontal scrollbar.
+          * @default false
          */
         "scrollbar": boolean;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -1376,18 +1958,22 @@ export namespace Components {
     interface DiwaSegmentedControl {
         /**
           * Smaller item sizing.
+          * @default false
          */
         "compact": boolean;
         /**
           * Disables all items.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Currently selected item value.
+          * @default ''
          */
         "value": string;
     }
@@ -1402,22 +1988,27 @@ export namespace Components {
     interface DiwaSegmentedControlItem {
         /**
           * Smaller sizing. Also set by the parent when compact is enabled.
+          * @default false
          */
         "compact": boolean;
         /**
           * Whether this segment is disabled. Also set by the parent when the group is disabled.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Whether this segment is currently selected. Set by the parent.
+          * @default false
          */
         "selected": boolean;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * The value emitted when this segment is activated.
+          * @default ''
          */
         "value": string;
     }
@@ -1440,6 +2031,7 @@ export namespace Components {
         "close": () => Promise<void>;
         /**
           * Compact variant — reduces the trigger height.
+          * @default false
          */
         "compact": boolean;
         /**
@@ -1448,14 +2040,17 @@ export namespace Components {
         "description"?: string;
         /**
           * Disables interaction.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Preferred direction for the dropdown panel. `'auto'` detects viewport space and flips upward if needed.
+          * @default 'auto'
          */
         "dropdownDirection": SelectDropdownDirection;
         /**
           * Hides the label visually while keeping it accessible.
+          * @default false
          */
         "hideLabel": boolean;
         /**
@@ -1468,6 +2063,7 @@ export namespace Components {
         "message"?: string;
         /**
           * HTML name attribute — identifies the field in form submissions.
+          * @default ''
          */
         "name": string;
         /**
@@ -1476,14 +2072,17 @@ export namespace Components {
         "open": () => Promise<void>;
         /**
           * Marks the field as required.
+          * @default false
          */
         "required": boolean;
         /**
           * Validation state.
+          * @default 'none'
          */
         "state": SelectState;
         /**
           * Theme — cascades down to child options.
+          * @default 'dark'
          */
         "theme": SelectTheme;
         /**
@@ -1502,18 +2101,22 @@ export namespace Components {
     interface DiwaSelectOption {
         /**
           * Compact mode — inherited from the parent diwa-select.
+          * @default false
          */
         "compact": boolean;
         /**
           * Disables the option — it cannot be selected.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Whether the option is currently keyboard-highlighted. Set exclusively by the parent component.
+          * @default false
          */
         "highlighted": boolean;
         /**
           * Whether the option is currently selected. Maintained by the parent <diwa-select>.
+          * @default false
          */
         "selected": boolean;
         /**
@@ -1522,6 +2125,7 @@ export namespace Components {
         "setFocus": () => Promise<void>;
         /**
           * Theme — inherited from the parent diwa-select.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
@@ -1548,14 +2152,17 @@ export namespace Components {
     interface DiwaSpinner {
         /**
           * Accessible label announced by screen readers. Defaults to "Loading" when omitted.
+          * @default "Loading"
          */
         "label": string;
         /**
           * Size tier — controls diameter of the spinner ring.
+          * @default "md"
          */
         "size": SpinnerSize;
         /**
           * Per-component theme override.
+          * @default "dark"
          */
         "theme": Theme;
     }
@@ -1574,10 +2181,12 @@ export namespace Components {
     interface DiwaStepperHorizontal {
         /**
           * Zero-based index of the current active step.
+          * @default 0
          */
         "activeStepIndex": number;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -1592,26 +2201,32 @@ export namespace Components {
     interface DiwaStepperHorizontalItem {
         /**
           * Whether this is the last step (hides the connector line) — managed by the parent.
+          * @default false
          */
         "isLast": boolean;
         /**
           * Step label text.
+          * @default ''
          */
         "label": string;
         /**
           * Step state — managed by the parent stepper.
+          * @default 'incomplete'
          */
         "state": StepState;
         /**
           * 1-based step number icon — managed by the parent stepper.
+          * @default 1
          */
         "stepNumber": number;
         /**
           * Optional secondary label (e.g. estimated time).
+          * @default ''
          */
         "sublabel": string;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -1621,26 +2236,32 @@ export namespace Components {
     interface DiwaSwitch {
         /**
           * Position of the label relative to the track.
+          * @default 'end'
          */
         "alignLabel": SwitchAlignLabel;
         /**
           * Whether the switch is in the on state.
+          * @default false
          */
         "checked": boolean;
         /**
           * Reduces track and thumb dimensions for use in dense layouts.
+          * @default false
          */
         "compact": boolean;
         /**
           * Disables interaction. No events fire while disabled.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Shows a loading state. Disables interaction while active.
+          * @default false
          */
         "loading": boolean;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -1651,45 +2272,87 @@ export namespace Components {
      *            > diwa-table-body > diwa-table-row > diwa-table-cell
      */
     interface DiwaTable {
+        /**
+          * @default false
+         */
         "bordered": boolean;
+        /**
+          * @default ''
+         */
         "caption": string;
+        /**
+          * @default false
+         */
         "compact": boolean;
+        /**
+          * @default 'auto'
+         */
         "layout": 'auto' | 'fixed';
+        /**
+          * @default false
+         */
         "striped": boolean;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
     }
     /**
      * @component diwa-table-body — Maps to <tbody> inside diwa-table.
      */
     interface DiwaTableBody {
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
     }
     /**
      * @component diwa-table-cell — Maps to <td> inside a diwa-table-row.
      */
     interface DiwaTableCell {
+        /**
+          * @default false
+         */
         "multiline": boolean;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
     }
     /**
      * @component diwa-table-head — Maps to <thead> inside diwa-table.
      */
     interface DiwaTableHead {
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
     }
     /**
      * @component diwa-table-head-cell — Maps to <th> inside a diwa-table-head row.
      */
     interface DiwaTableHeadCell {
+        /**
+          * @default false
+         */
         "hideLabel": boolean;
+        /**
+          * @default false
+         */
         "multiline": boolean;
         "sort"?: TableHeadCellSort;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
     }
     /**
      * @component diwa-table-row — Maps to <tr> inside diwa-table-head or diwa-table-body.
      */
     interface DiwaTableRow {
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
     }
     /**
@@ -1707,10 +2370,12 @@ export namespace Components {
     interface DiwaTabs {
         /**
           * Zero-based index of the currently active tab.
+          * @default 0
          */
         "activeTabIndex": number;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -1730,10 +2395,12 @@ export namespace Components {
     interface DiwaTabsBar {
         /**
           * Zero-based index of the active tab.
+          * @default 0
          */
         "activeTabIndex": number;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -1747,20 +2414,24 @@ export namespace Components {
     interface DiwaTabsItem {
         /**
           * Whether this panel is currently visible. Managed by the parent diwa-tabs.
+          * @default false
          */
         "active": boolean;
         /**
           * Tab button label. Rendered by the parent diwa-tabs component.
+          * @default ''
          */
         "label": string;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
     }
     interface DiwaTag {
         /**
           * Renders a compact (smaller) version of the tag.
+          * @default false
          */
         "compact": boolean;
         /**
@@ -1769,28 +2440,34 @@ export namespace Components {
         "icon"?: string;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Visual style variant.
+          * @default 'neutral'
          */
         "variant": TagVariant;
     }
     interface DiwaTagDismissible {
         /**
           * Renders a compact (smaller) version of the tag.
+          * @default false
          */
         "compact": boolean;
         /**
           * Accessible label for the dismiss button.
+          * @default 'Remove'
          */
         "label"?: string;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Visual style variant.
+          * @default 'neutral'
          */
         "variant": TagVariant1;
     }
@@ -1806,30 +2483,37 @@ export namespace Components {
     interface DiwaText {
         /**
           * Horizontal alignment. `start` and `end` are RTL-aware.
+          * @default 'start'
          */
         "align": TextAlign;
         /**
           * Colour alias. Use `inherit` to pass through the surrounding colour unchanged — useful inside buttons, table cells, or other styled containers.
+          * @default 'primary'
          */
         "color": TextColor;
         /**
           * Clip overflow to a single line with a trailing ellipsis. The host element must have a defined width for this to take effect.
+          * @default false
          */
         "ellipsis": boolean;
         /**
           * Font size tier. Maps to the diwa type scale.
+          * @default 'small'
          */
         "size": TextSize;
         /**
           * HTML element to render. Choose based on semantic context.
+          * @default 'p'
          */
         "tag": TextTag;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Font weight.
+          * @default 'regular'
          */
         "weight": TextWeight;
     }
@@ -1846,10 +2530,12 @@ export namespace Components {
     interface DiwaTextList {
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * List style. - `unordered` — bullet points (`<ul>`) - `ordered` — numbered list (`<ol>`) - `inline` — comma/space separated flex row (`<ul>` without markers)
+          * @default 'unordered'
          */
         "type": TextListType;
     }
@@ -1865,6 +2551,7 @@ export namespace Components {
     interface DiwaTextListItem {
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -1874,22 +2561,27 @@ export namespace Components {
     interface DiwaTextarea {
         /**
           * Renders a compact version with reduced padding and font size.
+          * @default false
          */
         "compact": boolean;
         /**
           * Supplementary description shown below the label.
+          * @default ''
          */
         "description": string;
         /**
           * Whether the textarea is disabled.
+          * @default false
          */
         "disabled": boolean;
         /**
           * Hides the label visually (label is still in the DOM for screen readers).
+          * @default false
          */
         "hideLabel": boolean;
         /**
           * Visible label text.
+          * @default ''
          */
         "label": string;
         /**
@@ -1898,6 +2590,7 @@ export namespace Components {
         "maxLength"?: number;
         /**
           * Feedback message shown when state is "error" or "success".
+          * @default ''
          */
         "message": string;
         /**
@@ -1906,38 +2599,47 @@ export namespace Components {
         "minLength"?: number;
         /**
           * The name attribute forwarded to the native textarea.
+          * @default ''
          */
         "name": string;
         /**
           * Placeholder text shown when the textarea is empty.
+          * @default ''
          */
         "placeholder": string;
         /**
           * Whether the textarea is read-only.
+          * @default false
          */
         "readOnly": boolean;
         /**
           * Whether the textarea is required.
+          * @default false
          */
         "required": boolean;
         /**
           * Controls which dimensions can be resized by the user.
+          * @default 'vertical'
          */
         "resize": TextareaResize;
         /**
           * Number of visible text rows.
+          * @default 4
          */
         "rows": number;
         /**
           * Validation state affecting border colour and message colour.
+          * @default 'none'
          */
         "state": InputFieldState;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme": Theme;
         /**
           * Current value. Update in response to the input event.
+          * @default ''
          */
         "value": string;
     }
@@ -1957,6 +2659,9 @@ export namespace Components {
           * Enqueues a toast message. If no toast is currently visible it is shown immediately; otherwise it is placed in the FIFO queue and shown after all preceding messages have been dismissed.
          */
         "addMessage": (message: ToastMessage) => Promise<void>;
+        /**
+          * @default 'dark'
+         */
         "theme": Theme;
     }
     /**
@@ -1967,14 +2672,17 @@ export namespace Components {
     interface DiwaToastItem {
         /**
           * Visual state affecting icon and colour.
+          * @default 'neutral'
          */
         "state": ToastState;
         /**
           * Message text to display.
+          * @default ''
          */
         "text": string;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme": Theme;
     }
@@ -2155,17 +2863,20 @@ declare global {
     };
     /**
      * @component diwa-badge
-     * A compact, pill-shaped label used to convey status, counts, or metadata.
-     * Renders as an inline element with full Shadow DOM encapsulation.
+     * A compact, pill-shaped status indicator with an optional animated dot.
+     * Use for live status, counts, counts, and key callouts.
+     * Prefer DiwaTag for category labels and filters — Tag has square corners and a
+     * visible border; Badge is always fully rounded with a subtler, muted border.
      * Design token override API (set on :root or any ancestor):
      * --diwa-badge-radius          Border radius (defaults to --diwa-radius-full)
+     * --diwa-badge-border-color    Override the auto-computed border colour
      * --diwa-badge-padding-x       Horizontal padding for md size
      * --diwa-badge-padding-x-sm    Horizontal padding for sm size
      * --diwa-badge-font-size       Font size for md size
      * --diwa-badge-font-size-sm    Font size for sm size
      * --diwa-badge-font-weight     Font weight
      * Usage:
-     * <diwa-badge variant="success">Active</diwa-badge>
+     * <diwa-badge variant="success" dot>Live</diwa-badge>
      * <diwa-badge variant="danger" size="sm">3 errors</diwa-badge>
      * <diwa-badge variant="neutral">Draft</diwa-badge>
      */
@@ -3411,6 +4122,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     /**
      * @component diwa-accordion
      * A controlled, animated accordion panel. The consumer is responsible
@@ -3430,14 +4143,17 @@ declare namespace LocalJSX {
     interface DiwaAccordion {
         /**
           * Reduces padding and font size for denser UI contexts.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Visible heading text rendered inside the toggle button.
+          * @default ''
          */
         "heading"?: string;
         /**
           * Semantic heading level for the toggle button wrapper.
+          * @default 'h2'
          */
         "headingTag"?: AccordionHeadingTag;
         /**
@@ -3446,44 +4162,57 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaAccordionCustomEvent<{ open: boolean }>) => void;
         /**
           * Whether the accordion panel is currently open.  This is a **controlled** prop: the component always reflects its `open` state outward via the `update` event, but never mutates the prop internally. The consumer must update it.
+          * @default false
          */
         "open"?: boolean;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
     /**
      * @component diwa-badge
-     * A compact, pill-shaped label used to convey status, counts, or metadata.
-     * Renders as an inline element with full Shadow DOM encapsulation.
+     * A compact, pill-shaped status indicator with an optional animated dot.
+     * Use for live status, counts, counts, and key callouts.
+     * Prefer DiwaTag for category labels and filters — Tag has square corners and a
+     * visible border; Badge is always fully rounded with a subtler, muted border.
      * Design token override API (set on :root or any ancestor):
      * --diwa-badge-radius          Border radius (defaults to --diwa-radius-full)
+     * --diwa-badge-border-color    Override the auto-computed border colour
      * --diwa-badge-padding-x       Horizontal padding for md size
      * --diwa-badge-padding-x-sm    Horizontal padding for sm size
      * --diwa-badge-font-size       Font size for md size
      * --diwa-badge-font-size-sm    Font size for sm size
      * --diwa-badge-font-weight     Font weight
      * Usage:
-     * <diwa-badge variant="success">Active</diwa-badge>
+     * <diwa-badge variant="success" dot>Live</diwa-badge>
      * <diwa-badge variant="danger" size="sm">3 errors</diwa-badge>
      * <diwa-badge variant="neutral">Draft</diwa-badge>
      */
     interface DiwaBadge {
+        /**
+          * When true, renders a small animated pulsing dot before the slot content. Use to indicate live status or active processes.
+          * @default false
+         */
+        "dot"?: boolean;
         /**
           * Accessible label. Use when slot content alone is insufficient (e.g., a numeric count without surrounding context).
          */
         "label"?: string;
         /**
           * Size tier — controls height, padding, and font-size.
+          * @default "md"
          */
         "size"?: BadgeSize;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Semantic colour variant. Determines background and text colour.
+          * @default "neutral"
          */
         "variant"?: BadgeVariant;
     }
@@ -3509,10 +4238,12 @@ declare namespace LocalJSX {
     interface DiwaButton {
         /**
           * Disabled state. Blocks all pointer and keyboard interaction. When rendered as <a>, sets aria-disabled instead of disabled (the `disabled` attribute is not valid on anchor elements).
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * When `true`, the default label slot is visually hidden so the button renders as a compact square (icon-only mode). The slot text is kept in the DOM for screen-reader accessible-name calculation.  For best accessibility, always pair with the `label` prop **or** ensure the default slot contains descriptive text, so the button has a name.  Usage:   <diwa-button hide-label label="Save">     <svg slot="icon-start">…</svg>   </diwa-button>
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
@@ -3521,6 +4252,7 @@ declare namespace LocalJSX {
         "href"?: string;
         /**
           * Lucide icon name in kebab-case (e.g. `"star"`, `"arrow-right"`), or `'none'` to show no icon. When set to any value other than `'none'`, renders a `<diwa-icon>` in the leading (icon-start) position.  The `icon-start` slot still works alongside this prop — the prop-rendered icon comes first, followed by any slotted content.
+          * @default 'none'
          */
         "icon"?: string;
         /**
@@ -3529,6 +4261,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Loading state. Shows an inline spinner, disables the button, and sets aria-busy="true" to communicate async activity to screen readers.
+          * @default false
          */
         "loading"?: boolean;
         /**
@@ -3537,6 +4270,7 @@ declare namespace LocalJSX {
         "name"?: string;
         /**
           * Size tier — controls height and padding.
+          * @default "md"
          */
         "size"?: ButtonSize;
         /**
@@ -3545,10 +4279,12 @@ declare namespace LocalJSX {
         "target"?: "_blank" | "_self" | "_parent" | "_top";
         /**
           * Per-component theme override.  Setting this reflects data-theme onto the host element, causing the light/dark token overrides in app.css to cascade into the Shadow DOM automatically. Mirrors the `theme` prop on every PDS component.
+          * @default "dark"
          */
         "theme"?: Theme;
         /**
           * Native button type. Only applies when rendered as <button> (i.e., no `href` prop is set).
+          * @default "button"
          */
         "type"?: ButtonType;
         /**
@@ -3557,6 +4293,7 @@ declare namespace LocalJSX {
         "value"?: string;
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant"?: ButtonVariant;
     }
@@ -3575,18 +4312,22 @@ declare namespace LocalJSX {
     interface DiwaButtonPure {
         /**
           * Forces the button into its active/pressed visual state.
+          * @default false
          */
         "active"?: boolean;
         /**
           * Controls which side the label appears on relative to the icon. - `"end"` (default): [icon] [label] - `"start"`:         [label] [icon]
+          * @default "end"
          */
         "alignLabel"?: ButtonPureAlignLabel;
         /**
           * Disabled state. Blocks all pointer and keyboard interaction.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * When `true`, the label slot is visually hidden (icon-only mode). Always pair with the `label` prop for screen-reader accessible name.
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
@@ -3595,6 +4336,7 @@ declare namespace LocalJSX {
         "href"?: string;
         /**
           * Lucide icon name in kebab-case (e.g. `"arrow-right"`, `"star"`), or `"none"` to render with no icon. Defaults to `"arrow-right"` — matching PDS.
+          * @default "arrow-right"
          */
         "icon"?: string;
         /**
@@ -3603,6 +4345,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Loading state. Replaces the icon with a spinner, blocks interaction, and announces aria-busy to screen readers.
+          * @default false
          */
         "loading"?: boolean;
         /**
@@ -3611,10 +4354,12 @@ declare namespace LocalJSX {
         "name"?: string;
         /**
           * Text size tier. Controls both font-size and icon size.
+          * @default "md"
          */
         "size"?: ButtonPureSize;
         /**
           * When `true`, the button stretches to fill its container and the space between icon and label expands to fill remaining width.
+          * @default false
          */
         "stretch"?: boolean;
         /**
@@ -3623,14 +4368,17 @@ declare namespace LocalJSX {
         "target"?: "_blank" | "_self" | "_parent" | "_top";
         /**
           * Per-component theme override (light / dark).
+          * @default "dark"
          */
         "theme"?: Theme;
         /**
           * Native button type. Only applies when rendered as `<button>`.
+          * @default "button"
          */
         "type"?: ButtonPureType;
         /**
           * Adds an underline decoration to the label text.
+          * @default false
          */
         "underline"?: boolean;
         /**
@@ -3661,34 +4409,42 @@ declare namespace LocalJSX {
     interface DiwaCheckbox {
         /**
           * Whether the checkbox is checked.  Semi-controlled: mutates internally on user interaction and also emits an `update` event so the consumer can sync their state.
+          * @default false
          */
         "checked"?: boolean;
         /**
           * Reduces the checkbox size from 20 px to 14 px for denser layouts.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Puts the checkbox in a disabled state. Blocks interaction.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Hides the label visually while keeping it accessible to screen readers.
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
           * Indeterminate state — renders a dash icon and sets `aria-checked="mixed"`. Setting this to `true` takes visual precedence over `checked`. The consumer is responsible for clearing it once the user toggles.
+          * @default false
          */
         "indeterminate"?: boolean;
         /**
           * Visible label text rendered next to the checkbox.
+          * @default ''
          */
         "label"?: string;
         /**
           * Helper / validation message shown below the checkbox. Only shown when state ≠ 'none'.
+          * @default ''
          */
         "message"?: string;
         /**
           * Native name attribute (identifies the field in JS / form data).
+          * @default ''
          */
         "name"?: string;
         /**
@@ -3697,18 +4453,22 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaCheckboxCustomEvent<{ checked: boolean; name: string; value: string }>) => void;
         /**
           * Marks the field as required. Shows a visual asterisk in the label.
+          * @default false
          */
         "required"?: boolean;
         /**
           * Validation state: `'none'` (default), `'error'`, or `'success'`.
+          * @default 'none'
          */
         "state"?: CheckboxState;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Value submitted/emitted when the checkbox is checked.
+          * @default 'on'
          */
         "value"?: string;
     }
@@ -3733,10 +4493,12 @@ declare namespace LocalJSX {
     interface DiwaDivider {
         /**
           * Orientation of the divider line. - `'horizontal'` (default) — a full-width 1 px horizontal rule. - `'vertical'` — a 1 px vertical rule that stretches to the parent's height.   The parent must be a flex or grid container with a defined height.
+          * @default 'horizontal'
          */
         "orientation"?: DividerOrientation;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -3766,10 +4528,12 @@ declare namespace LocalJSX {
     interface DiwaFlyout {
         /**
           * Controls the visual style of the backdrop overlay. `blur`    — frosted glass (default; use when opened by user interaction). `shading` — solid dark scrim (use for system-triggered flyouts).
+          * @default 'blur'
          */
         "backdrop"?: FlyoutBackdrop;
         /**
           * Heading text displayed in the flyout header.
+          * @default ''
          */
         "heading"?: string;
         /**
@@ -3778,14 +4542,17 @@ declare namespace LocalJSX {
         "onDismiss"?: (event: DiwaFlyoutCustomEvent<void>) => void;
         /**
           * Whether the flyout is currently open.  Controlled prop — the consumer must set this to `false` in response to the `dismiss` event (backdrop click, Escape key, or dismiss button).
+          * @default false
          */
         "open"?: boolean;
         /**
           * Which edge of the viewport the panel slides in from (`start` = left, `end` = right).
+          * @default 'end'
          */
         "position"?: FlyoutPosition;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -3802,18 +4569,22 @@ declare namespace LocalJSX {
     interface DiwaHeading {
         /**
           * Horizontal alignment. `start` and `end` are RTL-aware.
+          * @default 'start'
          */
         "align"?: HeadingAlign;
         /**
           * Colour alias. Use `inherit` to pass through the surrounding colour unchanged — useful inside cards, hero sections, or other styled containers.
+          * @default 'primary'
          */
         "color"?: HeadingColor;
         /**
           * Clip overflow to a single line with a trailing ellipsis. The host element must have a defined width for this to take effect.
+          * @default false
          */
         "ellipsis"?: boolean;
         /**
           * Visual size and inferred semantic heading level. Determines the rendered HTML tag when no explicit `tag` prop is given.
+          * @default 'h2'
          */
         "size"?: HeadingSize;
         /**
@@ -3822,10 +4593,12 @@ declare namespace LocalJSX {
         "tag"?: HeadingTag;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Font weight.
+          * @default 'bold'
          */
         "weight"?: HeadingWeight;
     }
@@ -3850,6 +4623,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Lucide icon name in kebab-case. Full list: https://lucide.dev/icons/ Examples: "arrow-right", "check", "user", "trash-2"
+          * @default 'circle'
          */
         "name"?: string;
         /**
@@ -3859,6 +4633,7 @@ declare namespace LocalJSX {
         "size"?: number;
         /**
           * Per-component theme override. Setting this reflects data-theme onto the host so light/dark token overrides cascade into the Shadow DOM via CSS custom property inheritance.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -3886,18 +4661,22 @@ declare namespace LocalJSX {
         "actionLabel"?: string;
         /**
           * Shows a loading indicator on the action button and blocks its interaction. Has no effect when `actionLabel` is not set.
+          * @default false
          */
         "actionLoading"?: boolean;
         /**
           * Description text. When empty, the default slot is rendered instead — allowing rich markup.
+          * @default ''
          */
         "description"?: string;
         /**
           * Whether to show the dismiss (×) button. When `false`, the notification can only be removed programmatically.
+          * @default true
          */
         "dismissButton"?: boolean;
         /**
           * Bold heading text rendered above the description.
+          * @default ''
          */
         "heading"?: string;
         /**
@@ -3910,10 +4689,12 @@ declare namespace LocalJSX {
         "onDismiss"?: (event: DiwaInlineNotificationCustomEvent<void>) => void;
         /**
           * Semantic state — governs colour treatment, icon, and ARIA live role. - `info`    — neutral informational  (role="status", polite) - `success` — positive confirmation  (role="status", polite) - `warning` — non-blocking caution   (role="status", polite) - `error`   — critical or blocking   (role="alert",  assertive)
+          * @default 'info'
          */
         "state"?: InlineNotificationState;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -3945,6 +4726,7 @@ declare namespace LocalJSX {
         "autocomplete"?: string;
         /**
           * Disables the input. Blocks pointer and keyboard interaction.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -3985,306 +4767,743 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         /**
           * Makes the input read-only. Content is selectable but not editable.
+          * @default false
          */
         "readonly"?: boolean;
         /**
           * Marks the field as required. Sets aria-required on the inner input.
+          * @default false
          */
         "required"?: boolean;
         /**
           * Validation state. Controls border colour and the hint text colour. Pair with the `hint` prop to surface error or success messages.
+          * @default "default"
          */
         "state"?: InputState;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Native input type. Controls keyboard, validation, and autocomplete behaviour.
+          * @default "text"
          */
         "type"?: InputType;
         /**
           * Controlled value. Use with onDiwaChange for controlled form patterns.
+          * @default ""
          */
         "value"?: string;
     }
     interface DiwaInputDate {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
         /**
           * ISO 8601 date string (YYYY-MM-DD) for the maximum allowed date.
          */
         "max"?: string;
+        /**
+          * @default ''
+         */
         "message"?: string;
         /**
           * ISO 8601 date string (YYYY-MM-DD) for the minimum allowed date.
          */
         "min"?: string;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputDateCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputDateCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputDateCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputDateCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputEmail {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
+        /**
+          * @default ''
+         */
         "message"?: string;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputEmailCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputEmailCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputEmailCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputEmailCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputMonth {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
         /**
           * Maximum month in YYYY-MM format.
          */
         "max"?: string;
+        /**
+          * @default ''
+         */
         "message"?: string;
         /**
           * Minimum month in YYYY-MM format.
          */
         "min"?: string;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputMonthCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputMonthCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputMonthCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputMonthCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputNumber {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
         /**
           * Maximum allowed value.
          */
         "max"?: number;
+        /**
+          * @default ''
+         */
         "message"?: string;
         /**
           * Minimum allowed value.
          */
         "min"?: number;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputNumberCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputNumberCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputNumberCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputNumberCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
         /**
           * Step increment.
          */
         "step"?: number;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputPassword {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
+        /**
+          * @default ''
+         */
         "message"?: string;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputPasswordCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputPasswordCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputPasswordCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputPasswordCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
         /**
           * Show the eye icon button to toggle password visibility.
+          * @default true
          */
         "showToggle"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputSearch {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
+        /**
+          * @default ''
+         */
         "message"?: string;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputSearchCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputSearchCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputSearchCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputSearchCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
         /**
           * Show the clear (×) button when the field has a value.
+          * @default true
          */
         "showClearButton"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputTel {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
+        /**
+          * @default ''
+         */
         "message"?: string;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputTelCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputTelCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputTelCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputTelCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputText {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
         "maxLength"?: number;
+        /**
+          * @default ''
+         */
         "message"?: string;
         "minLength"?: number;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputTextCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputTextCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputTextCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputTextCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
         "spellCheck"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputTime {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
         /**
           * Maximum time in HH:MM format.
          */
         "max"?: string;
+        /**
+          * @default ''
+         */
         "message"?: string;
         /**
           * Minimum time in HH:MM format.
          */
         "min"?: string;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputTimeCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputTimeCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputTimeCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputTimeCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
         /**
           * Step in seconds.
          */
         "step"?: number;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputUrl {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
+        /**
+          * @default ''
+         */
         "message"?: string;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputUrlCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputUrlCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputUrlCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputUrlCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     interface DiwaInputWeek {
         "autoComplete"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default ''
+         */
         "description"?: string;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default ''
+         */
         "label"?: string;
         /**
           * Maximum week in YYYY-Www format (e.g. 2024-W52).
          */
         "max"?: string;
+        /**
+          * @default ''
+         */
         "message"?: string;
         /**
           * Minimum week in YYYY-Www format (e.g. 2024-W01).
          */
         "min"?: string;
+        /**
+          * @default ''
+         */
         "name"?: string;
         "onBlur"?: (event: DiwaInputWeekCustomEvent<FocusEvent>) => void;
         "onChange"?: (event: DiwaInputWeekCustomEvent<string>) => void;
         "onFocus"?: (event: DiwaInputWeekCustomEvent<FocusEvent>) => void;
         "onInput"?: (event: DiwaInputWeekCustomEvent<string>) => void;
+        /**
+          * @default ''
+         */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
+        /**
+          * @default 'none'
+         */
         "state"?: InputFieldState;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
+        /**
+          * @default ''
+         */
         "value"?: string;
     }
     /**
@@ -4299,10 +5518,12 @@ declare namespace LocalJSX {
     interface DiwaLink {
         /**
           * Compact (smaller) size variant.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Disabled state. Sets aria-disabled and prevents interaction.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -4311,6 +5532,7 @@ declare namespace LocalJSX {
         "download"?: string;
         /**
           * Hides the label visually (icon-only mode). Keep slot text for screen readers.
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
@@ -4319,6 +5541,7 @@ declare namespace LocalJSX {
         "href"?: string;
         /**
           * Lucide icon name (kebab-case, e.g. "arrow-right"), or "none" to hide.
+          * @default "none"
          */
         "icon"?: string;
         /**
@@ -4331,14 +5554,17 @@ declare namespace LocalJSX {
         "rel"?: string;
         /**
           * Target attribute — where to open the linked URL.
+          * @default "_self"
          */
         "target"?: LinkTarget;
         /**
           * Per-component theme override.
+          * @default "dark"
          */
         "theme"?: Theme;
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant"?: LinkVariant;
     }
@@ -4354,10 +5580,12 @@ declare namespace LocalJSX {
     interface DiwaLinkPure {
         /**
           * Display the link in active/pressed visual state.
+          * @default false
          */
         "active"?: boolean;
         /**
           * Controls label position relative to the icon. "end" (default): [icon] [label] "start":         [label] [icon]
+          * @default "end"
          */
         "alignLabel"?: LinkPureAlignLabel;
         /**
@@ -4366,6 +5594,7 @@ declare namespace LocalJSX {
         "download"?: string;
         /**
           * Hides the label visually (icon-only mode). Keep slot text for screen readers.
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
@@ -4374,6 +5603,7 @@ declare namespace LocalJSX {
         "href"?: string;
         /**
           * Lucide icon name (kebab-case, e.g. "arrow-right"), or "none" to hide icon. Defaults to "arrow-right" — matching PDS p-link-pure.
+          * @default "arrow-right"
          */
         "icon"?: string;
         /**
@@ -4386,22 +5616,27 @@ declare namespace LocalJSX {
         "rel"?: string;
         /**
           * Text size tier — also scales the icon.
+          * @default "md"
          */
         "size"?: LinkPureSize;
         /**
           * Stretches the link to fill its container width.
+          * @default false
          */
         "stretch"?: boolean;
         /**
           * Target attribute — where to open the linked URL.
+          * @default "_self"
          */
         "target"?: LinkTarget1;
         /**
           * Per-component theme override (light / dark).
+          * @default "dark"
          */
         "theme"?: Theme;
         /**
           * Shows an underline decoration on the label text.
+          * @default false
          */
         "underline"?: boolean;
     }
@@ -4426,14 +5661,17 @@ declare namespace LocalJSX {
     interface DiwaModal {
         /**
           * Controls the visual style of the backdrop overlay.  `blur`    — frosted glass via backdrop-filter (default).             Use when the modal is opened by direct user interaction (e.g. a button click).  `shading` — solid dark scrim via --diwa-bg-shading.             Use for system-triggered modals (e.g. session timeout, cookie consent).
+          * @default 'blur'
          */
         "backdrop"?: ModalBackdrop;
         /**
           * When true, clicking the backdrop does not emit `dismiss`. Use for required confirmations requiring an explicit user choice.
+          * @default false
          */
         "disableBackdropClick"?: boolean;
         /**
           * When false, the dismiss (×) button in the header is hidden. Pair with a close action in the footer or programmatic `open = false`.
+          * @default true
          */
         "dismissButton"?: boolean;
         /**
@@ -4446,10 +5684,12 @@ declare namespace LocalJSX {
         "onDismiss"?: (event: DiwaModalCustomEvent<void>) => void;
         /**
           * Whether the modal is open.  Controlled prop — set `open={true}` to open and `open={false}` to close. The component emits `dismiss` when the user requests a close; the consumer must set `open={false}` in response.
+          * @default false
          */
         "open"?: boolean;
         /**
           * Per-component theme override. Reflects data-theme onto the host element so the light/dark token overrides in app.css cascade into the Shadow DOM via CSS inheritance.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -4470,6 +5710,7 @@ declare namespace LocalJSX {
     interface DiwaMultiSelect {
         /**
           * Compact variant — reduces the trigger height.
+          * @default false
          */
         "compact"?: boolean;
         /**
@@ -4478,14 +5719,17 @@ declare namespace LocalJSX {
         "description"?: string;
         /**
           * Disables interaction.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Preferred direction for the dropdown panel. `'auto'` detects viewport space and flips upward if needed.
+          * @default 'auto'
          */
         "dropdownDirection"?: MultiSelectDropdownDirection;
         /**
           * Hides the label visually while keeping it accessible.
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
@@ -4498,6 +5742,7 @@ declare namespace LocalJSX {
         "message"?: string;
         /**
           * HTML name attribute — identifies the field in form submissions.
+          * @default ''
          */
         "name"?: string;
         /**
@@ -4514,18 +5759,22 @@ declare namespace LocalJSX {
         "onToggle"?: (event: DiwaMultiSelectCustomEvent<MultiSelectToggleEventDetail>) => void;
         /**
           * Marks the field as required.
+          * @default false
          */
         "required"?: boolean;
         /**
           * Validation state.
+          * @default 'none'
          */
         "state"?: MultiSelectState;
         /**
           * Theme — cascades down to child options.
+          * @default 'dark'
          */
         "theme"?: MultiSelectTheme;
         /**
           * Currently selected values. Mutable — updated on user interaction.
+          * @default []
          */
         "value"?: string[];
     }
@@ -4538,14 +5787,17 @@ declare namespace LocalJSX {
     interface DiwaMultiSelectOption {
         /**
           * Compact variant — reduces the option row height and checkbox size. Inherited from the parent diwa-multi-select.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Disables the option — it cannot be selected.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Whether the option is currently keyboard-highlighted. Set exclusively by the parent component.
+          * @default false
          */
         "highlighted"?: boolean;
         /**
@@ -4555,10 +5807,12 @@ declare namespace LocalJSX {
         "onDiwaMultiSelectOptionUpdate"?: (event: DiwaMultiSelectOptionCustomEvent<{ value: string; selected: boolean }>) => void;
         /**
           * Whether the option is currently selected. Maintained by the parent <diwa-multi-select>; consumers can also pre-select options by setting this attribute.
+          * @default false
          */
         "selected"?: boolean;
         /**
           * Theme — inherited from the parent diwa-multi-select.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
@@ -4584,14 +5838,17 @@ declare namespace LocalJSX {
     interface DiwaPagination {
         /**
           * Index of the currently active page (1-based). Semi-controlled: mutates internally on click and emits `update`.
+          * @default 1
          */
         "activePage"?: number;
         /**
           * Override the default aria-label wording for prev/next/page buttons and the nav element. Useful for localisation. Default: `{ root: 'Pagination', prev: 'Previous page', next: 'Next page', page: 'Page' }`
+          * @default {     root: 'Pagination',     prev: 'Previous page',     next: 'Next page',     page: 'Page',   }
          */
         "intl"?: PaginationIntl;
         /**
           * Number of items shown per page.
+          * @default 1
          */
         "itemsPerPage"?: number;
         /**
@@ -4600,14 +5857,17 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaPaginationCustomEvent<PaginationUpdateEventDetail>) => void;
         /**
           * Show a direct link to the last page (in addition to the prev/next buttons).
+          * @default true
          */
         "showLastPage"?: boolean;
         /**
           * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Total number of items in the data set.
+          * @default 1
          */
         "totalItemsCount"?: number;
     }
@@ -4617,30 +5877,37 @@ declare namespace LocalJSX {
     interface DiwaPinCode {
         /**
           * Renders compact input boxes.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Supplementary description below the label.
+          * @default ''
          */
         "description"?: string;
         /**
           * Disables all input boxes.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Hides the visible label while preserving it as accessible name.
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
           * Visible label text.
+          * @default ''
          */
         "label"?: string;
         /**
           * Number of input boxes (1–6).
+          * @default 4
          */
         "length"?: number;
         /**
           * Feedback message.
+          * @default ''
          */
         "message"?: string;
         /**
@@ -4649,22 +5916,27 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaPinCodeCustomEvent<PinCodeUpdateEventDetail>) => void;
         /**
           * Whether the pin code is required.
+          * @default false
          */
         "required"?: boolean;
         /**
           * Validation state.
+          * @default 'none'
          */
         "state"?: InputFieldState;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Input type — "number" restricts input to digits; "password" masks the value.
+          * @default 'number'
          */
         "type"?: PinCodeType;
         /**
           * Current value string. Length should match the length prop.
+          * @default ''
          */
         "value"?: string;
     }
@@ -4675,10 +5947,12 @@ declare namespace LocalJSX {
         "description"?: string;
         /**
           * Preferred direction the panel opens relative to the trigger.
+          * @default 'bottom'
          */
         "direction"?: PopoverDirection;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -4696,34 +5970,42 @@ declare namespace LocalJSX {
     interface DiwaRadioGroup {
         /**
           * Reduces size for denser layouts.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Supplementary description rendered below the label.
+          * @default ''
          */
         "description"?: string;
         /**
           * Layout direction for the radio options.
+          * @default 'column'
          */
         "direction"?: RadioGroupDirection;
         /**
           * Disables all child items.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Hides the label visually while keeping it accessible.
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
           * Group label rendered above the options.
+          * @default ''
          */
         "label"?: string;
         /**
           * Feedback message shown when state is error or success.
+          * @default ''
          */
         "message"?: string;
         /**
           * Native name attribute shared by all radio inputs in the group.
+          * @default ''
          */
         "name"?: string;
         /**
@@ -4732,18 +6014,22 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaRadioGroupCustomEvent<RadioGroupUpdateEventDetail>) => void;
         /**
           * Whether selecting a value is required.
+          * @default false
          */
         "required"?: boolean;
         /**
           * Validation state.
+          * @default 'none'
          */
         "state"?: RadioGroupState;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Currently selected value. Synced down to child items.
+          * @default ''
          */
         "value"?: string;
     }
@@ -4758,18 +6044,22 @@ declare namespace LocalJSX {
     interface DiwaRadioGroupItem {
         /**
           * Set by the parent diwa-radio-group — do not set directly.
+          * @default false
          */
         "checked"?: boolean;
         /**
           * Reduces size for denser layouts.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Whether this option is disabled. Also set by the parent group when the whole group is disabled.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Native name — set automatically by the parent group.
+          * @default ''
          */
         "name"?: string;
         /**
@@ -4778,24 +6068,29 @@ declare namespace LocalJSX {
         "onDiwa-radio-select"?: (event: DiwaRadioGroupItemCustomEvent<{ value: string }>) => void;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * The value submitted/emitted when this item is selected.
+          * @default ''
          */
         "value"?: string;
     }
     interface DiwaScroller {
         /**
           * Position of gradient fade indicators relative to the scroll area.
+          * @default 'center'
          */
         "alignScrollIndicator"?: ScrollerScrollIndicatorPosition;
         /**
           * Whether to show the native horizontal scrollbar.
+          * @default false
          */
         "scrollbar"?: boolean;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -4814,10 +6109,12 @@ declare namespace LocalJSX {
     interface DiwaSegmentedControl {
         /**
           * Smaller item sizing.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Disables all items.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -4826,10 +6123,12 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaSegmentedControlCustomEvent<SegmentedControlUpdateEventDetail>) => void;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Currently selected item value.
+          * @default ''
          */
         "value"?: string;
     }
@@ -4844,10 +6143,12 @@ declare namespace LocalJSX {
     interface DiwaSegmentedControlItem {
         /**
           * Smaller sizing. Also set by the parent when compact is enabled.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Whether this segment is disabled. Also set by the parent when the group is disabled.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -4856,14 +6157,17 @@ declare namespace LocalJSX {
         "onDiwa-segment-select"?: (event: DiwaSegmentedControlItemCustomEvent<{ value: string }>) => void;
         /**
           * Whether this segment is currently selected. Set by the parent.
+          * @default false
          */
         "selected"?: boolean;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * The value emitted when this segment is activated.
+          * @default ''
          */
         "value"?: string;
     }
@@ -4882,6 +6186,7 @@ declare namespace LocalJSX {
     interface DiwaSelect {
         /**
           * Compact variant — reduces the trigger height.
+          * @default false
          */
         "compact"?: boolean;
         /**
@@ -4890,14 +6195,17 @@ declare namespace LocalJSX {
         "description"?: string;
         /**
           * Disables interaction.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Preferred direction for the dropdown panel. `'auto'` detects viewport space and flips upward if needed.
+          * @default 'auto'
          */
         "dropdownDirection"?: SelectDropdownDirection;
         /**
           * Hides the label visually while keeping it accessible.
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
@@ -4910,6 +6218,7 @@ declare namespace LocalJSX {
         "message"?: string;
         /**
           * HTML name attribute — identifies the field in form submissions.
+          * @default ''
          */
         "name"?: string;
         /**
@@ -4926,14 +6235,17 @@ declare namespace LocalJSX {
         "onToggle"?: (event: DiwaSelectCustomEvent<SelectToggleEventDetail>) => void;
         /**
           * Marks the field as required.
+          * @default false
          */
         "required"?: boolean;
         /**
           * Validation state.
+          * @default 'none'
          */
         "state"?: SelectState;
         /**
           * Theme — cascades down to child options.
+          * @default 'dark'
          */
         "theme"?: SelectTheme;
         /**
@@ -4952,14 +6264,17 @@ declare namespace LocalJSX {
     interface DiwaSelectOption {
         /**
           * Compact mode — inherited from the parent diwa-select.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Disables the option — it cannot be selected.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Whether the option is currently keyboard-highlighted. Set exclusively by the parent component.
+          * @default false
          */
         "highlighted"?: boolean;
         /**
@@ -4969,10 +6284,12 @@ declare namespace LocalJSX {
         "onDiwaSelectOptionUpdate"?: (event: DiwaSelectOptionCustomEvent<{ value: string | undefined }>) => void;
         /**
           * Whether the option is currently selected. Maintained by the parent <diwa-select>.
+          * @default false
          */
         "selected"?: boolean;
         /**
           * Theme — inherited from the parent diwa-select.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
@@ -4999,14 +6316,17 @@ declare namespace LocalJSX {
     interface DiwaSpinner {
         /**
           * Accessible label announced by screen readers. Defaults to "Loading" when omitted.
+          * @default "Loading"
          */
         "label"?: string;
         /**
           * Size tier — controls diameter of the spinner ring.
+          * @default "md"
          */
         "size"?: SpinnerSize;
         /**
           * Per-component theme override.
+          * @default "dark"
          */
         "theme"?: Theme;
     }
@@ -5025,6 +6345,7 @@ declare namespace LocalJSX {
     interface DiwaStepperHorizontal {
         /**
           * Zero-based index of the current active step.
+          * @default 0
          */
         "activeStepIndex"?: number;
         /**
@@ -5033,6 +6354,7 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaStepperHorizontalCustomEvent<StepperHorizontalUpdateEventDetail>) => void;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -5047,26 +6369,32 @@ declare namespace LocalJSX {
     interface DiwaStepperHorizontalItem {
         /**
           * Whether this is the last step (hides the connector line) — managed by the parent.
+          * @default false
          */
         "isLast"?: boolean;
         /**
           * Step label text.
+          * @default ''
          */
         "label"?: string;
         /**
           * Step state — managed by the parent stepper.
+          * @default 'incomplete'
          */
         "state"?: StepState;
         /**
           * 1-based step number icon — managed by the parent stepper.
+          * @default 1
          */
         "stepNumber"?: number;
         /**
           * Optional secondary label (e.g. estimated time).
+          * @default ''
          */
         "sublabel"?: string;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -5076,22 +6404,27 @@ declare namespace LocalJSX {
     interface DiwaSwitch {
         /**
           * Position of the label relative to the track.
+          * @default 'end'
          */
         "alignLabel"?: SwitchAlignLabel;
         /**
           * Whether the switch is in the on state.
+          * @default false
          */
         "checked"?: boolean;
         /**
           * Reduces track and thumb dimensions for use in dense layouts.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Disables interaction. No events fire while disabled.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Shows a loading state. Disables interaction while active.
+          * @default false
          */
         "loading"?: boolean;
         /**
@@ -5100,6 +6433,7 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaSwitchCustomEvent<SwitchUpdateEventDetail>) => void;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -5110,46 +6444,88 @@ declare namespace LocalJSX {
      *            > diwa-table-body > diwa-table-row > diwa-table-cell
      */
     interface DiwaTable {
+        /**
+          * @default false
+         */
         "bordered"?: boolean;
+        /**
+          * @default ''
+         */
         "caption"?: string;
+        /**
+          * @default false
+         */
         "compact"?: boolean;
+        /**
+          * @default 'auto'
+         */
         "layout"?: 'auto' | 'fixed';
         "onUpdate"?: (event: DiwaTableCustomEvent<TableUpdateEventDetail>) => void;
+        /**
+          * @default false
+         */
         "striped"?: boolean;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
     }
     /**
      * @component diwa-table-body — Maps to <tbody> inside diwa-table.
      */
     interface DiwaTableBody {
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
     }
     /**
      * @component diwa-table-cell — Maps to <td> inside a diwa-table-row.
      */
     interface DiwaTableCell {
+        /**
+          * @default false
+         */
         "multiline"?: boolean;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
     }
     /**
      * @component diwa-table-head — Maps to <thead> inside diwa-table.
      */
     interface DiwaTableHead {
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
     }
     /**
      * @component diwa-table-head-cell — Maps to <th> inside a diwa-table-head row.
      */
     interface DiwaTableHeadCell {
+        /**
+          * @default false
+         */
         "hideLabel"?: boolean;
+        /**
+          * @default false
+         */
         "multiline"?: boolean;
         "sort"?: TableHeadCellSort;
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
     }
     /**
      * @component diwa-table-row — Maps to <tr> inside diwa-table-head or diwa-table-body.
      */
     interface DiwaTableRow {
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
     }
     /**
@@ -5167,6 +6543,7 @@ declare namespace LocalJSX {
     interface DiwaTabs {
         /**
           * Zero-based index of the currently active tab.
+          * @default 0
          */
         "activeTabIndex"?: number;
         /**
@@ -5175,6 +6552,7 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaTabsCustomEvent<TabsUpdateEventDetail>) => void;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -5194,6 +6572,7 @@ declare namespace LocalJSX {
     interface DiwaTabsBar {
         /**
           * Zero-based index of the active tab.
+          * @default 0
          */
         "activeTabIndex"?: number;
         /**
@@ -5202,6 +6581,7 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: DiwaTabsBarCustomEvent<TabsBarUpdateEventDetail>) => void;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -5215,20 +6595,24 @@ declare namespace LocalJSX {
     interface DiwaTabsItem {
         /**
           * Whether this panel is currently visible. Managed by the parent diwa-tabs.
+          * @default false
          */
         "active"?: boolean;
         /**
           * Tab button label. Rendered by the parent diwa-tabs component.
+          * @default ''
          */
         "label"?: string;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
     interface DiwaTag {
         /**
           * Renders a compact (smaller) version of the tag.
+          * @default false
          */
         "compact"?: boolean;
         /**
@@ -5237,20 +6621,24 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Visual style variant.
+          * @default 'neutral'
          */
         "variant"?: TagVariant;
     }
     interface DiwaTagDismissible {
         /**
           * Renders a compact (smaller) version of the tag.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Accessible label for the dismiss button.
+          * @default 'Remove'
          */
         "label"?: string;
         /**
@@ -5259,10 +6647,12 @@ declare namespace LocalJSX {
         "onDismiss"?: (event: DiwaTagDismissibleCustomEvent<void>) => void;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Visual style variant.
+          * @default 'neutral'
          */
         "variant"?: TagVariant1;
     }
@@ -5278,30 +6668,37 @@ declare namespace LocalJSX {
     interface DiwaText {
         /**
           * Horizontal alignment. `start` and `end` are RTL-aware.
+          * @default 'start'
          */
         "align"?: TextAlign;
         /**
           * Colour alias. Use `inherit` to pass through the surrounding colour unchanged — useful inside buttons, table cells, or other styled containers.
+          * @default 'primary'
          */
         "color"?: TextColor;
         /**
           * Clip overflow to a single line with a trailing ellipsis. The host element must have a defined width for this to take effect.
+          * @default false
          */
         "ellipsis"?: boolean;
         /**
           * Font size tier. Maps to the diwa type scale.
+          * @default 'small'
          */
         "size"?: TextSize;
         /**
           * HTML element to render. Choose based on semantic context.
+          * @default 'p'
          */
         "tag"?: TextTag;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Font weight.
+          * @default 'regular'
          */
         "weight"?: TextWeight;
     }
@@ -5318,10 +6715,12 @@ declare namespace LocalJSX {
     interface DiwaTextList {
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * List style. - `unordered` — bullet points (`<ul>`) - `ordered` — numbered list (`<ol>`) - `inline` — comma/space separated flex row (`<ul>` without markers)
+          * @default 'unordered'
          */
         "type"?: TextListType;
     }
@@ -5337,6 +6736,7 @@ declare namespace LocalJSX {
     interface DiwaTextListItem {
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
@@ -5346,22 +6746,27 @@ declare namespace LocalJSX {
     interface DiwaTextarea {
         /**
           * Renders a compact version with reduced padding and font size.
+          * @default false
          */
         "compact"?: boolean;
         /**
           * Supplementary description shown below the label.
+          * @default ''
          */
         "description"?: string;
         /**
           * Whether the textarea is disabled.
+          * @default false
          */
         "disabled"?: boolean;
         /**
           * Hides the label visually (label is still in the DOM for screen readers).
+          * @default false
          */
         "hideLabel"?: boolean;
         /**
           * Visible label text.
+          * @default ''
          */
         "label"?: string;
         /**
@@ -5370,6 +6775,7 @@ declare namespace LocalJSX {
         "maxLength"?: number;
         /**
           * Feedback message shown when state is "error" or "success".
+          * @default ''
          */
         "message"?: string;
         /**
@@ -5378,6 +6784,7 @@ declare namespace LocalJSX {
         "minLength"?: number;
         /**
           * The name attribute forwarded to the native textarea.
+          * @default ''
          */
         "name"?: string;
         /**
@@ -5394,34 +6801,42 @@ declare namespace LocalJSX {
         "onInput"?: (event: DiwaTextareaCustomEvent<string>) => void;
         /**
           * Placeholder text shown when the textarea is empty.
+          * @default ''
          */
         "placeholder"?: string;
         /**
           * Whether the textarea is read-only.
+          * @default false
          */
         "readOnly"?: boolean;
         /**
           * Whether the textarea is required.
+          * @default false
          */
         "required"?: boolean;
         /**
           * Controls which dimensions can be resized by the user.
+          * @default 'vertical'
          */
         "resize"?: TextareaResize;
         /**
           * Number of visible text rows.
+          * @default 4
          */
         "rows"?: number;
         /**
           * Validation state affecting border colour and message colour.
+          * @default 'none'
          */
         "state"?: InputFieldState;
         /**
           * Adapts the color when used on a light or dark background.
+          * @default 'dark'
          */
         "theme"?: Theme;
         /**
           * Current value. Update in response to the input event.
+          * @default ''
          */
         "value"?: string;
     }
@@ -5437,6 +6852,9 @@ declare namespace LocalJSX {
      * toast.addMessage({ text: 'Saved!', state: 'success' });
      */
     interface DiwaToast {
+        /**
+          * @default 'dark'
+         */
         "theme"?: Theme;
     }
     /**
@@ -5451,76 +6869,650 @@ declare namespace LocalJSX {
         "onDismiss"?: (event: DiwaToastItemCustomEvent<void>) => void;
         /**
           * Visual state affecting icon and colour.
+          * @default 'neutral'
          */
         "state"?: ToastState;
         /**
           * Message text to display.
+          * @default ''
          */
         "text"?: string;
         /**
           * Per-component theme override.
+          * @default 'dark'
          */
         "theme"?: Theme;
     }
+
+    interface DiwaAccordionAttributes {
+        "theme": Theme;
+        "heading": string;
+        "headingTag": AccordionHeadingTag;
+        "open": boolean;
+        "compact": boolean;
+    }
+    interface DiwaBadgeAttributes {
+        "variant": BadgeVariant;
+        "size": BadgeSize;
+        "label": string;
+        "dot": boolean;
+        "theme": Theme;
+    }
+    interface DiwaButtonAttributes {
+        "theme": Theme;
+        "variant": ButtonVariant;
+        "size": ButtonSize;
+        "type": ButtonType;
+        "disabled": boolean;
+        "loading": boolean;
+        "href": string;
+        "target": "_blank" | "_self" | "_parent" | "_top";
+        "name": string;
+        "value": string;
+        "label": string;
+        "hideLabel": boolean;
+        "icon": string;
+    }
+    interface DiwaButtonPureAttributes {
+        "theme": Theme;
+        "size": ButtonPureSize;
+        "icon": string;
+        "disabled": boolean;
+        "loading": boolean;
+        "hideLabel": boolean;
+        "active": boolean;
+        "underline": boolean;
+        "alignLabel": ButtonPureAlignLabel;
+        "stretch": boolean;
+        "type": ButtonPureType;
+        "name": string;
+        "value": string;
+        "href": string;
+        "target": "_blank" | "_self" | "_parent" | "_top";
+        "label": string;
+    }
+    interface DiwaCheckboxAttributes {
+        "theme": Theme;
+        "label": string;
+        "name": string;
+        "value": string;
+        "checked": boolean;
+        "indeterminate": boolean;
+        "disabled": boolean;
+        "required": boolean;
+        "state": CheckboxState;
+        "message": string;
+        "compact": boolean;
+        "hideLabel": boolean;
+    }
+    interface DiwaDividerAttributes {
+        "theme": Theme;
+        "orientation": DividerOrientation;
+    }
+    interface DiwaFlyoutAttributes {
+        "theme": Theme;
+        "open": boolean;
+        "position": FlyoutPosition;
+        "backdrop": FlyoutBackdrop;
+        "heading": string;
+    }
+    interface DiwaHeadingAttributes {
+        "theme": Theme;
+        "size": HeadingSize;
+        "tag": HeadingTag;
+        "weight": HeadingWeight;
+        "align": HeadingAlign;
+        "color": HeadingColor;
+        "ellipsis": boolean;
+    }
+    interface DiwaIconAttributes {
+        "name": string;
+        "size": number;
+        "color": string;
+        "label": string;
+        "theme": Theme;
+    }
+    interface DiwaInlineNotificationAttributes {
+        "theme": Theme;
+        "state": InlineNotificationState;
+        "heading": string;
+        "description": string;
+        "dismissButton": boolean;
+        "actionLabel": string;
+        "actionLoading": boolean;
+    }
+    interface DiwaInputAttributes {
+        "type": InputType;
+        "label": string;
+        "placeholder": string;
+        "value": string;
+        "required": boolean;
+        "disabled": boolean;
+        "readonly": boolean;
+        "state": InputState;
+        "hint": string;
+        "autocomplete": string;
+        "name": string;
+        "inputId": string;
+        "theme": Theme;
+    }
+    interface DiwaInputDateAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+        "min": string;
+        "max": string;
+    }
+    interface DiwaInputEmailAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+    }
+    interface DiwaInputMonthAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+        "min": string;
+        "max": string;
+    }
+    interface DiwaInputNumberAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+        "min": number;
+        "max": number;
+        "step": number;
+    }
+    interface DiwaInputPasswordAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+        "showToggle": boolean;
+    }
+    interface DiwaInputSearchAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+        "showClearButton": boolean;
+    }
+    interface DiwaInputTelAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+    }
+    interface DiwaInputTextAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+        "maxLength": number;
+        "minLength": number;
+        "spellCheck": boolean;
+    }
+    interface DiwaInputTimeAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+        "min": string;
+        "max": string;
+        "step": number;
+    }
+    interface DiwaInputUrlAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+    }
+    interface DiwaInputWeekAttributes {
+        "label": string;
+        "description": string;
+        "message": string;
+        "state": InputFieldState;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "disabled": boolean;
+        "required": boolean;
+        "readonly": boolean;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "autoComplete": string;
+        "theme": Theme;
+        "min": string;
+        "max": string;
+    }
+    interface DiwaLinkAttributes {
+        "theme": Theme;
+        "variant": LinkVariant;
+        "href": string;
+        "target": LinkTarget;
+        "download": string;
+        "rel": string;
+        "icon": string;
+        "hideLabel": boolean;
+        "compact": boolean;
+        "label": string;
+        "disabled": boolean;
+    }
+    interface DiwaLinkPureAttributes {
+        "theme": Theme;
+        "href": string;
+        "target": LinkTarget;
+        "download": string;
+        "rel": string;
+        "icon": string;
+        "hideLabel": boolean;
+        "active": boolean;
+        "underline": boolean;
+        "size": LinkPureSize;
+        "alignLabel": LinkPureAlignLabel;
+        "stretch": boolean;
+        "label": string;
+    }
+    interface DiwaModalAttributes {
+        "theme": Theme;
+        "open": boolean;
+        "heading": string;
+        "dismissButton": boolean;
+        "disableBackdropClick": boolean;
+        "backdrop": ModalBackdrop;
+    }
+    interface DiwaMultiSelectAttributes {
+        "theme": MultiSelectTheme;
+        "label": string;
+        "description": string;
+        "name": string;
+        "state": MultiSelectState;
+        "message": string;
+        "hideLabel": boolean;
+        "disabled": boolean;
+        "required": boolean;
+        "compact": boolean;
+        "dropdownDirection": MultiSelectDropdownDirection;
+    }
+    interface DiwaMultiSelectOptionAttributes {
+        "value": string;
+        "disabled": boolean;
+        "selected": boolean;
+        "highlighted": boolean;
+        "compact": boolean;
+        "theme": Theme;
+    }
+    interface DiwaPaginationAttributes {
+        "theme": Theme;
+        "totalItemsCount": number;
+        "itemsPerPage": number;
+        "activePage": number;
+        "showLastPage": boolean;
+    }
+    interface DiwaPinCodeAttributes {
+        "label": string;
+        "description": string;
+        "state": InputFieldState;
+        "message": string;
+        "length": number;
+        "value": string;
+        "type": PinCodeType;
+        "required": boolean;
+        "disabled": boolean;
+        "compact": boolean;
+        "hideLabel": boolean;
+        "theme": Theme;
+    }
+    interface DiwaPopoverAttributes {
+        "direction": PopoverDirection;
+        "description": string;
+        "theme": Theme;
+    }
+    interface DiwaRadioGroupAttributes {
+        "theme": Theme;
+        "label": string;
+        "description": string;
+        "value": string;
+        "direction": RadioGroupDirection;
+        "required": boolean;
+        "disabled": boolean;
+        "state": RadioGroupState;
+        "message": string;
+        "compact": boolean;
+        "hideLabel": boolean;
+        "name": string;
+    }
+    interface DiwaRadioGroupItemAttributes {
+        "theme": Theme;
+        "value": string;
+        "checked": boolean;
+        "name": string;
+        "disabled": boolean;
+        "compact": boolean;
+    }
+    interface DiwaScrollerAttributes {
+        "alignScrollIndicator": ScrollerScrollIndicatorPosition;
+        "scrollbar": boolean;
+        "theme": Theme;
+    }
+    interface DiwaSegmentedControlAttributes {
+        "theme": Theme;
+        "value": string;
+        "disabled": boolean;
+        "compact": boolean;
+    }
+    interface DiwaSegmentedControlItemAttributes {
+        "theme": Theme;
+        "value": string;
+        "selected": boolean;
+        "disabled": boolean;
+        "compact": boolean;
+    }
+    interface DiwaSelectAttributes {
+        "theme": SelectTheme;
+        "label": string;
+        "description": string;
+        "name": string;
+        "value": string;
+        "state": SelectState;
+        "message": string;
+        "hideLabel": boolean;
+        "disabled": boolean;
+        "required": boolean;
+        "compact": boolean;
+        "dropdownDirection": SelectDropdownDirection;
+    }
+    interface DiwaSelectOptionAttributes {
+        "value": string;
+        "disabled": boolean;
+        "selected": boolean;
+        "highlighted": boolean;
+        "theme": Theme;
+        "compact": boolean;
+    }
+    interface DiwaSpinnerAttributes {
+        "size": SpinnerSize;
+        "theme": Theme;
+        "label": string;
+    }
+    interface DiwaStepperHorizontalAttributes {
+        "theme": Theme;
+        "activeStepIndex": number;
+    }
+    interface DiwaStepperHorizontalItemAttributes {
+        "theme": Theme;
+        "label": string;
+        "sublabel": string;
+        "state": StepState;
+        "stepNumber": number;
+        "isLast": boolean;
+    }
+    interface DiwaSwitchAttributes {
+        "checked": boolean;
+        "disabled": boolean;
+        "loading": boolean;
+        "alignLabel": SwitchAlignLabel;
+        "compact": boolean;
+        "theme": Theme;
+    }
+    interface DiwaTableAttributes {
+        "theme": Theme;
+        "caption": string;
+        "compact": boolean;
+        "layout": 'auto' | 'fixed';
+        "bordered": boolean;
+        "striped": boolean;
+    }
+    interface DiwaTableBodyAttributes {
+        "theme": Theme;
+    }
+    interface DiwaTableCellAttributes {
+        "theme": Theme;
+        "multiline": boolean;
+    }
+    interface DiwaTableHeadAttributes {
+        "theme": Theme;
+    }
+    interface DiwaTableHeadCellAttributes {
+        "theme": Theme;
+        "hideLabel": boolean;
+        "multiline": boolean;
+    }
+    interface DiwaTableRowAttributes {
+        "theme": Theme;
+    }
+    interface DiwaTabsAttributes {
+        "theme": Theme;
+        "activeTabIndex": number;
+    }
+    interface DiwaTabsBarAttributes {
+        "theme": Theme;
+        "activeTabIndex": number;
+    }
+    interface DiwaTabsItemAttributes {
+        "theme": Theme;
+        "label": string;
+        "active": boolean;
+    }
+    interface DiwaTagAttributes {
+        "variant": TagVariant;
+        "compact": boolean;
+        "icon": string;
+        "theme": Theme;
+    }
+    interface DiwaTagDismissibleAttributes {
+        "variant": TagVariant;
+        "compact": boolean;
+        "label": string;
+        "theme": Theme;
+    }
+    interface DiwaTextAttributes {
+        "theme": Theme;
+        "tag": TextTag;
+        "size": TextSize;
+        "weight": TextWeight;
+        "align": TextAlign;
+        "color": TextColor;
+        "ellipsis": boolean;
+    }
+    interface DiwaTextListAttributes {
+        "theme": Theme;
+        "type": TextListType;
+    }
+    interface DiwaTextListItemAttributes {
+        "theme": Theme;
+    }
+    interface DiwaTextareaAttributes {
+        "label": string;
+        "description": string;
+        "state": InputFieldState;
+        "message": string;
+        "name": string;
+        "value": string;
+        "placeholder": string;
+        "required": boolean;
+        "disabled": boolean;
+        "readOnly": boolean;
+        "maxLength": number;
+        "minLength": number;
+        "rows": number;
+        "resize": TextareaResize;
+        "compact": boolean;
+        "hideLabel": boolean;
+        "theme": Theme;
+    }
+    interface DiwaToastAttributes {
+        "theme": Theme;
+    }
+    interface DiwaToastItemAttributes {
+        "theme": Theme;
+        "text": string;
+        "state": ToastState;
+    }
+
     interface IntrinsicElements {
-        "diwa-accordion": DiwaAccordion;
-        "diwa-badge": DiwaBadge;
-        "diwa-button": DiwaButton;
-        "diwa-button-pure": DiwaButtonPure;
-        "diwa-checkbox": DiwaCheckbox;
-        "diwa-divider": DiwaDivider;
-        "diwa-flyout": DiwaFlyout;
-        "diwa-heading": DiwaHeading;
-        "diwa-icon": DiwaIcon;
-        "diwa-inline-notification": DiwaInlineNotification;
-        "diwa-input": DiwaInput;
-        "diwa-input-date": DiwaInputDate;
-        "diwa-input-email": DiwaInputEmail;
-        "diwa-input-month": DiwaInputMonth;
-        "diwa-input-number": DiwaInputNumber;
-        "diwa-input-password": DiwaInputPassword;
-        "diwa-input-search": DiwaInputSearch;
-        "diwa-input-tel": DiwaInputTel;
-        "diwa-input-text": DiwaInputText;
-        "diwa-input-time": DiwaInputTime;
-        "diwa-input-url": DiwaInputUrl;
-        "diwa-input-week": DiwaInputWeek;
-        "diwa-link": DiwaLink;
-        "diwa-link-pure": DiwaLinkPure;
-        "diwa-modal": DiwaModal;
-        "diwa-multi-select": DiwaMultiSelect;
-        "diwa-multi-select-option": DiwaMultiSelectOption;
-        "diwa-pagination": DiwaPagination;
-        "diwa-pin-code": DiwaPinCode;
-        "diwa-popover": DiwaPopover;
-        "diwa-radio-group": DiwaRadioGroup;
-        "diwa-radio-group-item": DiwaRadioGroupItem;
-        "diwa-scroller": DiwaScroller;
-        "diwa-segmented-control": DiwaSegmentedControl;
-        "diwa-segmented-control-item": DiwaSegmentedControlItem;
-        "diwa-select": DiwaSelect;
-        "diwa-select-option": DiwaSelectOption;
-        "diwa-spinner": DiwaSpinner;
-        "diwa-stepper-horizontal": DiwaStepperHorizontal;
-        "diwa-stepper-horizontal-item": DiwaStepperHorizontalItem;
-        "diwa-switch": DiwaSwitch;
-        "diwa-table": DiwaTable;
-        "diwa-table-body": DiwaTableBody;
-        "diwa-table-cell": DiwaTableCell;
-        "diwa-table-head": DiwaTableHead;
-        "diwa-table-head-cell": DiwaTableHeadCell;
-        "diwa-table-row": DiwaTableRow;
-        "diwa-tabs": DiwaTabs;
-        "diwa-tabs-bar": DiwaTabsBar;
-        "diwa-tabs-item": DiwaTabsItem;
-        "diwa-tag": DiwaTag;
-        "diwa-tag-dismissible": DiwaTagDismissible;
-        "diwa-text": DiwaText;
-        "diwa-text-list": DiwaTextList;
-        "diwa-text-list-item": DiwaTextListItem;
-        "diwa-textarea": DiwaTextarea;
-        "diwa-toast": DiwaToast;
-        "diwa-toast-item": DiwaToastItem;
+        "diwa-accordion": Omit<DiwaAccordion, keyof DiwaAccordionAttributes> & { [K in keyof DiwaAccordion & keyof DiwaAccordionAttributes]?: DiwaAccordion[K] } & { [K in keyof DiwaAccordion & keyof DiwaAccordionAttributes as `attr:${K}`]?: DiwaAccordionAttributes[K] } & { [K in keyof DiwaAccordion & keyof DiwaAccordionAttributes as `prop:${K}`]?: DiwaAccordion[K] };
+        "diwa-badge": Omit<DiwaBadge, keyof DiwaBadgeAttributes> & { [K in keyof DiwaBadge & keyof DiwaBadgeAttributes]?: DiwaBadge[K] } & { [K in keyof DiwaBadge & keyof DiwaBadgeAttributes as `attr:${K}`]?: DiwaBadgeAttributes[K] } & { [K in keyof DiwaBadge & keyof DiwaBadgeAttributes as `prop:${K}`]?: DiwaBadge[K] };
+        "diwa-button": Omit<DiwaButton, keyof DiwaButtonAttributes> & { [K in keyof DiwaButton & keyof DiwaButtonAttributes]?: DiwaButton[K] } & { [K in keyof DiwaButton & keyof DiwaButtonAttributes as `attr:${K}`]?: DiwaButtonAttributes[K] } & { [K in keyof DiwaButton & keyof DiwaButtonAttributes as `prop:${K}`]?: DiwaButton[K] };
+        "diwa-button-pure": Omit<DiwaButtonPure, keyof DiwaButtonPureAttributes> & { [K in keyof DiwaButtonPure & keyof DiwaButtonPureAttributes]?: DiwaButtonPure[K] } & { [K in keyof DiwaButtonPure & keyof DiwaButtonPureAttributes as `attr:${K}`]?: DiwaButtonPureAttributes[K] } & { [K in keyof DiwaButtonPure & keyof DiwaButtonPureAttributes as `prop:${K}`]?: DiwaButtonPure[K] };
+        "diwa-checkbox": Omit<DiwaCheckbox, keyof DiwaCheckboxAttributes> & { [K in keyof DiwaCheckbox & keyof DiwaCheckboxAttributes]?: DiwaCheckbox[K] } & { [K in keyof DiwaCheckbox & keyof DiwaCheckboxAttributes as `attr:${K}`]?: DiwaCheckboxAttributes[K] } & { [K in keyof DiwaCheckbox & keyof DiwaCheckboxAttributes as `prop:${K}`]?: DiwaCheckbox[K] };
+        "diwa-divider": Omit<DiwaDivider, keyof DiwaDividerAttributes> & { [K in keyof DiwaDivider & keyof DiwaDividerAttributes]?: DiwaDivider[K] } & { [K in keyof DiwaDivider & keyof DiwaDividerAttributes as `attr:${K}`]?: DiwaDividerAttributes[K] } & { [K in keyof DiwaDivider & keyof DiwaDividerAttributes as `prop:${K}`]?: DiwaDivider[K] };
+        "diwa-flyout": Omit<DiwaFlyout, keyof DiwaFlyoutAttributes> & { [K in keyof DiwaFlyout & keyof DiwaFlyoutAttributes]?: DiwaFlyout[K] } & { [K in keyof DiwaFlyout & keyof DiwaFlyoutAttributes as `attr:${K}`]?: DiwaFlyoutAttributes[K] } & { [K in keyof DiwaFlyout & keyof DiwaFlyoutAttributes as `prop:${K}`]?: DiwaFlyout[K] };
+        "diwa-heading": Omit<DiwaHeading, keyof DiwaHeadingAttributes> & { [K in keyof DiwaHeading & keyof DiwaHeadingAttributes]?: DiwaHeading[K] } & { [K in keyof DiwaHeading & keyof DiwaHeadingAttributes as `attr:${K}`]?: DiwaHeadingAttributes[K] } & { [K in keyof DiwaHeading & keyof DiwaHeadingAttributes as `prop:${K}`]?: DiwaHeading[K] };
+        "diwa-icon": Omit<DiwaIcon, keyof DiwaIconAttributes> & { [K in keyof DiwaIcon & keyof DiwaIconAttributes]?: DiwaIcon[K] } & { [K in keyof DiwaIcon & keyof DiwaIconAttributes as `attr:${K}`]?: DiwaIconAttributes[K] } & { [K in keyof DiwaIcon & keyof DiwaIconAttributes as `prop:${K}`]?: DiwaIcon[K] };
+        "diwa-inline-notification": Omit<DiwaInlineNotification, keyof DiwaInlineNotificationAttributes> & { [K in keyof DiwaInlineNotification & keyof DiwaInlineNotificationAttributes]?: DiwaInlineNotification[K] } & { [K in keyof DiwaInlineNotification & keyof DiwaInlineNotificationAttributes as `attr:${K}`]?: DiwaInlineNotificationAttributes[K] } & { [K in keyof DiwaInlineNotification & keyof DiwaInlineNotificationAttributes as `prop:${K}`]?: DiwaInlineNotification[K] };
+        "diwa-input": Omit<DiwaInput, keyof DiwaInputAttributes> & { [K in keyof DiwaInput & keyof DiwaInputAttributes]?: DiwaInput[K] } & { [K in keyof DiwaInput & keyof DiwaInputAttributes as `attr:${K}`]?: DiwaInputAttributes[K] } & { [K in keyof DiwaInput & keyof DiwaInputAttributes as `prop:${K}`]?: DiwaInput[K] };
+        "diwa-input-date": Omit<DiwaInputDate, keyof DiwaInputDateAttributes> & { [K in keyof DiwaInputDate & keyof DiwaInputDateAttributes]?: DiwaInputDate[K] } & { [K in keyof DiwaInputDate & keyof DiwaInputDateAttributes as `attr:${K}`]?: DiwaInputDateAttributes[K] } & { [K in keyof DiwaInputDate & keyof DiwaInputDateAttributes as `prop:${K}`]?: DiwaInputDate[K] };
+        "diwa-input-email": Omit<DiwaInputEmail, keyof DiwaInputEmailAttributes> & { [K in keyof DiwaInputEmail & keyof DiwaInputEmailAttributes]?: DiwaInputEmail[K] } & { [K in keyof DiwaInputEmail & keyof DiwaInputEmailAttributes as `attr:${K}`]?: DiwaInputEmailAttributes[K] } & { [K in keyof DiwaInputEmail & keyof DiwaInputEmailAttributes as `prop:${K}`]?: DiwaInputEmail[K] };
+        "diwa-input-month": Omit<DiwaInputMonth, keyof DiwaInputMonthAttributes> & { [K in keyof DiwaInputMonth & keyof DiwaInputMonthAttributes]?: DiwaInputMonth[K] } & { [K in keyof DiwaInputMonth & keyof DiwaInputMonthAttributes as `attr:${K}`]?: DiwaInputMonthAttributes[K] } & { [K in keyof DiwaInputMonth & keyof DiwaInputMonthAttributes as `prop:${K}`]?: DiwaInputMonth[K] };
+        "diwa-input-number": Omit<DiwaInputNumber, keyof DiwaInputNumberAttributes> & { [K in keyof DiwaInputNumber & keyof DiwaInputNumberAttributes]?: DiwaInputNumber[K] } & { [K in keyof DiwaInputNumber & keyof DiwaInputNumberAttributes as `attr:${K}`]?: DiwaInputNumberAttributes[K] } & { [K in keyof DiwaInputNumber & keyof DiwaInputNumberAttributes as `prop:${K}`]?: DiwaInputNumber[K] };
+        "diwa-input-password": Omit<DiwaInputPassword, keyof DiwaInputPasswordAttributes> & { [K in keyof DiwaInputPassword & keyof DiwaInputPasswordAttributes]?: DiwaInputPassword[K] } & { [K in keyof DiwaInputPassword & keyof DiwaInputPasswordAttributes as `attr:${K}`]?: DiwaInputPasswordAttributes[K] } & { [K in keyof DiwaInputPassword & keyof DiwaInputPasswordAttributes as `prop:${K}`]?: DiwaInputPassword[K] };
+        "diwa-input-search": Omit<DiwaInputSearch, keyof DiwaInputSearchAttributes> & { [K in keyof DiwaInputSearch & keyof DiwaInputSearchAttributes]?: DiwaInputSearch[K] } & { [K in keyof DiwaInputSearch & keyof DiwaInputSearchAttributes as `attr:${K}`]?: DiwaInputSearchAttributes[K] } & { [K in keyof DiwaInputSearch & keyof DiwaInputSearchAttributes as `prop:${K}`]?: DiwaInputSearch[K] };
+        "diwa-input-tel": Omit<DiwaInputTel, keyof DiwaInputTelAttributes> & { [K in keyof DiwaInputTel & keyof DiwaInputTelAttributes]?: DiwaInputTel[K] } & { [K in keyof DiwaInputTel & keyof DiwaInputTelAttributes as `attr:${K}`]?: DiwaInputTelAttributes[K] } & { [K in keyof DiwaInputTel & keyof DiwaInputTelAttributes as `prop:${K}`]?: DiwaInputTel[K] };
+        "diwa-input-text": Omit<DiwaInputText, keyof DiwaInputTextAttributes> & { [K in keyof DiwaInputText & keyof DiwaInputTextAttributes]?: DiwaInputText[K] } & { [K in keyof DiwaInputText & keyof DiwaInputTextAttributes as `attr:${K}`]?: DiwaInputTextAttributes[K] } & { [K in keyof DiwaInputText & keyof DiwaInputTextAttributes as `prop:${K}`]?: DiwaInputText[K] };
+        "diwa-input-time": Omit<DiwaInputTime, keyof DiwaInputTimeAttributes> & { [K in keyof DiwaInputTime & keyof DiwaInputTimeAttributes]?: DiwaInputTime[K] } & { [K in keyof DiwaInputTime & keyof DiwaInputTimeAttributes as `attr:${K}`]?: DiwaInputTimeAttributes[K] } & { [K in keyof DiwaInputTime & keyof DiwaInputTimeAttributes as `prop:${K}`]?: DiwaInputTime[K] };
+        "diwa-input-url": Omit<DiwaInputUrl, keyof DiwaInputUrlAttributes> & { [K in keyof DiwaInputUrl & keyof DiwaInputUrlAttributes]?: DiwaInputUrl[K] } & { [K in keyof DiwaInputUrl & keyof DiwaInputUrlAttributes as `attr:${K}`]?: DiwaInputUrlAttributes[K] } & { [K in keyof DiwaInputUrl & keyof DiwaInputUrlAttributes as `prop:${K}`]?: DiwaInputUrl[K] };
+        "diwa-input-week": Omit<DiwaInputWeek, keyof DiwaInputWeekAttributes> & { [K in keyof DiwaInputWeek & keyof DiwaInputWeekAttributes]?: DiwaInputWeek[K] } & { [K in keyof DiwaInputWeek & keyof DiwaInputWeekAttributes as `attr:${K}`]?: DiwaInputWeekAttributes[K] } & { [K in keyof DiwaInputWeek & keyof DiwaInputWeekAttributes as `prop:${K}`]?: DiwaInputWeek[K] };
+        "diwa-link": Omit<DiwaLink, keyof DiwaLinkAttributes> & { [K in keyof DiwaLink & keyof DiwaLinkAttributes]?: DiwaLink[K] } & { [K in keyof DiwaLink & keyof DiwaLinkAttributes as `attr:${K}`]?: DiwaLinkAttributes[K] } & { [K in keyof DiwaLink & keyof DiwaLinkAttributes as `prop:${K}`]?: DiwaLink[K] };
+        "diwa-link-pure": Omit<DiwaLinkPure, keyof DiwaLinkPureAttributes> & { [K in keyof DiwaLinkPure & keyof DiwaLinkPureAttributes]?: DiwaLinkPure[K] } & { [K in keyof DiwaLinkPure & keyof DiwaLinkPureAttributes as `attr:${K}`]?: DiwaLinkPureAttributes[K] } & { [K in keyof DiwaLinkPure & keyof DiwaLinkPureAttributes as `prop:${K}`]?: DiwaLinkPure[K] };
+        "diwa-modal": Omit<DiwaModal, keyof DiwaModalAttributes> & { [K in keyof DiwaModal & keyof DiwaModalAttributes]?: DiwaModal[K] } & { [K in keyof DiwaModal & keyof DiwaModalAttributes as `attr:${K}`]?: DiwaModalAttributes[K] } & { [K in keyof DiwaModal & keyof DiwaModalAttributes as `prop:${K}`]?: DiwaModal[K] };
+        "diwa-multi-select": Omit<DiwaMultiSelect, keyof DiwaMultiSelectAttributes> & { [K in keyof DiwaMultiSelect & keyof DiwaMultiSelectAttributes]?: DiwaMultiSelect[K] } & { [K in keyof DiwaMultiSelect & keyof DiwaMultiSelectAttributes as `attr:${K}`]?: DiwaMultiSelectAttributes[K] } & { [K in keyof DiwaMultiSelect & keyof DiwaMultiSelectAttributes as `prop:${K}`]?: DiwaMultiSelect[K] };
+        "diwa-multi-select-option": Omit<DiwaMultiSelectOption, keyof DiwaMultiSelectOptionAttributes> & { [K in keyof DiwaMultiSelectOption & keyof DiwaMultiSelectOptionAttributes]?: DiwaMultiSelectOption[K] } & { [K in keyof DiwaMultiSelectOption & keyof DiwaMultiSelectOptionAttributes as `attr:${K}`]?: DiwaMultiSelectOptionAttributes[K] } & { [K in keyof DiwaMultiSelectOption & keyof DiwaMultiSelectOptionAttributes as `prop:${K}`]?: DiwaMultiSelectOption[K] } & OneOf<"value", DiwaMultiSelectOption["value"], DiwaMultiSelectOptionAttributes["value"]>;
+        "diwa-pagination": Omit<DiwaPagination, keyof DiwaPaginationAttributes> & { [K in keyof DiwaPagination & keyof DiwaPaginationAttributes]?: DiwaPagination[K] } & { [K in keyof DiwaPagination & keyof DiwaPaginationAttributes as `attr:${K}`]?: DiwaPaginationAttributes[K] } & { [K in keyof DiwaPagination & keyof DiwaPaginationAttributes as `prop:${K}`]?: DiwaPagination[K] };
+        "diwa-pin-code": Omit<DiwaPinCode, keyof DiwaPinCodeAttributes> & { [K in keyof DiwaPinCode & keyof DiwaPinCodeAttributes]?: DiwaPinCode[K] } & { [K in keyof DiwaPinCode & keyof DiwaPinCodeAttributes as `attr:${K}`]?: DiwaPinCodeAttributes[K] } & { [K in keyof DiwaPinCode & keyof DiwaPinCodeAttributes as `prop:${K}`]?: DiwaPinCode[K] };
+        "diwa-popover": Omit<DiwaPopover, keyof DiwaPopoverAttributes> & { [K in keyof DiwaPopover & keyof DiwaPopoverAttributes]?: DiwaPopover[K] } & { [K in keyof DiwaPopover & keyof DiwaPopoverAttributes as `attr:${K}`]?: DiwaPopoverAttributes[K] } & { [K in keyof DiwaPopover & keyof DiwaPopoverAttributes as `prop:${K}`]?: DiwaPopover[K] };
+        "diwa-radio-group": Omit<DiwaRadioGroup, keyof DiwaRadioGroupAttributes> & { [K in keyof DiwaRadioGroup & keyof DiwaRadioGroupAttributes]?: DiwaRadioGroup[K] } & { [K in keyof DiwaRadioGroup & keyof DiwaRadioGroupAttributes as `attr:${K}`]?: DiwaRadioGroupAttributes[K] } & { [K in keyof DiwaRadioGroup & keyof DiwaRadioGroupAttributes as `prop:${K}`]?: DiwaRadioGroup[K] };
+        "diwa-radio-group-item": Omit<DiwaRadioGroupItem, keyof DiwaRadioGroupItemAttributes> & { [K in keyof DiwaRadioGroupItem & keyof DiwaRadioGroupItemAttributes]?: DiwaRadioGroupItem[K] } & { [K in keyof DiwaRadioGroupItem & keyof DiwaRadioGroupItemAttributes as `attr:${K}`]?: DiwaRadioGroupItemAttributes[K] } & { [K in keyof DiwaRadioGroupItem & keyof DiwaRadioGroupItemAttributes as `prop:${K}`]?: DiwaRadioGroupItem[K] };
+        "diwa-scroller": Omit<DiwaScroller, keyof DiwaScrollerAttributes> & { [K in keyof DiwaScroller & keyof DiwaScrollerAttributes]?: DiwaScroller[K] } & { [K in keyof DiwaScroller & keyof DiwaScrollerAttributes as `attr:${K}`]?: DiwaScrollerAttributes[K] } & { [K in keyof DiwaScroller & keyof DiwaScrollerAttributes as `prop:${K}`]?: DiwaScroller[K] };
+        "diwa-segmented-control": Omit<DiwaSegmentedControl, keyof DiwaSegmentedControlAttributes> & { [K in keyof DiwaSegmentedControl & keyof DiwaSegmentedControlAttributes]?: DiwaSegmentedControl[K] } & { [K in keyof DiwaSegmentedControl & keyof DiwaSegmentedControlAttributes as `attr:${K}`]?: DiwaSegmentedControlAttributes[K] } & { [K in keyof DiwaSegmentedControl & keyof DiwaSegmentedControlAttributes as `prop:${K}`]?: DiwaSegmentedControl[K] };
+        "diwa-segmented-control-item": Omit<DiwaSegmentedControlItem, keyof DiwaSegmentedControlItemAttributes> & { [K in keyof DiwaSegmentedControlItem & keyof DiwaSegmentedControlItemAttributes]?: DiwaSegmentedControlItem[K] } & { [K in keyof DiwaSegmentedControlItem & keyof DiwaSegmentedControlItemAttributes as `attr:${K}`]?: DiwaSegmentedControlItemAttributes[K] } & { [K in keyof DiwaSegmentedControlItem & keyof DiwaSegmentedControlItemAttributes as `prop:${K}`]?: DiwaSegmentedControlItem[K] };
+        "diwa-select": Omit<DiwaSelect, keyof DiwaSelectAttributes> & { [K in keyof DiwaSelect & keyof DiwaSelectAttributes]?: DiwaSelect[K] } & { [K in keyof DiwaSelect & keyof DiwaSelectAttributes as `attr:${K}`]?: DiwaSelectAttributes[K] } & { [K in keyof DiwaSelect & keyof DiwaSelectAttributes as `prop:${K}`]?: DiwaSelect[K] };
+        "diwa-select-option": Omit<DiwaSelectOption, keyof DiwaSelectOptionAttributes> & { [K in keyof DiwaSelectOption & keyof DiwaSelectOptionAttributes]?: DiwaSelectOption[K] } & { [K in keyof DiwaSelectOption & keyof DiwaSelectOptionAttributes as `attr:${K}`]?: DiwaSelectOptionAttributes[K] } & { [K in keyof DiwaSelectOption & keyof DiwaSelectOptionAttributes as `prop:${K}`]?: DiwaSelectOption[K] };
+        "diwa-spinner": Omit<DiwaSpinner, keyof DiwaSpinnerAttributes> & { [K in keyof DiwaSpinner & keyof DiwaSpinnerAttributes]?: DiwaSpinner[K] } & { [K in keyof DiwaSpinner & keyof DiwaSpinnerAttributes as `attr:${K}`]?: DiwaSpinnerAttributes[K] } & { [K in keyof DiwaSpinner & keyof DiwaSpinnerAttributes as `prop:${K}`]?: DiwaSpinner[K] };
+        "diwa-stepper-horizontal": Omit<DiwaStepperHorizontal, keyof DiwaStepperHorizontalAttributes> & { [K in keyof DiwaStepperHorizontal & keyof DiwaStepperHorizontalAttributes]?: DiwaStepperHorizontal[K] } & { [K in keyof DiwaStepperHorizontal & keyof DiwaStepperHorizontalAttributes as `attr:${K}`]?: DiwaStepperHorizontalAttributes[K] } & { [K in keyof DiwaStepperHorizontal & keyof DiwaStepperHorizontalAttributes as `prop:${K}`]?: DiwaStepperHorizontal[K] };
+        "diwa-stepper-horizontal-item": Omit<DiwaStepperHorizontalItem, keyof DiwaStepperHorizontalItemAttributes> & { [K in keyof DiwaStepperHorizontalItem & keyof DiwaStepperHorizontalItemAttributes]?: DiwaStepperHorizontalItem[K] } & { [K in keyof DiwaStepperHorizontalItem & keyof DiwaStepperHorizontalItemAttributes as `attr:${K}`]?: DiwaStepperHorizontalItemAttributes[K] } & { [K in keyof DiwaStepperHorizontalItem & keyof DiwaStepperHorizontalItemAttributes as `prop:${K}`]?: DiwaStepperHorizontalItem[K] };
+        "diwa-switch": Omit<DiwaSwitch, keyof DiwaSwitchAttributes> & { [K in keyof DiwaSwitch & keyof DiwaSwitchAttributes]?: DiwaSwitch[K] } & { [K in keyof DiwaSwitch & keyof DiwaSwitchAttributes as `attr:${K}`]?: DiwaSwitchAttributes[K] } & { [K in keyof DiwaSwitch & keyof DiwaSwitchAttributes as `prop:${K}`]?: DiwaSwitch[K] };
+        "diwa-table": Omit<DiwaTable, keyof DiwaTableAttributes> & { [K in keyof DiwaTable & keyof DiwaTableAttributes]?: DiwaTable[K] } & { [K in keyof DiwaTable & keyof DiwaTableAttributes as `attr:${K}`]?: DiwaTableAttributes[K] } & { [K in keyof DiwaTable & keyof DiwaTableAttributes as `prop:${K}`]?: DiwaTable[K] };
+        "diwa-table-body": Omit<DiwaTableBody, keyof DiwaTableBodyAttributes> & { [K in keyof DiwaTableBody & keyof DiwaTableBodyAttributes]?: DiwaTableBody[K] } & { [K in keyof DiwaTableBody & keyof DiwaTableBodyAttributes as `attr:${K}`]?: DiwaTableBodyAttributes[K] } & { [K in keyof DiwaTableBody & keyof DiwaTableBodyAttributes as `prop:${K}`]?: DiwaTableBody[K] };
+        "diwa-table-cell": Omit<DiwaTableCell, keyof DiwaTableCellAttributes> & { [K in keyof DiwaTableCell & keyof DiwaTableCellAttributes]?: DiwaTableCell[K] } & { [K in keyof DiwaTableCell & keyof DiwaTableCellAttributes as `attr:${K}`]?: DiwaTableCellAttributes[K] } & { [K in keyof DiwaTableCell & keyof DiwaTableCellAttributes as `prop:${K}`]?: DiwaTableCell[K] };
+        "diwa-table-head": Omit<DiwaTableHead, keyof DiwaTableHeadAttributes> & { [K in keyof DiwaTableHead & keyof DiwaTableHeadAttributes]?: DiwaTableHead[K] } & { [K in keyof DiwaTableHead & keyof DiwaTableHeadAttributes as `attr:${K}`]?: DiwaTableHeadAttributes[K] } & { [K in keyof DiwaTableHead & keyof DiwaTableHeadAttributes as `prop:${K}`]?: DiwaTableHead[K] };
+        "diwa-table-head-cell": Omit<DiwaTableHeadCell, keyof DiwaTableHeadCellAttributes> & { [K in keyof DiwaTableHeadCell & keyof DiwaTableHeadCellAttributes]?: DiwaTableHeadCell[K] } & { [K in keyof DiwaTableHeadCell & keyof DiwaTableHeadCellAttributes as `attr:${K}`]?: DiwaTableHeadCellAttributes[K] } & { [K in keyof DiwaTableHeadCell & keyof DiwaTableHeadCellAttributes as `prop:${K}`]?: DiwaTableHeadCell[K] };
+        "diwa-table-row": Omit<DiwaTableRow, keyof DiwaTableRowAttributes> & { [K in keyof DiwaTableRow & keyof DiwaTableRowAttributes]?: DiwaTableRow[K] } & { [K in keyof DiwaTableRow & keyof DiwaTableRowAttributes as `attr:${K}`]?: DiwaTableRowAttributes[K] } & { [K in keyof DiwaTableRow & keyof DiwaTableRowAttributes as `prop:${K}`]?: DiwaTableRow[K] };
+        "diwa-tabs": Omit<DiwaTabs, keyof DiwaTabsAttributes> & { [K in keyof DiwaTabs & keyof DiwaTabsAttributes]?: DiwaTabs[K] } & { [K in keyof DiwaTabs & keyof DiwaTabsAttributes as `attr:${K}`]?: DiwaTabsAttributes[K] } & { [K in keyof DiwaTabs & keyof DiwaTabsAttributes as `prop:${K}`]?: DiwaTabs[K] };
+        "diwa-tabs-bar": Omit<DiwaTabsBar, keyof DiwaTabsBarAttributes> & { [K in keyof DiwaTabsBar & keyof DiwaTabsBarAttributes]?: DiwaTabsBar[K] } & { [K in keyof DiwaTabsBar & keyof DiwaTabsBarAttributes as `attr:${K}`]?: DiwaTabsBarAttributes[K] } & { [K in keyof DiwaTabsBar & keyof DiwaTabsBarAttributes as `prop:${K}`]?: DiwaTabsBar[K] };
+        "diwa-tabs-item": Omit<DiwaTabsItem, keyof DiwaTabsItemAttributes> & { [K in keyof DiwaTabsItem & keyof DiwaTabsItemAttributes]?: DiwaTabsItem[K] } & { [K in keyof DiwaTabsItem & keyof DiwaTabsItemAttributes as `attr:${K}`]?: DiwaTabsItemAttributes[K] } & { [K in keyof DiwaTabsItem & keyof DiwaTabsItemAttributes as `prop:${K}`]?: DiwaTabsItem[K] };
+        "diwa-tag": Omit<DiwaTag, keyof DiwaTagAttributes> & { [K in keyof DiwaTag & keyof DiwaTagAttributes]?: DiwaTag[K] } & { [K in keyof DiwaTag & keyof DiwaTagAttributes as `attr:${K}`]?: DiwaTagAttributes[K] } & { [K in keyof DiwaTag & keyof DiwaTagAttributes as `prop:${K}`]?: DiwaTag[K] };
+        "diwa-tag-dismissible": Omit<DiwaTagDismissible, keyof DiwaTagDismissibleAttributes> & { [K in keyof DiwaTagDismissible & keyof DiwaTagDismissibleAttributes]?: DiwaTagDismissible[K] } & { [K in keyof DiwaTagDismissible & keyof DiwaTagDismissibleAttributes as `attr:${K}`]?: DiwaTagDismissibleAttributes[K] } & { [K in keyof DiwaTagDismissible & keyof DiwaTagDismissibleAttributes as `prop:${K}`]?: DiwaTagDismissible[K] };
+        "diwa-text": Omit<DiwaText, keyof DiwaTextAttributes> & { [K in keyof DiwaText & keyof DiwaTextAttributes]?: DiwaText[K] } & { [K in keyof DiwaText & keyof DiwaTextAttributes as `attr:${K}`]?: DiwaTextAttributes[K] } & { [K in keyof DiwaText & keyof DiwaTextAttributes as `prop:${K}`]?: DiwaText[K] };
+        "diwa-text-list": Omit<DiwaTextList, keyof DiwaTextListAttributes> & { [K in keyof DiwaTextList & keyof DiwaTextListAttributes]?: DiwaTextList[K] } & { [K in keyof DiwaTextList & keyof DiwaTextListAttributes as `attr:${K}`]?: DiwaTextListAttributes[K] } & { [K in keyof DiwaTextList & keyof DiwaTextListAttributes as `prop:${K}`]?: DiwaTextList[K] };
+        "diwa-text-list-item": Omit<DiwaTextListItem, keyof DiwaTextListItemAttributes> & { [K in keyof DiwaTextListItem & keyof DiwaTextListItemAttributes]?: DiwaTextListItem[K] } & { [K in keyof DiwaTextListItem & keyof DiwaTextListItemAttributes as `attr:${K}`]?: DiwaTextListItemAttributes[K] } & { [K in keyof DiwaTextListItem & keyof DiwaTextListItemAttributes as `prop:${K}`]?: DiwaTextListItem[K] };
+        "diwa-textarea": Omit<DiwaTextarea, keyof DiwaTextareaAttributes> & { [K in keyof DiwaTextarea & keyof DiwaTextareaAttributes]?: DiwaTextarea[K] } & { [K in keyof DiwaTextarea & keyof DiwaTextareaAttributes as `attr:${K}`]?: DiwaTextareaAttributes[K] } & { [K in keyof DiwaTextarea & keyof DiwaTextareaAttributes as `prop:${K}`]?: DiwaTextarea[K] };
+        "diwa-toast": Omit<DiwaToast, keyof DiwaToastAttributes> & { [K in keyof DiwaToast & keyof DiwaToastAttributes]?: DiwaToast[K] } & { [K in keyof DiwaToast & keyof DiwaToastAttributes as `attr:${K}`]?: DiwaToastAttributes[K] } & { [K in keyof DiwaToast & keyof DiwaToastAttributes as `prop:${K}`]?: DiwaToast[K] };
+        "diwa-toast-item": Omit<DiwaToastItem, keyof DiwaToastItemAttributes> & { [K in keyof DiwaToastItem & keyof DiwaToastItemAttributes]?: DiwaToastItem[K] } & { [K in keyof DiwaToastItem & keyof DiwaToastItemAttributes as `attr:${K}`]?: DiwaToastItemAttributes[K] } & { [K in keyof DiwaToastItem & keyof DiwaToastItemAttributes as `prop:${K}`]?: DiwaToastItem[K] };
     }
 }
 export { LocalJSX as JSX };
@@ -5543,24 +7535,27 @@ declare module "@stencil/core" {
              * Content here.
              * </diwa-accordion>
              */
-            "diwa-accordion": LocalJSX.DiwaAccordion & JSXBase.HTMLAttributes<HTMLDiwaAccordionElement>;
+            "diwa-accordion": LocalJSX.IntrinsicElements["diwa-accordion"] & JSXBase.HTMLAttributes<HTMLDiwaAccordionElement>;
             /**
              * @component diwa-badge
-             * A compact, pill-shaped label used to convey status, counts, or metadata.
-             * Renders as an inline element with full Shadow DOM encapsulation.
+             * A compact, pill-shaped status indicator with an optional animated dot.
+             * Use for live status, counts, counts, and key callouts.
+             * Prefer DiwaTag for category labels and filters — Tag has square corners and a
+             * visible border; Badge is always fully rounded with a subtler, muted border.
              * Design token override API (set on :root or any ancestor):
              * --diwa-badge-radius          Border radius (defaults to --diwa-radius-full)
+             * --diwa-badge-border-color    Override the auto-computed border colour
              * --diwa-badge-padding-x       Horizontal padding for md size
              * --diwa-badge-padding-x-sm    Horizontal padding for sm size
              * --diwa-badge-font-size       Font size for md size
              * --diwa-badge-font-size-sm    Font size for sm size
              * --diwa-badge-font-weight     Font weight
              * Usage:
-             * <diwa-badge variant="success">Active</diwa-badge>
+             * <diwa-badge variant="success" dot>Live</diwa-badge>
              * <diwa-badge variant="danger" size="sm">3 errors</diwa-badge>
              * <diwa-badge variant="neutral">Draft</diwa-badge>
              */
-            "diwa-badge": LocalJSX.DiwaBadge & JSXBase.HTMLAttributes<HTMLDiwaBadgeElement>;
+            "diwa-badge": LocalJSX.IntrinsicElements["diwa-badge"] & JSXBase.HTMLAttributes<HTMLDiwaBadgeElement>;
             /**
              * @component diwa-button
              * A fully encapsulated, accessible button primitive.
@@ -5580,7 +7575,7 @@ declare module "@stencil/core" {
              * <diwa-button variant="secondary" size="sm" disabled>Cancel</diwa-button>
              * <diwa-button href="/dashboard" target="_blank">Open Panel</diwa-button>
              */
-            "diwa-button": LocalJSX.DiwaButton & JSXBase.HTMLAttributes<HTMLDiwaButtonElement>;
+            "diwa-button": LocalJSX.IntrinsicElements["diwa-button"] & JSXBase.HTMLAttributes<HTMLDiwaButtonElement>;
             /**
              * @component diwa-button-pure
              * A transparent, text+icon action button — no background or border.
@@ -5593,7 +7588,7 @@ declare module "@stencil/core" {
              * <diwa-button-pure icon="arrow-left" align-label="start">Back</diwa-button-pure>
              * <diwa-button-pure hide-label label="Close" icon="x" />
              */
-            "diwa-button-pure": LocalJSX.DiwaButtonPure & JSXBase.HTMLAttributes<HTMLDiwaButtonPureElement>;
+            "diwa-button-pure": LocalJSX.IntrinsicElements["diwa-button-pure"] & JSXBase.HTMLAttributes<HTMLDiwaButtonPureElement>;
             /**
              * @component diwa-checkbox
              * A fully accessible checkbox control with label, validation state,
@@ -5614,7 +7609,7 @@ declare module "@stencil/core" {
              * not visible to ancestor <form> elements for native form submission.
              * Use ElementInternals (V2) or submit via JavaScript instead.
              */
-            "diwa-checkbox": LocalJSX.DiwaCheckbox & JSXBase.HTMLAttributes<HTMLDiwaCheckboxElement>;
+            "diwa-checkbox": LocalJSX.IntrinsicElements["diwa-checkbox"] & JSXBase.HTMLAttributes<HTMLDiwaCheckboxElement>;
             /**
              * @component diwa-divider
              * A purely presentational separator line. Renders a native `<hr>` element
@@ -5633,7 +7628,7 @@ declare module "@stencil/core" {
              * <span>Right</span>
              * </div>
              */
-            "diwa-divider": LocalJSX.DiwaDivider & JSXBase.HTMLAttributes<HTMLDiwaDividerElement>;
+            "diwa-divider": LocalJSX.IntrinsicElements["diwa-divider"] & JSXBase.HTMLAttributes<HTMLDiwaDividerElement>;
             /**
              * @component diwa-flyout
              * A full-height overlay panel that slides in from the start or end edge of
@@ -5657,7 +7652,7 @@ declare module "@stencil/core" {
              * </div>
              * </diwa-flyout>
              */
-            "diwa-flyout": LocalJSX.DiwaFlyout & JSXBase.HTMLAttributes<HTMLDiwaFlyoutElement>;
+            "diwa-flyout": LocalJSX.IntrinsicElements["diwa-flyout"] & JSXBase.HTMLAttributes<HTMLDiwaFlyoutElement>;
             /**
              * @component diwa-heading
              * A responsive heading renderer that maps a visual size scale onto the
@@ -5668,7 +7663,7 @@ declare module "@stencil/core" {
              * <diwa-heading size="display" color="secondary">Hero headline</diwa-heading>
              * <diwa-heading size="h3" tag="h2">Visual h3, semantic h2</diwa-heading>
              */
-            "diwa-heading": LocalJSX.DiwaHeading & JSXBase.HTMLAttributes<HTMLDiwaHeadingElement>;
+            "diwa-heading": LocalJSX.IntrinsicElements["diwa-heading"] & JSXBase.HTMLAttributes<HTMLDiwaHeadingElement>;
             /**
              * @component diwa-icon
              * Renders a Lucide icon as an inline SVG inside Shadow DOM.
@@ -5678,7 +7673,7 @@ declare module "@stencil/core" {
              * <diwa-icon name="user" size="32" color="var(--diwa-accent)"></diwa-icon>
              * <diwa-icon name="bell" label="Notifications"></diwa-icon>
              */
-            "diwa-icon": LocalJSX.DiwaIcon & JSXBase.HTMLAttributes<HTMLDiwaIconElement>;
+            "diwa-icon": LocalJSX.IntrinsicElements["diwa-icon"] & JSXBase.HTMLAttributes<HTMLDiwaIconElement>;
             /**
              * @component diwa-inline-notification
              * A static inline banner that communicates contextual feedback.
@@ -5696,7 +7691,7 @@ declare module "@stencil/core" {
              * description="Your changes have been saved."
              * />
              */
-            "diwa-inline-notification": LocalJSX.DiwaInlineNotification & JSXBase.HTMLAttributes<HTMLDiwaInlineNotificationElement>;
+            "diwa-inline-notification": LocalJSX.IntrinsicElements["diwa-inline-notification"] & JSXBase.HTMLAttributes<HTMLDiwaInlineNotificationElement>;
             /**
              * @component diwa-input
              * A fully encapsulated, accessible text input primitive.
@@ -5718,18 +7713,18 @@ declare module "@stencil/core" {
              * <diwa-input label="Password" type="password" required></diwa-input>
              * <diwa-input label="Search" type="search" state="error" hint="No results found."></diwa-input>
              */
-            "diwa-input": LocalJSX.DiwaInput & JSXBase.HTMLAttributes<HTMLDiwaInputElement>;
-            "diwa-input-date": LocalJSX.DiwaInputDate & JSXBase.HTMLAttributes<HTMLDiwaInputDateElement>;
-            "diwa-input-email": LocalJSX.DiwaInputEmail & JSXBase.HTMLAttributes<HTMLDiwaInputEmailElement>;
-            "diwa-input-month": LocalJSX.DiwaInputMonth & JSXBase.HTMLAttributes<HTMLDiwaInputMonthElement>;
-            "diwa-input-number": LocalJSX.DiwaInputNumber & JSXBase.HTMLAttributes<HTMLDiwaInputNumberElement>;
-            "diwa-input-password": LocalJSX.DiwaInputPassword & JSXBase.HTMLAttributes<HTMLDiwaInputPasswordElement>;
-            "diwa-input-search": LocalJSX.DiwaInputSearch & JSXBase.HTMLAttributes<HTMLDiwaInputSearchElement>;
-            "diwa-input-tel": LocalJSX.DiwaInputTel & JSXBase.HTMLAttributes<HTMLDiwaInputTelElement>;
-            "diwa-input-text": LocalJSX.DiwaInputText & JSXBase.HTMLAttributes<HTMLDiwaInputTextElement>;
-            "diwa-input-time": LocalJSX.DiwaInputTime & JSXBase.HTMLAttributes<HTMLDiwaInputTimeElement>;
-            "diwa-input-url": LocalJSX.DiwaInputUrl & JSXBase.HTMLAttributes<HTMLDiwaInputUrlElement>;
-            "diwa-input-week": LocalJSX.DiwaInputWeek & JSXBase.HTMLAttributes<HTMLDiwaInputWeekElement>;
+            "diwa-input": LocalJSX.IntrinsicElements["diwa-input"] & JSXBase.HTMLAttributes<HTMLDiwaInputElement>;
+            "diwa-input-date": LocalJSX.IntrinsicElements["diwa-input-date"] & JSXBase.HTMLAttributes<HTMLDiwaInputDateElement>;
+            "diwa-input-email": LocalJSX.IntrinsicElements["diwa-input-email"] & JSXBase.HTMLAttributes<HTMLDiwaInputEmailElement>;
+            "diwa-input-month": LocalJSX.IntrinsicElements["diwa-input-month"] & JSXBase.HTMLAttributes<HTMLDiwaInputMonthElement>;
+            "diwa-input-number": LocalJSX.IntrinsicElements["diwa-input-number"] & JSXBase.HTMLAttributes<HTMLDiwaInputNumberElement>;
+            "diwa-input-password": LocalJSX.IntrinsicElements["diwa-input-password"] & JSXBase.HTMLAttributes<HTMLDiwaInputPasswordElement>;
+            "diwa-input-search": LocalJSX.IntrinsicElements["diwa-input-search"] & JSXBase.HTMLAttributes<HTMLDiwaInputSearchElement>;
+            "diwa-input-tel": LocalJSX.IntrinsicElements["diwa-input-tel"] & JSXBase.HTMLAttributes<HTMLDiwaInputTelElement>;
+            "diwa-input-text": LocalJSX.IntrinsicElements["diwa-input-text"] & JSXBase.HTMLAttributes<HTMLDiwaInputTextElement>;
+            "diwa-input-time": LocalJSX.IntrinsicElements["diwa-input-time"] & JSXBase.HTMLAttributes<HTMLDiwaInputTimeElement>;
+            "diwa-input-url": LocalJSX.IntrinsicElements["diwa-input-url"] & JSXBase.HTMLAttributes<HTMLDiwaInputUrlElement>;
+            "diwa-input-week": LocalJSX.IntrinsicElements["diwa-input-week"] & JSXBase.HTMLAttributes<HTMLDiwaInputWeekElement>;
             /**
              * @component diwa-link
              * A fully accessible link primitive. Renders as <a> when href is provided,
@@ -5739,7 +7734,7 @@ declare module "@stencil/core" {
              * <diwa-link href="/docs" variant="secondary" target="_blank">Docs</diwa-link>
              * <diwa-link href="/about" variant="ghost" icon="arrow-right">About</diwa-link>
              */
-            "diwa-link": LocalJSX.DiwaLink & JSXBase.HTMLAttributes<HTMLDiwaLinkElement>;
+            "diwa-link": LocalJSX.IntrinsicElements["diwa-link"] & JSXBase.HTMLAttributes<HTMLDiwaLinkElement>;
             /**
              * @component diwa-link-pure
              * A minimal, text+icon link — no background or border. Mirrors PDS p-link-pure.
@@ -5749,7 +7744,7 @@ declare module "@stencil/core" {
              * <diwa-link-pure href="/back" icon="arrow-left" align-label="start">Back</diwa-link-pure>
              * <diwa-link-pure href="/close" hide-label label="Close" icon="x" />
              */
-            "diwa-link-pure": LocalJSX.DiwaLinkPure & JSXBase.HTMLAttributes<HTMLDiwaLinkPureElement>;
+            "diwa-link-pure": LocalJSX.IntrinsicElements["diwa-link-pure"] & JSXBase.HTMLAttributes<HTMLDiwaLinkPureElement>;
             /**
              * @component diwa-modal
              * A controlled overlay dialog box for focused interactions.
@@ -5768,7 +7763,7 @@ declare module "@stencil/core" {
              * </diwa-modal>
              * @controlled {"props": ["open"], "event": "dismiss"}
              */
-            "diwa-modal": LocalJSX.DiwaModal & JSXBase.HTMLAttributes<HTMLDiwaModalElement>;
+            "diwa-modal": LocalJSX.IntrinsicElements["diwa-modal"] & JSXBase.HTMLAttributes<HTMLDiwaModalElement>;
             /**
              * @component diwa-multi-select
              * A fully accessible multi-select dropdown with built-in text filter,
@@ -5783,14 +7778,14 @@ declare module "@stencil/core" {
              * <diwa-multi-select-option value="banana">Banana</diwa-multi-select-option>
              * </diwa-multi-select>
              */
-            "diwa-multi-select": LocalJSX.DiwaMultiSelect & JSXBase.HTMLAttributes<HTMLDiwaMultiSelectElement>;
+            "diwa-multi-select": LocalJSX.IntrinsicElements["diwa-multi-select"] & JSXBase.HTMLAttributes<HTMLDiwaMultiSelectElement>;
             /**
              * @component diwa-multi-select-option
              * Individual option element for use inside <diwa-multi-select>.
              * Renders a row with a CSS checkbox and label text.
              * Not intended for standalone use — must be slotted into <diwa-multi-select>.
              */
-            "diwa-multi-select-option": LocalJSX.DiwaMultiSelectOption & JSXBase.HTMLAttributes<HTMLDiwaMultiSelectOptionElement>;
+            "diwa-multi-select-option": LocalJSX.IntrinsicElements["diwa-multi-select-option"] & JSXBase.HTMLAttributes<HTMLDiwaMultiSelectOptionElement>;
             /**
              * @component diwa-pagination
              * Splits a large data set across numbered pages with previous and next navigation.
@@ -5806,12 +7801,12 @@ declare module "@stencil/core" {
              * Source lineage:
              * components/src/components/pagination/pagination.tsx
              */
-            "diwa-pagination": LocalJSX.DiwaPagination & JSXBase.HTMLAttributes<HTMLDiwaPaginationElement>;
+            "diwa-pagination": LocalJSX.IntrinsicElements["diwa-pagination"] & JSXBase.HTMLAttributes<HTMLDiwaPaginationElement>;
             /**
              * @controlled {"props": ["value"], "event": "update"}
              */
-            "diwa-pin-code": LocalJSX.DiwaPinCode & JSXBase.HTMLAttributes<HTMLDiwaPinCodeElement>;
-            "diwa-popover": LocalJSX.DiwaPopover & JSXBase.HTMLAttributes<HTMLDiwaPopoverElement>;
+            "diwa-pin-code": LocalJSX.IntrinsicElements["diwa-pin-code"] & JSXBase.HTMLAttributes<HTMLDiwaPinCodeElement>;
+            "diwa-popover": LocalJSX.IntrinsicElements["diwa-popover"] & JSXBase.HTMLAttributes<HTMLDiwaPopoverElement>;
             /**
              * @component diwa-radio-group
              * Container for a set of `diwa-radio-group-item` children. Manages the
@@ -5823,7 +7818,7 @@ declare module "@stencil/core" {
              * <diwa-radio-group-item value="l">Large</diwa-radio-group-item>
              * </diwa-radio-group>
              */
-            "diwa-radio-group": LocalJSX.DiwaRadioGroup & JSXBase.HTMLAttributes<HTMLDiwaRadioGroupElement>;
+            "diwa-radio-group": LocalJSX.IntrinsicElements["diwa-radio-group"] & JSXBase.HTMLAttributes<HTMLDiwaRadioGroupElement>;
             /**
              * @component diwa-radio-group-item
              * A single radio option used inside `diwa-radio-group`.
@@ -5832,8 +7827,8 @@ declare module "@stencil/core" {
              * Usage:
              * <diwa-radio-group-item value="s">Small</diwa-radio-group-item>
              */
-            "diwa-radio-group-item": LocalJSX.DiwaRadioGroupItem & JSXBase.HTMLAttributes<HTMLDiwaRadioGroupItemElement>;
-            "diwa-scroller": LocalJSX.DiwaScroller & JSXBase.HTMLAttributes<HTMLDiwaScrollerElement>;
+            "diwa-radio-group-item": LocalJSX.IntrinsicElements["diwa-radio-group-item"] & JSXBase.HTMLAttributes<HTMLDiwaRadioGroupItemElement>;
+            "diwa-scroller": LocalJSX.IntrinsicElements["diwa-scroller"] & JSXBase.HTMLAttributes<HTMLDiwaScrollerElement>;
             /**
              * @component diwa-segmented-control
              * Container that groups diwa-segmented-control-item children into a
@@ -5846,7 +7841,7 @@ declare module "@stencil/core" {
              * <diwa-segmented-control-item value="month">Month</diwa-segmented-control-item>
              * </diwa-segmented-control>
              */
-            "diwa-segmented-control": LocalJSX.DiwaSegmentedControl & JSXBase.HTMLAttributes<HTMLDiwaSegmentedControlElement>;
+            "diwa-segmented-control": LocalJSX.IntrinsicElements["diwa-segmented-control"] & JSXBase.HTMLAttributes<HTMLDiwaSegmentedControlElement>;
             /**
              * @component diwa-segmented-control-item
              * A single segment used inside `diwa-segmented-control`.
@@ -5855,7 +7850,7 @@ declare module "@stencil/core" {
              * Usage:
              * <diwa-segmented-control-item value="week">Week</diwa-segmented-control-item>
              */
-            "diwa-segmented-control-item": LocalJSX.DiwaSegmentedControlItem & JSXBase.HTMLAttributes<HTMLDiwaSegmentedControlItemElement>;
+            "diwa-segmented-control-item": LocalJSX.IntrinsicElements["diwa-segmented-control-item"] & JSXBase.HTMLAttributes<HTMLDiwaSegmentedControlItemElement>;
             /**
              * @component diwa-select
              * A fully accessible single-select dropdown with built-in text filter,
@@ -5868,7 +7863,7 @@ declare module "@stencil/core" {
              * <diwa-select-option value="banana">Banana</diwa-select-option>
              * </diwa-select>
              */
-            "diwa-select": LocalJSX.DiwaSelect & JSXBase.HTMLAttributes<HTMLDiwaSelectElement>;
+            "diwa-select": LocalJSX.IntrinsicElements["diwa-select"] & JSXBase.HTMLAttributes<HTMLDiwaSelectElement>;
             /**
              * @component diwa-select-option
              * Individual option element for use inside <diwa-select>.
@@ -5877,7 +7872,7 @@ declare module "@stencil/core" {
              * Provide an option without a value to allow deselection / show a placeholder:
              * <diwa-select-option>Please select…</diwa-select-option>
              */
-            "diwa-select-option": LocalJSX.DiwaSelectOption & JSXBase.HTMLAttributes<HTMLDiwaSelectOptionElement>;
+            "diwa-select-option": LocalJSX.IntrinsicElements["diwa-select-option"] & JSXBase.HTMLAttributes<HTMLDiwaSelectOptionElement>;
             /**
              * @component diwa-spinner
              * An animated loading indicator based on a Lucide circular spinner glyph.
@@ -5894,7 +7889,7 @@ declare module "@stencil/core" {
              * Parity: mirrors stateless/stateful spinner behavior with consistent
              * aria-label propagation and size variants.
              */
-            "diwa-spinner": LocalJSX.DiwaSpinner & JSXBase.HTMLAttributes<HTMLDiwaSpinnerElement>;
+            "diwa-spinner": LocalJSX.IntrinsicElements["diwa-spinner"] & JSXBase.HTMLAttributes<HTMLDiwaSpinnerElement>;
             /**
              * @component diwa-stepper-horizontal
              * Displays a horizontal sequence of steps, indicating progress through a
@@ -5907,7 +7902,7 @@ declare module "@stencil/core" {
              * <diwa-stepper-horizontal-item>Review</diwa-stepper-horizontal-item>
              * </diwa-stepper-horizontal>
              */
-            "diwa-stepper-horizontal": LocalJSX.DiwaStepperHorizontal & JSXBase.HTMLAttributes<HTMLDiwaStepperHorizontalElement>;
+            "diwa-stepper-horizontal": LocalJSX.IntrinsicElements["diwa-stepper-horizontal"] & JSXBase.HTMLAttributes<HTMLDiwaStepperHorizontalElement>;
             /**
              * @component diwa-stepper-horizontal-item
              * A single step in a `diwa-stepper-horizontal`. The parent manages `state`,
@@ -5916,38 +7911,38 @@ declare module "@stencil/core" {
              * Usage:
              * <diwa-stepper-horizontal-item label="Account">Create your account</diwa-stepper-horizontal-item>
              */
-            "diwa-stepper-horizontal-item": LocalJSX.DiwaStepperHorizontalItem & JSXBase.HTMLAttributes<HTMLDiwaStepperHorizontalItemElement>;
+            "diwa-stepper-horizontal-item": LocalJSX.IntrinsicElements["diwa-stepper-horizontal-item"] & JSXBase.HTMLAttributes<HTMLDiwaStepperHorizontalItemElement>;
             /**
              * @controlled {"props": ["checked"], "event": "update"}
              */
-            "diwa-switch": LocalJSX.DiwaSwitch & JSXBase.HTMLAttributes<HTMLDiwaSwitchElement>;
+            "diwa-switch": LocalJSX.IntrinsicElements["diwa-switch"] & JSXBase.HTMLAttributes<HTMLDiwaSwitchElement>;
             /**
              * @component diwa-table
              * Wrapper for a data table. Uses CSS table layout with ARIA roles.
              * Structure: diwa-table > diwa-table-head > diwa-table-row > diwa-table-head-cell
              *            > diwa-table-body > diwa-table-row > diwa-table-cell
              */
-            "diwa-table": LocalJSX.DiwaTable & JSXBase.HTMLAttributes<HTMLDiwaTableElement>;
+            "diwa-table": LocalJSX.IntrinsicElements["diwa-table"] & JSXBase.HTMLAttributes<HTMLDiwaTableElement>;
             /**
              * @component diwa-table-body — Maps to <tbody> inside diwa-table.
              */
-            "diwa-table-body": LocalJSX.DiwaTableBody & JSXBase.HTMLAttributes<HTMLDiwaTableBodyElement>;
+            "diwa-table-body": LocalJSX.IntrinsicElements["diwa-table-body"] & JSXBase.HTMLAttributes<HTMLDiwaTableBodyElement>;
             /**
              * @component diwa-table-cell — Maps to <td> inside a diwa-table-row.
              */
-            "diwa-table-cell": LocalJSX.DiwaTableCell & JSXBase.HTMLAttributes<HTMLDiwaTableCellElement>;
+            "diwa-table-cell": LocalJSX.IntrinsicElements["diwa-table-cell"] & JSXBase.HTMLAttributes<HTMLDiwaTableCellElement>;
             /**
              * @component diwa-table-head — Maps to <thead> inside diwa-table.
              */
-            "diwa-table-head": LocalJSX.DiwaTableHead & JSXBase.HTMLAttributes<HTMLDiwaTableHeadElement>;
+            "diwa-table-head": LocalJSX.IntrinsicElements["diwa-table-head"] & JSXBase.HTMLAttributes<HTMLDiwaTableHeadElement>;
             /**
              * @component diwa-table-head-cell — Maps to <th> inside a diwa-table-head row.
              */
-            "diwa-table-head-cell": LocalJSX.DiwaTableHeadCell & JSXBase.HTMLAttributes<HTMLDiwaTableHeadCellElement>;
+            "diwa-table-head-cell": LocalJSX.IntrinsicElements["diwa-table-head-cell"] & JSXBase.HTMLAttributes<HTMLDiwaTableHeadCellElement>;
             /**
              * @component diwa-table-row — Maps to <tr> inside diwa-table-head or diwa-table-body.
              */
-            "diwa-table-row": LocalJSX.DiwaTableRow & JSXBase.HTMLAttributes<HTMLDiwaTableRowElement>;
+            "diwa-table-row": LocalJSX.IntrinsicElements["diwa-table-row"] & JSXBase.HTMLAttributes<HTMLDiwaTableRowElement>;
             /**
              * @component diwa-tabs
              * A full tabs component consisting of an integrated tab bar and panel area.
@@ -5960,7 +7955,7 @@ declare module "@stencil/core" {
              * <diwa-tabs-item label="Details">Content B</diwa-tabs-item>
              * </diwa-tabs>
              */
-            "diwa-tabs": LocalJSX.DiwaTabs & JSXBase.HTMLAttributes<HTMLDiwaTabsElement>;
+            "diwa-tabs": LocalJSX.IntrinsicElements["diwa-tabs"] & JSXBase.HTMLAttributes<HTMLDiwaTabsElement>;
             /**
              * @component diwa-tabs-bar
              * A styled tab navigation bar. Accepts `<a>` or `<button>` elements in the
@@ -5974,7 +7969,7 @@ declare module "@stencil/core" {
              * <button>Tab 3</button>
              * </diwa-tabs-bar>
              */
-            "diwa-tabs-bar": LocalJSX.DiwaTabsBar & JSXBase.HTMLAttributes<HTMLDiwaTabsBarElement>;
+            "diwa-tabs-bar": LocalJSX.IntrinsicElements["diwa-tabs-bar"] & JSXBase.HTMLAttributes<HTMLDiwaTabsBarElement>;
             /**
              * @component diwa-tabs-item
              * A single panel used inside `diwa-tabs`. The parent renders the tab button
@@ -5982,9 +7977,9 @@ declare module "@stencil/core" {
              * Usage:
              * <diwa-tabs-item label="Overview">Panel content here</diwa-tabs-item>
              */
-            "diwa-tabs-item": LocalJSX.DiwaTabsItem & JSXBase.HTMLAttributes<HTMLDiwaTabsItemElement>;
-            "diwa-tag": LocalJSX.DiwaTag & JSXBase.HTMLAttributes<HTMLDiwaTagElement>;
-            "diwa-tag-dismissible": LocalJSX.DiwaTagDismissible & JSXBase.HTMLAttributes<HTMLDiwaTagDismissibleElement>;
+            "diwa-tabs-item": LocalJSX.IntrinsicElements["diwa-tabs-item"] & JSXBase.HTMLAttributes<HTMLDiwaTabsItemElement>;
+            "diwa-tag": LocalJSX.IntrinsicElements["diwa-tag"] & JSXBase.HTMLAttributes<HTMLDiwaTagElement>;
+            "diwa-tag-dismissible": LocalJSX.IntrinsicElements["diwa-tag-dismissible"] & JSXBase.HTMLAttributes<HTMLDiwaTagDismissibleElement>;
             /**
              * @component diwa-text
              * A semantically correct text renderer that maps a visual type scale onto
@@ -5994,7 +7989,7 @@ declare module "@stencil/core" {
              * <diwa-text size="small" color="secondary">Supporting detail</diwa-text>
              * <diwa-text tag="span" size="medium" ellipsis>Truncated text</diwa-text>
              */
-            "diwa-text": LocalJSX.DiwaText & JSXBase.HTMLAttributes<HTMLDiwaTextElement>;
+            "diwa-text": LocalJSX.IntrinsicElements["diwa-text"] & JSXBase.HTMLAttributes<HTMLDiwaTextElement>;
             /**
              * @component diwa-text-list
              * A styled list that renders as `<ul>`, `<ol>`, or an inline flex row depending
@@ -6005,7 +8000,7 @@ declare module "@stencil/core" {
              * <diwa-text-list-item>Second item</diwa-text-list-item>
              * </diwa-text-list>
              */
-            "diwa-text-list": LocalJSX.DiwaTextList & JSXBase.HTMLAttributes<HTMLDiwaTextListElement>;
+            "diwa-text-list": LocalJSX.IntrinsicElements["diwa-text-list"] & JSXBase.HTMLAttributes<HTMLDiwaTextListElement>;
             /**
              * @component diwa-text-list-item
              * A single item within a `diwa-text-list`. Renders as a `<li>` (display: list-item)
@@ -6015,11 +8010,11 @@ declare module "@stencil/core" {
              * <diwa-text-list-item>Item text</diwa-text-list-item>
              * </diwa-text-list>
              */
-            "diwa-text-list-item": LocalJSX.DiwaTextListItem & JSXBase.HTMLAttributes<HTMLDiwaTextListItemElement>;
+            "diwa-text-list-item": LocalJSX.IntrinsicElements["diwa-text-list-item"] & JSXBase.HTMLAttributes<HTMLDiwaTextListItemElement>;
             /**
              * @controlled {"props": ["value"], "event": "input"}
              */
-            "diwa-textarea": LocalJSX.DiwaTextarea & JSXBase.HTMLAttributes<HTMLDiwaTextareaElement>;
+            "diwa-textarea": LocalJSX.IntrinsicElements["diwa-textarea"] & JSXBase.HTMLAttributes<HTMLDiwaTextareaElement>;
             /**
              * @component diwa-toast
              * Singleton container that queues and displays toast notifications one at a
@@ -6031,13 +8026,13 @@ declare module "@stencil/core" {
              * const toast = document.querySelector('diwa-toast');
              * toast.addMessage({ text: 'Saved!', state: 'success' });
              */
-            "diwa-toast": LocalJSX.DiwaToast & JSXBase.HTMLAttributes<HTMLDiwaToastElement>;
+            "diwa-toast": LocalJSX.IntrinsicElements["diwa-toast"] & JSXBase.HTMLAttributes<HTMLDiwaToastElement>;
             /**
              * @component diwa-toast-item
              * Renders a single toast notification. Managed by `diwa-toast` — do not
              * use this component directly; use `diwa-toast.addMessage()` instead.
              */
-            "diwa-toast-item": LocalJSX.DiwaToastItem & JSXBase.HTMLAttributes<HTMLDiwaToastItemElement>;
+            "diwa-toast-item": LocalJSX.IntrinsicElements["diwa-toast-item"] & JSXBase.HTMLAttributes<HTMLDiwaToastItemElement>;
         }
     }
 }

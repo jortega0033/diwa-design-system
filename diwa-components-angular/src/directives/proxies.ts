@@ -43,14 +43,14 @@ The consumer must set the `open` prop accordingly:
 
 
 @ProxyCmp({
-  inputs: ['label', 'size', 'theme', 'variant']
+  inputs: ['dot', 'label', 'size', 'theme', 'variant']
 })
 @Component({
   selector: 'diwa-badge',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['label', 'size', 'theme', 'variant'],
+  inputs: ['dot', 'label', 'size', 'theme', 'variant'],
 })
 export class DiwaBadge {
   protected el: HTMLElement;

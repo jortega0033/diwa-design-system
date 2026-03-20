@@ -22,6 +22,7 @@ export const DiwaBadge = /*@__PURE__*/ defineContainer<JSX.DiwaBadge>('diwa-badg
   'variant',
   'size',
   'label',
+  'dot',
   'theme'
 ]);
 

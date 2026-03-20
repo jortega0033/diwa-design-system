@@ -6,11 +6,14 @@ import { getComponentCss } from './diwa-badge-styles';
 /**
  * @component diwa-badge
  *
- * A compact, pill-shaped label used to convey status, counts, or metadata.
- * Renders as an inline element with full Shadow DOM encapsulation.
+ * A compact, pill-shaped status indicator with an optional animated dot.
+ * Use for live status, counts, counts, and key callouts.
+ * Prefer DiwaTag for category labels and filters — Tag has square corners and a
+ * visible border; Badge is always fully rounded with a subtler, muted border.
  *
  * Design token override API (set on :root or any ancestor):
  *   --diwa-badge-radius          Border radius (defaults to --diwa-radius-full)
+ *   --diwa-badge-border-color    Override the auto-computed border colour
  *   --diwa-badge-padding-x       Horizontal padding for md size
  *   --diwa-badge-padding-x-sm    Horizontal padding for sm size
  *   --diwa-badge-font-size       Font size for md size
@@ -18,7 +21,7 @@ import { getComponentCss } from './diwa-badge-styles';
  *   --diwa-badge-font-weight     Font weight
  *
  * Usage:
- *   <diwa-badge variant="success">Active</diwa-badge>
+ *   <diwa-badge variant="success" dot>Live</diwa-badge>
  *   <diwa-badge variant="danger" size="sm">3 errors</diwa-badge>
  *   <diwa-badge variant="neutral">Draft</diwa-badge>
  *
@@ -45,6 +48,12 @@ export class DiwaBadge {
    */
   @Prop() label?: string;
 
+  /**
+   * When true, renders a small animated pulsing dot before the slot content.
+   * Use to indicate live status or active processes.
+   */
+  @Prop({ reflect: true }) dot: boolean = false;
+
   /** Per-component theme override. */
   @Prop({ reflect: true }) theme: Theme = 'dark';
 
@@ -62,6 +71,7 @@ export class DiwaBadge {
           aria-label={this.label ?? undefined}
           role={this.label ? "status" : undefined}
         >
+          {this.dot && <span class="dot" aria-hidden="true" />}
           <slot />
         </span>
       </Host>
