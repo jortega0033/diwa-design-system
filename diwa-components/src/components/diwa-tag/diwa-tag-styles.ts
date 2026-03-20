@@ -54,7 +54,7 @@ export const getComponentCss = (variant: TagVariant, compact: boolean): string =
       font-family: var(--diwa-font-family-base);
       font-size: ${fontSize};
       font-weight: var(--diwa-font-weight-medium);
-      line-height: var(--diwa-line-height-tight);
+      line-height: 1;
       color: ${color};
       background: ${bg};
       border: var(--diwa-border-width-thin) solid ${border};

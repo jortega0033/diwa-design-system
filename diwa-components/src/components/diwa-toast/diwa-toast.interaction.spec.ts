@@ -1,15 +1,59 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { DiwaToast } from './diwa-toast';
+import { toastManager } from './diwa-toast-manager';
 
-describe('diwa-toast interactions', () => {
-  it('addMessage appends message and removeMessage works', async () => {
-    const t = new DiwaToast();
-    expect((t as any).messages.length).toBe(0);
-    await t.addMessage({ text: 'Hello', state: 'neutral', duration: 0 });
-    expect((t as any).messages.length).toBe(1);
-    // call private removeMessage to remove by id
-    const id = (t as any).messages[0].id;
-    (t as any).removeMessage(id);
-    expect((t as any).messages.find((m: any) => m.id === id)).toBeUndefined();
+vi.mock('./diwa-toast-manager', () => ({
+  toastManager: {
+    register: vi.fn(),
+    unregister: vi.fn(),
+    addMessage: vi.fn(),
+    dismiss: vi.fn(),
+    getCurrent: vi.fn().mockReturnValue(null),
+  },
+}));
+
+describe('diwa-toast — interactions', () => {
+  let toast: DiwaToast;
+
+  beforeEach(() => {
+    toast = new DiwaToast();
+    vi.clearAllMocks();
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('addMessage delegates to toastManager.addMessage', async () => {
+    const msg = { text: 'Hello', state: 'neutral' as const, duration: 0 };
+    await toast.addMessage(msg);
+    expect(toastManager.addMessage).toHaveBeenCalledOnce();
+    expect(toastManager.addMessage).toHaveBeenCalledWith(msg);
+  });
+
+  it('connectedCallback registers the component with toastManager', () => {
+    toast.connectedCallback();
+    expect(toastManager.register).toHaveBeenCalledOnce();
+  });
+
+  it('disconnectedCallback unregisters the component from toastManager', () => {
+    toast.disconnectedCallback();
+    expect(toastManager.unregister).toHaveBeenCalledOnce();
+  });
+
+  it('refreshFn passed to register updates the component state', () => {
+    let capturedRefreshFn: ((msg: any) => void) | null = null;
+    vi.mocked(toastManager.register).mockImplementation((_host, fn) => {
+      capturedRefreshFn = fn;
+    });
+
+    toast.connectedCallback();
+    const entry = { id: 1, text: 'Updated', state: 'info' as const };
+    capturedRefreshFn!(entry);
+    expect((toast as any).currentMsg).toEqual(entry);
+
+    // Clearing the message (dismiss)
+    capturedRefreshFn!(null);
+    expect((toast as any).currentMsg).toBeNull();
   });
 });

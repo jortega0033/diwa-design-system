@@ -30,21 +30,27 @@ function App() {
     </>
   );
 }`,
-  angular: `import { Component, ViewChild, ElementRef } from '@angular/core';
+  angular: `import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DiwaToast, ToastManager } from '@diwacopilot/components-angular';
 
+// Add <diwa-toast> once in your app shell (e.g. app.component.html)
+// then inject ToastManager wherever you need it.
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [DiwaToast],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: \`
-    <diwa-toast #toast></diwa-toast>
+    <diwa-toast></diwa-toast>
     <button (click)="notify('Changes saved.', 'success')">Success</button>
     <button (click)="notify('Something went wrong.', 'error')">Error</button>
   \`,
 })
 export class AppComponent {
-  @ViewChild('toast') toast!: ElementRef;
+  constructor(private toastManager: ToastManager) {}
 
   notify(text: string, state: string) {
-    this.toast.nativeElement.addMessage({ text, state });
+    this.toastManager.addMessage({ text, state });
   }
 }`,
   vue: `<template>
@@ -73,8 +79,8 @@ const durationCode: FrameworkCode = {
 // duration: 0 keeps the toast open until the user dismisses it.
 toastRef.current?.addMessage({ text: 'Disappears in 2 s.', state: 'info', duration: 2000 });
 toastRef.current?.addMessage({ text: 'Stays until closed.', state: 'warning', duration: 0 });`,
-  angular: `this.toast.nativeElement.addMessage({ text: 'Disappears in 2 s.', state: 'info', duration: 2000 });
-this.toast.nativeElement.addMessage({ text: 'Stays until closed.', state: 'warning', duration: 0 });`,
+  angular: `this.toastManager.addMessage({ text: 'Disappears in 2 s.', state: 'info', duration: 2000 });
+this.toastManager.addMessage({ text: 'Stays until closed.', state: 'warning', duration: 0 });`,
   vue: `toast.value?.addMessage({ text: 'Disappears in 2 s.', state: 'info', duration: 2000 });
 toast.value?.addMessage({ text: 'Stays until closed.', state: 'warning', duration: 0 });`,
 };
@@ -90,9 +96,9 @@ const multipleCode: FrameworkCode = {
 notify('First message.', 'neutral');
 setTimeout(() => notify('Second message.', 'success'), 300);
 setTimeout(() => notify('Third message.', 'info'), 600);`,
-  angular: `this.toast.nativeElement.addMessage({ text: 'First message.', state: 'neutral' });
-setTimeout(() => this.toast.nativeElement.addMessage({ text: 'Second.', state: 'success' }), 300);
-setTimeout(() => this.toast.nativeElement.addMessage({ text: 'Third.', state: 'info' }), 600);`,
+  angular: `this.toastManager.addMessage({ text: 'First message.', state: 'neutral' });
+setTimeout(() => this.toastManager.addMessage({ text: 'Second.', state: 'success' }), 300);
+setTimeout(() => this.toastManager.addMessage({ text: 'Third.', state: 'info' }), 600);`,
   vue: `toast.value?.addMessage({ text: 'First message.', state: 'neutral' });
 setTimeout(() => toast.value?.addMessage({ text: 'Second.', state: 'success' }), 300);
 setTimeout(() => toast.value?.addMessage({ text: 'Third.', state: 'info' }), 600);`,

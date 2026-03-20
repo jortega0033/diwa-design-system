@@ -1090,7 +1090,7 @@ export declare interface DiwaSelect extends Components.DiwaSelect {
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'highlighted', 'selected', 'theme', 'value'],
+  inputs: ['compact', 'disabled', 'highlighted', 'selected', 'theme', 'value'],
   methods: ['setFocus']
 })
 @Component({
@@ -1098,7 +1098,7 @@ export declare interface DiwaSelect extends Components.DiwaSelect {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'highlighted', 'selected', 'theme', 'value'],
+  inputs: ['compact', 'disabled', 'highlighted', 'selected', 'theme', 'value'],
 })
 export class DiwaSelectOption {
   protected el: HTMLElement;

@@ -32,8 +32,8 @@ export const getComponentCss = (variant: TagVariant, compact: boolean): string =
   const border = VARIANT_BORDER[variant];
   const paddingY = compact ? '1px' : '2px';
   const paddingX = compact ? '6px' : '10px';
+  const paddingXRight = compact ? '4px' : '6px';
   const fontSize = compact ? 'var(--diwa-font-size-sm)' : 'var(--diwa-font-size-md)';
-  const iconSize = compact ? '12px' : '14px';
 
   return `
     :host {
@@ -46,11 +46,11 @@ export const getComponentCss = (variant: TagVariant, compact: boolean): string =
       display: inline-flex;
       align-items: center;
       gap: var(--diwa-space-1);
-      padding: ${paddingY} ${paddingX};
+      padding: ${paddingY} ${paddingXRight} ${paddingY} ${paddingX};
       font-family: var(--diwa-font-family-base);
       font-size: ${fontSize};
       font-weight: var(--diwa-font-weight-medium);
-      line-height: var(--diwa-line-height-tight);
+      line-height: 1;
       color: ${color};
       background: ${bg};
       border: var(--diwa-border-width-thin) solid ${border};
@@ -62,9 +62,8 @@ export const getComponentCss = (variant: TagVariant, compact: boolean): string =
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: ${iconSize};
-      height: ${iconSize};
-      margin-left: var(--diwa-space-0-5);
+      width: 12px;
+      height: 12px;
       padding: 0;
       background: none;
       border: none;

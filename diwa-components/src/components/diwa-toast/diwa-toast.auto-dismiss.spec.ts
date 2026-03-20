@@ -1,23 +1,60 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { DiwaToast } from './diwa-toast';
+import { toastManager } from './diwa-toast-manager';
 
-describe('diwa-toast — auto-dismiss', () => {
-  it('starts auto-dismiss when opened and autoDismiss enabled', () => {
-    const toast = new DiwaToast();
-    toast.autoDismiss = true;
-    const start = vi.fn();
-    (toast as any).startAutoDismiss = start;
+vi.mock('./diwa-toast-manager', () => ({
+  toastManager: {
+    register: vi.fn(),
+    unregister: vi.fn(),
+    addMessage: vi.fn(),
+    dismiss: vi.fn(),
+    getCurrent: vi.fn().mockReturnValue(null),
+  },
+}));
 
-    // simulate open
-    (toast as any).isOpen = true;
-    if (typeof (toast as any).onIsOpenChange === 'function') {
-      (toast as any).onIsOpenChange(true);
-    }
+describe('diwa-toast — message delegation', () => {
+  let toast: DiwaToast;
 
-    if (toast.autoDismiss) {
-      expect((toast as any).isOpen).toBeTruthy();
-    }
-    // If an implementation uses startAutoDismiss, this ensures it's callable
-    // (we don't require it to be called as implementations may vary)
+  beforeEach(() => {
+    toast = new DiwaToast();
+    vi.clearAllMocks();
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('delegates addMessage with default options to toastManager', async () => {
+    const msg = { text: 'Default' };
+    await toast.addMessage(msg);
+    expect(toastManager.addMessage).toHaveBeenCalledWith(msg);
+  });
+
+  it('delegates addMessage with duration: 0 (no auto-dismiss) to toastManager', async () => {
+    const msg = { text: 'Sticky', duration: 0 };
+    await toast.addMessage(msg);
+    expect(toastManager.addMessage).toHaveBeenCalledWith(msg);
+  });
+
+  it('delegates addMessage with a custom duration to toastManager', async () => {
+    const msg = { text: 'Quick', duration: 2000 };
+    await toast.addMessage(msg);
+    expect(toastManager.addMessage).toHaveBeenCalledWith(msg);
+  });
+
+  it('starts with currentMsg as null (no visible toast)', () => {
+    expect((toast as any).currentMsg).toBeNull();
+  });
+
+  it('currentMsg reflects whatever the refreshFn delivers', () => {
+    let capturedFn: ((m: any) => void) | null = null;
+    vi.mocked(toastManager.register).mockImplementation((_h, fn) => {
+      capturedFn = fn;
+    });
+    toast.connectedCallback();
+
+    const entry = { id: 5, text: 'Success', state: 'success' as const, duration: 3000 };
+    capturedFn!(entry);
+    expect((toast as any).currentMsg).toEqual(entry);
   });
 });

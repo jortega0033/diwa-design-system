@@ -31,8 +31,6 @@ export class DiwaTagDismissible {
   };
 
   render() {
-    const iconSize = this.compact ? 12 : 14;
-
     return (
       <Host data-theme={this.theme}>
         <style innerHTML={getComponentCss(this.variant, this.compact)} />
@@ -46,8 +44,8 @@ export class DiwaTagDismissible {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width={iconSize}
-              height={iconSize}
+              width={12}
+              height={12}
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

@@ -43,6 +43,9 @@ export class DiwaSelectOption {
   /** Theme — inherited from the parent diwa-select. */
   @Prop({ mutable: true }) theme: Theme = 'dark';
 
+  /** Compact mode — inherited from the parent diwa-select. */
+  @Prop({ mutable: true, reflect: true }) compact: boolean = false;
+
   /**
    * Emitted when the user clicks or presses Enter on the option.
    * Bubbles and crosses Shadow DOM so the parent can catch it via @Listen.

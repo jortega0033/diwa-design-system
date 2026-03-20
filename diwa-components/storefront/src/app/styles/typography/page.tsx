@@ -141,10 +141,10 @@ export default function StylesTypographyPage() {
           </div>
           <div className="p-4 rounded-lg bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)]">
             <code className="text-xs text-[var(--diwa-accent)] block mb-2">--diwa-font-family-mono</code>
-            <p className="text-xl text-[var(--diwa-text-primary)] mb-1" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xl text-[var(--diwa-text-primary)] mb-1" style={{ fontFamily: 'Geist Mono, monospace' }}>
               const x = &apos;value&apos;;
             </p>
-            <p className="text-xs text-[var(--diwa-text-secondary)]">JetBrains Mono, Consolas fallback</p>
+            <p className="text-xs text-[var(--diwa-text-secondary)]">Geist Mono, Consolas fallback</p>
           </div>
         </div>
       </Section>

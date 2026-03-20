@@ -78,6 +78,18 @@ export const getComponentCss = (): string => `
     white-space: nowrap;
   }
 
+  /* ── Compact ────────────────────────────────────────────────────────── */
+
+  :host([compact]) .option {
+    padding: var(--diwa-space-1) var(--diwa-space-2);
+    font-size: var(--diwa-font-size-md);
+    min-height: 0;
+  }
+
+  :host([compact]) .check {
+    font-size: var(--diwa-font-size-md);
+  }
+
   /* ── Disabled ───────────────────────────────────────────────────────── */
 
   :host([disabled]) {

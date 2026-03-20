@@ -45,7 +45,7 @@ export const getComponentCss = (
 
   .wrapper {
     display: inline-flex;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--diwa-space-3);
     cursor: pointer;
   }
@@ -61,8 +61,6 @@ export const getComponentCss = (
     flex-shrink: 0;
     width: ${boxSize};
     height: ${boxSize};
-    /* Center the box on the first line of label text (line-height: 1.5) */
-    margin-top: calc((1.5em - ${boxSize}) / 2);
   }
 
   /* ── Native checkbox ──────────────────────────────────────────────── */

@@ -118,35 +118,6 @@ export function Canvas({ children }: { children: ReactNode }) {
         {/* Sidebar end — visible only on configurator pages */}
         {isSidebarEndOpen && (
           <aside className="w-72 shrink-0 border-l border-[var(--diwa-border)] overflow-y-auto bg-[var(--diwa-bg-base)] flex flex-col">
-            {/* Global settings */}
-            <div className="p-4 border-b border-[var(--diwa-border)]">
-              <h3 className="text-xs uppercase tracking-widest font-semibold text-[var(--diwa-text-secondary)] mb-3">
-                Global Settings
-              </h3>
-              <div>
-                <label className="block text-xs font-mono text-[var(--diwa-text-secondary)] mb-1.5">
-                  Theme
-                </label>
-                <div className="flex gap-1">
-                  {THEMES.map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => setTheme(t)}
-                      className={[
-                        'flex-1 py-1.5 rounded text-xs font-medium border transition-colors',
-                        theme === t
-                          ? 'border-[var(--diwa-accent)] bg-[var(--diwa-accent-bg)] text-[var(--diwa-accent)]'
-                          : 'border-[var(--diwa-border)] text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)]',
-                      ].join(' ')}
-                      aria-pressed={theme === t}
-                    >
-                      {t.charAt(0).toUpperCase() + t.slice(1)}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
             {/* Portal target — ConfiguratorControls renders here via createPortal */}
             <div id="diwa-sidebar-end" className="flex-1 overflow-y-auto" />
           </aside>

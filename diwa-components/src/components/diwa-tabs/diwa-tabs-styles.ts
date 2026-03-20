@@ -56,7 +56,7 @@ export const getComponentCss = (): string => `
   ${getFocusStyle('.tab-btn')}
 
   .panels {
-    padding-top: var(--diwa-space-4);
+    padding: var(--diwa-space-4) var(--diwa-space-7);
   }
 
   ${getReducedMotionStyle('.tab-btn')}

@@ -74,7 +74,7 @@ export default function StepperHorizontalExamplesPage() {
         <p className="text-sm text-[var(--diwa-text-secondary)] mb-4 leading-relaxed">
           The stepper is a display-only component. Render it with the desired <code className="text-xs font-mono">active-step-index</code> and update from your own navigation logic.
         </p>
-        <ComponentStory story={basicStory} />
+        <ComponentStory story={basicStory} previewClassName="!flex-col !items-stretch !justify-start px-8 py-10 w-full" />
       </section>
 
     </div>

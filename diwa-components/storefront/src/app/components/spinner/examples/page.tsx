@@ -1,25 +1,8 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { ComponentStory } from '@/components/playground/ComponentStory';
-import type { Story } from '@/models/story';
-
-// ── Size variants ─────────────────────────────────────────────────────────────
-
-const smStory: Story<'diwa-spinner'> = {
-  state: { properties: { size: 'sm', label: 'Loading small' } },
-  generator: ({ properties } = {}) => [{ tag: 'diwa-spinner' as const, properties }],
-};
-
-const mdStory: Story<'diwa-spinner'> = {
-  state: { properties: { size: 'md', label: 'Loading' } },
-  generator: ({ properties } = {}) => [{ tag: 'diwa-spinner' as const, properties }],
-};
-
-const lgStory: Story<'diwa-spinner'> = {
-  state: { properties: { size: 'lg', label: 'Please wait' } },
-  generator: ({ properties } = {}) => [{ tag: 'diwa-spinner' as const, properties }],
-};
+import { spinnerSizesStory, spinnerInlineStory, spinnerAsyncStory } from '../spinner.stories';
 
 // ── Inline with text ──────────────────────────────────────────────────────────
 
@@ -58,30 +41,20 @@ export default function SpinnerExamplesPage() {
 
       <section className="space-y-4">
         <h2 className="text-base font-semibold text-[var(--diwa-text-primary)]">Size variants</h2>
-        <div className="flex items-center gap-8 p-6 rounded-lg border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)]">
-          <div className="flex flex-col items-center gap-2">
-            <ComponentStory story={smStory} />
-            <span className="text-xs text-[var(--diwa-text-secondary)]">sm</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <ComponentStory story={mdStory} />
-            <span className="text-xs text-[var(--diwa-text-secondary)]">md</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <ComponentStory story={lgStory} />
-            <span className="text-xs text-[var(--diwa-text-secondary)]">lg</span>
-          </div>
-        </div>
+        <p className="text-sm text-[var(--diwa-text-secondary)]">
+          Three sizes are available: <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">sm</code>,{' '}
+          <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">md</code> (default), and{' '}
+          <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">lg</code>.
+        </p>
+        <ComponentStory story={spinnerSizesStory} previewClassName="gap-10 items-end" />
       </section>
 
       <section className="space-y-4">
         <h2 className="text-base font-semibold text-[var(--diwa-text-primary)]">Inline with text</h2>
         <p className="text-sm text-[var(--diwa-text-secondary)]">
-          Use the <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">sm</code> size to combine the spinner inline with body text.
+          Use the <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">sm</code> size to combine the spinner inline with body text. Always provide a descriptive <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">label</code> for screen readers.
         </p>
-        <div className="p-6 rounded-lg border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)]">
-          <InlineExample />
-        </div>
+        <ComponentStory story={spinnerInlineStory} />
       </section>
 
       <section className="space-y-4">
@@ -89,9 +62,7 @@ export default function SpinnerExamplesPage() {
         <p className="text-sm text-[var(--diwa-text-secondary)]">
           Display a spinner next to a button while an async operation is in progress. The button is disabled to prevent duplicate submissions.
         </p>
-        <div className="p-6 rounded-lg border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)]">
-          <AsyncButtonExample />
-        </div>
+        <ComponentStory story={spinnerAsyncStory} previewClassName="gap-4" />
       </section>
 
     </div>

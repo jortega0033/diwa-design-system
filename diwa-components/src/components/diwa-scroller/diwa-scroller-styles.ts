@@ -11,6 +11,8 @@ export const getComponentCss = (
   scrollbar: boolean,
   alignScrollIndicator: ScrollerScrollIndicatorPosition,
   hasOverflow: boolean,
+  canScrollLeft: boolean,
+  canScrollRight: boolean,
 ): string => {
   const alignItems = ALIGN_MAP[alignScrollIndicator];
 
@@ -55,9 +57,14 @@ export const getComponentCss = (
       display: none;
     }
     ${getFocusStyle('.scroll-button')}
+    ${getFocusStyle('.scroll-area')}
+    .scroll-wrapper {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+    }
     .scroll-area {
       display: flex;
-      position: relative;
       align-items: ${alignItems};
       overflow-x: auto;
       overflow-y: hidden;
@@ -73,25 +80,25 @@ export const getComponentCss = (
       display: none;
     }
     ` : ''}
-    /* Fade-out gradient masks at the edges */
-    .scroll-area::before,
-    .scroll-area::after {
-      content: '';
+    /* Fade-out gradient masks — fixed at the visible edges via scroll-wrapper */
+    .fade {
       position: absolute;
       top: 0;
       bottom: 0;
       width: var(--diwa-scroller-fade-width);
       pointer-events: none;
       z-index: 1;
-      opacity: ${hasOverflow ? '1' : '0'};
+      transition: opacity var(--diwa-transition-fast);
     }
-    .scroll-area::before {
+    .fade--start {
       left: 0;
       background: var(--diwa-gradient-scrim-right);
+      opacity: ${canScrollLeft ? '1' : '0'};
     }
-    .scroll-area::after {
+    .fade--end {
       right: 0;
       background: var(--diwa-gradient-scrim-left);
+      opacity: ${canScrollRight ? '1' : '0'};
     }
   `;
 };

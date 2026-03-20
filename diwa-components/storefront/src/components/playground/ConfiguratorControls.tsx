@@ -46,6 +46,13 @@ function groupDefs(defs: PropDefinition[]): Map<string, PropDefinition[]> {
   return map;
 }
 
+function propNameToLabel(name: string): string {
+  return name
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 /* ── Toggle Switch ──────────────────────────────────────────────────────── */
 
 function Toggle({ checked, onChange, id }: { checked: boolean; onChange: (v: boolean) => void; id: string }) {
@@ -152,7 +159,7 @@ function AccordionSection({
 /* ── Individual Controls ─────────────────────────────────────────────────── */
 
 const INPUT_CLASS =
-  'w-full min-h-[var(--diwa-touch-target-min-size)] rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-sm px-3 py-2 font-mono focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]';
+  'w-full min-h-[var(--diwa-touch-target-min-size)] rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-sm px-3 py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]';
 
 function PropControl({
   def,
@@ -171,8 +178,8 @@ function PropControl({
     return (
       <div className="flex items-center justify-between gap-3 min-h-[28px]">
         <div className="flex items-center gap-1.5 min-w-0">
-          <label htmlFor={controlId} className="text-sm font-mono text-[var(--diwa-text-primary)] truncate cursor-pointer">
-            {def.name}
+          <label htmlFor={controlId} className="text-sm text-[var(--diwa-text-primary)] truncate cursor-pointer">
+            {def.label ?? propNameToLabel(def.name)}
           </label>
           {modified && <ModifiedDot />}
         </div>
@@ -182,24 +189,50 @@ function PropControl({
   }
 
   if (def.type === 'select') {
+    const isSegmented = def.options.length <= 3;
     return (
       <div className="space-y-1.5">
         <div className="flex items-center gap-1.5">
-          <label htmlFor={controlId} className="text-xs font-mono text-[var(--diwa-text-secondary)]">
-            {def.name}
+          <label htmlFor={isSegmented ? undefined : controlId} className="text-xs text-[var(--diwa-text-secondary)]">
+            {def.label ?? propNameToLabel(def.name)}
           </label>
           {modified && <ModifiedDot />}
         </div>
-        <select
-          id={controlId}
-          value={String(value)}
-          onChange={(e) => onChange(def.name, e.target.value)}
-          className={INPUT_CLASS}
-        >
-          {def.options.map((opt) => (
-            <option key={opt} value={opt}>{opt}</option>
-          ))}
-        </select>
+        {isSegmented ? (
+          <div
+            role="group"
+            aria-label={def.label ?? propNameToLabel(def.name)}
+            className="flex rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] p-0.5 gap-0.5"
+          >
+            {def.options.map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => onChange(def.name, opt)}
+                aria-pressed={String(value) === opt}
+                className={[
+                  'flex-1 py-1.5 rounded text-xs font-medium transition-colors capitalize',
+                  String(value) === opt
+                    ? 'bg-[var(--diwa-bg-base)] text-[var(--diwa-text-primary)] shadow-sm'
+                    : 'text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)]',
+                ].join(' ')}
+              >
+                {opt}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <select
+            id={controlId}
+            value={String(value)}
+            onChange={(e) => onChange(def.name, e.target.value)}
+            className={INPUT_CLASS}
+          >
+            {def.options.map((opt) => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
+        )}
       </div>
     );
   }
@@ -208,8 +241,8 @@ function PropControl({
     return (
       <div className="space-y-1.5">
         <div className="flex items-center gap-1.5">
-          <label htmlFor={controlId} className="text-xs font-mono text-[var(--diwa-text-secondary)]">
-            {def.name}
+          <label htmlFor={controlId} className="text-xs text-[var(--diwa-text-secondary)]">
+            {def.label ?? propNameToLabel(def.name)}
           </label>
           {modified && <ModifiedDot />}
         </div>
@@ -231,8 +264,8 @@ function PropControl({
     return (
       <div className="space-y-1.5">
         <div className="flex items-center gap-1.5">
-          <label htmlFor={controlId} className="text-xs font-mono text-[var(--diwa-text-secondary)]">
-            {def.name}
+          <label htmlFor={controlId} className="text-xs text-[var(--diwa-text-secondary)]">
+            {def.label ?? propNameToLabel(def.name)}
           </label>
           {modified && <ModifiedDot />}
         </div>
@@ -261,12 +294,12 @@ function PropControl({
       <div className="space-y-1.5">
         <div className="flex items-center justify-between gap-1.5">
           <div className="flex items-center gap-1.5">
-            <label htmlFor={controlId} className="text-xs font-mono text-[var(--diwa-text-secondary)]">
-              {def.name}
+            <label htmlFor={controlId} className="text-xs text-[var(--diwa-text-secondary)]">
+              {def.label ?? propNameToLabel(def.name)}
             </label>
             {modified && <ModifiedDot />}
           </div>
-          <span className="text-xs tabular-nums font-mono text-[var(--diwa-text-secondary)]">
+          <span className="text-xs tabular-nums text-[var(--diwa-text-secondary)]">
             {String(value)}
           </span>
         </div>
@@ -288,8 +321,8 @@ function PropControl({
   return (
     <div className="space-y-1.5">
       <div className="flex items-center gap-1.5">
-        <label htmlFor={controlId} className="text-xs font-mono text-[var(--diwa-text-secondary)]">
-          {def.name}
+        <label htmlFor={controlId} className="text-xs text-[var(--diwa-text-secondary)]">
+          {def.label ?? propNameToLabel(def.name)}
         </label>
         {modified && <ModifiedDot />}
       </div>
@@ -403,7 +436,7 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               placeholder="Filter props…"
-              className="w-full h-8 rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-xs pl-8 pr-3 font-mono placeholder:text-[var(--diwa-text-tertiary)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
+              className="w-full h-8 rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-xs pl-8 pr-3 placeholder:text-[var(--diwa-text-tertiary)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
             />
           </div>
         )}

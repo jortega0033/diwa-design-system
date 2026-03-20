@@ -5,6 +5,8 @@
  */
 type PropBase = {
   name: string;
+  /** Display label override. Defaults to auto-humanized prop name. */
+  label?: string;
   /** Short description shown below the control. */
   description?: string;
   /** Group label for accordion sections (ungrouped → "Properties"). */

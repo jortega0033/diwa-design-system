@@ -5,7 +5,6 @@ import { Playground } from '@/components/playground/Playground';
 import { ConfiguratorControls } from '@/components/playground/ConfiguratorControls';
 import { generateHtmlMarkup } from '@/utils/generator/generateHtmlMarkup';
 import { generateReactMarkup } from '@/utils/generator/generateReactMarkup';
-import { generateAngularMarkup } from '@/utils/generator/generateAngularMarkup';
 import { generateVueMarkup } from '@/utils/generator/generateVueMarkup';
 import { toastStory, toastPropDefinitions } from '../toast.stories';
 import type { StoryState } from '@/models/story';
@@ -23,7 +22,30 @@ export default function ToastConfiguratorPage() {
   const frameworkCode = {
     html: generateHtmlMarkup(generated),
     react: generateReactMarkup(generated),
-    angular: generateAngularMarkup(generated),
+    // Angular uses the ToastManager service — auto-generated markup omits the
+    // imperative addMessage() call, so we provide a hand-written snippet instead.
+    angular: `import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DiwaToast, ToastManager } from '@diwacopilot/components-angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [DiwaToast],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: \`
+    <diwa-toast${theme !== 'dark' ? ` theme="${theme}"` : ''}></diwa-toast>
+    <button (click)="addToast()">Queue Toast</button>
+  \`,
+})
+export class AppComponent {
+  private counter = 1;
+
+  constructor(private toastManager: ToastManager) {}
+
+  addToast() {
+    this.toastManager.addMessage({ text: \`Message \${this.counter++}\`, state: 'success' });
+  }
+}`,
     vue: generateVueMarkup(generated),
   };
 

@@ -137,6 +137,11 @@ export class DiwaSelect {
     this.syncChildThemes();
   }
 
+  @Watch('compact')
+  onCompactChange(): void {
+    this.syncChildCompact();
+  }
+
   @Watch('value')
   onValueChange(): void {
     this.syncSelectionFromValue();
@@ -175,6 +180,7 @@ export class DiwaSelect {
     this.collectOptions();
     this.syncSelectionFromValue();
     this.syncChildThemes();
+    this.syncChildCompact();
   }
 
   // ──────────────────────────────────────────────────────────────
@@ -215,6 +221,7 @@ export class DiwaSelect {
     this.collectOptions();
     this.syncSelectionFromValue();
     this.syncChildThemes();
+    this.syncChildCompact();
   }
 
   // ──────────────────────────────────────────────────────────────
@@ -241,6 +248,15 @@ export class DiwaSelect {
     for (const opt of this.options) {
       if (opt.theme !== this.theme) {
         opt.theme = this.theme;
+        forceUpdate(opt);
+      }
+    }
+  }
+
+  private syncChildCompact(): void {
+    for (const opt of this.options) {
+      if (opt.compact !== this.compact) {
+        opt.compact = this.compact;
         forceUpdate(opt);
       }
     }

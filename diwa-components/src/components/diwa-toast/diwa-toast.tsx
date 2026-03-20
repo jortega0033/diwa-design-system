@@ -2,20 +2,22 @@ import { Component, Element, Host, Method, Prop, State, h } from '@stencil/core'
 import type { ToastMessage } from './types';
 import type { Theme } from '../../utils/styles';
 import { getComponentCss } from './diwa-toast-styles';
+import { toastManager } from './diwa-toast-manager';
+import type { ToastEntry } from './diwa-toast-manager';
 
 /**
  * @component diwa-toast
  *
- * Singleton container that queues and displays toast notifications.
- * Call `addMessage()` to queue a new toast. The toast container positions
- * itself fixed at the bottom-right of the viewport.
+ * Singleton container that queues and displays toast notifications one at a
+ * time. Call `addMessage()` to enqueue a toast — only one toast is visible at
+ * a given moment; additional messages are shown in FIFO order as each one is
+ * dismissed or times out.
+ *
+ * Only one `<diwa-toast>` element should exist per page.
  *
  * Usage:
  *   const toast = document.querySelector('diwa-toast');
  *   toast.addMessage({ text: 'Saved!', state: 'success' });
- *
- * Or via the static helper:
- *   DiwaToast.addMessage({ text: 'Error!', state: 'error' });
  */
 @Component({
   tag: 'diwa-toast',
@@ -26,40 +28,41 @@ export class DiwaToast {
 
   @Prop({ reflect: true }) theme: Theme = 'dark';
 
-  @State() messages: Array<ToastMessage & { id: number }> = [];
+  @State() private currentMsg: ToastEntry | null = null;
 
-  private nextId = 0;
+  connectedCallback(): void {
+    toastManager.register(this.host, (msg) => {
+      this.currentMsg = msg;
+    });
+  }
+
+  disconnectedCallback(): void {
+    toastManager.unregister();
+  }
 
   /**
-   * Adds a toast message to the queue.
+   * Enqueues a toast message. If no toast is currently visible it is shown
+   * immediately; otherwise it is placed in the FIFO queue and shown after all
+   * preceding messages have been dismissed.
    */
   @Method()
   async addMessage(message: ToastMessage): Promise<void> {
-    const id = this.nextId++;
-    this.messages = [...this.messages, { ...message, id }];
-    const duration = message.duration ?? 5000;
-    if (duration > 0) {
-      setTimeout(() => this.removeMessage(id), duration);
-    }
-  }
-
-  private removeMessage(id: number) {
-    this.messages = this.messages.filter((m) => m.id !== id);
+    toastManager.addMessage(message);
   }
 
   render() {
     return (
       <Host role="status" aria-live="polite" aria-atomic="false" data-theme={this.theme}>
         <style innerHTML={getComponentCss()} />
-        {this.messages.map((msg) => (
+        {this.currentMsg && (
           <diwa-toast-item
-            key={msg.id}
-            text={msg.text}
-            state={msg.state ?? 'neutral'}
+            key={this.currentMsg.id}
+            text={this.currentMsg.text}
+            state={this.currentMsg.state ?? 'neutral'}
             theme={this.theme}
-            onDismiss={() => this.removeMessage(msg.id)}
+            onDismiss={() => toastManager.dismiss()}
           />
-        ))}
+        )}
       </Host>
     );
   }

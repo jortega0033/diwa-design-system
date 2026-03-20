@@ -91,7 +91,7 @@ function DismissibleDemo() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-2 min-h-[32px]">
+      <div className="flex flex-wrap gap-2 min-h-[32px] items-start">
         {tags.map((label) => (
           <diwa-tag-dismissible
             key={label}

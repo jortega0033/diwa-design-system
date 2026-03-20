@@ -206,9 +206,10 @@
      3. TYPOGRAPHY
      ============================================================ */
 
-  --diwa-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  --diwa-font-family-base: 'Onest', -apple-system, BlinkMacSystemFont, 'Segoe UI',
                             Roboto, sans-serif;
-  --diwa-font-family-mono: 'JetBrains Mono', 'SF Mono', Monaco, Consolas, monospace;
+  --diwa-font-family-display: 'Sora', 'Onest', sans-serif;
+  --diwa-font-family-mono: 'Geist Mono', 'SF Mono', Monaco, Consolas, monospace;
 
   --diwa-font-size-xs:   10px;
   --diwa-font-size-sm:   11px;

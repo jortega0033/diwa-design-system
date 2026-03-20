@@ -1,26 +1,31 @@
 import type { Story } from '@/models/story';
 import type { PropDefinition } from '@/models/propDefinition';
 import type { ElementConfig } from '@/utils/generator/generator';
+import { ICON_NAMES } from '@/app/components/icon/icon.stories';
 
 export const tagStory: Story<'diwa-tag'> = {
   state: {
     properties: {
       variant: 'neutral',
       compact: false,
-      icon: '',
+      icon: 'none',
     },
   },
-  generator: ({ properties } = {}): ElementConfig<'diwa-tag'>[] => [
-    {
-      tag: 'diwa-tag' as const,
-      properties: {
-        variant: properties?.variant as string | undefined,
-        compact: properties?.compact as boolean | undefined,
-        icon: properties?.icon as string | undefined,
+  generator: ({ properties } = {}): ElementConfig<'diwa-tag'>[] => {
+    const icon = properties?.icon as string | undefined;
+    return [
+      {
+        tag: 'diwa-tag' as const,
+        properties: {
+          variant: properties?.variant as string | undefined,
+          compact: properties?.compact as boolean | undefined,
+          // 'none' means no icon — omit the prop entirely
+          ...(icon && icon !== 'none' ? { icon } : {}),
+        },
+        children: ['Status'],
       },
-      children: ['Status'],
-    },
-  ],
+    ];
+  },
 };
 
 export const tagPropDefinitions: PropDefinition[] = [
@@ -37,7 +42,8 @@ export const tagPropDefinitions: PropDefinition[] = [
   },
   {
     name: 'icon',
-    type: 'string',
-    defaultValue: '',
+    type: 'select',
+    options: ['none', ...ICON_NAMES],
+    defaultValue: 'none',
   },
 ];

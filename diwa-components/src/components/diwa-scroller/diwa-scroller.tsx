@@ -1,4 +1,4 @@
-import { Component, Host, Listen, Prop, State, h } from '@stencil/core';
+import { Component, Host, Prop, State, h } from '@stencil/core';
 import type { Theme } from '../../utils/styles';
 import type { ScrollerScrollIndicatorPosition } from './types';
 import { getComponentCss } from './diwa-scroller-styles';
@@ -25,14 +25,18 @@ export class DiwaScroller {
   @State() private canScrollRight: boolean = false;
 
   private scrollAreaEl?: HTMLDivElement;
-
-  @Listen('resize', { target: 'window' })
-  handleWindowResize(): void {
-    this.updateScrollState();
-  }
+  private resizeObserver?: ResizeObserver;
 
   componentDidLoad(): void {
     this.updateScrollState();
+    if (this.scrollAreaEl) {
+      this.resizeObserver = new ResizeObserver(() => this.updateScrollState());
+      this.resizeObserver.observe(this.scrollAreaEl);
+    }
+  }
+
+  disconnectedCallback(): void {
+    this.resizeObserver?.disconnect();
   }
 
   private setScrollAreaRef = (el?: HTMLDivElement): void => {
@@ -74,7 +78,13 @@ export class DiwaScroller {
   render() {
     return (
       <Host data-theme={this.theme}>
-        <style innerHTML={getComponentCss(this.scrollbar, this.alignScrollIndicator, this.hasOverflow)} />
+        <style innerHTML={getComponentCss(
+          this.scrollbar,
+          this.alignScrollIndicator,
+          this.hasOverflow,
+          this.canScrollLeft,
+          this.canScrollRight,
+        )} />
         <div class="scroller">
           <button
             type="button"
@@ -89,8 +99,19 @@ export class DiwaScroller {
             </svg>
           </button>
 
-          <div class="scroll-area" onScroll={this.handleScroll} ref={this.setScrollAreaRef}>
-            <slot onSlotchange={this.handleSlotChange} />
+          <div class="scroll-wrapper">
+            <div
+              class="scroll-area"
+              tabIndex={this.hasOverflow ? 0 : undefined}
+              role={this.hasOverflow ? 'region' : undefined}
+              aria-label={this.hasOverflow ? 'Scrollable content' : undefined}
+              onScroll={this.handleScroll}
+              ref={this.setScrollAreaRef}
+            >
+              <slot onSlotchange={this.handleSlotChange} />
+            </div>
+            <div class="fade fade--start" aria-hidden="true" />
+            <div class="fade fade--end" aria-hidden="true" />
           </div>
 
           <button

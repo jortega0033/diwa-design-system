@@ -1501,6 +1501,10 @@ export namespace Components {
      */
     interface DiwaSelectOption {
         /**
+          * Compact mode — inherited from the parent diwa-select.
+         */
+        "compact": boolean;
+        /**
           * Disables the option — it cannot be selected.
          */
         "disabled": boolean;
@@ -1939,18 +1943,18 @@ export namespace Components {
     }
     /**
      * @component diwa-toast
-     * Singleton container that queues and displays toast notifications.
-     * Call `addMessage()` to queue a new toast. The toast container positions
-     * itself fixed at the bottom-right of the viewport.
+     * Singleton container that queues and displays toast notifications one at a
+     * time. Call `addMessage()` to enqueue a toast — only one toast is visible at
+     * a given moment; additional messages are shown in FIFO order as each one is
+     * dismissed or times out.
+     * Only one `<diwa-toast>` element should exist per page.
      * Usage:
      * const toast = document.querySelector('diwa-toast');
      * toast.addMessage({ text: 'Saved!', state: 'success' });
-     * Or via the static helper:
-     * DiwaToast.addMessage({ text: 'Error!', state: 'error' });
      */
     interface DiwaToast {
         /**
-          * Adds a toast message to the queue.
+          * Enqueues a toast message. If no toast is currently visible it is shown immediately; otherwise it is placed in the FIFO queue and shown after all preceding messages have been dismissed.
          */
         "addMessage": (message: ToastMessage) => Promise<void>;
         "theme": Theme;
@@ -3308,14 +3312,14 @@ declare global {
     };
     /**
      * @component diwa-toast
-     * Singleton container that queues and displays toast notifications.
-     * Call `addMessage()` to queue a new toast. The toast container positions
-     * itself fixed at the bottom-right of the viewport.
+     * Singleton container that queues and displays toast notifications one at a
+     * time. Call `addMessage()` to enqueue a toast — only one toast is visible at
+     * a given moment; additional messages are shown in FIFO order as each one is
+     * dismissed or times out.
+     * Only one `<diwa-toast>` element should exist per page.
      * Usage:
      * const toast = document.querySelector('diwa-toast');
      * toast.addMessage({ text: 'Saved!', state: 'success' });
-     * Or via the static helper:
-     * DiwaToast.addMessage({ text: 'Error!', state: 'error' });
      */
     interface HTMLDiwaToastElement extends Components.DiwaToast, HTMLStencilElement {
     }
@@ -4947,6 +4951,10 @@ declare namespace LocalJSX {
      */
     interface DiwaSelectOption {
         /**
+          * Compact mode — inherited from the parent diwa-select.
+         */
+        "compact"?: boolean;
+        /**
           * Disables the option — it cannot be selected.
          */
         "disabled"?: boolean;
@@ -5419,14 +5427,14 @@ declare namespace LocalJSX {
     }
     /**
      * @component diwa-toast
-     * Singleton container that queues and displays toast notifications.
-     * Call `addMessage()` to queue a new toast. The toast container positions
-     * itself fixed at the bottom-right of the viewport.
+     * Singleton container that queues and displays toast notifications one at a
+     * time. Call `addMessage()` to enqueue a toast — only one toast is visible at
+     * a given moment; additional messages are shown in FIFO order as each one is
+     * dismissed or times out.
+     * Only one `<diwa-toast>` element should exist per page.
      * Usage:
      * const toast = document.querySelector('diwa-toast');
      * toast.addMessage({ text: 'Saved!', state: 'success' });
-     * Or via the static helper:
-     * DiwaToast.addMessage({ text: 'Error!', state: 'error' });
      */
     interface DiwaToast {
         "theme"?: Theme;
@@ -6014,14 +6022,14 @@ declare module "@stencil/core" {
             "diwa-textarea": LocalJSX.DiwaTextarea & JSXBase.HTMLAttributes<HTMLDiwaTextareaElement>;
             /**
              * @component diwa-toast
-             * Singleton container that queues and displays toast notifications.
-             * Call `addMessage()` to queue a new toast. The toast container positions
-             * itself fixed at the bottom-right of the viewport.
+             * Singleton container that queues and displays toast notifications one at a
+             * time. Call `addMessage()` to enqueue a toast — only one toast is visible at
+             * a given moment; additional messages are shown in FIFO order as each one is
+             * dismissed or times out.
+             * Only one `<diwa-toast>` element should exist per page.
              * Usage:
              * const toast = document.querySelector('diwa-toast');
              * toast.addMessage({ text: 'Saved!', state: 'success' });
-             * Or via the static helper:
-             * DiwaToast.addMessage({ text: 'Error!', state: 'error' });
              */
             "diwa-toast": LocalJSX.DiwaToast & JSXBase.HTMLAttributes<HTMLDiwaToastElement>;
             /**

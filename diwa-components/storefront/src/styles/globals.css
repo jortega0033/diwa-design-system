@@ -13,14 +13,14 @@
 }
 
 body {
-  font-family: var(--diwa-font-family-base, 'Inter', system-ui, sans-serif);
+  font-family: var(--diwa-font-family-base, 'Onest', system-ui, sans-serif);
   background: var(--diwa-bg-base, #0b0b0c);
   color: var(--diwa-text-primary, #e6e6e7);
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--diwa-font-family-base, 'Inter', system-ui, sans-serif);
+  font-family: var(--diwa-font-family-base, 'Onest', system-ui, sans-serif);
   font-weight: var(--diwa-font-weight-semibold, 600);
 }
 

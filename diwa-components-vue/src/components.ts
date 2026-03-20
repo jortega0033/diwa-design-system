@@ -596,6 +596,7 @@ export const DiwaSelectOption = /*@__PURE__*/ defineContainer<JSX.DiwaSelectOpti
   'selected',
   'highlighted',
   'theme',
+  'compact',
   'diwaSelectOptionUpdate'
 ]);
 

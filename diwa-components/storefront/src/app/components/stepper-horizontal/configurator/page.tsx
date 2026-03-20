@@ -9,6 +9,7 @@ export default function StepperHorizontalConfiguratorPage() {
       tagName="diwa-stepper-horizontal"
       story={stepperHorizontalStory}
       propDefinitions={stepperHorizontalPropDefinitions}
+      previewClassName="!flex-col !items-stretch !justify-start px-8 py-10 w-full"
     />
   );
 }

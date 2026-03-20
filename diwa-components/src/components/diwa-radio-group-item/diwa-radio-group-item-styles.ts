@@ -21,7 +21,7 @@ export const getComponentCss = (
 
   .wrapper {
     display: inline-flex;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--diwa-space-3);
     cursor: pointer;
   }
@@ -35,7 +35,6 @@ export const getComponentCss = (
     flex-shrink: 0;
     width: ${boxSize};
     height: ${boxSize};
-    margin-top: calc((1.5em - ${boxSize}) / 2);
   }
 
   input[type="radio"] {
