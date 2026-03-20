@@ -1,6 +1,6 @@
 {
   "name": "@diwacopilot/components-vue",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Vue wrapper package for Diwa Web Components.",
   "license": "MIT",
   "type": "module",
