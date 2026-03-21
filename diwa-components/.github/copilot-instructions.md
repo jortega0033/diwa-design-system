@@ -50,6 +50,10 @@ When adding `diwa-<name>`, update both:
 
 Never suppress custom element typing with `@ts-expect-error`.
 
+## Release transparency rule
+
+Whenever any package version is updated, update `/news/changelog` in the same change for consistency and transparency.
+
 ## Local-only governance artifacts
 
 These folders are local-only and must never be committed:

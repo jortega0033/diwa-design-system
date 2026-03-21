@@ -19,6 +19,31 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.3.1',
+    date: 'March 21, 2026',
+    summary: 'Content accuracy and governance consistency release for storefront docs and help flows.',
+    added: [
+      'Version bump policy is now explicit in governance instructions: whenever any package version is updated, /news/changelog must be updated in the same change for consistency and transparency.',
+    ],
+    changed: [
+      'All four npm packages (@diwacopilot/components, components-react, components-vue, components-angular) bumped to 1.3.1.',
+      'Help docs and help intro content rewritten for clearer prerequisites, deterministic reporting templates, and stronger next actions.',
+      'Must Know > Versioning guidance refined for current 1.x release stream and release discipline.',
+      'Home hero version badge updated to v1.3.1 and component count messaging aligned to 43 documented components.',
+      'SEO metadata for home, help routes, and must-know/versioning updated for accuracy and support-channel clarity.',
+    ],
+    fixed: [
+      'Stale repository links that previously pointed to jortega0033/diwa-components now correctly point to jortega0033/diwa-design-system.',
+      'Incorrect home banner version label (v2.0) and stale component-count messaging.',
+    ],
+    deprecated: [
+      'No deprecations in this release.',
+    ],
+    removed: [
+      'No removals in this release.',
+    ],
+  },
+  {
     version: '1.3.0',
     date: 'March 21, 2026',
     summary: 'React Server Component (RSC) support via a new /server export path. Pure function wrappers for presentational components are now importable directly in Next.js App Router Server Components without a \'use client\' boundary.',

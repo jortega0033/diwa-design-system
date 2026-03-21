@@ -1,6 +1,6 @@
 import type { DocDetail } from '@/app/_shared/docsContent';
 
-const REPO_BASE = 'https://github.com/jortega0033/diwa-components';
+const REPO_BASE = 'https://github.com/jortega0033/diwa-design-system';
 const ISSUES_LIST = `${REPO_BASE}/issues`;
 const NEW_ISSUE = `${REPO_BASE}/issues/new`;
 const NEW_FEATURE_ISSUE = `${NEW_ISSUE}?labels=enhancement&title=Feature%20request%3A%20`;
@@ -10,48 +10,55 @@ const NEW_PULL_REQUEST = `${REPO_BASE}/compare`;
 export const HELP_DOCS: Record<string, DocDetail> = {
   support: {
     title: 'Help: Support',
-    intro: 'Use support guidance when you are blocked on integration, behavior, or release readiness. Support requests should include reproducible context.',
+    intro: 'Use Support when integration or runtime behavior blocks delivery. Keep requests reproducible so maintainers can triage quickly.',
     prerequisites: [
-      'Current package versions and framework environment details.',
-      'A minimal reproduction or exact failing snippet.',
-      'Expected behavior versus actual behavior.',
+      'Current `@diwacopilot/*` package versions and framework/runtime details.',
+      'A minimal reproduction (repo, route, or snippet) that fails consistently.',
+      'Expected result, actual result, and the business impact.',
     ],
     steps: [
       {
-        title: 'Search existing issues first',
-        description: 'Check if your question or bug already has a known workaround or active fix.',
+        title: 'Check existing issues before opening a new one',
+        description: 'Find known workarounds or active maintainer threads first.',
         code: `Open issue tracker:
 ${ISSUES_LIST}`,
       },
       {
-        title: 'Prepare a reproducible report',
-        description: 'Include environment, route/component details, and deterministic steps.',
+        title: 'Prepare a deterministic support report',
+        description: 'Use a structured template with exact versions, route context, and repeatable steps.',
         code: `### Environment
 - @diwacopilot/components: x.y.z
-- Framework: Next.js / React / Angular / Vue
-- Browser: Chrome xx / Safari xx
+- @diwacopilot/components-react|angular|vue: x.y.z
+- Framework + version:
+- Browser + version:
 
-### Reproduction Steps
+### Reproduction
 1. ...
 2. ...
-3. ...`,
+3. ...
+
+### Expected
+...
+
+### Actual
+...`,
       },
       {
-        title: 'Open a support issue with context',
-        description: 'File the issue and link relevant docs pages already reviewed.',
+        title: 'Open the issue and link checked documentation',
+        description: 'Reference docs you already validated to speed up root-cause analysis.',
         code: `Support issue URL:
 ${NEW_ISSUE}`,
       },
     ],
     notes: [
-      'Support requests move faster with a minimal reproduction path.',
-      'Include screenshots or short recordings when UI state timing is relevant.',
-      'Link the exact docs route used so maintainers can improve documentation too.',
+      'Short, reproducible reports are resolved faster than broad descriptions.',
+      'Include screenshots or short recordings for UI timing/state issues.',
+      'Link the docs route used so maintainers can improve guidance.',
     ],
     troubleshooting: [
-      'If an issue cannot be reproduced, provide an isolated sample repository.',
-      'If behavior differs by browser, include version-specific findings.',
-      'If build-only failures appear, attach build logs and failing file paths.',
+      'If repro is unstable, isolate it in a small public repository.',
+      'If behavior is browser-specific, include side-by-side browser results.',
+      'If failure is build-only, attach build logs and failing file paths.',
     ],
     nextActions: [
       {
@@ -74,16 +81,16 @@ ${NEW_ISSUE}`,
   },
   faq: {
     title: 'Help: FAQ',
-    intro: 'Use this FAQ workflow to resolve common Diwa setup and behavior questions quickly before opening a new issue.',
+    intro: 'Start here for common setup, runtime, and upgrade questions before opening a new issue.',
     prerequisites: [
-      'Know which section your issue belongs to (styles, components, or developing).',
-      'Reproduce the issue on current package versions.',
-      'Capture any console errors or failing test output.',
+      'Identify the affected area (setup, components, styles, or upgrade).',
+      'Confirm behavior on current package versions.',
+      'Capture console errors or failing test/build output.',
     ],
     steps: [
       {
-        title: 'Check the matching docs section first',
-        description: 'Most setup questions are covered in Getting Started, Developing, or Partials pages.',
+        title: 'Check the nearest docs section first',
+        description: 'Most recurring questions are already covered in intro and integration pages.',
         code: `Start here:
 - /
 - /developing
@@ -91,16 +98,16 @@ ${NEW_ISSUE}`,
 - /must-know`,
       },
       {
-        title: 'Verify common setup pitfalls',
-        description: 'Many issues come from missing styles, missing loader registration, or premature test assertions.',
+        title: 'Run quick setup diagnostics',
+        description: 'Verify styles, loader registration, and readiness checks before escalating.',
         code: `Quick checks:
 - Token stylesheet loaded once
 - Loader bootstrap runs once
 - Tests wait for component readiness`,
       },
       {
-        title: 'Escalate with focused context',
-        description: 'If unresolved, open support with concise diagnostics and links to checked docs pages.',
+        title: 'Escalate through Support when unresolved',
+        description: 'Open an issue with concise diagnostics and links to pages already reviewed.',
         code: `Open support:
 ${NEW_ISSUE}`,
       },
@@ -110,12 +117,12 @@ ${NEW_ISSUE}`,
       'Q: Why do components render but not behave? A: Loader registration likely did not run on the client.',
       'Q: Why is styling inconsistent? A: Ensure global token stylesheet is loaded before interactive render.',
       'Q: Why are tests flaky? A: Wait for custom-element definition and componentOnReady where needed.',
-      'Q: Where do breaking changes appear? A: Use News > Changelog and Migration Guide.',
+      'Q: Where are breaking changes documented? A: See News > Changelog and Migration Guide.',
     ],
     troubleshooting: [
-      'If FAQ items repeat in support, convert them into clearer docs snippets.',
-      'If setup differs by framework, compare with the specific Developing page.',
-      'If issue appears after upgrade, inspect changelog and migration guidance first.',
+      'If the same question appears repeatedly, create or update a dedicated docs snippet.',
+      'If setup differs by framework, compare against the specific `/developing/*` route.',
+      'If issue started after upgrade, review changelog and migration notes first.',
     ],
     nextActions: [
       {
@@ -138,48 +145,53 @@ ${NEW_ISSUE}`,
   },
   'feature-request': {
     title: 'Help: Feature Request',
-    intro: 'Submit feature requests with clear problem framing, user impact, and acceptance criteria so roadmap decisions can be made quickly.',
+    intro: 'Submit feature requests with clear problem framing, impact, and acceptance criteria so prioritization is straightforward.',
     prerequisites: [
-      'A specific user problem not solved by current components/tokens/docs.',
-      'Concrete use cases and expected outcomes.',
-      'Awareness of current roadmap items to avoid duplicates.',
+      'A user problem not already solved by existing components, tokens, or docs.',
+      'A concrete use case with measurable expected outcomes.',
+      'A quick duplicate check against roadmap and open issues.',
     ],
     steps: [
       {
-        title: 'Check roadmap and changelog',
-        description: 'Verify whether the request is already planned, in progress, or recently shipped.',
+        title: 'Check roadmap and open enhancements',
+        description: 'Verify whether the request is already planned, in progress, or recently delivered.',
         code: `Review:
 - /news/roadmap
-- /news/changelog`,
+- /news/changelog
+- ${ISSUES_LIST}`,
       },
       {
-        title: 'Frame request by problem and impact',
-        description: 'Explain what users cannot do today and how success will be measured.',
+        title: 'Write a proposal with acceptance criteria',
+        description: 'Describe current gap, desired behavior, and how success will be validated.',
         code: `### Problem
 Users cannot ...
 
-### Desired Outcome
-We need ...
+### Proposed Capability
+Add ...
 
 ### Impact
-This affects ...`,
+This affects ...
+
+### Acceptance Criteria
+- [ ] ...
+- [ ] ...`,
       },
       {
         title: 'Open an enhancement issue',
-        description: 'Submit the request using the enhancement issue path.',
+        description: 'Submit via the enhancement issue path so maintainers can triage consistently.',
         code: `Feature request URL:
 ${NEW_FEATURE_ISSUE}`,
       },
     ],
     notes: [
       'Feature requests are prioritized by user impact, implementation complexity, and roadmap fit.',
-      'Attach screenshots or current workaround examples when possible.',
-      'Include accessibility and responsiveness expectations in acceptance criteria.',
+      'Attach mockups or workaround examples when helpful.',
+      'Include accessibility, responsiveness, and docs expectations where relevant.',
     ],
     troubleshooting: [
-      'If your request is broad, split it into focused, incremental proposals.',
-      'If acceptance criteria are unclear, define measurable behavior before submission.',
-      'If overlap exists with existing issues, comment there instead of opening duplicates.',
+      'If request scope is broad, split into incremental proposals.',
+      'If acceptance criteria are vague, convert them to measurable behavior.',
+      'If overlap exists, add context to the existing issue instead of duplicating.',
     ],
     nextActions: [
       {
@@ -202,16 +214,16 @@ ${NEW_FEATURE_ISSUE}`,
   },
   'bug-report': {
     title: 'Help: Bug Report',
-    intro: 'File bug reports with deterministic steps and expected/actual behavior so maintainers can reproduce and fix quickly.',
+    intro: 'Report defects with deterministic steps, clear expected/actual behavior, and minimal repro so fixes can ship faster.',
     prerequisites: [
-      'Confirmed reproducible issue on current package version.',
-      'Browser/framework/version information.',
-      'Expected and actual behavior captured clearly.',
+      'Issue is reproducible on current package versions.',
+      'Framework, browser, and OS versions are captured.',
+      'Expected and actual behavior are written in plain, testable terms.',
     ],
     steps: [
       {
-        title: 'Create a minimal reproduction',
-        description: 'Reduce the issue to the smallest setup that still fails.',
+        title: 'Build a minimal reproducible case',
+        description: 'Reduce to the smallest route/component setup that still fails.',
         code: `Minimum report artifacts:
 - Failing route/component
 - Short reproduction steps
@@ -219,7 +231,7 @@ ${NEW_FEATURE_ISSUE}`,
       },
       {
         title: 'Document expected versus actual behavior',
-        description: 'Make failure criteria explicit to avoid ambiguity.',
+        description: 'State failure criteria explicitly so QA and maintainers can verify the fix.',
         code: `### Expected
 Focus ring remains visible on keyboard navigation.
 
@@ -228,20 +240,20 @@ Focus ring disappears after component rerender.`,
       },
       {
         title: 'Submit bug issue',
-        description: 'Open a labeled bug issue with reproduction details and assets.',
+        description: 'Open a labeled bug issue and include repro artifacts.',
         code: `Bug report URL:
 ${NEW_BUG_ISSUE}`,
       },
     ],
     notes: [
-      'Attach screenshots, videos, or stack traces when visual state or timing is involved.',
-      'If regression came from an upgrade, mention previous working version.',
-      'Link the exact docs page used if behavior differs from documented expectations.',
+      'Attach screenshots, videos, or stack traces for timing and visual defects.',
+      'If regression follows an upgrade, include the last known good version.',
+      'Link docs page(s) when observed behavior differs from documentation.',
     ],
     troubleshooting: [
-      'If maintainers cannot reproduce, share a small public reproduction repository.',
-      'If bug appears browser-specific, include per-browser comparison details.',
-      'If issue is intermittent, add explicit timing and interaction sequencing.',
+      'If maintainers cannot reproduce, share a small public sample repository.',
+      'If bug is browser-specific, include per-browser comparison output.',
+      'If intermittent, include timing notes and exact interaction sequence.',
     ],
     nextActions: [
       {
@@ -264,41 +276,41 @@ ${NEW_BUG_ISSUE}`,
   },
   contribution: {
     title: 'Help: Contribution',
-    intro: 'Contribute safely by aligning changes with docs, tests, and release quality gates. Contributions should improve maintainability and user experience.',
+    intro: 'Contribute with production discipline: scoped changes, passing checks, and docs aligned with shipped behavior.',
     prerequisites: [
-      'A scoped issue or proposal tied to real user impact.',
-      'Local environment able to run tests and storefront build.',
-      'Understanding of existing interaction and accessibility contracts.',
+      'A scoped issue or proposal tied to user impact.',
+      'Local environment can run workspace tests and storefront build.',
+      'Awareness of accessibility and interaction contracts for touched components.',
     ],
     steps: [
       {
         title: 'Align work with an issue',
-        description: 'Start from an existing issue or create one before coding to keep intent explicit.',
+        description: 'Start from an existing issue (or open one) before coding to keep intent explicit.',
         code: `Issue tracker:
 ${ISSUES_LIST}`,
       },
       {
-        title: 'Run quality checks locally',
-        description: 'Validate tests and storefront build before opening a pull request.',
-          code: `npm test
+        title: 'Run quality checks before opening a PR',
+        description: 'Validate tests and storefront build from the workspace root.',
+        code: `npm run test
 npm run build:storefront`,
       },
       {
         title: 'Open a focused pull request',
-        description: 'Use a concise summary, testing notes, and screenshots or recordings for UI changes.',
+        description: 'Include summary, test evidence, docs impact, and screenshots for UI changes.',
         code: `Open PR:
 ${NEW_PULL_REQUEST}`,
       },
     ],
     notes: [
-      'Keep PRs scoped; separate unrelated refactors from feature/fix work.',
-      'Update docs routes when behavior or workflow changes.',
-      'Call out any a11y, motion, or responsive implications in PR descriptions.',
+      'Keep PRs scoped and avoid unrelated refactors.',
+      'Update docs routes whenever behavior or workflows change.',
+      'Call out accessibility, motion, and responsive implications in PR descriptions.',
     ],
     troubleshooting: [
-      'If review feedback repeats, add shared guidance to relevant docs pages.',
-      'If tests fail in CI only, compare environment and browser assumptions.',
-      'If merge conflicts are frequent, reduce branch lifetime and scope.',
+      'If review feedback repeats, codify it in docs or templates.',
+      'If CI fails but local passes, compare Node/browser/environment differences.',
+      'If conflicts are frequent, reduce branch lifetime and PR scope.',
     ],
     nextActions: [
       {

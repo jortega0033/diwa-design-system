@@ -5,7 +5,7 @@ import styles from './HeroBanner.module.css';
 const FRAMEWORKS = ['React', 'Angular', 'Vue', 'Next.js', 'Vanilla JS'] as const;
 
 const STATS = [
-  { bold: '42', text: 'Components' },
+  { bold: '43', text: 'Components' },
   { bold: 'TypeScript', text: 'Ready' },
   { bold: 'CSS Tokens', text: 'System' },
   { bold: 'WCAG 2.2 AA', text: 'Compliant' },
@@ -58,9 +58,9 @@ export function HeroBanner() {
       <div className={styles.body}>
         <div className={styles.badge} aria-label="Design system version and compliance">
           <span className={styles.badgeDot} aria-hidden="true" />
-          <span>v2.0</span>
+          <span>v1.3.1</span>
           <span className={styles.badgeSep} aria-hidden="true">·</span>
-          <span>42 Components</span>
+          <span>43 Components</span>
           <span className={styles.badgeSep} aria-hidden="true">·</span>
           <span>WCAG 2.2 AA</span>
         </div>
@@ -72,8 +72,9 @@ export function HeroBanner() {
         </h1>
 
         <p className={styles.description}>
-          Diwa is a framework-agnostic design system built on Web Components and shared CSS
-          tokens. Load once, use anywhere — React, Angular, Vue, Next.js, or plain HTML.
+          Diwa is a framework-agnostic design system built with Web Components and shared CSS
+          tokens. Integrate once, then ship consistent accessible UI across React, Angular, Vue,
+          Next.js, and vanilla HTML.
         </p>
 
         <div className={styles.ctas}>

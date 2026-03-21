@@ -10,7 +10,7 @@ export const pageSeo: Record<string, Metadata> = {
   '/': buildMetadata({
     title: 'Introduction',
     description:
-      'Diwa Design System — framework-agnostic web components for building accessible, brand-consistent UIs. Get started in minutes.',
+      'Diwa Design System v1.3.x: framework-agnostic web components and CSS tokens for building accessible, consistent product UI.',
     pathname: '/',
     ogSection: 'home',
   }),
@@ -188,7 +188,7 @@ export const pageSeo: Record<string, Metadata> = {
   '/must-know/versioning': buildMetadata({
     title: 'Versioning',
     description:
-      'Semantic versioning, release cadence, deprecation windows, and breaking-change policies for the Diwa component library.',
+      'Versioning discipline for the current 1.x stream: semver rules, release-note quality, and mandatory same-PR changelog updates.',
     pathname: '/must-know/versioning',
     ogSection: 'must-know',
   }),
@@ -204,42 +204,42 @@ export const pageSeo: Record<string, Metadata> = {
   '/help': buildMetadata({
     title: 'Help',
     description:
-      'Resources, community links, and ways to get support from the Diwa team and open-source contributors.',
+      'GitHub-first support hub for Diwa: support intake, FAQ, bug reports, feature requests, and contribution workflow.',
     pathname: '/help',
     ogSection: 'help',
   }),
   '/help/support': buildMetadata({
     title: 'Support',
     description:
-      'How to get help with Diwa — GitHub Discussions, office hours, Slack, and the support triage process.',
+      'Open a structured support issue in the Diwa GitHub repository with reproducible context and environment details.',
     pathname: '/help/support',
     ogSection: 'help',
   }),
   '/help/faq': buildMetadata({
     title: 'FAQ',
     description:
-      'Frequently asked questions about Diwa Design System — integration, licensing, customisation, and versioning.',
+      'Resolve common Diwa setup and behavior questions quickly before opening a support issue.',
     pathname: '/help/faq',
     ogSection: 'help',
   }),
   '/help/feature-request': buildMetadata({
     title: 'Feature Request',
     description:
-      'Submit a feature request for new Diwa components, tokens, or patterns. Explain the use case and desired API.',
+      'Submit enhancement proposals with problem framing, impact, and acceptance criteria through GitHub issues.',
     pathname: '/help/feature-request',
     ogSection: 'help',
   }),
   '/help/bug-report': buildMetadata({
     title: 'Bug Report',
     description:
-      'Report a bug in the Diwa component library — include a minimal reproduction, browser version, and expected vs actual behaviour.',
+      'Report reproducible defects with minimal repro steps, exact versions, and expected-versus-actual behavior details.',
     pathname: '/help/bug-report',
     ogSection: 'help',
   }),
   '/help/contribution': buildMetadata({
     title: 'Contribution',
     description:
-      'How to contribute to the Diwa Design System: code conventions, PR guidelines, and the component authoring checklist.',
+      'Contribute safely with scoped PRs, quality checks, and docs updates aligned to shipped Diwa behavior.',
     pathname: '/help/contribution',
     ogSection: 'help',
   }),
@@ -271,7 +271,7 @@ export const pageSeo: Record<string, Metadata> = {
   '/components': buildMetadata({
     title: 'Components',
     description:
-      '44 accessible, framework-agnostic Diwa web components — from inputs and buttons to modals, tables, and more.',
+      '43 accessible, framework-agnostic Diwa web components — from inputs and buttons to modals, tables, and more.',
     pathname: '/components',
     ogSection: 'components',
   }),

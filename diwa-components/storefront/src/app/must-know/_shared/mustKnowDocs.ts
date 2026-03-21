@@ -307,46 +307,56 @@ npm test`,
   },
   versioning: {
     title: 'Must Know: Versioning',
-    intro: 'Use versioning discipline to keep upgrades predictable: communicate changes clearly, and separate breaking changes from minor and patch updates.',
+    intro: 'Use strict version discipline to keep 1.x upgrades predictable and low-risk: communicate changes clearly and classify them correctly.',
     prerequisites: [
-      'A release checklist tied to changelog and migration docs.',
-      'Semver policy understood by maintainers and consumers.',
-      'A test baseline to compare pre/post-upgrade behavior.',
+      'A release checklist tied to `/news/changelog` and `/news/migration-guide`.',
+      'Shared semver understanding across maintainers and reviewers.',
+      'A test baseline to compare pre-upgrade and post-upgrade behavior.',
     ],
     steps: [
       {
         title: 'Follow semantic versioning strictly',
-        description: 'Use major for breaking changes, minor for additive changes, and patch for fixes.',
+        description: 'Use major for breaking changes, minor for backward-compatible additions, and patch for backward-compatible fixes.',
         code: `MAJOR.MINOR.PATCH
-2.0.0 -> breaking change
-2.1.0 -> backward-compatible feature
-2.1.1 -> backward-compatible fix`,
+1.0.0 -> initial stable major
+1.3.0 -> backward-compatible feature release
+1.3.1 -> backward-compatible fix release`,
       },
       {
-        title: 'Publish change categories consistently',
-        description: 'Every release should include Added, Changed, Fixed, Deprecated, and Removed notes where applicable.',
-        code: `## 1.2.0
-- Added: New accessibility docs pages
-- Changed: Updated initialization guidance
-- Fixed: Incorrect route links in support docs`,
+        title: 'Update changelog in the same change set as version bumps',
+        description: 'Whenever any package version changes, update `/news/changelog` in the same work item/PR for consistency and transparency.',
+        code: `Required release discipline:
+- package.json version change present
+- matching /news/changelog update present
+- both merged in the same PR/work item`,
       },
       {
-        title: 'Upgrade with verification gates',
-        description: 'Upgrade dependencies in a branch and validate critical interaction flows before merge.',
-          code: `npm install @diwacopilot/components@latest
-  npm test
+        title: 'Publish release notes using consistent categories',
+        description: 'Document what changed with clear categories so consumers can assess risk quickly.',
+        code: `## 1.3.0
+- Added: ...
+- Changed: ...
+- Fixed: ...
+- Deprecated: ... (if applicable)
+- Removed: ... (if applicable)`,
+      },
+      {
+        title: 'Validate upgrades before merge',
+        description: 'Run critical verification gates whenever dependency or package version changes are introduced.',
+        code: `npm install @diwacopilot/components@latest
+npm run test
 npm run build:storefront`,
       },
     ],
     notes: [
-      'Migration guide entries should appear before or with any breaking release.',
-      'Version policy should be visible in onboarding and contribution docs.',
-      'Avoid undocumented behavioral changes in patch releases.',
+      'For breaking changes, migration guide updates should land before or with the release.',
+      'Version policy should be visible in onboarding, contribution, and governance docs.',
+      'Never ship undocumented behavior changes in patch releases.',
     ],
     troubleshooting: [
-      'If an upgrade causes regressions, compare changelog categories first.',
-      'If breaking changes ship unexpectedly, tighten release review gates.',
-      'If consumers are confused, improve migration examples and issue templates.',
+      'If upgrade regressions appear, compare changelog entries against observed behavior first.',
+      'If breaking behavior slips into minor/patch, tighten review and release gates immediately.',
+      'If consumers are confused, improve migration examples and release note clarity.',
     ],
     nextActions: [
       {
