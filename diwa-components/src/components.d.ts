@@ -176,9 +176,11 @@ export namespace Components {
      * --diwa-button-color       Foreground / text color
      * --diwa-button-radius      Border radius
      * --diwa-button-height      Height for md size
+     * --diwa-button-height-xs   Height for xs size
      * --diwa-button-height-sm   Height for sm size
      * --diwa-button-height-lg   Height for lg size
      * --diwa-button-padding-x   Horizontal padding for md/lg
+     * --diwa-button-padding-x-xs Horizontal padding for xs
      * --diwa-button-padding-x-sm Horizontal padding for sm
      * Usage:
      * <diwa-button variant="primary">Get Started</diwa-button>
@@ -192,7 +194,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * When `true`, the default label slot is visually hidden so the button renders as a compact square (icon-only mode). The slot text is kept in the DOM for screen-reader accessible-name calculation.  For best accessibility, always pair with the `label` prop **or** ensure the default slot contains descriptive text, so the button has a name.  Usage:   <diwa-button hide-label label="Save">     <svg slot="icon-start">…</svg>   </diwa-button>
+          * When `true`, the default label slot is visually hidden so the button renders as a compact square (icon-only mode). The slot text is kept in the DOM for screen-reader accessible-name calculation.  For best accessibility, always pair with the `label` prop **or** ensure the default slot contains descriptive text, so the button has a name.  Usage:   <diwa-button hide-label label="Save">     <svg slot="icon-start">...</svg>   </diwa-button>
           * @default false
          */
         "hideLabel": boolean;
@@ -201,7 +203,7 @@ export namespace Components {
          */
         "href"?: string;
         /**
-          * Lucide icon name in kebab-case (e.g. `"star"`, `"arrow-right"`), or `'none'` to show no icon. When set to any value other than `'none'`, renders a `<diwa-icon>` in the leading (icon-start) position.  The `icon-start` slot still works alongside this prop — the prop-rendered icon comes first, followed by any slotted content.
+          * Lucide icon name in kebab-case (e.g. `"star"`, `"arrow-right"`), or `'none'` to show no icon. When set to any value other than `'none'`, renders a `<diwa-icon>` in the leading (icon-start) position.  The `icon-start` slot still works alongside this prop - the prop-rendered icon comes first, followed by any slotted content.
           * @default 'none'
          */
         "icon": string;
@@ -215,16 +217,16 @@ export namespace Components {
          */
         "loading": boolean;
         /**
-          * Native button name — submitted with form data.
+          * Native button name - submitted with form data.
          */
         "name"?: string;
         /**
-          * Size tier — controls height and padding.
+          * Size tier - controls height and padding.
           * @default "md"
          */
         "size": ButtonSize;
         /**
-          * Link target — only meaningful when `href` is set.
+          * Link target - only meaningful when `href` is set.
          */
         "target"?: "_blank" | "_self" | "_parent" | "_top";
         /**
@@ -238,7 +240,7 @@ export namespace Components {
          */
         "type": ButtonType;
         /**
-          * Native button value — submitted with form data.
+          * Native button value - submitted with form data.
          */
         "value"?: string;
         /**
@@ -2896,9 +2898,11 @@ declare global {
      * --diwa-button-color       Foreground / text color
      * --diwa-button-radius      Border radius
      * --diwa-button-height      Height for md size
+     * --diwa-button-height-xs   Height for xs size
      * --diwa-button-height-sm   Height for sm size
      * --diwa-button-height-lg   Height for lg size
      * --diwa-button-padding-x   Horizontal padding for md/lg
+     * --diwa-button-padding-x-xs Horizontal padding for xs
      * --diwa-button-padding-x-sm Horizontal padding for sm
      * Usage:
      * <diwa-button variant="primary">Get Started</diwa-button>
@@ -4226,9 +4230,11 @@ declare namespace LocalJSX {
      * --diwa-button-color       Foreground / text color
      * --diwa-button-radius      Border radius
      * --diwa-button-height      Height for md size
+     * --diwa-button-height-xs   Height for xs size
      * --diwa-button-height-sm   Height for sm size
      * --diwa-button-height-lg   Height for lg size
      * --diwa-button-padding-x   Horizontal padding for md/lg
+     * --diwa-button-padding-x-xs Horizontal padding for xs
      * --diwa-button-padding-x-sm Horizontal padding for sm
      * Usage:
      * <diwa-button variant="primary">Get Started</diwa-button>
@@ -4242,7 +4248,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * When `true`, the default label slot is visually hidden so the button renders as a compact square (icon-only mode). The slot text is kept in the DOM for screen-reader accessible-name calculation.  For best accessibility, always pair with the `label` prop **or** ensure the default slot contains descriptive text, so the button has a name.  Usage:   <diwa-button hide-label label="Save">     <svg slot="icon-start">…</svg>   </diwa-button>
+          * When `true`, the default label slot is visually hidden so the button renders as a compact square (icon-only mode). The slot text is kept in the DOM for screen-reader accessible-name calculation.  For best accessibility, always pair with the `label` prop **or** ensure the default slot contains descriptive text, so the button has a name.  Usage:   <diwa-button hide-label label="Save">     <svg slot="icon-start">...</svg>   </diwa-button>
           * @default false
          */
         "hideLabel"?: boolean;
@@ -4251,7 +4257,7 @@ declare namespace LocalJSX {
          */
         "href"?: string;
         /**
-          * Lucide icon name in kebab-case (e.g. `"star"`, `"arrow-right"`), or `'none'` to show no icon. When set to any value other than `'none'`, renders a `<diwa-icon>` in the leading (icon-start) position.  The `icon-start` slot still works alongside this prop — the prop-rendered icon comes first, followed by any slotted content.
+          * Lucide icon name in kebab-case (e.g. `"star"`, `"arrow-right"`), or `'none'` to show no icon. When set to any value other than `'none'`, renders a `<diwa-icon>` in the leading (icon-start) position.  The `icon-start` slot still works alongside this prop - the prop-rendered icon comes first, followed by any slotted content.
           * @default 'none'
          */
         "icon"?: string;
@@ -4265,16 +4271,16 @@ declare namespace LocalJSX {
          */
         "loading"?: boolean;
         /**
-          * Native button name — submitted with form data.
+          * Native button name - submitted with form data.
          */
         "name"?: string;
         /**
-          * Size tier — controls height and padding.
+          * Size tier - controls height and padding.
           * @default "md"
          */
         "size"?: ButtonSize;
         /**
-          * Link target — only meaningful when `href` is set.
+          * Link target - only meaningful when `href` is set.
          */
         "target"?: "_blank" | "_self" | "_parent" | "_top";
         /**
@@ -4288,7 +4294,7 @@ declare namespace LocalJSX {
          */
         "type"?: ButtonType;
         /**
-          * Native button value — submitted with form data.
+          * Native button value - submitted with form data.
          */
         "value"?: string;
         /**
@@ -7566,9 +7572,11 @@ declare module "@stencil/core" {
              * --diwa-button-color       Foreground / text color
              * --diwa-button-radius      Border radius
              * --diwa-button-height      Height for md size
+             * --diwa-button-height-xs   Height for xs size
              * --diwa-button-height-sm   Height for sm size
              * --diwa-button-height-lg   Height for lg size
              * --diwa-button-padding-x   Horizontal padding for md/lg
+             * --diwa-button-padding-x-xs Horizontal padding for xs
              * --diwa-button-padding-x-sm Horizontal padding for sm
              * Usage:
              * <diwa-button variant="primary">Get Started</diwa-button>

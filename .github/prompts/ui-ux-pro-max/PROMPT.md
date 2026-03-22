@@ -210,6 +210,16 @@ python3 prompts/ui-ux-pro-max/scripts/search.py "fintech crypto" --design-system
 5. **Use stack flag** - Get implementation-specific best practices
 6. **Iterate** - If first search doesn't match, try different keywords
 
+## Control Height Lock rule
+
+Owner contract for control sizing:
+- Default `40px`, compact `32px` for:
+  - `diwa-input-date`, `diwa-input-email`, `diwa-input-month`, `diwa-input-number`, `diwa-input-password`, `diwa-input-search`, `diwa-input-tel`, `diwa-input-text`, `diwa-input-time`, `diwa-input-url`, `diwa-input-week`
+  - `diwa-select` trigger
+  - `diwa-switch` wrapper (switch + label row)
+  - `diwa-checkbox` wrapper (checkbox + label row)
+- Do not change these heights unless explicitly instructed by the owner.
+
 ---
 
 ## Common Rules for Professional UI

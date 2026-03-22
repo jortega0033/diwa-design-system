@@ -12,16 +12,23 @@ Prioritize stable component APIs, wrapper parity, and deterministic quality gate
 1. Treat `diwa-components/src/components/` as source of truth for component behavior.
 2. Keep wrapper packages (`diwa-components-react`, `diwa-components-vue`, `diwa-components-angular`) aligned with the core package. Do not introduce wrapper-only behavior unless explicitly requested.
 3. Preserve token-first styling with `--diwa-*` variables and existing design language.
-4. Preserve accessibility contracts: keyboard interaction, visible focus, semantic structure, and reduced-motion behavior.
-5. Run and report these root checks for meaningful UI/component changes:
+4. Control Height Lock (owner contract):
+   - Default `40px`, compact `32px` for:
+     - `diwa-input-date`, `diwa-input-email`, `diwa-input-month`, `diwa-input-number`, `diwa-input-password`, `diwa-input-search`, `diwa-input-tel`, `diwa-input-text`, `diwa-input-time`, `diwa-input-url`, `diwa-input-week`
+     - `diwa-select` trigger
+     - `diwa-switch` wrapper (switch + label row)
+     - `diwa-checkbox` wrapper (checkbox + label row)
+   - Do not change these heights unless explicitly instructed by the owner.
+5. Preserve accessibility contracts: keyboard interaction, visible focus, semantic structure, and reduced-motion behavior.
+6. Run and report these root checks for meaningful UI/component changes:
    - `npm run build`
    - `npm run test`
    - `npm run test:ux`
    - `npm run type-check`
    - `npm run build:storefront`
-6. Keep changes scoped. Avoid unrelated refactors.
-7. If touching docs/examples, keep code snippets and rendered behavior consistent.
-8. Do not commit local-only governance files listed in `CONTRIBUTING.md`:
+7. Keep changes scoped. Avoid unrelated refactors.
+8. If touching docs/examples, keep code snippets and rendered behavior consistent.
+9. Do not commit local-only governance files listed in `CONTRIBUTING.md`:
    - `diwa-components/prompts`
    - `diwa-components/issues`
    - `diwa-components/.codex/skills`

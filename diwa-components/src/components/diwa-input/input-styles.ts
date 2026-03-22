@@ -32,8 +32,8 @@ export const getInputCss = (
         : 'var(--diwa-text-secondary)';
 
   const inputHeight = compact
-    ? 'var(--diwa-touch-target-min-size-compact, 32px)'
-    : 'var(--diwa-input-height, var(--diwa-touch-target-min-size, 44px))';
+    ? 'var(--diwa-button-height-sm, 32px)'
+    : 'var(--diwa-button-height, var(--diwa-input-height, 40px))';
   const paddingLeft = hasStart ? '4px' : 'var(--diwa-input-padding-x, 12px)';
   const paddingRight = (hasEnd || hasSuffix) ? '4px' : 'var(--diwa-input-padding-x, 12px)';
 
@@ -86,7 +86,7 @@ export const getInputCss = (
     position: relative;
     display: flex;
     align-items: center;
-    height: ${inputHeight};
+    min-height: ${inputHeight};
     background: var(--diwa-input-bg, var(--diwa-bg-input));
     border: var(--diwa-border-width-thin) solid ${borderColor};
     border-radius: var(--diwa-input-radius, var(--diwa-radius-md));
@@ -194,7 +194,7 @@ export const getInputCss = (
     justify-content: center;
     flex-shrink: 0;
     height: 100%;
-    min-width: ${compact ? 'var(--diwa-touch-target-min-size-compact, 32px)' : 'var(--diwa-touch-target-min-size, 44px)'};
+    min-width: ${compact ? 'var(--diwa-button-height-sm, 32px)' : 'var(--diwa-button-height, 40px)'};
     padding: 0 var(--diwa-space-3);
     background: none;
     border: none;

@@ -417,6 +417,14 @@ describe('app.css — structural integrity', () => {
     expect(declares(appCss, '--diwa-button-radius')).toBe(true);
   });
 
+  test('button medium height token is 40px', () => {
+    expect(appCss).toContain('--diwa-button-height:        40px');
+  });
+
+  test('button small height token is 32px', () => {
+    expect(appCss).toContain('--diwa-button-height-sm:     32px');
+  });
+
   test('input and select option defaults use touch target baseline', () => {
     expect(appCss).toContain('--diwa-input-height:     var(--diwa-touch-target-min-size)');
     expect(appCss).toContain('--diwa-select-option-min-height:   var(--diwa-touch-target-min-size)');

@@ -46,6 +46,7 @@ export const getComponentCss = (
   .wrapper {
     display: inline-flex;
     align-items: center;
+    min-height: ${compact ? 'var(--diwa-button-height-sm, 32px)' : 'var(--diwa-button-height, 40px)'};
     gap: var(--diwa-space-3);
     cursor: pointer;
   }

@@ -41,7 +41,7 @@ export const getComponentCss = (
       flex-direction: ${flexDir};
       align-items: center;
       gap: var(--diwa-space-3);
-      min-height: ${compact ? 'var(--diwa-touch-target-min-size-compact, 32px)' : 'var(--diwa-touch-target-min-size, 44px)'};
+      min-height: ${compact ? 'var(--diwa-button-height-sm, 32px)' : 'var(--diwa-button-height, 40px)'};
       cursor: ${disabled || loading ? 'not-allowed' : 'pointer'};
       ${opacityRules}
     }

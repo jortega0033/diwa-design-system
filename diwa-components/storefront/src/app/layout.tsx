@@ -64,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
          *   localhost:3333/build/diwa-components.css  (globalStyle output)
          */}
         <link rel="stylesheet" href="/stencil/diwa-components.css" />
+        <link rel="preload" href="/stencil/diwa-components.esm.js" as="script" crossOrigin="anonymous" />
         {/* Organization JSON-LD for search engines */}
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: intentional JSON-LD insertion */}
         <script
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="/stencil/diwa-components.esm.js"
           type="module"
           strategy="beforeInteractive"
+          crossOrigin="anonymous"
         />
         <StorefrontThemeProvider>
           <SidebarProvider>

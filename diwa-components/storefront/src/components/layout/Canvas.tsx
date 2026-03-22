@@ -27,14 +27,14 @@ function GithubIcon() {
 }
 
 /**
- * Canvas — 3-panel layout shell.
+ * Canvas - 3-panel layout shell.
  *
- * ┌─────────────────────────────────────────────────────────────┐
- * │  Header  (logo · nav toggle · GitHub · theme picker)        │
- * ├──────────────┬──────────────────────────┬──────────────────┤
- * │ sidebar-start│ main                     │ sidebar-end      │
- * │ (nav)        │ (page content)           │ (configurator)   │
- * └──────────────┴──────────────────────────┴──────────────────┘
+ * +-------------------------------------------------------------+
+ * |  Header  (logo - nav toggle - GitHub - theme picker)        |
+ * +--------------+--------------------------+------------------+
+ * | sidebar-start| main                     | sidebar-end      |
+ * | (nav)        | (page content)           | (configurator)   |
+ * +--------------+--------------------------+------------------+
  *
  * sidebar-end contains a `<div id="diwa-sidebar-end">` that
  * ConfiguratorControls portals its prop panel into.
@@ -51,7 +51,7 @@ export function Canvas({ children }: { children: ReactNode }) {
 
   return (
     <div className="h-screen flex flex-col bg-[var(--diwa-bg-base)] text-[var(--diwa-text-primary)]">
-      {/* ── Header ──────────────────────────────────────────────── */}
+      {/* -- Header ------------------------------------------------ */}
       <header className="h-16 shrink-0 z-50 flex items-center justify-between px-4 border-b border-[var(--diwa-border)] bg-[var(--diwa-bg-base)]">
         <div className="flex items-center gap-3">
           <button
@@ -88,7 +88,7 @@ export function Canvas({ children }: { children: ReactNode }) {
 
           {/* GitHub link */}
           <a
-            href="https://github.com"
+            href="https://github.com/jortega0033/diwa-design-system"
             target="_blank"
             rel="noreferrer"
             className="p-1.5 rounded hover:bg-[var(--diwa-bg-hover)] text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)] transition-colors"
@@ -99,7 +99,7 @@ export function Canvas({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      {/* ── Body ────────────────────────────────────────────────── */}
+      {/* -- Body -------------------------------------------------- */}
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar start */}
         {isSidebarStartOpen && (
@@ -115,10 +115,10 @@ export function Canvas({ children }: { children: ReactNode }) {
           </div>
         </main>
 
-        {/* Sidebar end — visible only on configurator pages */}
+        {/* Sidebar end - visible only on configurator pages */}
         {isSidebarEndOpen && (
           <aside className="w-72 shrink-0 border-l border-[var(--diwa-border)] overflow-y-auto bg-[var(--diwa-bg-base)] flex flex-col">
-            {/* Portal target — ConfiguratorControls renders here via createPortal */}
+            {/* Portal target - ConfiguratorControls renders here via createPortal */}
             <div id="diwa-sidebar-end" className="flex-1 overflow-y-auto" />
           </aside>
         )}

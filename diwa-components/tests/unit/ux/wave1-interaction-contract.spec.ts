@@ -9,16 +9,16 @@ import { getComponentCss as getTabsCss } from '../../../src/components/diwa-tabs
 import { getComponentCss as getTabsBarCss } from '../../../src/components/diwa-tabs-bar/diwa-tabs-bar-styles';
 
 describe('wave1 interaction contract', () => {
-  it('input family uses touch-target token and hover guard', () => {
+  it('input family follows control-height lock and hover guard', () => {
     const css = getInputCss('none', false, false, false, false, false, false);
-    expect(css).toContain('var(--diwa-touch-target-min-size, 44px)');
+    expect(css).toContain('var(--diwa-button-height, var(--diwa-input-height, 40px))');
     expect(css).toContain('@media (hover: hover) and (pointer: fine)');
     expect(css).toContain('.suffix-btn:focus-visible');
   });
 
-  it('switch has minimum hit target and pointer-capable hover guard', () => {
+  it('switch wrapper follows control-height lock and hover guard', () => {
     const css = getSwitchCss(false, false, false, 'end', false);
-    expect(css).toContain('min-height: var(--diwa-touch-target-min-size, 44px)');
+    expect(css).toContain('min-height: var(--diwa-button-height, 40px)');
     expect(css).toContain('@media (hover: hover) and (pointer: fine)');
   });
 
@@ -29,11 +29,11 @@ describe('wave1 interaction contract', () => {
     expect(css).toContain('.close');
   });
 
-  it('select and multi-select use 44px target baseline and guarded hover', () => {
+  it('select follows control-height lock while multi-select keeps touch-target baseline', () => {
     const selectCss = getSelectCss(false, false, 'none', false, false);
     const multiCss = getMultiSelectCss(false, false, 'none', false, false);
 
-    expect(selectCss).toContain('var(--diwa-touch-target-min-size, 44px)');
+    expect(selectCss).toContain('var(--diwa-button-height, var(--diwa-input-height, 40px))');
     expect(selectCss).toContain('@media (hover: hover) and (pointer: fine)');
     expect(selectCss).toContain('.filter__input:focus-visible');
 

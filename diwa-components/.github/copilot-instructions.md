@@ -41,6 +41,16 @@ Legacy compatibility commands in `diwa-components` are allowed, but root workspa
 
 Never hardcode design values for component styles or docs. Always use semantic `--diwa-*` CSS variables.
 
+## Control height lock
+
+Owner contract for control sizing:
+- Default `40px`, compact `32px` for:
+  - `diwa-input-date`, `diwa-input-email`, `diwa-input-month`, `diwa-input-number`, `diwa-input-password`, `diwa-input-search`, `diwa-input-tel`, `diwa-input-text`, `diwa-input-time`, `diwa-input-url`, `diwa-input-week`
+  - `diwa-select` trigger
+  - `diwa-switch` wrapper (switch + label row)
+  - `diwa-checkbox` wrapper (checkbox + label row)
+- Do not change these heights unless explicitly instructed by the owner.
+
 ## Component registration rule
 
 When adding `diwa-<name>`, update both:

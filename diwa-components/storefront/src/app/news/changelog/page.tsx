@@ -19,6 +19,42 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.3.3',
+    date: 'March 22, 2026',
+    summary: 'Control-height contract lock release for form controls and governance enforcement.',
+    added: [
+      'New control-height validator gate: `agency:validate:control-heights` to enforce locked sizing and governance language.',
+      'Control-height contract tests covering input/select/switch/checkbox default and compact sizing mappings.',
+    ],
+    changed: [
+      'Locked control heights to match button rhythm: default 40px, compact 32px for input family, select trigger, switch wrapper, and checkbox wrapper.',
+      'Governance and AI instruction surfaces updated with explicit owner-locked control-height policy.',
+      'Bumped packages: @diwacopilot/components, components-react, components-vue, components-angular to 1.3.3.',
+      'Home hero version badge updated to v1.3.3.',
+    ],
+    fixed: [
+      'Resolved cross-control height inconsistency where form controls did not align with the default button sizing rhythm.',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
+    version: '1.3.2',
+    date: 'March 22, 2026',
+    summary: 'Design-system patch: added xs button size and improved xs icon visibility.',
+    added: [
+      'diwa-button: added `xs` size (24px height).',
+    ],
+    changed: [
+      'Increased icon size for `xs` buttons from 12px to 14px.',
+      'Storefront configurator updated to expose `xs` so size control renders as a select dropdown.',
+      'Bumped packages: @diwacopilot/components, components-react, components-vue, components-angular to 1.3.2.',
+    ],
+    fixed: [],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '1.3.1',
     date: 'March 21, 2026',
     summary: 'Content accuracy and governance consistency release for storefront docs and help flows.',

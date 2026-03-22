@@ -36,7 +36,7 @@ export const buttonStory: Story<'diwa-button'> = {
   },
 };
 
-/** Variants showcase — one static story per variant. */
+/** Variants showcase - one static story per variant. */
 export const buttonStoryPrimary: Story<'diwa-button'> = {
   state: { properties: { variant: 'primary' } },
   generator: ({ properties } = {}) => [
@@ -74,6 +74,7 @@ export const buttonStoryLoading: Story<'diwa-button'> = {
 
 export const buttonStorySizes: Story<'diwa-button'> = {
   generator: () => [
+    { tag: 'diwa-button' as const, properties: { size: 'xs' }, children: ['X Small'] },
     { tag: 'diwa-button' as const, properties: { size: 'sm' }, children: ['Small'] },
     { tag: 'diwa-button' as const, properties: { size: 'md' }, children: ['Medium'] },
     { tag: 'diwa-button' as const, properties: { size: 'lg' }, children: ['Large'] },
@@ -111,7 +112,7 @@ export const buttonPropDefinitions: PropDefinition[] = [
   {
     name: 'size',
     type: 'select',
-    options: ['sm', 'md', 'lg'],
+    options: ['xs', 'sm', 'md', 'lg'],
     defaultValue: 'md',
     group: 'Appearance',
     description: 'Controls padding and font size.',

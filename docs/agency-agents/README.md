@@ -53,3 +53,13 @@ node scripts/install-agency-curated.cjs --tool codex --skill-root "C:\\Users\\Ge
 ## Recommendation
 
 Start with `cursor` or `aider` for day-to-day component work, then enable the others only if your team actively uses them.
+
+## Validation gate
+
+Run this hard governance check in addition to build/tests:
+
+```bash
+npm run agency:validate:control-heights
+```
+
+It enforces the owner control-height lock (`40px` default / `32px` compact) for listed input variants, select trigger, switch wrapper, and checkbox wrapper.

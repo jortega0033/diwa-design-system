@@ -69,7 +69,7 @@ export const getComponentCss = (
     display: flex;
     align-items: center;
     width: 100%;
-    min-height: var(--diwa-input-height, var(--diwa-touch-target-min-size, 44px));
+    min-height: var(--diwa-button-height, var(--diwa-input-height, 40px));
     padding: 0 var(--diwa-space-3);
     box-sizing: border-box;
     gap: var(--diwa-space-2);
@@ -221,7 +221,7 @@ export const getComponentCss = (
   /* â”€â”€ Compact â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
   :host([compact]) .trigger {
-    min-height: var(--diwa-touch-target-min-size-compact, 32px);
+    min-height: var(--diwa-button-height-sm, 32px);
     font-size: var(--diwa-font-size-md);
     padding: 0 var(--diwa-space-2);
   }

@@ -7,7 +7,7 @@
  * via a <style innerHTML={...}> element in render(). This follows the shared
  * Diwa component styling architecture used across web components.
  *
- * All colour values use CSS custom properties (--diwa-*) — raw values are never
+ * All colour values use CSS custom properties (--diwa-*) - raw values are never
  * hardcoded. This means theming is entirely handled by the token cascade: when the
  * host element carries data-theme="light", the [data-theme="light"] overrides
  * defined in app.css cascade into the Shadow DOM via custom property inheritance.
@@ -23,10 +23,10 @@ import { getFocusStyle, getReducedMotionStyle } from '../../utils/styles';
 /**
  * Generates scoped CSS for the <diwa-button> shadow tree.
  *
- * @param _variant  — current ButtonVariant (reserved for conditional CSS)
- * @param _size     — current ButtonSize    (reserved for conditional CSS)
- * @param _disabled — disabled state        (reserved for conditional CSS)
- * @param _loading  — loading state         (reserved for conditional CSS)
+ * @param _variant  - current ButtonVariant (reserved for conditional CSS)
+ * @param _size     - current ButtonSize    (reserved for conditional CSS)
+ * @param _disabled - disabled state        (reserved for conditional CSS)
+ * @param _loading  - loading state         (reserved for conditional CSS)
  */
 export const getComponentCss = (
   _variant: ButtonVariant,
@@ -34,7 +34,7 @@ export const getComponentCss = (
   _disabled: boolean,
   _loading: boolean,
 ): string => `
-  /* ── Host ──────────────────────────────────────────────────────────── */
+  /* -- Host ------------------------------------------------------------ */
 
   :host {
     display: inline-flex;
@@ -47,7 +47,7 @@ export const getComponentCss = (
     display: none;
   }
 
-  /* ── Inner element (the real <button> or <a> in Shadow DOM) ─────────── */
+  /* -- Inner element (the real <button> or <a> in Shadow DOM) ----------- */
 
   .inner {
     /* Layout */
@@ -86,11 +86,11 @@ export const getComponentCss = (
     -webkit-appearance: none;
   }
 
-  /* ── Focus ring ─────────────────────────────────────────────────────── */
+  /* -- Focus ring ------------------------------------------------------- */
 
   ${getFocusStyle('.inner')}
 
-  /* ── Variant: primary ───────────────────────────────────────────────── */
+  /* -- Variant: primary ------------------------------------------------- */
 
   :host([variant="primary"]) .inner {
     background-color: var(--diwa-button-bg, var(--diwa-accent));
@@ -107,7 +107,7 @@ export const getComponentCss = (
     transform: translateY(1px);
   }
 
-  /* ── Variant: secondary ─────────────────────────────────────────────── */
+  /* -- Variant: secondary ----------------------------------------------- */
 
   :host([variant="secondary"]) .inner {
     background-color: transparent;
@@ -125,7 +125,7 @@ export const getComponentCss = (
     transform: translateY(1px);
   }
 
-  /* ── Variant: ghost ─────────────────────────────────────────────────── */
+  /* -- Variant: ghost --------------------------------------------------- */
 
   :host([variant="ghost"]) .inner {
     background-color: transparent;
@@ -143,7 +143,7 @@ export const getComponentCss = (
     transform: translateY(1px);
   }
 
-  /* ── Variant: danger ────────────────────────────────────────────────── */
+  /* -- Variant: danger -------------------------------------------------- */
 
   :host([variant="danger"]) .inner {
     background-color: var(--diwa-danger);
@@ -160,7 +160,7 @@ export const getComponentCss = (
     transform: translateY(1px);
   }
 
-  /* ── Size: sm ───────────────────────────────────────────────────────── */
+  /* -- Size: sm --------------------------------------------------------- */
 
   :host([size="sm"]) .inner {
     height: var(--diwa-button-height-sm, 32px);
@@ -168,7 +168,15 @@ export const getComponentCss = (
     font-size: var(--diwa-font-size-md);
   }
 
-  /* ── Size: lg ───────────────────────────────────────────────────────── */
+  /* -- Size: xs --------------------------------------------------------- */
+
+  :host([size="xs"]) .inner {
+    height: var(--diwa-button-height-xs, 24px);
+    padding: 0 var(--diwa-button-padding-x-xs, 8px);
+    font-size: var(--diwa-font-size-sm);
+  }
+
+  /* -- Size: lg --------------------------------------------------------- */
 
   :host([size="lg"]) .inner {
     height: var(--diwa-button-height-lg, 44px);
@@ -176,7 +184,7 @@ export const getComponentCss = (
     font-size: var(--diwa-font-size-lg);
   }
 
-  /* ── State: disabled ────────────────────────────────────────────────── */
+  /* -- State: disabled -------------------------------------------------- */
 
   :host([disabled]) .inner,
   .inner:disabled {
@@ -185,14 +193,14 @@ export const getComponentCss = (
     pointer-events: none;
   }
 
-  /* ── State: loading ─────────────────────────────────────────────────── */
+  /* -- State: loading --------------------------------------------------- */
 
   :host([loading]) .inner {
     cursor: wait;
     pointer-events: none;
   }
 
-  /* ── Spinner ────────────────────────────────────────────────────────── */
+  /* -- Spinner ---------------------------------------------------------- */
 
   .spinner {
     width: var(--diwa-spinner-size-sm);
@@ -208,7 +216,7 @@ export const getComponentCss = (
     to { transform: rotate(360deg); }
   }
 
-  /* ── Icon slots ─────────────────────────────────────────────────────── */
+  /* -- Icon slots ------------------------------------------------------- */
 
   .icon-start,
   .icon-end {
@@ -217,7 +225,7 @@ export const getComponentCss = (
     line-height: 0;
   }
 
-  /* ── Label: visually hidden (sr-only / icon-only mode) ──────────────── */
+  /* -- Label: visually hidden (sr-only / icon-only mode) ---------------- */
 
   .label--hidden {
     border: 0;
@@ -231,7 +239,7 @@ export const getComponentCss = (
     width: 1px;
   }
 
-  /* ── Icon-only mode ─────────────────────────────────────────────────── */
+  /* -- Icon-only mode --------------------------------------------------- */
 
   :host([hide-label]) .inner {
     width: var(--diwa-button-height, 40px);
@@ -246,7 +254,11 @@ export const getComponentCss = (
     width: var(--diwa-button-height-lg, 44px);
   }
 
-  /* ── Reduced motion ─────────────────────────────────────────────────── */
+    :host([hide-label][size="xs"]) .inner {
+      width: var(--diwa-button-height-xs, 24px);
+    }
+
+  /* -- Reduced motion --------------------------------------------------- */
 
   ${getReducedMotionStyle('.inner', '.label', '.spinner')}
 `;
