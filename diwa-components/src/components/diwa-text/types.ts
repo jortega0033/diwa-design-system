@@ -18,4 +18,4 @@ export type TextAlign = 'start' | 'center' | 'end';
  * Text colour alias.
  * `inherit` — passes through the surrounding text colour unchanged.
  */
-export type TextColor = 'primary' | 'secondary' | 'tertiary' | 'inherit';
+export type TextColor = 'primary' | 'accent' | 'secondary' | 'tertiary' | 'inherit';

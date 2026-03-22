@@ -80,13 +80,13 @@ export const linkStoryCompact: Story<'diwa-link'> = {
 };
 
 export const linkPropDefinitions: PropDefinition[] = [
-  { name: 'label', type: 'string', defaultValue: 'Some label' },
-  { name: 'variant', type: 'select', options: ['primary', 'secondary', 'ghost', 'danger'], defaultValue: 'primary' },
-  { name: 'icon', type: 'select', options: ['none', ...ICON_NAMES], defaultValue: 'none' },
-  { name: 'href', type: 'string', defaultValue: '#' },
-  { name: 'target', type: 'select', options: ['_self', '_blank', '_parent', '_top'], defaultValue: '_self' },
-  { name: 'hideLabel', type: 'boolean', defaultValue: false },
-  { name: 'compact', type: 'boolean', defaultValue: false },
-  { name: 'disabled', type: 'boolean', defaultValue: false },
-  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark' },
+  { name: 'label', type: 'string', defaultValue: 'Some label', description: 'Text content of the link' },
+  { name: 'variant', type: 'select', options: ['primary', 'secondary', 'ghost', 'danger'], defaultValue: 'primary', description: 'Visual style variant' },
+  { name: 'icon', type: 'select', options: ['none', ...ICON_NAMES], defaultValue: 'none', description: 'Optional leading icon' },
+  { name: 'href', type: 'string', defaultValue: '#', description: 'URL the link navigates to' },
+  { name: 'target', type: 'select', options: ['_self', '_blank', '_parent', '_top'], defaultValue: '_self', description: 'Anchor target for navigation' },
+  { name: 'hideLabel', type: 'boolean', defaultValue: false, description: 'Hide visible label while keeping it accessible' },
+  { name: 'compact', type: 'boolean', defaultValue: false, description: 'Use compact spacing for inline layout' },
+  { name: 'disabled', type: 'boolean', defaultValue: false, description: 'Disable interaction and apply muted styling' },
+  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark', description: 'Visual theme for the preview' },
 ];

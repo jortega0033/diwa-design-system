@@ -1,5 +1,5 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
-import type { LinkPureSize, LinkPureAlignLabel, LinkTarget } from "./types";
+import type { LinkPureSize, LinkPureAlignLabel, LinkTarget, LinkPureColor } from "./types";
 import type { Theme } from "../../utils/styles";
 import { getComponentCss } from "./diwa-link-pure-styles";
 
@@ -56,6 +56,9 @@ export class DiwaLinkPure {
   /** Text size tier — also scales the icon. */
   @Prop({ reflect: true }) size: LinkPureSize = "md";
 
+  /** Foreground colour alias for text and icon. Reflected as `[color]` for CSS selectors. */
+  @Prop({ reflect: true }) color: LinkPureColor = 'primary';
+
   /**
    * Controls label position relative to the icon.
    * "end" (default): [icon] [label]
@@ -93,7 +96,7 @@ export class DiwaLinkPure {
         <Tag class="root" {...anchorProps} part="base">
           {hasIcon && (
             <span class="icon" aria-hidden="true">
-              <diwa-icon name={this.icon} size={iconSize} />
+              <diwa-icon name={this.icon} size={iconSize} color={'currentColor'} />
             </span>
           )}
           <span

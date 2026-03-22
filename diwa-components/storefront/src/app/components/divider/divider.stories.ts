@@ -29,11 +29,13 @@ export const dividerPropDefinitions: PropDefinition[] = [
     type: 'select',
     options: ['horizontal', 'vertical'],
     defaultValue: 'horizontal',
+    description: 'Divider orientation; vertical is useful between inline elements',
   },
   {
     name: 'theme',
     type: 'select',
     options: ['dark', 'light'],
     defaultValue: 'dark',
+    description: 'Visual theme affecting divider colour and contrast',
   },
 ];

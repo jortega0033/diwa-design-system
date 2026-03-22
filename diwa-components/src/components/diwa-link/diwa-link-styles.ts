@@ -129,6 +129,30 @@ export const getComponentCss = (): string => `
     font-size: var(--diwa-font-size-md);
   }
 
+  /* ── Size: sm ───────────────────────────────────────────────────────── */
+
+  :host([size="sm"]) .inner {
+    height: var(--diwa-button-height-sm, 32px);
+    padding: 0 var(--diwa-button-padding-x-sm, 10px);
+    font-size: var(--diwa-font-size-md);
+  }
+
+  /* ── Size: xs ───────────────────────────────────────────────────────── */
+
+  :host([size="xs"]) .inner {
+    height: var(--diwa-button-height-xs, 24px);
+    padding: 0 var(--diwa-button-padding-x-xs, 8px);
+    font-size: var(--diwa-font-size-sm);
+  }
+
+  /* ── Size: lg ───────────────────────────────────────────────────────── */
+
+  :host([size="lg"]) .inner {
+    height: var(--diwa-button-height-lg, 44px);
+    padding: 0 var(--diwa-space-10);
+    font-size: var(--diwa-font-size-lg);
+  }
+
   /* ── State: disabled ────────────────────────────────────────────────── */
 
   :host([disabled]) .inner {
@@ -169,6 +193,18 @@ export const getComponentCss = (): string => `
 
   :host([hide-label][compact]) .inner {
     width: var(--diwa-button-height-sm, 32px);
+  }
+
+  :host([hide-label][size="sm"]) .inner {
+    width: var(--diwa-button-height-sm, 32px);
+  }
+
+  :host([hide-label][size="lg"]) .inner {
+    width: var(--diwa-button-height-lg, 44px);
+  }
+
+  :host([hide-label][size="xs"]) .inner {
+    width: var(--diwa-button-height-xs, 24px);
   }
 
   /* ── Span (no href) — not interactive ───────────────────────────────── */

@@ -29,5 +29,6 @@ export const toastPropDefinitions: PropDefinition[] = [
     type: 'select',
     options: ['dark', 'light'],
     defaultValue: 'dark',
+    description: 'Preview theme used for the toast (dark or light)',
   },
 ];

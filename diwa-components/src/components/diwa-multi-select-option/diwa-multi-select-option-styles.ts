@@ -24,7 +24,7 @@ export const getComponentCss = (compact: boolean): string => {
     align-items: center;
     gap: var(--diwa-space-3);
     padding: var(--diwa-space-2) var(--diwa-space-3);
-    min-height: ${compact ? 'var(--diwa-touch-target-min-size-compact, 32px)' : 'var(--diwa-select-option-min-height, var(--diwa-touch-target-min-size, 44px))'};
+    min-height: ${compact ? 'var(--diwa-button-height-sm, 32px)' : 'var(--diwa-button-height, var(--diwa-select-option-min-height, 40px))'};
     box-sizing: border-box;
     cursor: pointer;
     user-select: none;

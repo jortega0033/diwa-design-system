@@ -1,5 +1,5 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
-import type { LinkVariant, LinkTarget } from "./types";
+import type { LinkVariant, LinkTarget, LinkSize } from "./types";
 import type { Theme } from "../../utils/styles";
 import { getComponentCss } from "./diwa-link-styles";
 
@@ -47,8 +47,11 @@ export class DiwaLink {
   /** Hides the label visually (icon-only mode). Keep slot text for screen readers. */
   @Prop({ reflect: true }) hideLabel: boolean = false;
 
-  /** Compact (smaller) size variant. */
+  /** Compact (smaller) size variant. Kept for backward compatibility. */
   @Prop({ reflect: true }) compact: boolean = false;
+
+  /** Size variant: xs | sm | md | lg. If omitted, `compact` maps to `sm`. */
+  @Prop({ reflect: true }) size?: LinkSize;
 
   /** Accessible aria-label override — useful for icon-only links. */
   @Prop() label?: string;
@@ -60,7 +63,9 @@ export class DiwaLink {
     const isAnchor = !!this.href;
     const Tag = isAnchor ? ("a" as any) : ("span" as any);
     const hasIcon = this.icon !== "none";
-    const iconSize = this.compact ? 16 : 20;
+    const resolvedSize = this.size ?? (this.compact ? 'sm' : 'md');
+    const iconSizeMap: Record<string, number> = { xs: 14, sm: 16, md: 20, lg: 24 };
+    const iconSize = iconSizeMap[resolvedSize] ?? 20;
 
     const anchorProps = isAnchor
       ? {

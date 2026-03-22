@@ -43,10 +43,12 @@ export const spinnerPropDefinitions: PropDefinition[] = [
     type: 'select',
     options: ['sm', 'md', 'lg'],
     defaultValue: 'md',
+    description: 'Spinner visual size (small, medium, large)',
   },
   {
     name: 'label',
     type: 'string',
     defaultValue: 'Loading',
+    description: 'Accessible label describing the loading action',
   },
 ];

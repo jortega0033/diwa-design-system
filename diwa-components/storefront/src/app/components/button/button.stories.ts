@@ -123,6 +123,7 @@ export const buttonPropDefinitions: PropDefinition[] = [
     options: ['dark', 'light'],
     defaultValue: 'dark',
     group: 'Appearance',
+    description: 'Visual theme for the example preview and button surface',
   },
   {
     name: 'type',
@@ -144,6 +145,7 @@ export const buttonPropDefinitions: PropDefinition[] = [
     type: 'boolean',
     defaultValue: false,
     group: 'State',
+    description: 'Disable the button and prevent interaction',
   },
   {
     name: 'loading',

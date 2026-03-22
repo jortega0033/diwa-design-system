@@ -9,6 +9,7 @@ export const linkPureStory: Story<'diwa-link-pure'> = {
       href: '#',
       theme: 'dark',
       size: 'md',
+      color: 'primary',
       icon: 'arrow-right',
       alignLabel: 'end',
       underline: false,
@@ -63,19 +64,21 @@ export const linkPureStoryIconOnly: Story<'diwa-link-pure'> = {
 };
 
 export const linkPurePropDefinitions: PropDefinition[] = [
-  { name: 'label', type: 'string', defaultValue: 'Some label' },
-  { name: 'href', type: 'string', defaultValue: '#' },
+  { name: 'label', type: 'string', defaultValue: 'Some label', description: 'Text content of the link' },
+  { name: 'href', type: 'string', defaultValue: '#', description: 'URL the link navigates to' },
   {
     name: 'icon',
     type: 'select',
     options: ['none', ...ICON_NAMES],
     defaultValue: 'arrow-right',
+    description: 'Optional leading icon name; `none` hides the icon',
   },
-  { name: 'size', type: 'select', options: ['sm', 'md', 'lg'], defaultValue: 'md' },
-  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark' },
-  { name: 'alignLabel', type: 'select', options: ['end', 'start'], defaultValue: 'end' },
-  { name: 'underline', type: 'boolean', defaultValue: false },
-  { name: 'active', type: 'boolean', defaultValue: false },
-  { name: 'hideLabel', type: 'boolean', defaultValue: false },
-  { name: 'stretch', type: 'boolean', defaultValue: false },
+  { name: 'size', type: 'select', options: ['sm', 'md', 'lg'], defaultValue: 'md', description: 'Visual size/density' },
+  { name: 'color', type: 'select', options: ['primary', 'secondary', 'accent', 'danger', 'inherit'], defaultValue: 'primary', description: 'Foreground color alias for the control' },
+  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark', description: 'Preview theme/background' },
+  { name: 'alignLabel', type: 'select', options: ['end', 'start'], defaultValue: 'end', description: 'Position of label relative to icon' },
+  { name: 'underline', type: 'boolean', defaultValue: false, description: 'Show underline under the label' },
+  { name: 'active', type: 'boolean', defaultValue: false, description: 'Visual active/selected state' },
+  { name: 'hideLabel', type: 'boolean', defaultValue: false, description: 'Hide label visually (accessible label remains)' },
+  { name: 'stretch', type: 'boolean', defaultValue: false, description: 'Allow link to stretch to container width' },
 ];

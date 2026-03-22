@@ -186,6 +186,28 @@ export const getInputCss = (
     cursor: pointer;
   }
 
+    /* Remove WebKit inner separators / inner borders for date/time/month/week
+      These pseudo-elements render internal fragments (day/month/year, hour/minute)
+      which can draw thin horizontal separators in some browsers. Clear their
+      background/border/box-shadow to remove the extra lines while keeping the
+      outer .input-wrapper border intact. */
+  input.input::-webkit-datetime-edit,
+  input.input::-webkit-datetime-edit-fields-wrapper,
+  input.input::-webkit-datetime-edit-text,
+  input.input::-webkit-datetime-edit-month-field,
+  input.input::-webkit-datetime-edit-day-field,
+  input.input::-webkit-datetime-edit-year-field,
+  input.input::-webkit-datetime-edit-hour-field,
+  input.input::-webkit-datetime-edit-minute-field,
+  input.input::-webkit-datetime-edit-second-field {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: inherit !important;
+  }
+
   /* ── Suffix button (password toggle / search clear) ─────────────────── */
 
   .suffix-btn {

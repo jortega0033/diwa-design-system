@@ -82,6 +82,7 @@ export const selectPropDefinitions: PropDefinition[] = [
     type: 'string',
     defaultValue: 'Favourite fruit',
     group: 'Content',
+    description: 'Main visible label for the select control',
   },
   {
     name: 'description',
@@ -95,18 +96,21 @@ export const selectPropDefinitions: PropDefinition[] = [
     type: 'string',
     defaultValue: 'fruit',
     group: 'Content',
+    description: 'Form field name used when submitting the value',
   },
   {
     name: 'disabled',
     type: 'boolean',
     defaultValue: false,
     group: 'State',
+    description: 'Disable interaction and visually dim the control',
   },
   {
     name: 'required',
     type: 'boolean',
     defaultValue: false,
     group: 'State',
+    description: 'Marks the field as required for form validation',
   },
   {
     name: 'state',
@@ -128,6 +132,7 @@ export const selectPropDefinitions: PropDefinition[] = [
     type: 'boolean',
     defaultValue: false,
     group: 'Appearance',
+    description: 'Use a more compact visual density',
   },
   {
     name: 'hide-label',
@@ -142,6 +147,7 @@ export const selectPropDefinitions: PropDefinition[] = [
     options: ['auto', 'down', 'up'],
     defaultValue: 'auto',
     group: 'Behavior',
+    description: 'Preferred dropdown opening direction',
   },
   {
     name: 'theme',
@@ -149,5 +155,6 @@ export const selectPropDefinitions: PropDefinition[] = [
     options: ['dark', 'light'],
     defaultValue: 'dark',
     group: 'Appearance',
+    description: 'Visual theme variant for the control',
   },
 ];

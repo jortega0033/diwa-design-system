@@ -43,16 +43,16 @@ export const inputEmailStory: Story<'diwa-input-email'> = {
 };
 
 export const inputEmailPropDefinitions: PropDefinition[] = [
-  { name: 'label', type: 'string', defaultValue: 'Email address' },
-  { name: 'placeholder', type: 'string', defaultValue: 'you@example.com' },
-  { name: 'description', type: 'string', defaultValue: '' },
-  { name: 'message', type: 'string', defaultValue: '' },
-  { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none' },
-  { name: 'value', type: 'string', defaultValue: '' },
-  { name: 'disabled', type: 'boolean', defaultValue: false },
-  { name: 'required', type: 'boolean', defaultValue: false },
-  { name: 'readonly', type: 'boolean', defaultValue: false },
-  { name: 'hideLabel', type: 'boolean', defaultValue: false },
-  { name: 'compact', type: 'boolean', defaultValue: false },
-  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark' },
+  { name: 'label', type: 'string', defaultValue: 'Email address', description: 'Label text for the input control.' },
+  { name: 'placeholder', type: 'string', defaultValue: 'you@example.com', description: 'Placeholder text shown when the control is empty.' },
+  { name: 'description', type: 'string', defaultValue: '', description: 'Supporting descriptive text displayed below the control.' },
+  { name: 'message', type: 'string', defaultValue: '', description: 'Inline validation or helper message text.' },
+  { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none', description: "Visual status of the control (e.g., 'error' or 'success')." },
+  { name: 'value', type: 'string', defaultValue: '', description: 'Current value of the input.' },
+  { name: 'disabled', type: 'boolean', defaultValue: false, description: 'Disables interaction and applies the disabled styling.' },
+  { name: 'required', type: 'boolean', defaultValue: false, description: 'Marks the field as required for form submission.' },
+  { name: 'readonly', type: 'boolean', defaultValue: false, description: "Makes the control read-only; value cannot be edited." },
+  { name: 'hideLabel', type: 'boolean', defaultValue: false, description: 'Visually hides the label while keeping it available to assistive tech.' },
+  { name: 'compact', type: 'boolean', defaultValue: false, description: 'Enable compact spacing for dense layouts.' },
+  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark', description: 'Theme variant used for rendering (dark or light).' },
 ];

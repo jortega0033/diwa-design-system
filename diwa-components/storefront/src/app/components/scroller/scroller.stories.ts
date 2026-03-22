@@ -181,12 +181,14 @@ export const scrollerPropDefinitions: PropDefinition[] = [
     name: 'scrollbar',
     type: 'boolean',
     defaultValue: false,
+    description: 'Show a scroll indicator/scrollbar inside the scroller',
   },
   {
     name: 'alignScrollIndicator',
     type: 'select',
     options: ['top', 'center', 'bottom'],
     defaultValue: 'center',
+    description: 'Vertical alignment of the scroll indicator inside the scroller',
   },
 ];
 

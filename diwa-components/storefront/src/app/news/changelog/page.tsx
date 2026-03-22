@@ -19,6 +19,22 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.3.4',
+    date: 'March 22, 2026',
+    summary: 'Patch release: input style fix and test robustness improvements.',
+    added: [],
+    changed: [
+      'Bumped @diwacopilot/components package to 1.3.4 (patch).',
+      'Centralized shared input shadow-DOM styles to better handle WebKit inner fragments.',
+    ],
+    fixed: [
+      'Fixed an issue in shared input styles that could break template literal parsing in some build/test contexts.',
+      'Removed redundant test mock clearing in toast specs so runtime spies attach reliably; restored full test pass.',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '1.3.3',
     date: 'March 22, 2026',
     summary: 'Control-height contract lock release for form controls and governance enforcement.',

@@ -20,7 +20,7 @@ export const getComponentCss = (): string => `
     align-items: center;
     gap: var(--diwa-space-3);
     padding: var(--diwa-space-2) var(--diwa-space-3);
-    min-height: var(--diwa-select-option-min-height);
+    min-height: var(--diwa-button-height, var(--diwa-select-option-min-height, 40px));
     box-sizing: border-box;
     cursor: pointer;
     user-select: none;

@@ -87,14 +87,14 @@ export declare interface DiwaButton extends Components.DiwaButton {}
 
 
 @ProxyCmp({
-  inputs: ['active', 'alignLabel', 'disabled', 'hideLabel', 'href', 'icon', 'label', 'loading', 'name', 'size', 'stretch', 'target', 'theme', 'type', 'underline', 'value']
+  inputs: ['active', 'alignLabel', 'color', 'disabled', 'hideLabel', 'href', 'icon', 'label', 'loading', 'name', 'size', 'stretch', 'target', 'theme', 'type', 'underline', 'value']
 })
 @Component({
   selector: 'diwa-button-pure',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'alignLabel', 'disabled', 'hideLabel', 'href', 'icon', 'label', 'loading', 'name', 'size', 'stretch', 'target', 'theme', 'type', 'underline', 'value'],
+  inputs: ['active', 'alignLabel', 'color', 'disabled', 'hideLabel', 'href', 'icon', 'label', 'loading', 'name', 'size', 'stretch', 'target', 'theme', 'type', 'underline', 'value'],
 })
 export class DiwaButtonPure {
   protected el: HTMLElement;
@@ -672,14 +672,14 @@ export declare interface DiwaInputWeek extends Components.DiwaInputWeek {
 
 
 @ProxyCmp({
-  inputs: ['compact', 'disabled', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'target', 'theme', 'variant']
+  inputs: ['compact', 'disabled', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'target', 'theme', 'variant']
 })
 @Component({
   selector: 'diwa-link',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['compact', 'disabled', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'target', 'theme', 'variant'],
+  inputs: ['compact', 'disabled', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'target', 'theme', 'variant'],
 })
 export class DiwaLink {
   protected el: HTMLElement;
@@ -694,14 +694,14 @@ export declare interface DiwaLink extends Components.DiwaLink {}
 
 
 @ProxyCmp({
-  inputs: ['active', 'alignLabel', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'stretch', 'target', 'theme', 'underline']
+  inputs: ['active', 'alignLabel', 'color', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'stretch', 'target', 'theme', 'underline']
 })
 @Component({
   selector: 'diwa-link-pure',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'alignLabel', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'stretch', 'target', 'theme', 'underline'],
+  inputs: ['active', 'alignLabel', 'color', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'stretch', 'target', 'theme', 'underline'],
 })
 export class DiwaLinkPure {
   protected el: HTMLElement;

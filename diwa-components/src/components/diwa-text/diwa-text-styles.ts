@@ -18,6 +18,7 @@ const FONT_WEIGHT: Record<TextWeight, string> = {
 const COLOR: Record<TextColor, string> = {
   primary:   'var(--diwa-text-primary)',
   secondary: 'var(--diwa-text-secondary)',
+  accent:    'var(--diwa-accent)',
   tertiary:  'var(--diwa-text-tertiary)',
   inherit:   'inherit',
 };

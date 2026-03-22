@@ -26,10 +26,12 @@ export const popoverPropDefinitions: PropDefinition[] = [
     type: 'select',
     options: ['top', 'bottom', 'start', 'end'],
     defaultValue: 'bottom',
+    description: 'Preferred popover placement relative to the trigger',
   },
   {
     name: 'description',
     type: 'string',
     defaultValue: 'This is a helpful explanation that provides additional context.',
+    description: 'Body text displayed inside the popover',
   },
 ];

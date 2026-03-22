@@ -48,11 +48,11 @@ export const radioGroupStory: Story<'diwa-radio-group'> = {
 };
 
 export const radioGroupPropDefinitions: PropDefinition[] = [
-  { name: 'label', type: 'string', defaultValue: 'Pick a size' },
-  { name: 'value', type: 'string', defaultValue: 'm' },
-  { name: 'direction', type: 'select', options: ['column', 'row'], defaultValue: 'column' },
-  { name: 'compact', type: 'boolean', defaultValue: false },
-  { name: 'required', type: 'boolean', defaultValue: false },
-  { name: 'disabled', type: 'boolean', defaultValue: false },
-  { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none' },
+  { name: 'label', type: 'string', defaultValue: 'Pick a size', description: 'Visible label describing the radio group' },
+  { name: 'value', type: 'string', defaultValue: 'm', description: 'Currently selected value' },
+  { name: 'direction', type: 'select', options: ['column', 'row'], defaultValue: 'column', description: 'Layout direction of the radio items' },
+  { name: 'compact', type: 'boolean', defaultValue: false, description: 'Use compact spacing between items' },
+  { name: 'required', type: 'boolean', defaultValue: false, description: 'Marks the group as required for form validation' },
+  { name: 'disabled', type: 'boolean', defaultValue: false, description: 'Disable all radio items' },
+  { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none', description: 'Visual validation state for the control' },
 ];

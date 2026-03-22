@@ -159,7 +159,7 @@ function AccordionSection({
 /* ── Individual Controls ─────────────────────────────────────────────────── */
 
 const INPUT_CLASS =
-  'w-full min-h-[var(--diwa-touch-target-min-size)] rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-sm px-3 py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]';
+  'w-full min-h-[var(--diwa-button-height)] rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-sm px-3 py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]';
 
 function PropControl({
   def,
@@ -436,7 +436,7 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               placeholder="Filter props…"
-              className="w-full h-8 rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-xs pl-8 pr-3 placeholder:text-[var(--diwa-text-tertiary)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
+              className="w-full h-[var(--diwa-button-height)] rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-xs pl-8 pr-3 placeholder:text-[var(--diwa-text-tertiary)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
             />
           </div>
         )}

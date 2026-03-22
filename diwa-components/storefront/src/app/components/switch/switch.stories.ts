@@ -37,26 +37,31 @@ export const switchPropDefinitions: PropDefinition[] = [
     name: 'checked',
     type: 'boolean',
     defaultValue: false,
+    description: 'Whether the switch is on (true) or off (false)',
   },
   {
     name: 'disabled',
     type: 'boolean',
     defaultValue: false,
+    description: 'Disable interaction and show a muted style',
   },
   {
     name: 'loading',
     type: 'boolean',
     defaultValue: false,
+    description: 'Show a loading indicator and prevent interaction',
   },
   {
     name: 'alignLabel',
     type: 'select',
     options: ['start', 'end'],
     defaultValue: 'end',
+    description: 'Position of the label relative to the control',
   },
   {
     name: 'compact',
     type: 'boolean',
     defaultValue: false,
+    description: 'Use tighter spacing for compact layouts',
   },
 ];

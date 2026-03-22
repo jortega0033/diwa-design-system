@@ -39,15 +39,15 @@ export const textareaStory: Story<'diwa-textarea'> = {
 };
 
 export const textareaPropDefinitions: PropDefinition[] = [
-  { name: 'label', type: 'string', defaultValue: 'Message' },
-  { name: 'description', type: 'string', defaultValue: 'Describe your request in detail.' },
-  { name: 'placeholder', type: 'string', defaultValue: 'Enter your message here...' },
-  { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none' },
-  { name: 'message', type: 'string', defaultValue: '' },
-  { name: 'required', type: 'boolean', defaultValue: false },
-  { name: 'disabled', type: 'boolean', defaultValue: false },
-  { name: 'readOnly', type: 'boolean', defaultValue: false },
-  { name: 'resize', type: 'select', options: ['none', 'both', 'vertical', 'horizontal'], defaultValue: 'vertical' },
-  { name: 'rows', type: 'number', defaultValue: 4 },
-  { name: 'compact', type: 'boolean', defaultValue: false },
+  { name: 'label', type: 'string', defaultValue: 'Message', description: 'Label text for the textarea control.' },
+  { name: 'description', type: 'string', defaultValue: 'Describe your request in detail.', description: 'Supporting descriptive text displayed below the control.' },
+  { name: 'placeholder', type: 'string', defaultValue: 'Enter your message here...', description: 'Placeholder text shown when the control is empty.' },
+  { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none', description: "Visual status of the control (e.g., 'error' or 'success')." },
+  { name: 'message', type: 'string', defaultValue: '', description: 'Inline validation or helper message text.' },
+  { name: 'required', type: 'boolean', defaultValue: false, description: 'Marks the field as required for form submission.' },
+  { name: 'disabled', type: 'boolean', defaultValue: false, description: 'Disables interaction and applies the disabled styling.' },
+  { name: 'readOnly', type: 'boolean', defaultValue: false, description: "Makes the control read-only; value cannot be edited." },
+  { name: 'resize', type: 'select', options: ['none', 'both', 'vertical', 'horizontal'], defaultValue: 'vertical', description: 'Controls whether the textarea can be resized by the user.' },
+  { name: 'rows', type: 'number', defaultValue: 4, description: 'Initial number of visible text rows.' },
+  { name: 'compact', type: 'boolean', defaultValue: false, description: 'Enable compact spacing for dense layouts.' },
 ];

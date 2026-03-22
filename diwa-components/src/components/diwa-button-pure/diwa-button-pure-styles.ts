@@ -177,4 +177,11 @@ export const getComponentCss = (
   /* ── Reduced motion ─────────────────────────────────────────────────── */
 
   ${getReducedMotionStyle('.root', '.spinner')}
+  
+  /* ── Colour aliases (foreground only) ───────────────────────────────── */
+  :host([color="primary"]) .root { color: var(--diwa-text-primary); }
+  :host([color="secondary"]) .root { color: var(--diwa-text-secondary); }
+  :host([color="accent"]) .root { color: var(--diwa-accent); }
+  :host([color="danger"]) .root { color: var(--diwa-notification-error); }
+  :host([color="inherit"]) .root { color: inherit; }
 `;

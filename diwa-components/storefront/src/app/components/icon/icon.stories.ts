@@ -154,12 +154,14 @@ export const iconPropDefinitions: PropDefinition[] = [
     type: 'select',
     options: ICON_NAMES,
     defaultValue: 'star',
+    description: 'The icon name to render from the curated set',
   },
   {
     name: 'size',
     type: 'select',
     options: ['16', '20', '24', '32', '48'],
     defaultValue: '24',
+    description: 'Icon size in pixels',
   },
   {
     name: 'color',
@@ -179,16 +181,19 @@ export const iconPropDefinitions: PropDefinition[] = [
       'var(--diwa-notification-info)',
     ],
     defaultValue: 'currentColor',
+    description: 'CSS color or token; `currentColor` inherits the surrounding text color',
   },
   {
     name: 'label',
     type: 'string',
     defaultValue: '',
+    description: 'Accessible label for semantic icons; leave empty for decorative icons',
   },
   {
     name: 'theme',
     type: 'select',
     options: ['dark', 'light'],
     defaultValue: 'dark',
+    description: 'Visual theme for icon display (affects example background)',
   },
 ];

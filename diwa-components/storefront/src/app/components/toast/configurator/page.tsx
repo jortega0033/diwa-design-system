@@ -80,7 +80,7 @@ export class AppComponent {
                 key={state}
                 type="button"
                 onClick={() => trigger(text, state)}
-                className="px-4 py-2 min-h-[var(--diwa-touch-target-min-size)] rounded text-xs font-medium bg-[var(--diwa-bg-elevated)] text-[var(--diwa-text-primary)] border border-[var(--diwa-border)] hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
+                className="px-4 py-2 min-h-[var(--diwa-button-height)] rounded text-xs font-medium bg-[var(--diwa-bg-elevated)] text-[var(--diwa-text-primary)] border border-[var(--diwa-border)] hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
               >
                 {label}
               </button>

@@ -65,17 +65,20 @@ export const flyoutPropDefinitions: PropDefinition[] = [
     name: 'heading',
     type: 'string',
     defaultValue: 'Flyout title',
+    description: 'Title shown at the top of the flyout',
   },
   {
     name: 'position',
     type: 'select',
     options: ['end', 'start'],
     defaultValue: 'end',
+    description: 'Attachment side for the flyout relative to the trigger',
   },
   {
     name: 'theme',
     type: 'select',
     options: ['dark', 'light'],
     defaultValue: 'dark',
+    description: 'Visual theme for flyout surface and controls',
   },
 ];

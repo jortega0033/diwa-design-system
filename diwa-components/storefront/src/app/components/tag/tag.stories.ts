@@ -34,16 +34,19 @@ export const tagPropDefinitions: PropDefinition[] = [
     type: 'select',
     options: ['neutral', 'primary', 'info', 'success', 'warning', 'error'],
     defaultValue: 'neutral',
+    description: 'Visual variant/semantic color of the tag',
   },
   {
     name: 'compact',
     type: 'boolean',
     defaultValue: false,
+    description: 'Use a smaller, compact appearance',
   },
   {
     name: 'icon',
     type: 'select',
     options: ['none', ...ICON_NAMES],
     defaultValue: 'none',
+    description: 'Optional leading icon name (omit for no icon)',
   },
 ];

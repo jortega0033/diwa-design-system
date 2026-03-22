@@ -40,7 +40,7 @@ export const segmentedControlStory: Story<'diwa-segmented-control'> = {
 };
 
 export const segmentedControlPropDefinitions: PropDefinition[] = [
-  { name: 'value', type: 'string', defaultValue: 'week' },
-  { name: 'disabled', type: 'boolean', defaultValue: false },
-  { name: 'compact', type: 'boolean', defaultValue: false },
+  { name: 'value', type: 'string', defaultValue: 'week', description: 'Currently selected value' },
+  { name: 'disabled', type: 'boolean', defaultValue: false, description: 'Disable the entire control' },
+  { name: 'compact', type: 'boolean', defaultValue: false, description: 'Use compact spacing for items' },
 ];

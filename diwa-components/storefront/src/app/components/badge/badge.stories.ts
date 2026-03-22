@@ -25,8 +25,8 @@ export const badgeStory: Story<'diwa-badge'> = {
 };
 
 export const badgePropDefinitions: PropDefinition[] = [
-  { name: 'variant', type: 'select', options: ['neutral', 'accent', 'success', 'warning', 'danger'], defaultValue: 'neutral' },
-  { name: 'size', type: 'select', options: ['sm', 'md'], defaultValue: 'md' },
-  { name: 'label', type: 'string', defaultValue: '' },
-  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark' },
+  { name: 'variant', type: 'select', options: ['neutral', 'accent', 'success', 'warning', 'danger'], defaultValue: 'neutral', description: 'Semantic visual variant for the badge' },
+  { name: 'size', type: 'select', options: ['sm', 'md'], defaultValue: 'md', description: 'Badge size / density' },
+  { name: 'label', type: 'string', defaultValue: '', description: 'Optional text displayed inside the badge' },
+  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark', description: 'Visual theme for the badge' },
 ];

@@ -26,5 +26,6 @@ export const textListPropDefinitions: PropDefinition[] = [
     type: 'select',
     options: ['unordered', 'ordered', 'inline'],
     defaultValue: 'unordered',
+    description: 'List rendering style: unordered, ordered, or inline',
   },
 ];

@@ -48,31 +48,37 @@ export const inlineNotificationPropDefinitions: PropDefinition[] = [
     type: 'select',
     options: ['info', 'success', 'warning', 'error'],
     defaultValue: 'info',
+    description: 'Semantic state which controls icon and colour',
   },
   {
     name: 'heading',
     type: 'string',
     defaultValue: 'Some heading',
+    description: 'Primary heading text for the notification',
   },
   {
     name: 'description',
     type: 'string',
     defaultValue: 'Some description.',
+    description: 'Supporting description text for the notification',
   },
   {
     name: 'dismissButton',
     type: 'boolean',
     defaultValue: true,
+    description: 'Show a dismiss/close button on the notification',
   },
   {
     name: 'actionLabel',
     type: 'string',
     defaultValue: '',
+    description: 'Optional label for an action button; leave empty to omit',
   },
   {
     name: 'theme',
     type: 'select',
     options: ['dark', 'light'],
     defaultValue: 'dark',
+    description: 'Visual theme for the notification (affects background and contrast)',
   },
 ];

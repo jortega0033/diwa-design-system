@@ -39,7 +39,7 @@ export const getComponentCss = (): string => `
     display: flex;
     align-items: center;
     gap: var(--diwa-space-2);
-    min-height: var(--diwa-input-height, var(--diwa-touch-target-min-size, 44px));
+    min-height: var(--diwa-button-height, var(--diwa-input-height, 40px));
     padding: 0 var(--diwa-input-padding-x, 12px);
     background-color: var(--diwa-input-bg, var(--diwa-bg-input));
     border: var(--diwa-border-width-base) solid var(--diwa-input-border, var(--diwa-border-light));

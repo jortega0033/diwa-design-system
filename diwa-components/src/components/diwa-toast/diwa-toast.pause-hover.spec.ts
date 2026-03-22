@@ -1,23 +1,25 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { DiwaToast } from './diwa-toast';
-import { toastManager } from './diwa-toast-manager';
 
-vi.mock('./diwa-toast-manager', () => ({
-  toastManager: {
-    register: vi.fn(),
-    unregister: vi.fn(),
-    addMessage: vi.fn(),
-    dismiss: vi.fn(),
-    getCurrent: vi.fn().mockReturnValue(null),
-  },
-}));
+let DiwaToast: any;
+let toastManager: any;
+
+// Use spies on the real toastManager to allow assertions while preserving
+// existing module load order in the test environment.
 
 describe('diwa-toast — connect / disconnect lifecycle', () => {
   let toast: DiwaToast;
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    toastManager = (await import('./diwa-toast-manager')).toastManager;
+    DiwaToast = (await import('./diwa-toast')).DiwaToast;
+    // Spy on manager methods so expectations like toHaveBeenCalled work
+    vi.spyOn(toastManager, 'addMessage');
+    vi.spyOn(toastManager, 'register');
+    vi.spyOn(toastManager, 'unregister');
+    vi.spyOn(toastManager, 'dismiss');
+    vi.spyOn(toastManager, 'getCurrent').mockReturnValue(null);
     toast = new DiwaToast();
-    vi.clearAllMocks();
+      // keep spies intact for assertions; clear handled in afterEach
   });
 
   afterEach(() => {

@@ -35,13 +35,13 @@ export const pinCodeStory: Story<'diwa-pin-code'> = {
 };
 
 export const pinCodePropDefinitions: PropDefinition[] = [
-  { name: 'label', type: 'string', defaultValue: 'Verification code' },
-  { name: 'description', type: 'string', defaultValue: 'Enter the 6-digit code sent to your email.' },
-  { name: 'length', type: 'number', defaultValue: 6 },
-  { name: 'type', type: 'select', options: ['number', 'password'], defaultValue: 'number' },
-  { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none' },
-  { name: 'message', type: 'string', defaultValue: '' },
-  { name: 'required', type: 'boolean', defaultValue: false },
-  { name: 'disabled', type: 'boolean', defaultValue: false },
-  { name: 'compact', type: 'boolean', defaultValue: false },
+  { name: 'label', type: 'string', defaultValue: 'Verification code', description: 'Visible label for the PIN input' },
+  { name: 'description', type: 'string', defaultValue: 'Enter the 6-digit code sent to your email.', description: 'Helper text shown below the control' },
+  { name: 'length', type: 'number', defaultValue: 6, description: 'Number of input boxes / digits expected' },
+  { name: 'type', type: 'select', options: ['number', 'password'], defaultValue: 'number', description: 'Input type for each digit (number or password)' },
+  { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none', description: 'Validation state of the control' },
+  { name: 'message', type: 'string', defaultValue: '', description: 'Validation or helper message text' },
+  { name: 'required', type: 'boolean', defaultValue: false, description: 'Mark the field as required for form validation' },
+  { name: 'disabled', type: 'boolean', defaultValue: false, description: 'Disable interaction and show disabled styling' },
+  { name: 'compact', type: 'boolean', defaultValue: false, description: 'Use compact spacing for denser layouts' },
 ];

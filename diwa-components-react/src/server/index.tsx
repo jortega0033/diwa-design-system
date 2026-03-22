@@ -78,7 +78,7 @@ export type TextTag = 'p' | 'span' | 'div' | 'label' | 'li';
 export type TextSize = 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | 'xx-large';
 export type TextWeight = 'regular' | 'semibold' | 'bold';
 export type TextAlign = 'start' | 'center' | 'end';
-export type TextColor = 'primary' | 'secondary' | 'tertiary' | 'inherit';
+export type TextColor = 'primary' | 'accent' | 'secondary' | 'tertiary' | 'inherit';
 
 export interface DTextProps {
   tag?: TextTag;

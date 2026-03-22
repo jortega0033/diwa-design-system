@@ -34,9 +34,9 @@ export const paginationStory: Story<'diwa-pagination'> = {
 };
 
 export const paginationPropDefinitions: PropDefinition[] = [
-  { name: 'total-items-count', type: 'number', defaultValue: 500 },
-  { name: 'items-per-page', type: 'number', defaultValue: 25 },
-  { name: 'active-page', type: 'number', defaultValue: 1 },
-  { name: 'show-last-page', type: 'boolean', defaultValue: true },
-  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark' },
+  { name: 'total-items-count', type: 'number', defaultValue: 500, description: 'Total number of items across all pages' },
+  { name: 'items-per-page', type: 'number', defaultValue: 25, description: 'Number of items displayed per page' },
+  { name: 'active-page', type: 'number', defaultValue: 1, description: 'Currently active page (1-based)' },
+  { name: 'show-last-page', type: 'boolean', defaultValue: true, description: 'Show a quick link to jump to the last page' },
+  { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark', description: 'Visual theme for the pagination control' },
 ];

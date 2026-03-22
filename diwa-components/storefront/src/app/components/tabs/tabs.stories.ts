@@ -37,5 +37,5 @@ export const tabsStory: Story<'diwa-tabs'> = {
 };
 
 export const tabsPropDefinitions: PropDefinition[] = [
-  { name: 'activeTabIndex', type: 'number', defaultValue: 0 },
+  { name: 'activeTabIndex', type: 'number', defaultValue: 0, description: 'Zero-based index of the active tab' },
 ];

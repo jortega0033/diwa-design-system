@@ -41,5 +41,5 @@ export const stepperHorizontalStory: Story<'diwa-stepper-horizontal'> = {
 };
 
 export const stepperHorizontalPropDefinitions: PropDefinition[] = [
-  { name: 'activeStepIndex', type: 'number', defaultValue: 1 },
+  { name: 'activeStepIndex', type: 'number', defaultValue: 1, description: 'Zero-based index of the currently active step' },
 ];

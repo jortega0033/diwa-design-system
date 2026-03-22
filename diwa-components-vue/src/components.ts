@@ -51,6 +51,7 @@ export const DiwaButtonPure = /*@__PURE__*/ defineContainer<JSX.DiwaButtonPure>(
   'disabled',
   'loading',
   'hideLabel',
+  'color',
   'active',
   'underline',
   'alignLabel',
@@ -420,6 +421,7 @@ export const DiwaLink = /*@__PURE__*/ defineContainer<JSX.DiwaLink>('diwa-link',
   'icon',
   'hideLabel',
   'compact',
+  'size',
   'label',
   'disabled'
 ]);
@@ -436,6 +438,7 @@ export const DiwaLinkPure = /*@__PURE__*/ defineContainer<JSX.DiwaLinkPure>('diw
   'active',
   'underline',
   'size',
+  'color',
   'alignLabel',
   'stretch',
   'label'

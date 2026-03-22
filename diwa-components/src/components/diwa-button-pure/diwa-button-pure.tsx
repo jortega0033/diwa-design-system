@@ -1,5 +1,5 @@
 import { Component, Element, Host, Prop, h } from "@stencil/core";
-import type { ButtonPureSize, ButtonPureAlignLabel, ButtonPureType } from "./types";
+import type { ButtonPureSize, ButtonPureAlignLabel, ButtonPureType, ButtonPureColor } from "./types";
 import type { Theme } from "../../utils/styles";
 import { getComponentCss } from "./diwa-button-pure-styles";
 import { getButtonPureAriaAttributes } from "./diwa-button-pure-utils";
@@ -58,6 +58,9 @@ export class DiwaButtonPure {
    * Always pair with the `label` prop for screen-reader accessible name.
    */
   @Prop({ reflect: true }) hideLabel: boolean = false;
+
+  /** Foreground colour alias for text and icon. Reflected as `[color]` for CSS selectors. */
+  @Prop({ reflect: true }) color: ButtonPureColor = 'primary';
 
   /** Forces the button into its active/pressed visual state. */
   @Prop({ reflect: true }) active: boolean = false;
@@ -181,7 +184,7 @@ export class DiwaButtonPure {
           ) : (
             hasIcon && (
               <span class="icon" aria-hidden="true">
-                <diwa-icon name={this.icon} size={this.iconSize} />
+                <diwa-icon name={this.icon} size={this.iconSize} color={'currentColor'} />
               </span>
             )
           )}

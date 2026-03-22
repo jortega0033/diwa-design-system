@@ -9,15 +9,15 @@ import { Theme } from "./utils/styles";
 import { AccordionHeadingTag } from "./components/diwa-accordion/types";
 import { BadgeSize, BadgeVariant } from "./components/diwa-badge/types";
 import { ButtonSize, ButtonType, ButtonVariant } from "./components/diwa-button/types";
-import { ButtonPureAlignLabel, ButtonPureSize, ButtonPureType } from "./components/diwa-button-pure/types";
+import { ButtonPureAlignLabel, ButtonPureColor, ButtonPureSize, ButtonPureType } from "./components/diwa-button-pure/types";
 import { CheckboxState } from "./components/diwa-checkbox/types";
 import { DividerOrientation } from "./components/diwa-divider/types";
 import { FlyoutBackdrop, FlyoutPosition } from "./components/diwa-flyout/types";
 import { HeadingAlign, HeadingColor, HeadingSize, HeadingTag, HeadingWeight } from "./components/diwa-heading/types";
 import { InlineNotificationState } from "./components/diwa-inline-notification/types";
 import { InputFieldState, InputState, InputType } from "./components/diwa-input/types";
-import { LinkTarget, LinkVariant } from "./components/diwa-link/types";
-import { LinkPureAlignLabel, LinkPureSize, LinkTarget as LinkTarget1 } from "./components/diwa-link-pure/types";
+import { LinkSize, LinkTarget, LinkVariant } from "./components/diwa-link/types";
+import { LinkPureAlignLabel, LinkPureColor, LinkPureSize, LinkTarget as LinkTarget1 } from "./components/diwa-link-pure/types";
 import { ModalBackdrop } from "./components/diwa-modal/types";
 import { MultiSelectChangeEventDetail, MultiSelectDropdownDirection, MultiSelectState, MultiSelectTheme, MultiSelectToggleEventDetail } from "./components/diwa-multi-select/types";
 import { PaginationIntl, PaginationUpdateEventDetail } from "./components/diwa-pagination/types";
@@ -45,15 +45,15 @@ export { Theme } from "./utils/styles";
 export { AccordionHeadingTag } from "./components/diwa-accordion/types";
 export { BadgeSize, BadgeVariant } from "./components/diwa-badge/types";
 export { ButtonSize, ButtonType, ButtonVariant } from "./components/diwa-button/types";
-export { ButtonPureAlignLabel, ButtonPureSize, ButtonPureType } from "./components/diwa-button-pure/types";
+export { ButtonPureAlignLabel, ButtonPureColor, ButtonPureSize, ButtonPureType } from "./components/diwa-button-pure/types";
 export { CheckboxState } from "./components/diwa-checkbox/types";
 export { DividerOrientation } from "./components/diwa-divider/types";
 export { FlyoutBackdrop, FlyoutPosition } from "./components/diwa-flyout/types";
 export { HeadingAlign, HeadingColor, HeadingSize, HeadingTag, HeadingWeight } from "./components/diwa-heading/types";
 export { InlineNotificationState } from "./components/diwa-inline-notification/types";
 export { InputFieldState, InputState, InputType } from "./components/diwa-input/types";
-export { LinkTarget, LinkVariant } from "./components/diwa-link/types";
-export { LinkPureAlignLabel, LinkPureSize, LinkTarget as LinkTarget1 } from "./components/diwa-link-pure/types";
+export { LinkSize, LinkTarget, LinkVariant } from "./components/diwa-link/types";
+export { LinkPureAlignLabel, LinkPureColor, LinkPureSize, LinkTarget as LinkTarget1 } from "./components/diwa-link-pure/types";
 export { ModalBackdrop } from "./components/diwa-modal/types";
 export { MultiSelectChangeEventDetail, MultiSelectDropdownDirection, MultiSelectState, MultiSelectTheme, MultiSelectToggleEventDetail } from "./components/diwa-multi-select/types";
 export { PaginationIntl, PaginationUpdateEventDetail } from "./components/diwa-pagination/types";
@@ -272,6 +272,11 @@ export namespace Components {
           * @default "end"
          */
         "alignLabel": ButtonPureAlignLabel;
+        /**
+          * Foreground colour alias for text and icon. Reflected as `[color]` for CSS selectors.
+          * @default 'primary'
+         */
+        "color": ButtonPureColor;
         /**
           * Disabled state. Blocks all pointer and keyboard interaction.
           * @default false
@@ -1393,7 +1398,7 @@ export namespace Components {
      */
     interface DiwaLink {
         /**
-          * Compact (smaller) size variant.
+          * Compact (smaller) size variant. Kept for backward compatibility.
           * @default false
          */
         "compact": boolean;
@@ -1428,6 +1433,10 @@ export namespace Components {
           * Relationship between the current document and the linked resource.
          */
         "rel"?: string;
+        /**
+          * Size variant: xs | sm | md | lg. If omitted, `compact` maps to `sm`.
+         */
+        "size"?: LinkSize;
         /**
           * Target attribute — where to open the linked URL.
           * @default "_self"
@@ -1464,6 +1473,11 @@ export namespace Components {
           * @default "end"
          */
         "alignLabel": LinkPureAlignLabel;
+        /**
+          * Foreground colour alias for text and icon. Reflected as `[color]` for CSS selectors.
+          * @default 'primary'
+         */
+        "color": LinkPureColor;
         /**
           * Native download attribute for triggering file downloads.
          */
@@ -4327,6 +4341,11 @@ declare namespace LocalJSX {
          */
         "alignLabel"?: ButtonPureAlignLabel;
         /**
+          * Foreground colour alias for text and icon. Reflected as `[color]` for CSS selectors.
+          * @default 'primary'
+         */
+        "color"?: ButtonPureColor;
+        /**
           * Disabled state. Blocks all pointer and keyboard interaction.
           * @default false
          */
@@ -5523,7 +5542,7 @@ declare namespace LocalJSX {
      */
     interface DiwaLink {
         /**
-          * Compact (smaller) size variant.
+          * Compact (smaller) size variant. Kept for backward compatibility.
           * @default false
          */
         "compact"?: boolean;
@@ -5558,6 +5577,10 @@ declare namespace LocalJSX {
           * Relationship between the current document and the linked resource.
          */
         "rel"?: string;
+        /**
+          * Size variant: xs | sm | md | lg. If omitted, `compact` maps to `sm`.
+         */
+        "size"?: LinkSize;
         /**
           * Target attribute — where to open the linked URL.
           * @default "_self"
@@ -5594,6 +5617,11 @@ declare namespace LocalJSX {
           * @default "end"
          */
         "alignLabel"?: LinkPureAlignLabel;
+        /**
+          * Foreground colour alias for text and icon. Reflected as `[color]` for CSS selectors.
+          * @default 'primary'
+         */
+        "color"?: LinkPureColor;
         /**
           * Native download attribute for triggering file downloads.
          */
@@ -6926,6 +6954,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "loading": boolean;
         "hideLabel": boolean;
+        "color": ButtonPureColor;
         "active": boolean;
         "underline": boolean;
         "alignLabel": ButtonPureAlignLabel;
@@ -7205,6 +7234,7 @@ declare namespace LocalJSX {
         "icon": string;
         "hideLabel": boolean;
         "compact": boolean;
+        "size": LinkSize;
         "label": string;
         "disabled": boolean;
     }
@@ -7219,6 +7249,7 @@ declare namespace LocalJSX {
         "active": boolean;
         "underline": boolean;
         "size": LinkPureSize;
+        "color": LinkPureColor;
         "alignLabel": LinkPureAlignLabel;
         "stretch": boolean;
         "label": string;
