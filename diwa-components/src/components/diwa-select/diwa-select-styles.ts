@@ -57,7 +57,7 @@ export const getComponentCss = (
 
   .description {
     display: block;
-    margin-bottom: var(--diwa-space-2);
+    margin-top: var(--diwa-space-2);
     font-size: var(--diwa-font-size-sm);
     color: var(--diwa-text-secondary);
     line-height: var(--diwa-line-height-normal);

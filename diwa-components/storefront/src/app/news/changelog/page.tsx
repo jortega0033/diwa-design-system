@@ -19,6 +19,23 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.3.6',
+    date: 'March 23, 2026',
+    summary: 'Patch release: form-field description placement and select behavior stability improvements.',
+    added: [],
+    changed: [
+      'Bumped packages: @diwacopilot/components, components-react, components-vue, components-angular to 1.3.6.',
+      'Updated the home hero version badge to v1.3.6 for storefront/version parity.',
+      'Aligned select and multi-select description spacing so description text is rendered below the control with top spacing.',
+    ],
+    fixed: [
+      'Fixed layout misalignment in grid forms by rendering `description` below the interactive field in select-like controls.',
+      'Fixed select option label refresh timing after slot updates so preselected values display reliably.',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '1.3.5',
     date: 'March 23, 2026',
     summary: 'Patch release: synchronized package versions and storefront release metadata for npm and hosting publish.',

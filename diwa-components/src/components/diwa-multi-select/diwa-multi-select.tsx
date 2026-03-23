@@ -461,13 +461,6 @@ export class DiwaMultiSelect {
           </span>
         )}
 
-        {/* Description */}
-        {(this.description || this.host.querySelector('[slot="description"]')) && (
-          <span class="description" part="description">
-            <slot name="description">{this.description}</slot>
-          </span>
-        )}
-
         {/* Trigger — combobox div; avoids nesting <button> inside <button> */}
         <div
           class="trigger"
@@ -568,6 +561,13 @@ export class DiwaMultiSelect {
             <slot onSlotchange={() => this.onSlotChange()} />
           </div>
         </div>
+
+        {/* Description — rendered below trigger to avoid grid misalignment */}
+        {(this.description || this.host.querySelector('[slot="description"]')) && (
+          <span class="description" part="description">
+            <slot name="description">{this.description}</slot>
+          </span>
+        )}
 
         {/* Message */}
         {hasMessage && (

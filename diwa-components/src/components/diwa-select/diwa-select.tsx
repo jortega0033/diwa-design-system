@@ -222,6 +222,11 @@ export class DiwaSelect {
     this.syncSelectionFromValue();
     this.syncChildThemes();
     this.syncChildCompact();
+    // Force a re-render of this host so the trigger display label (selectedLabel)
+    // is recomputed with the freshly-collected options. Without this, if React sets
+    // the `value` prop before slotchange fires (options not yet collected), the
+    // component renders with an empty label and never updates when options arrive.
+    forceUpdate(this.host);
   }
 
   // ──────────────────────────────────────────────────────────────
@@ -423,13 +428,6 @@ export class DiwaSelect {
           </span>
         )}
 
-        {/* Description */}
-        {(this.description || this.host.querySelector('[slot="description"]')) && (
-          <span class="description" part="description">
-            <slot name="description">{this.description}</slot>
-          </span>
-        )}
-
         {/* Trigger */}
         <div
           class="trigger"
@@ -489,6 +487,13 @@ export class DiwaSelect {
             <slot />
           </div>
         </div>
+
+        {/* Description — rendered below trigger to avoid grid misalignment */}
+        {(this.description || this.host.querySelector('[slot="description"]')) && (
+          <span class="description" part="description">
+            <slot name="description">{this.description}</slot>
+          </span>
+        )}
 
         {/* Message */}
         {hasMessage && (

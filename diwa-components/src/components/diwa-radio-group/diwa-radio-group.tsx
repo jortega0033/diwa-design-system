@@ -118,14 +118,15 @@ export class DiwaRadioGroup {
               {this.required && <span class="label-required" aria-hidden="true"> *</span>}
             </span>
           )}
+          <div class="options">
+            <slot />
+          </div>
+          {/* Description — rendered below options to avoid grid misalignment */}
           {this.description && (
             <span id={descId} class="description">
               {this.description}
             </span>
           )}
-          <div class="options">
-            <slot />
-          </div>
           <span id={msgId} class="message" hidden={!msgId}>
             {this.message}
           </span>

@@ -63,6 +63,7 @@ export const getComponentCss = (
     font-size: var(--diwa-font-size-sm);
     color: var(--diwa-text-secondary);
     line-height: 1.4;
+    margin-bottom: var(--diwa-space-1);
   }
 
   .options {
