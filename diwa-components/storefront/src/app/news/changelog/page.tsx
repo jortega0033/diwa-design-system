@@ -19,6 +19,19 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.3.5',
+    date: 'March 23, 2026',
+    summary: 'Patch release: synchronized package versions and storefront release metadata for npm and hosting publish.',
+    added: [],
+    changed: [
+      'Bumped packages: @diwacopilot/components, components-react, components-vue, components-angular to 1.3.5.',
+      'Updated the home hero version badge to v1.3.5 for storefront/version parity.',
+    ],
+    fixed: [],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '1.3.4',
     date: 'March 22, 2026',
     summary: 'Patch release: input style fix and test robustness improvements.',
