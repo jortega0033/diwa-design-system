@@ -1,12 +1,12 @@
 {
   "projects": {
-    "default": "diwa-copilot-ai-fd65d"
+    "default": "diwa-ai-copilot"
   },
   "targets": {
-    "diwa-copilot-ai-fd65d": {
+    "diwa-ai-copilot": {
       "hosting": {
         "designDocs": [
-        "design-diwa-ai-copilot-ai-fd65d"
+          "design-diwa-ai-copilot"
         ]
       }
     }
