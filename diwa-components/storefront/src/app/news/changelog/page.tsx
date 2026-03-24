@@ -19,13 +19,24 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.3.7',
+    date: 'March 24, 2026',
+    summary: 'Patch release: fix stale options in shadow DOM selects with MutationObserver.',
+    added: [],
+    changed: [],
+    fixed: [
+      'Fixed `diwa-select` not detecting dynamically added options in shadow DOM — `@Listen(\'slotchange\')` never fires on the host because `slotchange` is `composed: false`. Added a `MutationObserver` on the host element to reliably detect child option additions/removals.',
+      'Extracted shared `handleChildrenChanged()` method in `diwa-select` for both MutationObserver and slotchange fallback paths.',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '1.3.6',
     date: 'March 23, 2026',
     summary: 'Patch release: form-field description placement and select behavior stability improvements.',
     added: [],
     changed: [
-      'Bumped packages: @diwacopilot/components, components-react, components-vue, components-angular to 1.3.6.',
-      'Updated the home hero version badge to v1.3.6 for storefront/version parity.',
       'Aligned select and multi-select description spacing so description text is rendered below the control with top spacing.',
     ],
     fixed: [
@@ -40,10 +51,7 @@ const RELEASES: Release[] = [
     date: 'March 23, 2026',
     summary: 'Patch release: synchronized package versions and storefront release metadata for npm and hosting publish.',
     added: [],
-    changed: [
-      'Bumped packages: @diwacopilot/components, components-react, components-vue, components-angular to 1.3.5.',
-      'Updated the home hero version badge to v1.3.5 for storefront/version parity.',
-    ],
+    changed: [],
     fixed: [],
     deprecated: [],
     removed: [],
@@ -54,7 +62,6 @@ const RELEASES: Release[] = [
     summary: 'Patch release: input style fix and test robustness improvements.',
     added: [],
     changed: [
-      'Bumped @diwacopilot/components package to 1.3.4 (patch).',
       'Centralized shared input shadow-DOM styles to better handle WebKit inner fragments.',
     ],
     fixed: [
@@ -75,8 +82,6 @@ const RELEASES: Release[] = [
     changed: [
       'Locked control heights to match button rhythm: default 40px, compact 32px for input family, select trigger, switch wrapper, and checkbox wrapper.',
       'Governance and AI instruction surfaces updated with explicit owner-locked control-height policy.',
-      'Bumped packages: @diwacopilot/components, components-react, components-vue, components-angular to 1.3.3.',
-      'Home hero version badge updated to v1.3.3.',
     ],
     fixed: [
       'Resolved cross-control height inconsistency where form controls did not align with the default button sizing rhythm.',
@@ -94,7 +99,6 @@ const RELEASES: Release[] = [
     changed: [
       'Increased icon size for `xs` buttons from 12px to 14px.',
       'Storefront configurator updated to expose `xs` so size control renders as a select dropdown.',
-      'Bumped packages: @diwacopilot/components, components-react, components-vue, components-angular to 1.3.2.',
     ],
     fixed: [],
     deprecated: [],
@@ -108,7 +112,6 @@ const RELEASES: Release[] = [
       'Version bump policy is now explicit in governance instructions: whenever any package version is updated, /news/changelog must be updated in the same change for consistency and transparency.',
     ],
     changed: [
-      'All four npm packages (@diwacopilot/components, components-react, components-vue, components-angular) bumped to 1.3.1.',
       'Help docs and help intro content rewritten for clearer prerequisites, deterministic reporting templates, and stronger next actions.',
       'Must Know > Versioning guidance refined for current 1.x release stream and release discipline.',
       'Home hero version badge updated to v1.3.1 and component count messaging aligned to 43 documented components.',
@@ -136,7 +139,6 @@ const RELEASES: Release[] = [
     ],
     changed: [
       '@diwacopilot/components-react package.json exports field now includes a "./server" condition pointing to dist/server/index.js and dist/server/index.d.ts.',
-      'All four packages (@diwacopilot/components, components-react, components-vue, components-angular) bumped to 1.3.0.',
     ],
     fixed: [
       'Runtime TypeError "Class extends value undefined is not a constructor or null" when importing DS components in Next.js Server Components — resolved by the new /server export path.',

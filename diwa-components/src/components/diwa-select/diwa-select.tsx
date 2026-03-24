@@ -127,6 +127,7 @@ export class DiwaSelect {
   private filterInputEl?: HTMLInputElement;
   private options: HTMLDiwaSelectOptionElement[] = [];
   private highlightedIndex: number = -1;
+  private childObserver?: MutationObserver;
 
   // ──────────────────────────────────────────────────────────────
   // Watchers
@@ -170,10 +171,15 @@ export class DiwaSelect {
 
   connectedCallback(): void {
     document.addEventListener('mousedown', this.onClickOutside, true);
+    // slotchange events are composed:false and never reach the host in shadow DOM.
+    // Use a MutationObserver on the host's light DOM children to detect option additions/removals.
+    this.childObserver = new MutationObserver(() => this.handleChildrenChanged());
+    this.childObserver.observe(this.host, { childList: true, subtree: true });
   }
 
   disconnectedCallback(): void {
     document.removeEventListener('mousedown', this.onClickOutside, true);
+    this.childObserver?.disconnect();
   }
 
   componentDidLoad(): void {
@@ -216,17 +222,11 @@ export class DiwaSelect {
     });
   }
 
+  // @Listen('slotchange') is unreliable in shadow DOM (composed:false).
+  // Kept as a fallback; primary detection is via MutationObserver.
   @Listen('slotchange')
   onSlotChange(): void {
-    this.collectOptions();
-    this.syncSelectionFromValue();
-    this.syncChildThemes();
-    this.syncChildCompact();
-    // Force a re-render of this host so the trigger display label (selectedLabel)
-    // is recomputed with the freshly-collected options. Without this, if React sets
-    // the `value` prop before slotchange fires (options not yet collected), the
-    // component renders with an empty label and never updates when options arrive.
-    forceUpdate(this.host);
+    this.handleChildrenChanged();
   }
 
   // ──────────────────────────────────────────────────────────────
@@ -237,6 +237,15 @@ export class DiwaSelect {
     this.options = Array.from(
       this.host.querySelectorAll<HTMLDiwaSelectOptionElement>('diwa-select-option'),
     );
+  }
+
+  /** Shared handler for child mutations and slotchange — re-collects options and syncs state. */
+  private handleChildrenChanged(): void {
+    this.collectOptions();
+    this.syncSelectionFromValue();
+    this.syncChildThemes();
+    this.syncChildCompact();
+    forceUpdate(this.host);
   }
 
   private syncSelectionFromValue(): void {
