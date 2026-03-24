@@ -3,55 +3,74 @@ const path = require('path');
 
 const outDir = path.join(__dirname, '..', 'diwa-components', 'storefront', 'out');
 
+// Directories that are Next.js internals or static assets — skip them entirely
+const SKIP_DIRS = new Set(['_next', 'stencil', 'og-images']);
+
 if (!fs.existsSync(outDir)) {
   console.error(`[alias-next-flight-files] Missing output directory: ${outDir}`);
   process.exit(1);
 }
 
-function walk(dir, cb) {
+function isRscPayload(filename) {
+  return filename.startsWith('__next.') && filename.endsWith('.txt');
+}
+
+/**
+ * Returns all descendant directories of `dir`, skipping SKIP_DIRS.
+ */
+function getDescendantDirs(dir) {
+  const result = [];
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
+    if (!entry.isDirectory() || SKIP_DIRS.has(entry.name)) continue;
+    const sub = path.join(dir, entry.name);
+    result.push(sub);
+    result.push(...getDescendantDirs(sub));
+  }
+  return result;
+}
+
+/**
+ * Walk `dir` and propagate each RSC payload .txt file down to every
+ * descendant route directory that does not already have it.
+ *
+ * Why: Next.js App Router (output: 'export') places each layout's RSC
+ * payload in that layout's own directory, but the client-side router
+ * requests *all ancestor* layout RSC payloads from the deepest child
+ * page directory. Without propagation, those requests 404.
+ */
+let created = 0;
+
+function propagate(dir) {
+  if (SKIP_DIRS.has(path.basename(dir))) return;
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+  const rscFiles = entries
+    .filter(e => !e.isDirectory() && isRscPayload(e.name))
+    .map(e => e.name);
+
+  if (rscFiles.length > 0) {
+    const descendants = getDescendantDirs(dir);
+    for (const filename of rscFiles) {
+      const src = path.join(dir, filename);
+      for (const dest of descendants) {
+        const target = path.join(dest, filename);
+        if (!fs.existsSync(target)) {
+          fs.copyFileSync(src, target);
+          created++;
+        }
+      }
+    }
+  }
+
+  for (const entry of entries) {
     if (entry.isDirectory()) {
-      walk(fullPath, cb);
-    } else {
-      cb(fullPath);
+      propagate(path.join(dir, entry.name));
     }
   }
 }
 
-let created = 0;
-let scannedRoutes = 0;
+propagate(outDir);
 
-walk(outDir, (filePath) => {
-  if (path.basename(filePath) !== '__next.components.txt') {
-    return;
-  }
-
-  const routeDir = path.dirname(filePath);
-  const nestedDir = path.join(routeDir, '__next.components');
-
-  if (!fs.existsSync(nestedDir) || !fs.statSync(nestedDir).isDirectory()) {
-    return;
-  }
-
-  scannedRoutes += 1;
-
-  walk(nestedDir, (nestedFile) => {
-    if (!nestedFile.endsWith('.txt')) {
-      return;
-    }
-
-    const rel = path.relative(nestedDir, nestedFile).replace(/\\/g, '/');
-    const dotted = rel.replace(/\//g, '.');
-    const aliasName = `__next.components.${dotted}`;
-    const aliasPath = path.join(routeDir, aliasName);
-
-    if (!fs.existsSync(aliasPath)) {
-      fs.copyFileSync(nestedFile, aliasPath);
-      created += 1;
-    }
-  });
-});
-
-console.log(`[alias-next-flight-files] Scanned routes: ${scannedRoutes}, created aliases: ${created}`);
+console.log(`[alias-next-flight-files] Propagated RSC payload aliases: ${created}`);
