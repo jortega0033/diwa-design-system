@@ -611,6 +611,11 @@
    ============================================================ */
 
 
+:focus-visible {
+  outline: var(--diwa-focus-ring-width) solid var(--diwa-state-focus);
+  outline-offset: var(--diwa-focus-ring-offset);
+}
+
 :focus:not(:focus-visible):not([data-theme]) {
   outline: none;
 }
