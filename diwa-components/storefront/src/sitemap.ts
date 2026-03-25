@@ -48,6 +48,7 @@ export const sitemap: NavSection[] = [
       { label: 'Introduction', href: '/components' },
       { label: 'Accordion', href: '/components/accordion/configurator' },
       { label: 'Badge', href: '/components/badge/configurator' },
+      { label: 'Banner', href: '/components/banner/configurator' },
       { label: 'Button', href: '/components/button/configurator' },
       { label: 'Button Pure', href: '/components/button-pure/configurator' },
       { label: 'Checkbox', href: '/components/checkbox/configurator' },

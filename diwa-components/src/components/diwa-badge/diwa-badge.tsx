@@ -64,7 +64,7 @@ export class DiwaBadge {
   render() {
     return (
       <Host data-theme={this.theme}>
-        <style innerHTML={getComponentCss()} />
+        <style innerHTML={getComponentCss(this.variant, this.size)} />
         <span
           class="badge"
           part="base"

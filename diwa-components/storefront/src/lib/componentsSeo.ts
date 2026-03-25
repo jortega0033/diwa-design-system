@@ -21,6 +21,13 @@ export const componentsSeo: Record<string, Metadata> = {
     pathname: '/components/badge/configurator',
     ogSection: 'components',
   }),
+  banner: buildMetadata({
+    title: 'Banner',
+    description:
+      'A floating notification bar fixed to the top of the viewport. Slides in with a transition, auto-dismisses after a configurable delay or stays persistent, and supports four semantic states — info, success, warning, error.',
+    pathname: '/components/banner/configurator',
+    ogSection: 'components',
+  }),
   button: buildMetadata({
     title: 'Button',
     description:

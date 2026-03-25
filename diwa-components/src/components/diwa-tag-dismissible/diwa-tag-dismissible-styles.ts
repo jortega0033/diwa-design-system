@@ -17,27 +17,20 @@ const VARIANT_COLOR: Record<TagVariant, string> = {
   warning: 'var(--diwa-notification-warning)',
   error:   'var(--diwa-notification-error)',
 };
-const VARIANT_BORDER: Record<TagVariant, string> = {
-  neutral: 'var(--diwa-border)',
-  primary: 'var(--diwa-accent)',
-  info:    'var(--diwa-color-info-300)',
-  success: 'transparent',
-  warning: 'transparent',
-  error:   'transparent',
-};
 
 export const getComponentCss = (variant: TagVariant, compact: boolean): string => {
   const bg = VARIANT_BG[variant];
   const color = VARIANT_COLOR[variant];
-  const border = VARIANT_BORDER[variant];
-  const paddingY = compact ? '1px' : '2px';
-  const paddingX = compact ? '6px' : '10px';
+  const paddingX = compact ? 'var(--diwa-space-2)' : 'var(--diwa-space-3)';
   const paddingXRight = compact ? '4px' : '6px';
-  const fontSize = compact ? 'var(--diwa-font-size-sm)' : 'var(--diwa-font-size-md)';
+  const fontSize = compact ? 'var(--diwa-font-size-xs)' : 'var(--diwa-font-size-sm)';
+  const height = compact ? 'var(--diwa-space-7)' : 'var(--diwa-space-8)';
 
   return `
     :host {
       display: inline-flex;
+      line-height: 1;
+      vertical-align: middle;
     }
     :host([hidden]) {
       display: none;
@@ -46,14 +39,18 @@ export const getComponentCss = (variant: TagVariant, compact: boolean): string =
       display: inline-flex;
       align-items: center;
       gap: var(--diwa-space-1);
-      padding: ${paddingY} ${paddingXRight} ${paddingY} ${paddingX};
+      box-sizing: border-box;
+      height: ${height};
+      padding: 0 ${paddingXRight} 0 ${paddingX};
       font-family: var(--diwa-font-family-base);
       font-size: ${fontSize};
-      font-weight: var(--diwa-font-weight-medium);
+      font-weight: var(--diwa-font-weight-semibold);
       line-height: 1;
-      color: ${color};
-      background: ${bg};
-      border: var(--diwa-border-width-thin) solid ${border};
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--diwa-tag-color, ${color});
+      background: var(--diwa-tag-bg, ${bg});
+      border: var(--diwa-border-width-thin) solid currentColor;
       border-radius: var(--diwa-radius-sm);
       white-space: nowrap;
       user-select: none;
@@ -62,9 +59,12 @@ export const getComponentCss = (variant: TagVariant, compact: boolean): string =
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      box-sizing: border-box;
       width: 12px;
       height: 12px;
       padding: 0;
+      appearance: none;
+      -webkit-appearance: none;
       background: none;
       border: none;
       border-radius: var(--diwa-radius-xs);

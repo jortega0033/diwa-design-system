@@ -408,9 +408,10 @@ export class DiwaSelect {
   // Computed display values
   // ──────────────────────────────────────────────────────────────
 
-  private get selectedLabel(): string {
+  private get selectedLabel(): string | undefined {
     const selected = this.options.find((o) => o.value !== undefined && o.value === this.value);
-    return (selected?.textContent ?? '').trim();
+    const text = (selected?.textContent ?? '').trim();
+    return text.length > 0 ? text : undefined;
   }
 
   // ──────────────────────────────────────────────────────────────
@@ -423,7 +424,7 @@ export class DiwaSelect {
     const hintId = `${this.internalId}-hint`;
     const hasMessage = !!this.message && this.state !== 'none';
     const hasValue = this.value !== undefined && this.value !== '';
-    const displayLabel = hasValue ? this.selectedLabel : undefined;
+    const displayLabel = hasValue ? (this.selectedLabel ?? this.value) : undefined;
 
     return (
       <Host data-theme={this.theme}>

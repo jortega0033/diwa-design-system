@@ -8,6 +8,7 @@ const variantsStory: Story<'diwa-badge'> = {
   generator: () => [
     { tag: 'diwa-badge' as const, properties: { variant: 'neutral' }, children: ['Neutral'] },
     { tag: 'diwa-badge' as const, properties: { variant: 'accent' }, children: ['Accent'] },
+    { tag: 'diwa-badge' as const, properties: { variant: 'info' }, children: ['Info'] },
     { tag: 'diwa-badge' as const, properties: { variant: 'success' }, children: ['Success'] },
     { tag: 'diwa-badge' as const, properties: { variant: 'warning' }, children: ['Warning'] },
     { tag: 'diwa-badge' as const, properties: { variant: 'danger' }, children: ['Danger'] },
@@ -26,6 +27,16 @@ const countsStory: Story<'diwa-badge'> = {
     { tag: 'diwa-badge' as const, properties: { variant: 'danger', label: '3 failed items' }, children: ['3'] },
     { tag: 'diwa-badge' as const, properties: { variant: 'warning', label: '12 pending notifications' }, children: ['12'] },
     { tag: 'diwa-badge' as const, properties: { variant: 'success', label: '99 completed tasks' }, children: ['99'] },
+  ],
+};
+
+const dotStory: Story<'diwa-badge'> = {
+  generator: () => [
+    { tag: 'diwa-badge' as const, properties: { variant: 'success', dot: true }, children: ['Live'] },
+    { tag: 'diwa-badge' as const, properties: { variant: 'accent', dot: true }, children: ['Active'] },
+    { tag: 'diwa-badge' as const, properties: { variant: 'warning', dot: true }, children: ['Processing'] },
+    { tag: 'diwa-badge' as const, properties: { variant: 'danger', dot: true }, children: ['Degraded'] },
+    { tag: 'diwa-badge' as const, properties: { variant: 'neutral', dot: true }, children: ['Idle'] },
   ],
 };
 
@@ -66,6 +77,13 @@ export default function BadgeExamplesPage() {
         description="Numeric badges should provide an accessible label when the number alone lacks context."
       >
         <ComponentStory story={countsStory} previewClassName="gap-3 flex-wrap" />
+      </ExampleSection>
+
+      <ExampleSection
+        title="With dot"
+        description="Add the dot prop to render an animated pulsing indicator. Use to signal live status or an active process."
+      >
+        <ComponentStory story={dotStory} previewClassName="gap-3 flex-wrap" />
       </ExampleSection>
     </div>
   );

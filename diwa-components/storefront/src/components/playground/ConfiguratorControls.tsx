@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState, type Dispatch, type SetStateAction } from 'react';
+import React, { useEffect, useMemo, useRef, useState, type Dispatch, type FormEvent, type SetStateAction } from 'react';
 import { createPortal } from 'react-dom';
 import type { PropDefinition } from '@/models/propDefinition';
 import type { StoryState } from '@/models/story';
@@ -57,23 +57,107 @@ function propNameToLabel(name: string): string {
 
 function Toggle({ checked, onChange, id }: { checked: boolean; onChange: (v: boolean) => void; id: string }) {
   return (
-    <button
+    <diwa-switch
       id={id}
-      role="switch"
-      aria-checked={checked}
+      checked={checked}
       onClick={() => onChange(!checked)}
-      className={[
-        'relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors',
-        checked ? 'bg-[var(--diwa-accent)]' : 'bg-[var(--diwa-border)]',
-      ].join(' ')}
+      compact
+      aria-label={id}
+    />
+  );
+}
+
+function DiwaSelectControl({
+  id,
+  label,
+  options,
+  value,
+  onValueChange,
+}: {
+  id: string;
+  label: string;
+  options: string[];
+  value: string;
+  onValueChange: (value: string) => void;
+}) {
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ value?: string }>).detail;
+      const next = detail?.value;
+      if (typeof next === 'string') onValueChange(next);
+    };
+
+    el.addEventListener('change', handler as EventListener);
+    return () => el.removeEventListener('change', handler as EventListener);
+  }, [onValueChange]);
+
+  return (
+    <diwa-select
+      ref={(node: HTMLElement | null) => {
+        ref.current = node as HTMLElement | null;
+      }}
+      value={value}
+      label={label}
+      hideLabel
+      compact
     >
-      <span
-        className={[
-          'pointer-events-none block h-4 w-4 rounded-full bg-white shadow-sm transition-transform',
-          checked ? 'translate-x-4' : 'translate-x-0',
-        ].join(' ')}
-      />
-    </button>
+      {options.map((opt) => (
+        <diwa-select-option key={opt} value={opt}>{opt}</diwa-select-option>
+      ))}
+    </diwa-select>
+  );
+}
+
+function DiwaSegmentedControl({
+  id,
+  label,
+  options,
+  value,
+  onValueChange,
+}: {
+  id: string;
+  label: string;
+  options: string[];
+  value: string;
+  onValueChange: (value: string) => void;
+}) {
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ value?: string }>).detail;
+      const next = detail?.value;
+      if (typeof next === 'string') onValueChange(next);
+    };
+
+    el.addEventListener('update', handler as EventListener);
+    return () => el.removeEventListener('update', handler as EventListener);
+  }, [onValueChange]);
+
+  return (
+    <diwa-segmented-control
+      id={id}
+      ref={(node: HTMLElement | null) => {
+        ref.current = node;
+      }}
+      value={value}
+      aria-label={label}
+      compact
+    >
+      {options.map((opt) => (
+        <diwa-segmented-control-item key={opt} value={opt}>
+          {opt}
+        </diwa-segmented-control-item>
+      ))}
+    </diwa-segmented-control>
   );
 }
 
@@ -93,14 +177,16 @@ function ModifiedDot() {
 
 function ResetButton({ onClick, label }: { onClick: () => void; label: string }) {
   return (
-    <button
+    <diwa-button-pure
       onClick={onClick}
-      className="text-[10px] font-medium text-[var(--diwa-text-tertiary)] hover:text-[var(--diwa-accent)] transition-colors uppercase tracking-wider"
+      size="sm"
+      color="secondary"
+      icon="none"
       title={label}
       aria-label={label}
     >
       Reset
-    </button>
+    </diwa-button-pure>
   );
 }
 
@@ -122,12 +208,15 @@ function AccordionSection({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="border-b border-[var(--diwa-border)]">
+    <div className="border-b border-[var(--diwa-border)] last:border-b-0">
       <div className="flex items-center gap-2 hover:bg-[var(--diwa-bg-hover)] transition-colors">
-        <button
+        <diwa-button-pure
           onClick={() => setOpen((v) => !v)}
           className="flex items-center gap-2 flex-1 px-4 py-2.5 text-left min-w-0"
-          aria-expanded={open}
+          aria-expanded={open ? 'true' : 'false'}
+          icon="none"
+          color="secondary"
+          size="sm"
         >
           <svg
             className={`w-3 h-3 shrink-0 text-[var(--diwa-text-tertiary)] transition-transform ${open ? 'rotate-90' : ''}`}
@@ -144,7 +233,7 @@ function AccordionSection({
               {modifiedCount}
             </span>
           )}
-        </button>
+        </diwa-button-pure>
         {onReset && modifiedCount > 0 && (
           <div className="pr-3 shrink-0">
             <ResetButton onClick={onReset} label={`Reset ${title}`} />
@@ -157,9 +246,6 @@ function AccordionSection({
 }
 
 /* ── Individual Controls ─────────────────────────────────────────────────── */
-
-const INPUT_CLASS =
-  'w-full min-h-[var(--diwa-button-height)] rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-sm px-3 py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]';
 
 function PropControl({
   def,
@@ -199,39 +285,21 @@ function PropControl({
           {modified && <ModifiedDot />}
         </div>
         {isSegmented ? (
-          <div
-            role="group"
-            aria-label={def.label ?? propNameToLabel(def.name)}
-            className="flex rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] p-0.5 gap-0.5"
-          >
-            {def.options.map((opt) => (
-              <button
-                key={opt}
-                type="button"
-                onClick={() => onChange(def.name, opt)}
-                aria-pressed={String(value) === opt}
-                className={[
-                  'flex-1 py-1.5 rounded text-xs font-medium transition-colors capitalize',
-                  String(value) === opt
-                    ? 'bg-[var(--diwa-bg-base)] text-[var(--diwa-text-primary)] shadow-sm'
-                    : 'text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)]',
-                ].join(' ')}
-              >
-                {opt}
-              </button>
-            ))}
-          </div>
-        ) : (
-          <select
+          <DiwaSegmentedControl
             id={controlId}
+            label={def.label ?? propNameToLabel(def.name)}
+            options={def.options}
             value={String(value)}
-            onChange={(e) => onChange(def.name, e.target.value)}
-            className={INPUT_CLASS}
-          >
-            {def.options.map((opt) => (
-              <option key={opt} value={opt}>{opt}</option>
-            ))}
-          </select>
+            onValueChange={(next) => onChange(def.name, next)}
+          />
+        ) : (
+          <DiwaSelectControl
+            id={controlId}
+            label={def.label ?? propNameToLabel(def.name)}
+            options={def.options}
+            value={String(value)}
+            onValueChange={(next) => onChange(def.name, next)}
+          />
         )}
       </div>
     );
@@ -246,15 +314,19 @@ function PropControl({
           </label>
           {modified && <ModifiedDot />}
         </div>
-        <input
+        <diwa-input-number
           id={controlId}
-          type="number"
-          value={Number(value)}
+          value={String(value ?? '')}
           min={def.min}
           max={def.max}
           step={def.step}
-          onChange={(e) => onChange(def.name, e.target.valueAsNumber)}
-          className={INPUT_CLASS}
+          label={def.label ?? propNameToLabel(def.name)}
+          hideLabel
+          compact
+          onInput={(e: FormEvent<HTMLElement>) => {
+            const next = Number(((e.nativeEvent as unknown) as CustomEvent<string>).detail ?? 0);
+            onChange(def.name, Number.isNaN(next) ? 0 : next);
+          }}
         />
       </div>
     );
@@ -277,12 +349,13 @@ function PropControl({
             onChange={(e) => onChange(def.name, e.target.value)}
             className="w-8 h-8 rounded border border-[var(--diwa-border)] cursor-pointer bg-transparent p-0"
           />
-          <input
-            type="text"
+          <diwa-input-text
             value={String(value)}
-            onChange={(e) => onChange(def.name, e.target.value)}
-            className={`${INPUT_CLASS} flex-1`}
-            aria-label={`${def.name} hex value`}
+            label={`${def.name} hex value`}
+            hideLabel
+            compact
+            onInput={(e: FormEvent<HTMLElement>) => onChange(def.name, (((e.nativeEvent as unknown) as CustomEvent<string>).detail ?? ''))}
+            className="flex-1"
           />
         </div>
       </div>
@@ -326,12 +399,13 @@ function PropControl({
         </label>
         {modified && <ModifiedDot />}
       </div>
-      <input
+      <diwa-input-text
         id={controlId}
-        type="text"
         value={String(value)}
-        onChange={(e) => onChange(def.name, e.target.value)}
-        className={INPUT_CLASS}
+        label={def.label ?? propNameToLabel(def.name)}
+        hideLabel
+        compact
+        onInput={(e: FormEvent<HTMLElement>) => onChange(def.name, (((e.nativeEvent as unknown) as CustomEvent<string>).detail ?? ''))}
       />
     </div>
   );
@@ -397,6 +471,8 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
   }, [propDefinitions, filter]);
 
   const grouped = useMemo(() => groupDefs(filtered), [filtered]);
+  const groupedEntries = useMemo(() => Array.from(grouped.entries()), [grouped]);
+  const isSingleDefaultGroup = groupedEntries.length === 1 && groupedEntries[0]?.[0] === DEFAULT_GROUP;
 
   const totalModified = useMemo(() => {
     let count = 0;
@@ -409,34 +485,47 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
 
   if (!portalTarget) return null;
 
+  const renderPropList = (defs: PropDefinition[]) => (
+    <div className="space-y-3">
+      {defs.map((def) => {
+        const defVal = defaults[def.name] ?? getDefault(def);
+        const current = props[def.name] ?? defVal;
+        const mod = isModified(props[def.name], defVal);
+        return (
+          <div key={def.name}>
+            <PropControl def={def} value={current} modified={mod} onChange={update} />
+            {def.description && (
+              <p className="mt-1 text-[11px] text-[var(--diwa-text-tertiary)] leading-tight">
+                {def.description}
+              </p>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+
   const controls = (
     <div className="flex flex-col h-full">
       {/* ── Header with search + reset ──────────────────────────── */}
-      <div className="px-4 pt-3 pb-2 space-y-2 border-b border-[var(--diwa-border)]">
+      <div className="px-4 pt-3 pb-2 space-y-2 border-b border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)]/70 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <h3 className="text-xs uppercase tracking-widest font-semibold text-[var(--diwa-text-secondary)]">
-            Props
+            Properties
           </h3>
           {totalModified > 0 && (
             <ResetButton onClick={resetAll} label="Reset all props" />
           )}
         </div>
         {propDefinitions.length > 5 && (
-          <div className="relative">
-            <svg
-              className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--diwa-text-tertiary)]"
-              viewBox="0 0 16 16"
-              fill="none"
-            >
-              <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="10.5" y1="10.5" x2="15" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            <input
-              type="text"
+          <div>
+            <diwa-input-search
               value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-              placeholder="Filter props…"
-              className="w-full h-[var(--diwa-button-height)] rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] text-xs pl-8 pr-3 placeholder:text-[var(--diwa-text-tertiary)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
+              label="Filter props"
+              hideLabel
+              compact
+              placeholder="Filter props..."
+              onInput={(e: FormEvent<HTMLElement>) => setFilter((((e.nativeEvent as unknown) as CustomEvent<string>).detail ?? ''))}
             />
           </div>
         )}
@@ -450,7 +539,13 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
           </p>
         )}
 
-        {Array.from(grouped.entries()).map(([groupName, defs]) => {
+        {isSingleDefaultGroup && groupedEntries[0] && (
+          <div className="px-4 py-3">
+            {renderPropList(groupedEntries[0][1])}
+          </div>
+        )}
+
+        {!isSingleDefaultGroup && groupedEntries.map(([groupName, defs]) => {
           const modifiedInGroup = defs.filter((d) => {
             const defVal = defaults[d.name] ?? getDefault(d);
             return isModified(props[d.name], defVal);
@@ -463,21 +558,7 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
               modifiedCount={modifiedInGroup}
               onReset={() => resetProps(defs)}
             >
-              {defs.map((def) => {
-                const defVal = defaults[def.name] ?? getDefault(def);
-                const current = props[def.name] ?? defVal;
-                const mod = isModified(props[def.name], defVal);
-                return (
-                  <div key={def.name}>
-                    <PropControl def={def} value={current} modified={mod} onChange={update} />
-                    {def.description && (
-                      <p className="mt-1 text-[11px] text-[var(--diwa-text-tertiary)] leading-tight">
-                        {def.description}
-                      </p>
-                    )}
-                  </div>
-                );
-              })}
+              {renderPropList(defs)}
             </AccordionSection>
           );
         })}

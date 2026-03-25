@@ -5,7 +5,6 @@ import type { Metadata } from 'next';
 import { pageSeo } from '@/lib/pageSeo';
 export const metadata: Metadata = pageSeo['/news/changelog'];
 
-
 type Release = {
   version: string;
   date: string;
@@ -19,14 +18,46 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.3.9',
+    date: 'March 25, 2026',
+    summary: 'Banner is now fully documented and polished across the component library and storefront.',
+    added: [
+      'Added full Banner documentation with Configurator, Examples, Usage, Accessibility, and API pages.',
+    ],
+    changed: [
+      'Updated banner demos to open on demand instead of showing by default.',
+      'Refined banner layout so it appears as a floating centered element near the top of the viewport.',
+    ],
+    fixed: [
+      'Fixed missing banner documentation routes that previously led to 404 pages.',
+      'Updated banner styling to use solid semantic backgrounds for clearer visual feedback.',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
+    version: '1.3.8',
+    date: 'March 24, 2026',
+    summary: 'Improved configurator consistency and stabilized badge rendering in the docs experience.',
+    added: [
+      'Updated the configurator experience to use Diwa components throughout the sidebar controls.',
+    ],
+    changed: [],
+    fixed: [
+      'Fixed badge variants so visual changes update reliably in configurator previews.',
+      'Improved configurator interactions for select, segmented control, and input-based components in React previews.',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '1.3.7',
     date: 'March 24, 2026',
-    summary: 'Patch release: fix stale options in shadow DOM selects with MutationObserver.',
+    summary: 'Improved select reliability when options change dynamically.',
     added: [],
     changed: [],
     fixed: [
-      'Fixed `diwa-select` not detecting dynamically added options in shadow DOM — `@Listen(\'slotchange\')` never fires on the host because `slotchange` is `composed: false`. Added a `MutationObserver` on the host element to reliably detect child option additions/removals.',
-      'Extracted shared `handleChildrenChanged()` method in `diwa-select` for both MutationObserver and slotchange fallback paths.',
+      'Fixed `diwa-select` so dynamically added or removed options are detected reliably.',
     ],
     deprecated: [],
     removed: [],
@@ -34,39 +65,28 @@ const RELEASES: Release[] = [
   {
     version: '1.3.6',
     date: 'March 23, 2026',
-    summary: 'Patch release: form-field description placement and select behavior stability improvements.',
+    summary: 'Improved form-field layout and select value presentation.',
     added: [],
     changed: [
-      'Aligned select and multi-select description spacing so description text is rendered below the control with top spacing.',
+      'Aligned select and multi-select descriptions so helper text appears consistently below the control.',
     ],
     fixed: [
-      'Fixed layout misalignment in grid forms by rendering `description` below the interactive field in select-like controls.',
-      'Fixed select option label refresh timing after slot updates so preselected values display reliably.',
+      'Fixed form layout alignment issues in grid-based select-like fields.',
+      'Fixed preselected select values so labels display reliably after updates.',
     ],
-    deprecated: [],
-    removed: [],
-  },
-  {
-    version: '1.3.5',
-    date: 'March 23, 2026',
-    summary: 'Patch release: synchronized package versions and storefront release metadata for npm and hosting publish.',
-    added: [],
-    changed: [],
-    fixed: [],
     deprecated: [],
     removed: [],
   },
   {
     version: '1.3.4',
     date: 'March 22, 2026',
-    summary: 'Patch release: input style fix and test robustness improvements.',
+    summary: 'Improved input rendering stability across supported environments.',
     added: [],
     changed: [
-      'Centralized shared input shadow-DOM styles to better handle WebKit inner fragments.',
+      'Improved shared input styling for more consistent rendering in WebKit-based browsers.',
     ],
     fixed: [
-      'Fixed an issue in shared input styles that could break template literal parsing in some build/test contexts.',
-      'Removed redundant test mock clearing in toast specs so runtime spies attach reliably; restored full test pass.',
+      'Fixed an input styling issue that could break rendering in some build and test contexts.',
     ],
     deprecated: [],
     removed: [],
@@ -74,17 +94,13 @@ const RELEASES: Release[] = [
   {
     version: '1.3.3',
     date: 'March 22, 2026',
-    summary: 'Control-height contract lock release for form controls and governance enforcement.',
-    added: [
-      'New control-height validator gate: `agency:validate:control-heights` to enforce locked sizing and governance language.',
-      'Control-height contract tests covering input/select/switch/checkbox default and compact sizing mappings.',
-    ],
+    summary: 'Form controls were aligned to a more consistent sizing system.',
+    added: [],
     changed: [
-      'Locked control heights to match button rhythm: default 40px, compact 32px for input family, select trigger, switch wrapper, and checkbox wrapper.',
-      'Governance and AI instruction surfaces updated with explicit owner-locked control-height policy.',
+      'Aligned input, select, switch, and checkbox heights with the default button sizing rhythm.',
     ],
     fixed: [
-      'Resolved cross-control height inconsistency where form controls did not align with the default button sizing rhythm.',
+      'Fixed inconsistent control heights across common form components.',
     ],
     deprecated: [],
     removed: [],
@@ -92,13 +108,12 @@ const RELEASES: Release[] = [
   {
     version: '1.3.2',
     date: 'March 22, 2026',
-    summary: 'Design-system patch: added xs button size and improved xs icon visibility.',
+    summary: 'Buttons now support an extra-small size with improved icon clarity.',
     added: [
-      'diwa-button: added `xs` size (24px height).',
+      'Added an `xs` button size for more compact actions.',
     ],
     changed: [
-      'Increased icon size for `xs` buttons from 12px to 14px.',
-      'Storefront configurator updated to expose `xs` so size control renders as a select dropdown.',
+      'Increased icon size within `xs` buttons to improve legibility.',
     ],
     fixed: [],
     deprecated: [],
@@ -107,183 +122,106 @@ const RELEASES: Release[] = [
   {
     version: '1.3.1',
     date: 'March 21, 2026',
-    summary: 'Content accuracy and governance consistency release for storefront docs and help flows.',
-    added: [
-      'Version bump policy is now explicit in governance instructions: whenever any package version is updated, /news/changelog must be updated in the same change for consistency and transparency.',
-    ],
+    summary: 'Documentation and release communication were cleaned up for clarity and accuracy.',
+    added: [],
     changed: [
-      'Help docs and help intro content rewritten for clearer prerequisites, deterministic reporting templates, and stronger next actions.',
-      'Must Know > Versioning guidance refined for current 1.x release stream and release discipline.',
-      'Home hero version badge updated to v1.3.1 and component count messaging aligned to 43 documented components.',
-      'SEO metadata for home, help routes, and must-know/versioning updated for accuracy and support-channel clarity.',
+      'Improved help and versioning content across the storefront docs.',
+      'Updated home release messaging and component count references for accuracy.',
     ],
     fixed: [
-      'Stale repository links that previously pointed to jortega0033/diwa-components now correctly point to jortega0033/diwa-design-system.',
-      'Incorrect home banner version label (v2.0) and stale component-count messaging.',
+      'Fixed outdated repository links and stale release messaging in the storefront.',
     ],
-    deprecated: [
-      'No deprecations in this release.',
-    ],
-    removed: [
-      'No removals in this release.',
-    ],
+    deprecated: [],
+    removed: [],
   },
   {
     version: '1.3.0',
     date: 'March 21, 2026',
-    summary: 'React Server Component (RSC) support via a new /server export path. Pure function wrappers for presentational components are now importable directly in Next.js App Router Server Components without a \'use client\' boundary.',
+    summary: 'Added React Server Component support for core presentational components.',
     added: [
-      '@diwacopilot/components-react/server — new RSC-safe export path. Exports pure function wrappers for DHeading, DText, DDivider, DBadge, and DIcon. No Stencil class inheritance, no defineCustomElements() call, fully compatible with Next.js App Router Server Components.',
-      'Server export renders the correct custom element HTML shell on the server; the browser upgrades it and attaches Shadow DOM once the Stencil bundle loads.',
-      'suppressHydrationWarning applied automatically on all /server components to handle shadow DOM reconciliation without console warnings.',
+      'Added a React Server Component-safe export path for key presentational components in Next.js App Router projects.',
     ],
-    changed: [
-      '@diwacopilot/components-react package.json exports field now includes a "./server" condition pointing to dist/server/index.js and dist/server/index.d.ts.',
-    ],
+    changed: [],
     fixed: [
-      'Runtime TypeError "Class extends value undefined is not a constructor or null" when importing DS components in Next.js Server Components — resolved by the new /server export path.',
+      'Fixed runtime errors when importing supported Diwa React components inside Next.js Server Components.',
     ],
-    deprecated: [
-      'No deprecations in this release.',
-    ],
-    removed: [
-      'No removals in this release.',
-    ],
+    deprecated: [],
+    removed: [],
   },
   {
     version: '1.2.3',
     date: 'March 20, 2026',
-    summary: 'D* short-name aliases for all 57 components added to the React wrapper. Only 4 aliases previously existed; now every component has a D-prefixed export.',
+    summary: 'Expanded React wrapper exports with short D-prefixed aliases across the component set.',
     added: [
-      '@diwacopilot/components-react — D* short-name aliases for all 57 components: DAccordion, DButtonPure, DCheckbox, DDivider, DFlyout, DHeading, DIcon, DInlineNotification, DInputDate, DInputEmail, DInputMonth, DInputNumber, DInputPassword, DInputSearch, DInputTel, DInputText, DInputTime, DInputUrl, DInputWeek, DLink, DLinkPure, DModal, DMultiSelect, DMultiSelectOption, DPagination, DPinCode, DPopover, DRadioGroup, DRadioGroupItem, DScroller, DSegmentedControl, DSegmentedControlItem, DSelect, DSelectOption, DStepperHorizontal, DStepperHorizontalItem, DSwitch, DTable, DTableBody, DTableCell, DTableHead, DTableHeadCell, DTableRow, DTabs, DTabsBar, DTabsItem, DText, DTextList, DTextListItem, DTextarea, DToast, DToastItem, DWordmark.',
+      'Added D-prefixed shorthand exports for the full React wrapper component set.',
     ],
-    changed: [
-      'Overlay component and utils files — @ts-nocheck comments reintroduced after build tooling regression identified during prior 1.1.1 cleanup. Managed automatically by the pre-build patch script.',
-    ],
-    fixed: [
-      'No functional fixes in this release.',
-    ],
-    deprecated: [
-      'No deprecations in this release.',
-    ],
-    removed: [
-      'No removals in this release.',
-    ],
+    changed: [],
+    fixed: [],
+    deprecated: [],
+    removed: [],
   },
   {
     version: '1.2.2',
     date: 'March 20, 2026',
-    summary: 'Storefront navigation reorder and README website link update. Docs-only release.',
-    added: [
-      'No new components in this release.',
-    ],
+    summary: 'Improved storefront navigation and documentation discoverability.',
+    added: [],
     changed: [
       'Storefront navigation sections reordered for improved discoverability.',
-      'README website link updated to reflect current production URL.',
+      'Updated documentation links to reflect the current production website URL.',
     ],
-    fixed: [
-      'No fixes in this release.',
-    ],
-    deprecated: [
-      'No deprecations in this release.',
-    ],
-    removed: [
-      'No removals in this release.',
-    ],
+    fixed: [],
+    deprecated: [],
+    removed: [],
   },
   {
     version: '1.2.1',
     date: 'March 20, 2026',
-    summary: 'Stencil upgraded to 4.43, DiwaBadge dot prop added, jsdom bumped to 29.0.1 for test environment accuracy.',
+    summary: 'Added badge dot status support and refreshed supporting platform compatibility.',
     added: [
-      'DiwaBadge / DBadge — new dot boolean prop. When true, renders an animated pulsing indicator before slot content; use for live status or active process signals.',
+      'Added a `dot` prop to Badge for live-status and activity indicators.',
     ],
     changed: [
-      '@stencil/core upgraded to v4.43.3.',
-      'jsdom upgraded to 29.0.1 in the test environment.',
-      'Angular, React, and Vue wrapper packages updated to match base components version.',
-      '@ts-nocheck comments removed from React overlay component and utils files (later reverted in 1.2.3).',
+      'Updated supporting platform dependencies for improved compatibility.',
     ],
     fixed: [
-      'Badge styling — dot indicator positioning and animation tokens aligned with design specification.',
+      'Refined badge dot styling and animation to better match the design system.',
     ],
-    deprecated: [
-      'No deprecations in this release.',
-    ],
-    removed: [
-      'No removals in this release.',
-    ],
-  },
-  {
-    version: '1.1.1',
-    date: 'March 20, 2026',
-    summary: 'Type-safety patch for React overlay components. @ts-nocheck directives removed from generated overlay and utils files.',
-    added: [
-      'No new components in this release.',
-    ],
-    changed: [
-      'createOverlayComponent.tsx and utils/index.tsx — @ts-nocheck directives removed to surface any latent type errors during local development.',
-    ],
-    fixed: [
-      'No functional fixes in this release.',
-    ],
-    deprecated: [
-      'No deprecations in this release.',
-    ],
-    removed: [
-      'No removals in this release.',
-    ],
+    deprecated: [],
+    removed: [],
   },
   {
     version: '1.1.0',
     date: 'March 20, 2026',
-    summary: 'Component refinements, storefront SEO infrastructure, and curated agency agent integration. Typography tokens updated across components.',
+    summary: 'Refined storefront foundations and improved typography consistency across the system.',
     added: [
-      'Curated agency agents and adaptation layer for Diwa Design System contributor workflows.',
-      'Open Graph images for key storefront sections with automated SVG generation script.',
-      'Sitemap generation script; layout enhanced with JSON-LD structured data for SEO.',
-      'Firebase release configured for design.diwacopilot.com — dedicated hosting target isolated from landing site.',
+      'Added richer storefront metadata and release surfaces for better documentation discovery.',
     ],
     changed: [
       'Typography and font families updated for consistency across all components.',
-      'DTable — styling and spacing refined for compact and default density modes.',
-      'Code structure refactored across multiple components for improved readability and maintainability.',
+      'Refined table styling and spacing for compact and default density modes.',
     ],
     fixed: [
-      'Firebase deploy — design docs hosting target isolated so releases do not affect the landing site.',
+      'Improved storefront release and hosting stability.',
     ],
-    deprecated: [
-      'No deprecations in this release.',
-    ],
-    removed: [
-      'No removals in this release.',
-    ],
+    deprecated: [],
+    removed: [],
   },
   {
     version: '1.0.0',
     date: 'March 19, 2026',
-    summary: 'First public release. @diwacopilot/components, components-react, components-vue, and components-angular published to npm. Root monorepo workspace migrated to npm workspaces.',
+    summary: 'First public release of the Diwa Design System packages and storefront docs.',
     added: [
-      '@diwacopilot/components — Stencil-based web component library with 57 components published to npm for the first time.',
-      '@diwacopilot/components-react, @diwacopilot/components-vue, @diwacopilot/components-angular — framework wrapper packages published with full type definitions.',
-      'Root monorepo workspace migrated to npm workspaces; pnpm-workspace.yaml retained for pnpm users.',
-      'New storefront docs sections: Designing, Developing, and News.',
-      'Framework setup guides for Vanilla JS, Next.js, React, Angular, and Vue.',
-      'Components Ready guidance for readiness-sensitive integration and testing.',
+      'Published the core Web Components package together with React, Vue, and Angular wrappers.',
+      'Launched the first storefront documentation experience with component, setup, and release guidance.',
     ],
     changed: [
-      'Getting Started and Components introductions now cross-link to new docs areas.',
-      'Storefront navigation expanded with docs IA sections aligned to Diwa support matrix.',
+      'Expanded storefront navigation to support a full component and framework onboarding experience.',
     ],
     fixed: [
       'Improved discoverability of setup paths and release communication pages.',
     ],
-    deprecated: [
-      'No deprecations in this release.',
-    ],
-    removed: [
-      'No removals in this release.',
-    ],
+    deprecated: [],
+    removed: [],
   },
 ];
 
@@ -305,8 +243,8 @@ export default function ChangelogPage() {
         Changelog
       </h1>
       <p className="text-sm text-[var(--diwa-text-secondary)] mb-10 leading-relaxed max-w-3xl">
-        Track release-level changes across components, styles, docs, and developer workflows. Entries follow a
-        consistent Added / Changed / Fixed / Deprecated / Removed format.
+        Track the release notes that matter most to adopters of the design system. Entries focus on shipped
+        components, visible improvements, developer-facing features, and important fixes.
       </p>
 
       {RELEASES.map((release) => (
@@ -322,7 +260,7 @@ export default function ChangelogPage() {
           </div>
           <p className="text-sm text-[var(--diwa-text-secondary)] mb-5 leading-relaxed">{release.summary}</p>
 
-          {CHANGE_SECTIONS.map((section) => (
+          {CHANGE_SECTIONS.filter((section) => release[section.key].length > 0).map((section) => (
             <div key={section.title} className="mb-4 last:mb-0">
               <h3 className="text-xs font-semibold uppercase tracking-widest text-[var(--diwa-text-secondary)] mb-2">
                 {section.title}

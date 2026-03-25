@@ -4,6 +4,7 @@ import * as d from './proxies';
 export const DIRECTIVES = [
   d.DiwaAccordion,
   d.DiwaBadge,
+  d.DiwaBanner,
   d.DiwaButton,
   d.DiwaButtonPure,
   d.DiwaCheckbox,

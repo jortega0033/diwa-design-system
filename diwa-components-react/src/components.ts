@@ -10,6 +10,7 @@ import { defineCustomElements } from '@diwacopilot/components/loader';
 defineCustomElements();
 export const DiwaAccordion = /*@__PURE__*/createReactComponent<JSX.DiwaAccordion, HTMLDiwaAccordionElement>('diwa-accordion');
 export const DiwaBadge = /*@__PURE__*/createReactComponent<JSX.DiwaBadge, HTMLDiwaBadgeElement>('diwa-badge');
+export const DiwaBanner = /*@__PURE__*/createReactComponent<JSX.DiwaBanner, HTMLDiwaBannerElement>('diwa-banner');
 export const DiwaButton = /*@__PURE__*/createReactComponent<JSX.DiwaButton, HTMLDiwaButtonElement>('diwa-button');
 export const DiwaButtonPure = /*@__PURE__*/createReactComponent<JSX.DiwaButtonPure, HTMLDiwaButtonPureElement>('diwa-button-pure');
 export const DiwaCheckbox = /*@__PURE__*/createReactComponent<JSX.DiwaCheckbox, HTMLDiwaCheckboxElement>('diwa-checkbox');

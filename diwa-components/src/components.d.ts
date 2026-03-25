@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Theme } from "./utils/styles";
 import { AccordionHeadingTag } from "./components/diwa-accordion/types";
 import { BadgeSize, BadgeVariant } from "./components/diwa-badge/types";
+import { BannerState } from "./components/diwa-banner/types";
 import { ButtonSize, ButtonType, ButtonVariant } from "./components/diwa-button/types";
 import { ButtonPureAlignLabel, ButtonPureColor, ButtonPureSize, ButtonPureType } from "./components/diwa-button-pure/types";
 import { CheckboxState } from "./components/diwa-checkbox/types";
@@ -44,6 +45,7 @@ import { ToastState } from "./components/diwa-toast-item/types";
 export { Theme } from "./utils/styles";
 export { AccordionHeadingTag } from "./components/diwa-accordion/types";
 export { BadgeSize, BadgeVariant } from "./components/diwa-badge/types";
+export { BannerState } from "./components/diwa-banner/types";
 export { ButtonSize, ButtonType, ButtonVariant } from "./components/diwa-button/types";
 export { ButtonPureAlignLabel, ButtonPureColor, ButtonPureSize, ButtonPureType } from "./components/diwa-button-pure/types";
 export { CheckboxState } from "./components/diwa-checkbox/types";
@@ -165,6 +167,85 @@ export namespace Components {
           * @default "neutral"
          */
         "variant": BadgeVariant;
+    }
+    /**
+     * @component diwa-banner
+     * A floating notification bar fixed to the top of the viewport.
+     * Slides in from the top with a CSS transition, stays visible for a
+     * configurable duration (or indefinitely when `persistent`), and slides
+     * out on dismiss.
+     * Shares the semantic state colour system with `diwa-inline-notification`.
+     * Accessibility:
+     * - state="error" uses role="alert" (assertive live region)
+     * - All other states use role="status" (polite live region)
+     * - The status icon is aria-hidden
+     * - The dismiss button has an accessible label
+     * Usage:
+     * <diwa-banner
+     * open
+     * state="success"
+     * heading="Changes saved"
+     * description="Your settings have been updated."
+     * />
+     */
+    interface DiwaBanner {
+        /**
+          * Optional label for a secondary action button. When set, a diwa-button-pure emits the `action` event on click.
+         */
+        "actionLabel"?: string;
+        /**
+          * Shows a loading indicator on the action button. Has no effect when `actionLabel` is not set.
+          * @default false
+         */
+        "actionLoading": boolean;
+        /**
+          * Description text. When empty, the default slot is rendered instead — allowing rich markup.
+          * @default ''
+         */
+        "description": string;
+        /**
+          * Whether to show the dismiss (×) button.
+          * @default true
+         */
+        "dismissButton": boolean;
+        /**
+          * Auto-dismiss delay in milliseconds. Ignored when `persistent` is `true`. Defaults to 6000ms.
+          * @default DEFAULT_DURATION
+         */
+        "duration": number;
+        /**
+          * Bold heading text rendered before the description.
+          * @default ''
+         */
+        "heading": string;
+        /**
+          * Programmatically dismiss the banner.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Controls visibility. Set to `true` to slide the banner in, `false` to slide it out. The component always renders in the DOM so that the CSS transition can animate both entry and exit.
+          * @default false
+         */
+        "open": boolean;
+        /**
+          * When `true`, the banner stays visible until explicitly dismissed. When `false` (default), the banner auto-dismisses after `duration` ms.
+          * @default false
+         */
+        "persistent": boolean;
+        /**
+          * Programmatically open the banner.
+         */
+        "show": () => Promise<void>;
+        /**
+          * Semantic state — governs colour treatment, icon, and ARIA live role. - `info`    — neutral informational  (role="status", polite) - `success` — positive confirmation  (role="status", polite) - `warning` — non-blocking caution   (role="status", polite) - `error`   — critical or blocking   (role="alert",  assertive)
+          * @default 'info'
+         */
+        "state": BannerState;
+        /**
+          * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
+         */
+        "theme": Theme;
     }
     /**
      * @component diwa-button
@@ -2444,6 +2525,10 @@ export namespace Components {
          */
         "theme": Theme;
     }
+    /**
+     * @cssprop [--diwa-tag-color] — Overrides the text (and border) color. Falls back to the variant color.
+     * @cssprop [--diwa-tag-bg] — Overrides the background color. Falls back to the variant background.
+     */
     interface DiwaTag {
         /**
           * Renders a compact (smaller) version of the tag.
@@ -2465,6 +2550,10 @@ export namespace Components {
          */
         "variant": TagVariant;
     }
+    /**
+     * @cssprop [--diwa-tag-color] — Overrides the text (and border) color. Falls back to the variant color.
+     * @cssprop [--diwa-tag-bg] — Overrides the background color. Falls back to the variant background.
+     */
     interface DiwaTagDismissible {
         /**
           * Renders a compact (smaller) version of the tag.
@@ -2707,6 +2796,10 @@ export interface DiwaAccordionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDiwaAccordionElement;
 }
+export interface DiwaBannerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDiwaBannerElement;
+}
 export interface DiwaCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDiwaCheckboxElement;
@@ -2901,6 +2994,44 @@ declare global {
     var HTMLDiwaBadgeElement: {
         prototype: HTMLDiwaBadgeElement;
         new (): HTMLDiwaBadgeElement;
+    };
+    interface HTMLDiwaBannerElementEventMap {
+        "dismiss": void;
+        "action": void;
+    }
+    /**
+     * @component diwa-banner
+     * A floating notification bar fixed to the top of the viewport.
+     * Slides in from the top with a CSS transition, stays visible for a
+     * configurable duration (or indefinitely when `persistent`), and slides
+     * out on dismiss.
+     * Shares the semantic state colour system with `diwa-inline-notification`.
+     * Accessibility:
+     * - state="error" uses role="alert" (assertive live region)
+     * - All other states use role="status" (polite live region)
+     * - The status icon is aria-hidden
+     * - The dismiss button has an accessible label
+     * Usage:
+     * <diwa-banner
+     * open
+     * state="success"
+     * heading="Changes saved"
+     * description="Your settings have been updated."
+     * />
+     */
+    interface HTMLDiwaBannerElement extends Components.DiwaBanner, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDiwaBannerElementEventMap>(type: K, listener: (this: HTMLDiwaBannerElement, ev: DiwaBannerCustomEvent<HTMLDiwaBannerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDiwaBannerElementEventMap>(type: K, listener: (this: HTMLDiwaBannerElement, ev: DiwaBannerCustomEvent<HTMLDiwaBannerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDiwaBannerElement: {
+        prototype: HTMLDiwaBannerElement;
+        new (): HTMLDiwaBannerElement;
     };
     /**
      * @component diwa-button
@@ -3948,6 +4079,10 @@ declare global {
         prototype: HTMLDiwaTabsItemElement;
         new (): HTMLDiwaTabsItemElement;
     };
+    /**
+     * @cssprop [--diwa-tag-color] — Overrides the text (and border) color. Falls back to the variant color.
+     * @cssprop [--diwa-tag-bg] — Overrides the background color. Falls back to the variant background.
+     */
     interface HTMLDiwaTagElement extends Components.DiwaTag, HTMLStencilElement {
     }
     var HTMLDiwaTagElement: {
@@ -3957,6 +4092,10 @@ declare global {
     interface HTMLDiwaTagDismissibleElementEventMap {
         "dismiss": void;
     }
+    /**
+     * @cssprop [--diwa-tag-color] — Overrides the text (and border) color. Falls back to the variant color.
+     * @cssprop [--diwa-tag-bg] — Overrides the background color. Falls back to the variant background.
+     */
     interface HTMLDiwaTagDismissibleElement extends Components.DiwaTagDismissible, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDiwaTagDismissibleElementEventMap>(type: K, listener: (this: HTMLDiwaTagDismissibleElement, ev: DiwaTagDismissibleCustomEvent<HTMLDiwaTagDismissibleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4081,6 +4220,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "diwa-accordion": HTMLDiwaAccordionElement;
         "diwa-badge": HTMLDiwaBadgeElement;
+        "diwa-banner": HTMLDiwaBannerElement;
         "diwa-button": HTMLDiwaButtonElement;
         "diwa-button-pure": HTMLDiwaButtonPureElement;
         "diwa-checkbox": HTMLDiwaCheckboxElement;
@@ -4233,6 +4373,85 @@ declare namespace LocalJSX {
           * @default "neutral"
          */
         "variant"?: BadgeVariant;
+    }
+    /**
+     * @component diwa-banner
+     * A floating notification bar fixed to the top of the viewport.
+     * Slides in from the top with a CSS transition, stays visible for a
+     * configurable duration (or indefinitely when `persistent`), and slides
+     * out on dismiss.
+     * Shares the semantic state colour system with `diwa-inline-notification`.
+     * Accessibility:
+     * - state="error" uses role="alert" (assertive live region)
+     * - All other states use role="status" (polite live region)
+     * - The status icon is aria-hidden
+     * - The dismiss button has an accessible label
+     * Usage:
+     * <diwa-banner
+     * open
+     * state="success"
+     * heading="Changes saved"
+     * description="Your settings have been updated."
+     * />
+     */
+    interface DiwaBanner {
+        /**
+          * Optional label for a secondary action button. When set, a diwa-button-pure emits the `action` event on click.
+         */
+        "actionLabel"?: string;
+        /**
+          * Shows a loading indicator on the action button. Has no effect when `actionLabel` is not set.
+          * @default false
+         */
+        "actionLoading"?: boolean;
+        /**
+          * Description text. When empty, the default slot is rendered instead — allowing rich markup.
+          * @default ''
+         */
+        "description"?: string;
+        /**
+          * Whether to show the dismiss (×) button.
+          * @default true
+         */
+        "dismissButton"?: boolean;
+        /**
+          * Auto-dismiss delay in milliseconds. Ignored when `persistent` is `true`. Defaults to 6000ms.
+          * @default DEFAULT_DURATION
+         */
+        "duration"?: number;
+        /**
+          * Bold heading text rendered before the description.
+          * @default ''
+         */
+        "heading"?: string;
+        /**
+          * Emitted when the action button is clicked.
+         */
+        "onAction"?: (event: DiwaBannerCustomEvent<void>) => void;
+        /**
+          * Emitted when the banner is dismissed — either by the user clicking ×, the auto-dismiss timer, or a programmatic `hide()` call.
+         */
+        "onDismiss"?: (event: DiwaBannerCustomEvent<void>) => void;
+        /**
+          * Controls visibility. Set to `true` to slide the banner in, `false` to slide it out. The component always renders in the DOM so that the CSS transition can animate both entry and exit.
+          * @default false
+         */
+        "open"?: boolean;
+        /**
+          * When `true`, the banner stays visible until explicitly dismissed. When `false` (default), the banner auto-dismisses after `duration` ms.
+          * @default false
+         */
+        "persistent"?: boolean;
+        /**
+          * Semantic state — governs colour treatment, icon, and ARIA live role. - `info`    — neutral informational  (role="status", polite) - `success` — positive confirmation  (role="status", polite) - `warning` — non-blocking caution   (role="status", polite) - `error`   — critical or blocking   (role="alert",  assertive)
+          * @default 'info'
+         */
+        "state"?: BannerState;
+        /**
+          * Per-component theme override (`light` / `dark`).
+          * @default 'dark'
+         */
+        "theme"?: Theme;
     }
     /**
      * @component diwa-button
@@ -6643,6 +6862,10 @@ declare namespace LocalJSX {
          */
         "theme"?: Theme;
     }
+    /**
+     * @cssprop [--diwa-tag-color] — Overrides the text (and border) color. Falls back to the variant color.
+     * @cssprop [--diwa-tag-bg] — Overrides the background color. Falls back to the variant background.
+     */
     interface DiwaTag {
         /**
           * Renders a compact (smaller) version of the tag.
@@ -6664,6 +6887,10 @@ declare namespace LocalJSX {
          */
         "variant"?: TagVariant;
     }
+    /**
+     * @cssprop [--diwa-tag-color] — Overrides the text (and border) color. Falls back to the variant color.
+     * @cssprop [--diwa-tag-bg] — Overrides the background color. Falls back to the variant background.
+     */
     interface DiwaTagDismissible {
         /**
           * Renders a compact (smaller) version of the tag.
@@ -6931,6 +7158,18 @@ declare namespace LocalJSX {
         "label": string;
         "dot": boolean;
         "theme": Theme;
+    }
+    interface DiwaBannerAttributes {
+        "theme": Theme;
+        "open": boolean;
+        "state": BannerState;
+        "heading": string;
+        "description": string;
+        "persistent": boolean;
+        "duration": number;
+        "dismissButton": boolean;
+        "actionLabel": string;
+        "actionLoading": boolean;
     }
     interface DiwaButtonAttributes {
         "theme": Theme;
@@ -7494,6 +7733,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "diwa-accordion": Omit<DiwaAccordion, keyof DiwaAccordionAttributes> & { [K in keyof DiwaAccordion & keyof DiwaAccordionAttributes]?: DiwaAccordion[K] } & { [K in keyof DiwaAccordion & keyof DiwaAccordionAttributes as `attr:${K}`]?: DiwaAccordionAttributes[K] } & { [K in keyof DiwaAccordion & keyof DiwaAccordionAttributes as `prop:${K}`]?: DiwaAccordion[K] };
         "diwa-badge": Omit<DiwaBadge, keyof DiwaBadgeAttributes> & { [K in keyof DiwaBadge & keyof DiwaBadgeAttributes]?: DiwaBadge[K] } & { [K in keyof DiwaBadge & keyof DiwaBadgeAttributes as `attr:${K}`]?: DiwaBadgeAttributes[K] } & { [K in keyof DiwaBadge & keyof DiwaBadgeAttributes as `prop:${K}`]?: DiwaBadge[K] };
+        "diwa-banner": Omit<DiwaBanner, keyof DiwaBannerAttributes> & { [K in keyof DiwaBanner & keyof DiwaBannerAttributes]?: DiwaBanner[K] } & { [K in keyof DiwaBanner & keyof DiwaBannerAttributes as `attr:${K}`]?: DiwaBannerAttributes[K] } & { [K in keyof DiwaBanner & keyof DiwaBannerAttributes as `prop:${K}`]?: DiwaBanner[K] };
         "diwa-button": Omit<DiwaButton, keyof DiwaButtonAttributes> & { [K in keyof DiwaButton & keyof DiwaButtonAttributes]?: DiwaButton[K] } & { [K in keyof DiwaButton & keyof DiwaButtonAttributes as `attr:${K}`]?: DiwaButtonAttributes[K] } & { [K in keyof DiwaButton & keyof DiwaButtonAttributes as `prop:${K}`]?: DiwaButton[K] };
         "diwa-button-pure": Omit<DiwaButtonPure, keyof DiwaButtonPureAttributes> & { [K in keyof DiwaButtonPure & keyof DiwaButtonPureAttributes]?: DiwaButtonPure[K] } & { [K in keyof DiwaButtonPure & keyof DiwaButtonPureAttributes as `attr:${K}`]?: DiwaButtonPureAttributes[K] } & { [K in keyof DiwaButtonPure & keyof DiwaButtonPureAttributes as `prop:${K}`]?: DiwaButtonPure[K] };
         "diwa-checkbox": Omit<DiwaCheckbox, keyof DiwaCheckboxAttributes> & { [K in keyof DiwaCheckbox & keyof DiwaCheckboxAttributes]?: DiwaCheckbox[K] } & { [K in keyof DiwaCheckbox & keyof DiwaCheckboxAttributes as `attr:${K}`]?: DiwaCheckboxAttributes[K] } & { [K in keyof DiwaCheckbox & keyof DiwaCheckboxAttributes as `prop:${K}`]?: DiwaCheckbox[K] };
@@ -7593,6 +7833,27 @@ declare module "@stencil/core" {
              * <diwa-badge variant="neutral">Draft</diwa-badge>
              */
             "diwa-badge": LocalJSX.IntrinsicElements["diwa-badge"] & JSXBase.HTMLAttributes<HTMLDiwaBadgeElement>;
+            /**
+             * @component diwa-banner
+             * A floating notification bar fixed to the top of the viewport.
+             * Slides in from the top with a CSS transition, stays visible for a
+             * configurable duration (or indefinitely when `persistent`), and slides
+             * out on dismiss.
+             * Shares the semantic state colour system with `diwa-inline-notification`.
+             * Accessibility:
+             * - state="error" uses role="alert" (assertive live region)
+             * - All other states use role="status" (polite live region)
+             * - The status icon is aria-hidden
+             * - The dismiss button has an accessible label
+             * Usage:
+             * <diwa-banner
+             * open
+             * state="success"
+             * heading="Changes saved"
+             * description="Your settings have been updated."
+             * />
+             */
+            "diwa-banner": LocalJSX.IntrinsicElements["diwa-banner"] & JSXBase.HTMLAttributes<HTMLDiwaBannerElement>;
             /**
              * @component diwa-button
              * A fully encapsulated, accessible button primitive.
@@ -8017,7 +8278,15 @@ declare module "@stencil/core" {
              * <diwa-tabs-item label="Overview">Panel content here</diwa-tabs-item>
              */
             "diwa-tabs-item": LocalJSX.IntrinsicElements["diwa-tabs-item"] & JSXBase.HTMLAttributes<HTMLDiwaTabsItemElement>;
+            /**
+             * @cssprop [--diwa-tag-color] — Overrides the text (and border) color. Falls back to the variant color.
+             * @cssprop [--diwa-tag-bg] — Overrides the background color. Falls back to the variant background.
+             */
             "diwa-tag": LocalJSX.IntrinsicElements["diwa-tag"] & JSXBase.HTMLAttributes<HTMLDiwaTagElement>;
+            /**
+             * @cssprop [--diwa-tag-color] — Overrides the text (and border) color. Falls back to the variant color.
+             * @cssprop [--diwa-tag-bg] — Overrides the background color. Falls back to the variant background.
+             */
             "diwa-tag-dismissible": LocalJSX.IntrinsicElements["diwa-tag-dismissible"] & JSXBase.HTMLAttributes<HTMLDiwaTagDismissibleElement>;
             /**
              * @component diwa-text

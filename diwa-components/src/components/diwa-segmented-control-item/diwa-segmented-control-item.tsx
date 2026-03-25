@@ -1,4 +1,4 @@
-import { Component, Element, Event, type EventEmitter, Host, Prop, Watch, h } from '@stencil/core';
+import { Component, Element, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
 import type { Theme } from '../../utils/styles';
 import { getComponentCss } from './diwa-segmented-control-item-styles';
 

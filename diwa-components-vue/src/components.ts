@@ -27,6 +27,22 @@ export const DiwaBadge = /*@__PURE__*/ defineContainer<JSX.DiwaBadge>('diwa-badg
 ]);
 
 
+export const DiwaBanner = /*@__PURE__*/ defineContainer<JSX.DiwaBanner>('diwa-banner', undefined, [
+  'theme',
+  'open',
+  'state',
+  'heading',
+  'description',
+  'persistent',
+  'duration',
+  'dismissButton',
+  'actionLabel',
+  'actionLoading',
+  'dismiss',
+  'action'
+]);
+
+
 export const DiwaButton = /*@__PURE__*/ defineContainer<JSX.DiwaButton>('diwa-button', undefined, [
   'theme',
   'variant',

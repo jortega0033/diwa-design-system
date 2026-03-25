@@ -72,7 +72,7 @@ const COMPONENT_FAMILIES: Array<{ title: string; labels: string[] }> = [
   },
   {
     title: 'Feedback and Overlays',
-    labels: ['Inline Notification', 'Toast', 'Spinner', 'Popover', 'Modal', 'Flyout'],
+    labels: ['Banner', 'Inline Notification', 'Toast', 'Spinner', 'Popover', 'Modal', 'Flyout'],
   },
   {
     title: 'Content and Structure',

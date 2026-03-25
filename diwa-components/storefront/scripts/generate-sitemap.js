@@ -16,7 +16,7 @@ const COMPONENT_SLUGS = [
   'modal', 'multi-select', 'pagination', 'pin-code', 'popover', 'radio-group',
   'scroller', 'segmented-control', 'select', 'spinner', 'stepper-horizontal',
   'switch', 'table', 'tabs', 'tabs-bar', 'tag', 'text', 'text-list', 'textarea',
-  'toast',
+  'toast', 'banner',
 ];
 const COMPONENT_TABS = ['configurator', 'examples', 'usage', 'accessibility', 'api'];
 

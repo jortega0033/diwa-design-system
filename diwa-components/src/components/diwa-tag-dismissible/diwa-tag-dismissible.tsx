@@ -5,6 +5,9 @@ import { getComponentCss } from './diwa-tag-dismissible-styles';
 
 /**
  * @slot default — Tag label content.
+ *
+ * @cssprop [--diwa-tag-color] — Overrides the text (and border) color. Falls back to the variant color.
+ * @cssprop [--diwa-tag-bg] — Overrides the background color. Falls back to the variant background.
  */
 @Component({
   tag: 'diwa-tag-dismissible',

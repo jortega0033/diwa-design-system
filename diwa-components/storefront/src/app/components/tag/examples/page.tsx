@@ -91,7 +91,7 @@ function DismissibleDemo() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-2 min-h-[32px] items-start">
+      <div className="flex flex-wrap gap-2 items-center">
         {tags.map((label) => (
           <diwa-tag-dismissible
             key={label}
@@ -114,6 +114,29 @@ function DismissibleDemo() {
   );
 }
 
+const customColorsDemoCode: FrameworkCode = {
+  html: `<!-- Set --diwa-tag-color and --diwa-tag-bg on the host element -->
+<diwa-tag variant="neutral" style="--diwa-tag-color: #a78bfa; --diwa-tag-bg: color-mix(in srgb, #a78bfa 12%, transparent);">Knowledge</diwa-tag>
+<diwa-tag variant="neutral" style="--diwa-tag-color: #2dd4bf; --diwa-tag-bg: color-mix(in srgb, #2dd4bf 12%, transparent);">Teal</diwa-tag>
+<diwa-tag variant="neutral" style="--diwa-tag-color: #fb923c; --diwa-tag-bg: color-mix(in srgb, #fb923c 12%, transparent);">Amber</diwa-tag>`,
+  react: `<DiwaTag variant="neutral" style={{ '--diwa-tag-color': '#a78bfa', '--diwa-tag-bg': 'color-mix(in srgb, #a78bfa 12%, transparent)' } as React.CSSProperties}>
+  Knowledge
+</DiwaTag>
+<DiwaTag variant="neutral" style={{ '--diwa-tag-color': '#2dd4bf', '--diwa-tag-bg': 'color-mix(in srgb, #2dd4bf 12%, transparent)' } as React.CSSProperties}>
+  Teal
+</DiwaTag>
+<DiwaTag variant="neutral" style={{ '--diwa-tag-color': '#fb923c', '--diwa-tag-bg': 'color-mix(in srgb, #fb923c 12%, transparent)' } as React.CSSProperties}>
+  Amber
+</DiwaTag>`,
+  angular: `<!-- Set custom properties via [style] binding or a host CSS class -->
+<diwa-tag variant="neutral" [style]="{ '--diwa-tag-color': '#a78bfa', '--diwa-tag-bg': 'color-mix(in srgb, #a78bfa 12%, transparent)' }">Knowledge</diwa-tag>
+<diwa-tag variant="neutral" [style]="{ '--diwa-tag-color': '#2dd4bf', '--diwa-tag-bg': 'color-mix(in srgb, #2dd4bf 12%, transparent)' }">Teal</diwa-tag>
+<diwa-tag variant="neutral" [style]="{ '--diwa-tag-color': '#fb923c', '--diwa-tag-bg': 'color-mix(in srgb, #fb923c 12%, transparent)' }">Amber</diwa-tag>`,
+  vue: `<diwa-tag variant="neutral" :style="{ '--diwa-tag-color': '#a78bfa', '--diwa-tag-bg': 'color-mix(in srgb, #a78bfa 12%, transparent)' }">Knowledge</diwa-tag>
+<diwa-tag variant="neutral" :style="{ '--diwa-tag-color': '#2dd4bf', '--diwa-tag-bg': 'color-mix(in srgb, #2dd4bf 12%, transparent)' }">Teal</diwa-tag>
+<diwa-tag variant="neutral" :style="{ '--diwa-tag-color': '#fb923c', '--diwa-tag-bg': 'color-mix(in srgb, #fb923c 12%, transparent)' }">Amber</diwa-tag>`,
+};
+
 export default function TagExamplesPage() {
   return (
     <div className="space-y-12">
@@ -134,6 +157,18 @@ export default function TagExamplesPage() {
       </section>
 
       <section className="space-y-4">
+        <h2 className="text-base font-semibold text-[var(--diwa-text-primary)]">Custom colors</h2>
+        <p className="text-sm text-[var(--diwa-text-secondary)]">
+          Set <code className="text-[var(--diwa-accent)]">--diwa-tag-color</code> and <code className="text-[var(--diwa-accent)]">--diwa-tag-bg</code> on the host element to override the variant colors without needing a custom variant. The border automatically follows <code className="text-[var(--diwa-accent)]">currentColor</code>.
+        </p>
+        <Playground frameworkCode={customColorsDemoCode} previewClassName="gap-3 flex-wrap justify-start content-center">
+          <diwa-tag variant="neutral" style={{ '--diwa-tag-color': '#a78bfa', '--diwa-tag-bg': 'color-mix(in srgb, #a78bfa 12%, transparent)' } as React.CSSProperties}>Knowledge</diwa-tag>
+          <diwa-tag variant="neutral" style={{ '--diwa-tag-color': '#2dd4bf', '--diwa-tag-bg': 'color-mix(in srgb, #2dd4bf 12%, transparent)' } as React.CSSProperties}>Teal</diwa-tag>
+          <diwa-tag variant="neutral" style={{ '--diwa-tag-color': '#fb923c', '--diwa-tag-bg': 'color-mix(in srgb, #fb923c 12%, transparent)' } as React.CSSProperties}>Amber</diwa-tag>
+        </Playground>
+      </section>
+
+      <section className="space-y-4">
         <h2 className="text-base font-semibold text-[var(--diwa-text-primary)]">Dismissible tags</h2>
         <p className="text-sm text-[var(--diwa-text-secondary)]">
           Click the ✕ on each tag to remove it from the list.
@@ -145,7 +180,7 @@ export default function TagExamplesPage() {
 
       <section className="space-y-4">
         <h2 className="text-base font-semibold text-[var(--diwa-text-primary)]">Dismissible — all variants</h2>
-        <ComponentStory story={dismissibleVariantsStory} previewClassName="gap-3 flex-wrap" />
+        <ComponentStory story={dismissibleVariantsStory} previewClassName="gap-3 flex-wrap content-center" />
       </section>
 
     </div>

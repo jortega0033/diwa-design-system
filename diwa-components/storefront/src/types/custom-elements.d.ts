@@ -11,6 +11,7 @@ declare namespace React {
     interface IntrinsicElements {
       'diwa-accordion': DiwaElement;
       'diwa-badge': DiwaElement;
+      'diwa-banner': DiwaElement;
       'diwa-button': DiwaElement;
       'diwa-button-pure': DiwaElement;
       'diwa-checkbox': DiwaElement;

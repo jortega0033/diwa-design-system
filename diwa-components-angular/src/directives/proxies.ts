@@ -65,6 +65,40 @@ export declare interface DiwaBadge extends Components.DiwaBadge {}
 
 
 @ProxyCmp({
+  inputs: ['actionLabel', 'actionLoading', 'description', 'dismissButton', 'duration', 'heading', 'open', 'persistent', 'state', 'theme'],
+  methods: ['show', 'hide']
+})
+@Component({
+  selector: 'diwa-banner',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionLabel', 'actionLoading', 'description', 'dismissButton', 'duration', 'heading', 'open', 'persistent', 'state', 'theme'],
+})
+export class DiwaBanner {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dismiss', 'action']);
+  }
+}
+
+
+export declare interface DiwaBanner extends Components.DiwaBanner {
+  /**
+   * Emitted when the banner is dismissed — either by the user clicking ×,
+the auto-dismiss timer, or a programmatic `hide()` call.
+   */
+  dismiss: EventEmitter<CustomEvent<void>>;
+  /**
+   * Emitted when the action button is clicked.
+   */
+  action: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   inputs: ['disabled', 'hideLabel', 'href', 'icon', 'label', 'loading', 'name', 'size', 'target', 'theme', 'type', 'value', 'variant']
 })
 @Component({

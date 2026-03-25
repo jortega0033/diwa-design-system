@@ -5,7 +5,7 @@
  */
 
 /** Visual variant of the badge. Maps to semantic colour roles. */
-export type BadgeVariant = "neutral" | "accent" | "success" | "warning" | "danger";
+export type BadgeVariant = "neutral" | "accent" | "info" | "success" | "warning" | "danger";
 
 /** Size tier. Controls height, padding, and font-size. */
 export type BadgeSize = "sm" | "md";

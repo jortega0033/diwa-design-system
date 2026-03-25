@@ -2,7 +2,7 @@ import { getFocusStyle, getReducedMotionStyle } from '../../utils/styles';
 
 export const getComponentCss = (selected: boolean, disabled: boolean, compact: boolean): string => `
   :host {
-    display: inline-block;
+    display: inline-flex;
     font-family: var(--diwa-font-family-base);
     outline: none;
   }
@@ -14,9 +14,14 @@ export const getComponentCss = (selected: boolean, disabled: boolean, compact: b
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: var(--diwa-space-2);
-    padding: ${compact ? 'var(--diwa-space-1) var(--diwa-space-3)' : 'var(--diwa-space-2) var(--diwa-space-4)'};
+    justify-content: center;
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    gap: ${compact ? 'var(--diwa-space-1)' : 'var(--diwa-space-2)'};
+    padding: 0 ${compact ? 'var(--diwa-space-3)' : 'var(--diwa-space-4)'};
     border: none;
+    box-sizing: border-box;
     border-radius: calc(var(--diwa-radius-md) - var(--diwa-border-width-base));
     background: ${selected ? 'var(--diwa-bg-elevated)' : 'transparent'};
     color: ${selected ? 'var(--diwa-text-primary)' : 'var(--diwa-text-secondary)'};
@@ -26,8 +31,10 @@ export const getComponentCss = (selected: boolean, disabled: boolean, compact: b
     cursor: ${disabled ? 'not-allowed' : 'pointer'};
     opacity: ${disabled ? 0.4 : 1};
     white-space: nowrap;
+    line-height: 1;
     transition: background 150ms ease, color 150ms ease;
     box-shadow: ${selected ? 'var(--diwa-shadow-sm)' : 'none'};
+    height: ${compact ? '1.5rem' : '2rem'};
   }
 
   ${getFocusStyle('.btn')}
