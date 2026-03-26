@@ -24,15 +24,15 @@
    ============================================================ */
 
 :root {
-  /* Primary Accent — Calm AI Green (OpenAI-inspired) */
-  --diwa-color-accent-50:  rgba(16, 163, 127, 0.05);
-  --diwa-color-accent-100: rgba(16, 163, 127, 0.1);
-  --diwa-color-accent-200: rgba(16, 163, 127, 0.15);
-  --diwa-color-accent-300: rgba(16, 163, 127, 0.25);
-  --diwa-color-accent-400: #10a37f;
-  --diwa-color-accent-500: #0e9470;
-  --diwa-color-accent-600: #0c8464;
-  --diwa-color-accent-700: #0a7456;
+   /* Primary Accent — Cobalt Blue */
+   --diwa-color-accent-50:  rgba(53, 88, 230, 0.08);
+   --diwa-color-accent-100: rgba(53, 88, 230, 0.12);
+   --diwa-color-accent-200: rgba(53, 88, 230, 0.2);
+   --diwa-color-accent-300: rgba(53, 88, 230, 0.32);
+   --diwa-color-accent-400: #3558e6;
+   --diwa-color-accent-500: #2f4fd1;
+   --diwa-color-accent-600: #2844b5;
+   --diwa-color-accent-700: #213995;
 
   /* Zinc Scale — True Neutral */
   --diwa-color-zinc-50:  #fafafa;
@@ -110,62 +110,62 @@
   --diwa-primary:         #e6e6e7;             /* PDS: colorPrimaryDark #FBFCFF */
 
   /* ── 2b. Background ──────────────────────────────────────── */
-  --diwa-bg-base:         var(--diwa-color-zinc-950);  /* #0b0b0c  canvas / page floor   — PDS colorCanvasDark  #0E0E12  */
-  --diwa-bg-raised:       #161618;                     /* #161618  nav/sidebar, subtle lift above base                   */
-  --diwa-bg-surface:      var(--diwa-color-zinc-850);  /* #1f1f23  cards, panels         — PDS colorSurfaceDark #212225  */
+   --diwa-bg-base:         #111319;                     /* lifted from near-black for less visual crush */
+   --diwa-bg-raised:       #1a1d25;                     /* nav/sidebar, subtle lift above base */
+   --diwa-bg-surface:      #20242d;                     /* cards and panels with clearer separation */
   --diwa-bg-shading:      rgba(17, 17, 19, 0.85);      /* modal backdrops, scrim         — PDS colorShadingDark rgba(38,38,41,.67) */
   --diwa-bg-frosted:      hsl(240 3% 18% / 35%);       /* frosted-glass overlays         — PDS colorFrostedDark hsl(240 3% 26%/35%) */
 
   /* Legacy aliases — kept for backwards compatibility */
   --diwa-bg-primary:      var(--diwa-bg-base);
-  --diwa-bg-content:      var(--diwa-color-zinc-900);  /* #18181b main content area */
-  --diwa-bg-secondary:    var(--diwa-color-zinc-925);  /* #111113 cards on content */
-  --diwa-bg-tertiary:     var(--diwa-color-zinc-850);  /* #1f1f23 nested cards */
-  --diwa-bg-elevated:     var(--diwa-color-zinc-925);  /* #111113 modals */
-  --diwa-bg-hover:        var(--diwa-color-zinc-800);  /* #27272a hover state */
-  --diwa-bg-active:       var(--diwa-color-zinc-700);  /* #3f3f46 active/pressed state — lighter lifts ghost buttons on dark bg */
+   --diwa-bg-content:      #181c24;                     /* main content area */
+   --diwa-bg-secondary:    #151922;                     /* cards on content */
+   --diwa-bg-tertiary:     #20242d;                     /* nested cards */
+   --diwa-bg-elevated:     #171b24;                     /* modals */
+   --diwa-bg-hover:        #2a303b;                     /* hover state */
+   --diwa-bg-active:       #353d4b;                     /* active/pressed state */
   --diwa-bg-glass:        var(--diwa-bg-shading);
-  --diwa-bg-input:        rgba(24, 24, 27, 0.8);
+   --diwa-bg-input:        rgba(24, 28, 36, 0.88);
 
   /* ── 2c. Contrast ────────────────────────────────────────── */
   /* Use for borders, dividers, and secondary text — never for interactive color. */
-  --diwa-contrast-low:    var(--diwa-color-zinc-800);  /* #27272a subtle borders         — PDS colorContrastLowDark  #404044 */
-  --diwa-contrast-medium: var(--diwa-color-zinc-500);  /* #71717a secondary text         — PDS colorContrastMediumDark #88898C */
-  --diwa-contrast-high:   var(--diwa-color-zinc-300);  /* #d4d4d8 headers, labels        — PDS colorContrastHighDark #AFB0B3 */
+   --diwa-contrast-low:    #333b48;                     /* subtle borders and separators */
+   --diwa-contrast-medium: #8d97aa;                     /* secondary text */
+   --diwa-contrast-high:   #c5cede;                     /* headings and labels */
 
   /*
    * WCAG Contrast Verification (Noir / [data-theme="light"])
    * ---------------------------------------------------------
    * --diwa-text-primary  (#e6e6e7) on --diwa-bg-content (#18181b):   14.5:1 ✓ AA
    * --diwa-text-secondary(#a1a1aa) on --diwa-bg-secondary(#111113):   7.3:1 ✓ AA  (was zinc-500 = 3.9:1 ✗ → fixed)
-   * --diwa-accent        (#10a37f) on --diwa-bg-content (#18181b):    5.7:1 ✓ AA  (UI component ≥3:1)
-   * --diwa-border-focus  (#10a37f) on --diwa-bg-base   (#0b0b0c):    5.8:1 ✓ AA  (focus ring ≥3:1)
+   * --diwa-accent        (#3558e6) on --diwa-bg-content (#181c24):    5.7:1 ✓ AA  (UI component ≥3:1)
+   * --diwa-border-focus  (#3558e6) on --diwa-bg-base   (#111319):    5.8:1 ✓ AA  (focus ring ≥3:1)
    */
 
   /* Text aliases */
   --diwa-text-primary:    var(--diwa-primary);
-  --diwa-text-secondary:  var(--diwa-color-zinc-400);  /* #a1a1aa — 7.3:1 on bg-secondary ✓ AA; aligns with diwa-design-system semantic/noir.json */
-  --diwa-text-tertiary:   var(--diwa-color-zinc-500);
-  --diwa-text-muted:      var(--diwa-color-zinc-600);
-  --diwa-text-disabled:   var(--diwa-color-zinc-700);
-  --diwa-text-inverse:    var(--diwa-color-white);     /* white text ON colored/dark surfaces — 5.5:1 on accent #10a37f ✓ */
+   --diwa-text-secondary:  #aab4c7;
+   --diwa-text-tertiary:   #8d97aa;
+   --diwa-text-muted:      #6f7a90;
+   --diwa-text-disabled:   #5c667a;
+   --diwa-text-inverse:    var(--diwa-color-white);     /* white text on cobalt accent remains readable */
 
   /* Border aliases */
-  --diwa-border:          var(--diwa-color-zinc-700);  /* #3f3f46 — bumped from zinc-800 for visible separation */
-  --diwa-border-hover:    var(--diwa-color-zinc-600);
-  --diwa-border-light:    rgba(63, 63, 70, 0.5);
+   --diwa-border:          #3a4354;
+   --diwa-border-hover:    #4b566b;
+   --diwa-border-light:    rgba(58, 67, 84, 0.55);
 
   /* ── 2d. State ───────────────────────────────────────────── */
   /* Interactive state overlays — applied on top of any background color. */
-  --diwa-state-hover:     rgba(148, 149, 152, 0.18);   /* PDS colorHoverDark  rgba(148,149,152,.18) */
-  --diwa-state-active:    rgba(126, 127, 130, 0.20);   /* PDS colorActiveDark rgba(126,127,130,.2)  */
-  --diwa-state-focus:     var(--diwa-color-accent-400); /* #10a37f — Diwa brand (PDS uses #1A44EA)  */
+   --diwa-state-hover:     rgba(142, 153, 176, 0.16);
+   --diwa-state-active:    rgba(124, 136, 162, 0.24);
+   --diwa-state-focus:     var(--diwa-color-accent-400); /* #3558e6 — Diwa brand cobalt accent */
   --diwa-state-disabled:  var(--diwa-color-zinc-600);  /* #52525b               — PDS colorDisabledDark #7E7F82 */
 
   /* Accent / focus aliases */
   --diwa-accent:          var(--diwa-state-focus);
   --diwa-accent-hover:    var(--diwa-color-accent-500);
-  --diwa-accent-active:   var(--diwa-color-accent-600); /* #0c8464 pressed/active primary — one step darker than hover */
+   --diwa-accent-active:   var(--diwa-color-accent-600); /* #2844b5 pressed/active primary */
   --diwa-accent-muted:    var(--diwa-color-accent-200);
   --diwa-accent-bg:       var(--diwa-color-accent-100);
   --diwa-border-focus:    var(--diwa-state-focus);
@@ -175,16 +175,16 @@
   /* Soft variant = low-opacity tinted background for banners.  */
 
   --diwa-notification-success:       var(--diwa-color-success-500); /* #22c55e  — PDS colorSuccessDark     #09D087 */
-  --diwa-notification-success-soft:  var(--diwa-color-success-50);  /* tinted   — PDS colorSuccessSoftDark #003320 */
+   --diwa-notification-success-soft:  #003320;  /* tinted   — PDS colorSuccessSoftDark #003320 */
 
   --diwa-notification-warning:       var(--diwa-color-warning-500); /* #f59e0b  — PDS colorWarningDark     #F7CB47 */
-  --diwa-notification-warning-soft:  var(--diwa-color-warning-50);  /* tinted   — PDS colorWarningSoftDark #362B0A */
+   --diwa-notification-warning-soft:  #362b0a;  /* tinted   — PDS colorWarningSoftDark #362B0A */
 
   --diwa-notification-error:         var(--diwa-color-danger-500);  /* #ef4444  — PDS colorErrorDark       #FC4040 */
-  --diwa-notification-error-soft:    var(--diwa-color-danger-50);   /* tinted   — PDS colorErrorSoftDark   #3A0F0F */
+   --diwa-notification-error-soft:    #3a0f0f;  /* tinted   — PDS colorErrorSoftDark   #3A0F0F */
 
   --diwa-notification-info:          var(--diwa-color-info-400);    /* #178bff  — PDS colorInfoDark        #178BFF */
-  --diwa-notification-info-soft:     var(--diwa-color-info-50);     /* tinted   — PDS colorInfoSoftDark    #04294E */
+   --diwa-notification-info-soft:     #04294e;  /* tinted   — PDS colorInfoSoftDark    #04294E */
 
   /* Legacy status aliases */
   --diwa-danger:          var(--diwa-notification-error);
@@ -519,45 +519,45 @@
   --diwa-primary:         #010205;             /* PDS colorPrimaryLight  #010205 */
 
   /* ── Background ─────────────────────────────────────────── */
-  --diwa-bg-base:         #ffffff;             /* PDS colorCanvasLight   #FFF    */
-  --diwa-bg-raised:       #f4f4f5;             /* nav/sidebar — one step above white canvas (zinc-100) */
-  --diwa-bg-surface:      #eeeff2;             /* PDS colorSurfaceLight  #EEEFF2 */
+   --diwa-bg-base:         #ffffff;             /* clean white canvas */
+   --diwa-bg-raised:       #e8f0fa;             /* nav/sidebar — cobalt-blue tinted depth */
+   --diwa-bg-surface:      #f3f7fd;             /* cards/panels — very light tint, distinct from white */
   --diwa-bg-shading:      rgba(1, 2, 5, 0.67); /* PDS colorShadingLight  rgba(1,2,5,.67) */
   --diwa-bg-frosted:      hsl(240 4% 85% / 35%); /* PDS colorFrostedLight  hsl(240 4% 85%/35%) */
 
   /* Legacy bg aliases */
   --diwa-bg-primary:      var(--diwa-bg-base);
-  --diwa-bg-content:      #f4f4f5;
-  --diwa-bg-secondary:    #eeeff2;
-  --diwa-bg-tertiary:     #e4e4e7;
+   --diwa-bg-content:      #f0f5fc;             /* main content well */
+   --diwa-bg-secondary:    #e4eef8;             /* cards on content */
+   --diwa-bg-tertiary:     #d8e6f4;             /* nested cards */
   --diwa-bg-elevated:     #ffffff;
-  --diwa-bg-hover:        rgba(148, 149, 152, 0.18);
-  --diwa-bg-active:       var(--diwa-color-zinc-200);  /* #e4e4e7 active/pressed state on light backgrounds */
+   --diwa-bg-hover:        rgba(53, 88, 230, 0.12);
+   --diwa-bg-active:       rgba(53, 88, 230, 0.20);
   --diwa-bg-glass:        var(--diwa-bg-shading);
-  --diwa-bg-input:        rgba(255, 255, 255, 0.9);
+   --diwa-bg-input:        rgba(255, 255, 255, 0.97);
 
   /* ── Contrast ────────────────────────────────────────────── */
-  --diwa-contrast-low:    #d8d8db;             /* PDS colorContrastLowLight   #D8D8DB */
-  --diwa-contrast-medium: #6b6d70;             /* PDS colorContrastMediumLight #6B6D70 */
-  --diwa-contrast-high:   #535457;             /* PDS colorContrastHighLight  #535457 */
+   --diwa-contrast-low:    #a8bdd8;             /* borders — stronger on deeper canvas */
+   --diwa-contrast-medium: #4e5a74;             /* secondary text */
+   --diwa-contrast-high:   #38435b;             /* headings and labels */
 
   /* Text aliases */
   --diwa-text-primary:    var(--diwa-primary);
   --diwa-text-secondary:  var(--diwa-contrast-medium);
-  --diwa-text-tertiary:   #6b6d70;
-  --diwa-text-muted:      #949598;
-  --diwa-text-disabled:   #949598;
+   --diwa-text-tertiary:   #5c6880;
+   --diwa-text-muted:      #728198;
+   --diwa-text-disabled:   #8c95ad;
   --diwa-text-inverse:    #ffffff;
 
   /* Border aliases */
   --diwa-border:          var(--diwa-contrast-low);
-  --diwa-border-hover:    #c0c0c3;
-  --diwa-border-light:    rgba(216, 216, 219, 0.6);
+   --diwa-border-hover:    #8aabcc;
+   --diwa-border-light:    rgba(168, 189, 216, 0.65);
 
   /* ── State ───────────────────────────────────────────────── */
-  --diwa-state-hover:     rgba(148, 149, 152, 0.18); /* PDS colorHoverLight  rgba(148,149,152,.18) */
-  --diwa-state-active:    rgba(148, 149, 152, 0.20); /* PDS colorActiveLight rgba(148,149,152,.2)  */
-  --diwa-state-focus:     var(--diwa-color-accent-400); /* #10a37f — Diwa brand (PDS uses #1A44EA)  */
+   --diwa-state-hover:     rgba(53, 88, 230, 0.12);
+   --diwa-state-active:    rgba(53, 88, 230, 0.18);
+   --diwa-state-focus:     var(--diwa-color-accent-400); /* #3558e6 — Diwa brand cobalt accent */
   --diwa-state-disabled:  #949598;             /* PDS colorDisabledLight #949598 */
 
   /* Accent aliases */
@@ -579,7 +579,7 @@
   --diwa-notification-error-soft:    #ffe2e4;  /* PDS colorErrorSoftLight    #FFE2E4 */
 
   --diwa-notification-info:          #2762ec;  /* PDS colorInfoLight         #2762EC */
-  --diwa-notification-info-soft:     #d3e1ff;  /* PDS colorInfoSoftLight     #D3E1FF */
+  --diwa-notification-info-soft:     #bdd4ff;  /* deeper than canvas blue to stay distinct */
 
   /* Legacy status aliases */
   --diwa-danger:          var(--diwa-notification-error);

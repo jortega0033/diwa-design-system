@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, Code } from '@/components/docs';
+import { Section, Code, CodeSnippet } from '@/components/docs';
 
 
 
@@ -52,8 +52,9 @@ export default function AccordionUsagePage() {
           The consumer must reflect that value back onto the <Code>open</Code> prop. This pattern gives
           the consumer full control: you can intercept, delay, or veto state transitions.
         </p>
-        <pre className="p-4 rounded-md bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-sm font-mono text-[var(--diwa-text-primary)] overflow-x-auto">
-{`// Vanilla JS
+        <CodeSnippet
+          language="typescript"
+          code={`// Vanilla JS
 const el = document.querySelector('diwa-accordion');
 el.addEventListener('update', (e) => { el.open = e.detail.open; });
 
@@ -64,7 +65,7 @@ el.addEventListener('update', (e) => { el.open = e.detail.open; });
   open={isOpen}
   onupdate={(e) => setIsOpen(e.detail.open)}
 />`}
-        </pre>
+        />
       </Section>
 
       <Section title="Exclusive group (accordion accordion)">
@@ -73,8 +74,9 @@ el.addEventListener('update', (e) => { el.open = e.detail.open; });
           when a panel is opened. Because each accordion is independent, this is entirely handled
           in user-land without any group container prop:
         </p>
-        <pre className="p-4 rounded-md bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-sm font-mono text-[var(--diwa-text-primary)] overflow-x-auto">
-{`const [activeIndex, setActiveIndex] = useState<number | null>(null);
+        <CodeSnippet
+          language="typescript"
+          code={`const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
 items.map((item, i) => (
   <diwa-accordion
@@ -86,7 +88,7 @@ items.map((item, i) => (
     {item.content}
   </diwa-accordion>
 ))`}
-        </pre>
+        />
       </Section>
 
       <Section title="Heading tag">

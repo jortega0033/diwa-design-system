@@ -99,20 +99,20 @@ describe('diwa-banner', () => {
 
   it('uses correct state tokens for each variant', () => {
     const successCss = getComponentCss('success', true);
-    expect(successCss).toContain('--diwa-color-success-500');
-    expect(successCss).toContain('--diwa-color-success-400');
+    expect(successCss).toContain('--diwa-notification-success-soft');
+    expect(successCss).toContain('--diwa-color-success-100');
 
     const errorCss = getComponentCss('error', true);
-    expect(errorCss).toContain('--diwa-color-danger-500');
-    expect(errorCss).toContain('--diwa-color-danger-400');
+    expect(errorCss).toContain('--diwa-notification-error-soft');
+    expect(errorCss).toContain('--diwa-color-danger-200');
 
     const warningCss = getComponentCss('warning', true);
-    expect(warningCss).toContain('--diwa-color-warning-500');
-    expect(warningCss).toContain('--diwa-color-warning-400');
+    expect(warningCss).toContain('--diwa-notification-warning-soft');
+    expect(warningCss).toContain('--diwa-color-warning-100');
 
     const infoCss = getComponentCss('info', true);
-    expect(infoCss).toContain('--diwa-color-info-500');
-    expect(infoCss).toContain('--diwa-color-info-400');
+    expect(infoCss).toContain('--diwa-notification-info-soft');
+    expect(infoCss).toContain('--diwa-color-info-300');
   });
 
   // ── Styles — accessibility & motion ─────────────────────────────────────

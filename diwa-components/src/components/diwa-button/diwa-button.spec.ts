@@ -29,4 +29,10 @@ describe('diwa-button component', () => {
     expect((ev as any).preventDefault).toHaveBeenCalled();
     expect((ev as any).stopPropagation).toHaveBeenCalled();
   });
+
+  it('isInteractive is false when loading', () => {
+    const btn = new DiwaButton();
+    btn.loading = true;
+    expect((btn as any).isInteractive).toBe(false);
+  });
 });

@@ -53,7 +53,7 @@ export default function StylesIntroductionPage() {
           Typed exports in <code className="font-mono text-[var(--diwa-accent)]">src/styles/index.ts</code> mirror those values for JS/TS usage.
         </p>
         <CodeSnippet code={`:root {
-  --diwa-accent: #10a37f;
+        --diwa-accent: #3558e6;
   --diwa-space-4: 1rem;
   --diwa-focus-ring-width: 2px;
 }`} />

@@ -25,7 +25,7 @@ import { newE2EPage } from '@stencil/core/testing';
  * Returns the computed value of a CSS Custom Property on :root.
  * CSS vars are not "resolved" by getComputedStyle — it returns the declared
  * string (e.g. " var(--diwa-color-accent-400)"). For direct-value tokens
- * (primitives) it returns the literal value (e.g. " #10a37f").
+ * (primitives) it returns the literal value (e.g. " #3558e6").
  */
 async function getRootVar(page: any, prop: string): Promise<string> {
   return page.evaluate((p: string) => {
@@ -40,10 +40,10 @@ async function getRootVar(page: any, prop: string): Promise<string> {
 // ─────────────────────────────────────────────────────────────────────────────
 
 describe('Color Token E2E — primitive tokens (noir)', () => {
-  it('--diwa-color-accent-400 resolves to #10a37f', async () => {
+  it('--diwa-color-accent-400 resolves to #3558e6', async () => {
     const page = await newE2EPage({ html: '<span></span>' });
     const value = await getRootVar(page, '--diwa-color-accent-400');
-    expect(value).toBe('#10a37f');
+    expect(value).toBe('#3558e6');
   });
 
   it('--diwa-color-zinc-950 resolves to #0b0b0c', async () => {

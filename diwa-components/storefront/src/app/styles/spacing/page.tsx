@@ -56,7 +56,7 @@ export default function StylesSpacingPage() {
           Spacing Fluid
           <span className="text-[var(--diwa-text-muted)] font-normal ml-2">(xs – 3xl)</span>
         </p>
-        <div className="p-8 rounded-xl mb-8" style={{ background: 'radial-gradient(circle at 30% 40%, #10a37f 0%, #0c8464 50%, #064d3c 100%)' }}>
+        <div className="p-8 rounded-xl mb-8" style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2f4fd1 50%, #213995 100%)' }}>
           <div className="flex flex-wrap items-end gap-8">
             {FLUID_SCALE.map((row) => (
               <div key={row.token} className="flex flex-col items-center gap-3">
@@ -105,7 +105,7 @@ export default function StylesSpacingPage() {
           Spacing Static
           <span className="text-[var(--diwa-text-muted)] font-normal ml-2">(1 – 12)</span>
         </p>
-        <div className="p-8 rounded-xl mb-8" style={{ background: 'radial-gradient(circle at 30% 40%, #10a37f 0%, #0c8464 50%, #064d3c 100%)' }}>
+        <div className="p-8 rounded-xl mb-8" style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2f4fd1 50%, #213995 100%)' }}>
           <div className="flex flex-wrap items-end gap-6">
             {STATIC_SCALE.map((row) => (
               <div key={row.token} className="flex flex-col items-center gap-3">

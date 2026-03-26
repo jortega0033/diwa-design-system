@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { DiwaSegmentedControl } from './diwa-segmented-control';
 import { getComponentCss } from './diwa-segmented-control-styles';
 
@@ -20,5 +20,21 @@ describe('diwa-segmented-control', () => {
     const css = getComponentCss(true);
     expect(css).toContain('padding: var(--diwa-space-0-5)');
     expect(css).toContain('gap: var(--diwa-space-0-25, 2px)');
+  });
+
+  it('updates value and emits update event when an item is selected', () => {
+    const c = new DiwaSegmentedControl();
+
+    // replace the EventEmitter with a spyable stub
+    c.update = { emit: vi.fn() } as any;
+
+    // simulate a child selection event
+    const event = { detail: { value: 'week' }, stopPropagation: () => {} } as unknown as CustomEvent<{ value: string }>;
+    // call the listener directly
+    // @ts-expect-error accessing private listener method signature
+    c.handleItemSelect(event);
+
+    expect(c.value).toBe('week');
+    expect(c.update.emit).toHaveBeenCalledWith({ value: 'week' });
   });
 });

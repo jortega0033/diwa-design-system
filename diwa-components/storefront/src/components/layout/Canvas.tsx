@@ -4,7 +4,7 @@ import React, { type ReactNode, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { Navigation } from './Navigation';
 import { useSidebar } from '@/context/SidebarContext';
-import { useStorefrontTheme } from '@/hooks/useStorefrontTheme';
+import { type StorefrontTheme, useStorefrontTheme } from '@/hooks/useStorefrontTheme';
 
 const THEMES = ['dark', 'light', 'auto'] as const;
 
@@ -44,10 +44,27 @@ export function Canvas({ children }: { children: ReactNode }) {
   const { theme, setTheme } = useStorefrontTheme();
   const pathname = usePathname();
   const mainRef = useRef<HTMLElement>(null);
+  const themeControlRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     mainRef.current?.scrollTo({ top: 0 });
   }, [pathname]);
+
+  useEffect(() => {
+    const el = themeControlRef.current;
+    if (!el) return;
+
+    const onUpdate = (event: Event) => {
+      const detail = (event as CustomEvent<{ value?: string }>).detail;
+      const nextTheme = detail?.value;
+      if (nextTheme === 'dark' || nextTheme === 'light' || nextTheme === 'auto') {
+        setTheme(nextTheme as StorefrontTheme);
+      }
+    };
+
+    el.addEventListener('update', onUpdate as EventListener);
+    return () => el.removeEventListener('update', onUpdate as EventListener);
+  }, [setTheme]);
 
   return (
     <div className="h-screen flex flex-col bg-[var(--diwa-bg-base)] text-[var(--diwa-text-primary)]">
@@ -68,23 +85,20 @@ export function Canvas({ children }: { children: ReactNode }) {
 
         <div className="flex items-center gap-2">
           {/* Theme picker */}
-          <div className="flex items-center rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] p-0.5">
+          <diwa-segmented-control
+            ref={(node: HTMLElement | null) => {
+              themeControlRef.current = node;
+            }}
+            value={theme}
+            aria-label="Theme"
+            compact
+          >
             {THEMES.map((t) => (
-              <button
-                key={t}
-                onClick={() => setTheme(t)}
-                className={[
-                  'px-2.5 py-1 rounded text-xs font-medium transition-colors',
-                  theme === t
-                    ? 'bg-[var(--diwa-bg-base)] text-[var(--diwa-text-primary)] shadow-sm'
-                    : 'text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)]',
-                ].join(' ')}
-                aria-pressed={theme === t}
-              >
+              <diwa-segmented-control-item key={t} value={t}>
                 {t.charAt(0).toUpperCase() + t.slice(1)}
-              </button>
+              </diwa-segmented-control-item>
             ))}
-          </div>
+          </diwa-segmented-control>
 
           {/* GitHub link */}
           <a

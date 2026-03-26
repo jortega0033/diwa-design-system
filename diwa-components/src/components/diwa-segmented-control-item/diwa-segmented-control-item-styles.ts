@@ -31,7 +31,7 @@ export const getComponentCss = (selected: boolean, disabled: boolean, compact: b
     cursor: ${disabled ? 'not-allowed' : 'pointer'};
     opacity: ${disabled ? 0.4 : 1};
     white-space: nowrap;
-    line-height: 1;
+ihgdv weposapzkijhdbf1qqq\\    line-height: 1;
     transition: background 150ms ease, color 150ms ease;
     box-shadow: ${selected ? 'var(--diwa-shadow-sm)' : 'none'};
     height: ${compact ? '1.5rem' : '2rem'};

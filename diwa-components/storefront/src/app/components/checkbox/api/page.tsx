@@ -134,12 +134,12 @@ export default function CheckboxApiPage() {
             ],
             [
               <Code key="2">--diwa-accent</Code>,
-              '#10a37f',
+              '#3558e6',
               'Fill and border colour of the checked and indeterminate states.',
             ],
             [
               <Code key="3">--diwa-accent-hover</Code>,
-              '#0e9470',
+              '#2f4fd1',
               'Fill colour when hovering over a checked checkbox.',
             ],
             [

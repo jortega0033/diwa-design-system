@@ -35,7 +35,7 @@ const GRADIENT_TOKENS = [
     token: '--diwa-gradient-accent',
     label: 'Accent',
     use: 'Brand CTA surfaces, loading bars, decorative accents',
-    style: 'linear-gradient(135deg, #10a37f 0%, #0c8464 100%)',
+    style: 'linear-gradient(135deg, #3558e6 0%, #2844b5 100%)',
   },
 ];
 
@@ -57,7 +57,7 @@ export default function StylesGradientPage() {
                 {/* background image stand-in */}
                 <div
                   className="absolute inset-0"
-                  style={{ background: 'radial-gradient(circle at 30% 40%, #10a37f 0%, #0c8464 50%, #064d3c 100%)' }}
+                  style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2f4fd1 50%, #213995 100%)' }}
                 />
                 {/* gradient overlay */}
                 <div className="absolute inset-0" style={{ background: row.style }} />

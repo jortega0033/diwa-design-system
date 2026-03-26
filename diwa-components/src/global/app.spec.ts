@@ -406,9 +406,9 @@ describe('app.css — structural integrity', () => {
     expect(appCss).toContain('--diwa-text-inverse:    var(--diwa-color-white)');
   });
 
-  test('--diwa-text-secondary resolves to zinc-400 (7.3:1 WCAG AA)', () => {
-    // Ensure the correct (contrast-passing) zinc-400 value is used, not zinc-500
-    expect(appCss).toContain('--diwa-text-secondary:  var(--diwa-color-zinc-400)');
+  test('--diwa-text-secondary uses the tuned dark-theme value', () => {
+    // Secondary text is now explicitly tuned for the rebalanced dark palette.
+    expect(appCss).toContain('--diwa-text-secondary:  #aab4c7;');
   });
 
   test('component override tokens declare diwa-button vars', () => {

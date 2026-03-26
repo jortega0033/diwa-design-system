@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import React from 'react';
-import { CodeSnippet } from '@/components/docs';
 import { sitemap } from '@/sitemap';
 import type { Metadata } from 'next';
 import { pageSeo } from '@/lib/pageSeo';
 import { HeroBanner } from '@/components/home/HeroBanner';
+import { QuickStartCodeBlock } from '@/components/home/QuickStartCodeBlock';
 export const metadata: Metadata = pageSeo['/'];
 
 
@@ -13,16 +12,19 @@ const QUICK_START = [
     title: 'Install packages',
     description: 'Install the Diwa component package in your app.',
     code: 'npm install @diwacopilot/components',
+    language: 'bash',
   },
   {
     title: 'Load global tokens and web components',
     description: 'Include generated CSS tokens and the ESM loader in your root layout.',
     code: `<link rel="stylesheet" href="/stencil/diwa-components.css" />\n<Script src="/stencil/diwa-components.esm.js" type="module" strategy="beforeInteractive" />`,
+    language: 'xml',
   },
   {
     title: 'Render your first component',
     description: 'Use a Diwa element directly in JSX, HTML, or your framework template.',
     code: '<diwa-button variant="primary">Save</diwa-button>',
+    language: 'xml',
   },
 ];
 
@@ -61,6 +63,15 @@ const PATHS = [
 
 const RECOMMENDED_COMPONENTS = ['Button', 'Input Text', 'Select', 'Toast', 'Tabs', 'Modal'];
 
+const RECOMMENDED_COMPONENT_DETAILS: Record<string, string> = {
+  Button: 'Primary actions, confirms, and destructive decisions.',
+  'Input Text': 'Baseline text entry for forms, search, and onboarding.',
+  Select: 'Single-choice selection with compact, scalable option lists.',
+  Toast: 'Transient feedback for success, warning, and error states.',
+  Tabs: 'Organize related content into fast-switching view groups.',
+  Modal: 'Focused overlays for confirmations and critical form tasks.',
+};
+
 export default function HomePage() {
   const componentItems = sitemap
     .find((section) => section.title === 'Components')
@@ -75,68 +86,83 @@ export default function HomePage() {
       <HeroBanner />
 
       <section className="mb-12">
-        <h2 className="text-xl font-semibold text-[var(--diwa-text-primary)] mb-4 pb-2 border-b border-[var(--diwa-border)]">
+        <diwa-heading size="h2" className="mb-4 pb-2 border-b border-[var(--diwa-border)]">
           Quick Start in 3 Steps
-        </h2>
+        </diwa-heading>
         <ol className="space-y-6">
           {QUICK_START.map((step, index) => (
             <li key={step.title} className="rounded-lg border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] p-4">
-              <p className="text-sm font-semibold text-[var(--diwa-text-primary)] mb-1">
+              <diwa-text tag="p" size="small" weight="semibold" color="primary" className="mb-1">
                 {index + 1}. {step.title}
-              </p>
-              <p className="text-sm text-[var(--diwa-text-secondary)] mb-3 leading-relaxed">{step.description}</p>
-              <CodeSnippet code={step.code} />
+              </diwa-text>
+              <diwa-text tag="p" size="small" color="secondary" className="mb-3 leading-relaxed">
+                {step.description}
+              </diwa-text>
+              <QuickStartCodeBlock code={step.code} language={step.language} />
             </li>
           ))}
         </ol>
       </section>
 
       <section className="mb-12">
-        <h2 className="text-xl font-semibold text-[var(--diwa-text-primary)] mb-4 pb-2 border-b border-[var(--diwa-border)]">
+        <diwa-heading size="h2" className="mb-4 pb-2 border-b border-[var(--diwa-border)]">
           Choose Your Path
-        </h2>
+        </diwa-heading>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {PATHS.map((path) => (
             <article
               key={path.title}
               className="rounded-lg border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] p-5"
             >
-              <h3 className="text-base font-semibold text-[var(--diwa-text-primary)] mb-1">{path.title}</h3>
-              <p className="text-sm text-[var(--diwa-text-secondary)] leading-relaxed mb-3">{path.description}</p>
-              <ul className="space-y-1.5 mb-4">
+              <diwa-heading size="h4" className="mb-1">{path.title}</diwa-heading>
+              <diwa-text tag="p" size="small" color="secondary" className="leading-relaxed mb-3">{path.description}</diwa-text>
+              <diwa-text-list type="unordered" className="space-y-1.5 mb-4">
                 {path.actions.map((action) => (
-                  <li key={action} className="text-sm text-[var(--diwa-text-secondary)]">
-                    - {action}
-                  </li>
+                  <diwa-text-list-item key={action}>{action}</diwa-text-list-item>
                 ))}
-              </ul>
-              <Link
-                href={path.href}
-                className="inline-flex items-center rounded-md border border-[var(--diwa-border)] px-3 py-2 text-sm font-medium text-[var(--diwa-text-primary)] hover:border-[var(--diwa-accent)] hover:text-[var(--diwa-accent)] transition-colors"
-              >
+              </diwa-text-list>
+              <diwa-button href={path.href} variant="secondary" size="sm">
                 Open {path.title}
-              </Link>
+              </diwa-button>
             </article>
           ))}
         </div>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold text-[var(--diwa-text-primary)] mb-4 pb-2 border-b border-[var(--diwa-border)]">
+        <diwa-heading size="h2" className="mb-4 pb-2 border-b border-[var(--diwa-border)]">
           Recommended First Components
-        </h2>
-        <p className="text-sm text-[var(--diwa-text-secondary)] mb-4 leading-relaxed">
+        </diwa-heading>
+        <diwa-text tag="p" size="small" color="secondary" className="mb-4 leading-relaxed">
           Start with these components to cover common product surfaces: actions, forms, feedback, and navigation.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        </diwa-text>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {starterComponents.map((item) => (
-            <Link
+            <article
               key={item.href}
-              href={item.href}
-              className="rounded-lg border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] px-4 py-3 text-sm font-medium text-[var(--diwa-text-primary)] hover:border-[var(--diwa-accent)] hover:text-[var(--diwa-accent)] transition-colors"
+              className="group relative overflow-hidden rounded-xl border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--diwa-accent)]"
             >
-              {item.label}
-            </Link>
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-0.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                style={{ background: 'linear-gradient(90deg, var(--diwa-accent) 0%, transparent 75%)' }}
+                aria-hidden="true"
+              />
+
+              <div className="mb-2 flex items-start justify-between gap-3">
+                <diwa-heading size="h5" className="m-0">
+                  {item.label}
+                </diwa-heading>
+                <diwa-badge size="sm" variant="accent">Starter</diwa-badge>
+              </div>
+
+              <diwa-text tag="p" size="small" color="secondary" className="mb-3 leading-relaxed">
+                {RECOMMENDED_COMPONENT_DETAILS[item.label] ?? 'A foundational primitive used in common product flows.'}
+              </diwa-text>
+
+              <diwa-link href={item.href} variant="primary" icon="arrow-right" size="sm">
+                Open Component
+              </diwa-link>
+            </article>
           ))}
         </div>
       </section>

@@ -87,7 +87,7 @@ const NOIR_GROUPS: ThemeGroup[] = [
     tiles: [
       { label: 'hover',    token: '--diwa-state-hover',    color: 'rgba(148,149,152,0.18)' },
       { label: 'active',   token: '--diwa-state-active',   color: 'rgba(126,127,130,0.20)' },
-      { label: 'focus',    token: '--diwa-state-focus',    color: '#10a37f' },
+      { label: 'focus',    token: '--diwa-state-focus',    color: '#3558e6' },
       { label: 'disabled', token: '--diwa-state-disabled', color: '#52525b' },
     ],
   },
@@ -99,7 +99,7 @@ const LIGHT_GROUPS: ThemeGroup[] = [
     tiles: [
       { label: 'primary',     token: '--diwa-primary',    color: '#010205' },
       { label: 'bg-base',     token: '--diwa-bg-base',    color: '#ffffff' },
-      { label: 'bg-surface',  token: '--diwa-bg-surface', color: '#eeeff2' },
+      { label: 'bg-surface',  token: '--diwa-bg-surface', color: '#f3f7fd' },
       { label: 'bg-shading',  token: '--diwa-bg-shading', color: 'rgba(17,17,19,0.85)' },
       { label: 'bg-frosted',  token: '--diwa-bg-frosted', color: 'hsl(240 4% 85% / 35%)' },
     ],
@@ -107,9 +107,9 @@ const LIGHT_GROUPS: ThemeGroup[] = [
   {
     label: 'Contrast',
     tiles: [
-      { label: 'contrast-low',  token: '--diwa-contrast-low',    color: '#d8d8db' },
-      { label: 'contrast-med',  token: '--diwa-contrast-medium', color: '#6b6d70' },
-      { label: 'contrast-high', token: '--diwa-contrast-high',   color: '#535457' },
+      { label: 'contrast-low',  token: '--diwa-contrast-low',    color: '#a8bdd8' },
+      { label: 'contrast-med',  token: '--diwa-contrast-medium', color: '#4e5a74' },
+      { label: 'contrast-high', token: '--diwa-contrast-high',   color: '#38435b' },
     ],
   },
   {
@@ -122,29 +122,29 @@ const LIGHT_GROUPS: ThemeGroup[] = [
       { label: 'error',         token: '--diwa-notification-error',         color: '#cc1922' },
       { label: 'error-soft',    token: '--diwa-notification-error-soft',    color: '#ffe2e4' },
       { label: 'info',          token: '--diwa-notification-info',          color: '#2762ec' },
-      { label: 'info-soft',     token: '--diwa-notification-info-soft',     color: '#d3e1ff' },
+      { label: 'info-soft',     token: '--diwa-notification-info-soft',     color: '#bdd4ff' },
     ],
   },
   {
     label: 'State',
     tiles: [
-      { label: 'hover',    token: '--diwa-state-hover',    color: 'rgba(148,149,152,0.18)' },
-      { label: 'active',   token: '--diwa-state-active',   color: 'rgba(126,127,130,0.20)' },
-      { label: 'focus',    token: '--diwa-state-focus',    color: '#10a37f' },
+      { label: 'hover',    token: '--diwa-state-hover',    color: 'rgba(53,88,230,0.12)' },
+      { label: 'active',   token: '--diwa-state-active',   color: 'rgba(53,88,230,0.18)' },
+      { label: 'focus',    token: '--diwa-state-focus',    color: '#3558e6' },
       { label: 'disabled', token: '--diwa-state-disabled', color: '#949598' },
     ],
   },
 ];
 
 const ACCENT_TILES: Tile[] = [
-  { label: 'accent-50',  token: '--diwa-color-accent-50',  color: 'rgba(16,163,127,0.05)' },
-  { label: 'accent-100', token: '--diwa-color-accent-100', color: 'rgba(16,163,127,0.10)' },
-  { label: 'accent-200', token: '--diwa-color-accent-200', color: 'rgba(16,163,127,0.15)' },
-  { label: 'accent-300', token: '--diwa-color-accent-300', color: 'rgba(16,163,127,0.25)' },
-  { label: 'accent-400', token: '--diwa-color-accent-400', color: '#10a37f' },
-  { label: 'accent-500', token: '--diwa-color-accent-500', color: '#0e9470' },
-  { label: 'accent-600', token: '--diwa-color-accent-600', color: '#0c8464' },
-  { label: 'accent-700', token: '--diwa-color-accent-700', color: '#0a7456' },
+  { label: 'accent-50',  token: '--diwa-color-accent-50',  color: 'rgba(53, 88, 230, 0.08)' },
+  { label: 'accent-100', token: '--diwa-color-accent-100', color: 'rgba(53, 88, 230, 0.12)' },
+  { label: 'accent-200', token: '--diwa-color-accent-200', color: 'rgba(53, 88, 230, 0.2)' },
+  { label: 'accent-300', token: '--diwa-color-accent-300', color: 'rgba(53, 88, 230, 0.32)' },
+  { label: 'accent-400', token: '--diwa-color-accent-400', color: '#3558e6' },
+  { label: 'accent-500', token: '--diwa-color-accent-500', color: '#2f4fd1' },
+  { label: 'accent-600', token: '--diwa-color-accent-600', color: '#2844b5' },
+  { label: 'accent-700', token: '--diwa-color-accent-700', color: '#213995' },
 ];
 
 /* ── Page ──────────────────────────────────────────────────────────────────── */
@@ -195,7 +195,7 @@ export default function StylesThemePage() {
         </h3>
         <div
           className="rounded-xl p-8"
-          style={{ background: 'radial-gradient(circle at 30% 40%, #10a37f 0%, #0c8464 50%, #064d3c 100%)' }}
+          style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2844b5 50%, #1b2f7e 100%)' }}
         >
           <div className="flex flex-wrap gap-5">
             {ACCENT_TILES.map((t) => <ColorTile key={t.token} tile={t} onDark={true} />)}
@@ -240,14 +240,15 @@ export default function StylesThemePage() {
               on <code className="font-mono text-[var(--diwa-accent)]">&lt;html&gt;</code>. Removing
               the attribute returns to Noir. Themes can be scoped to any subtree.
             </p>
-            <pre className="text-xs font-mono text-[var(--diwa-text-secondary)] leading-relaxed">
-              <code>{`// Switch to Light
+            <CodeSnippet
+              language="typescript"
+              code={`// Switch to Light
 document.documentElement.setAttribute('data-theme', 'light');
 // Return to Noir
 document.documentElement.removeAttribute('data-theme');
 // Scope to a subtree
-<section data-theme="light">…</section>`}</code>
-            </pre>
+<section data-theme="light">…</section>`}
+            />
           </div>
         </div>
       </Section>

@@ -57,7 +57,7 @@ export default function StylesHoverPage() {
           {/* Noir panel */}
           <div
             className="p-5 rounded-lg"
-            style={{ background: 'radial-gradient(circle at 30% 40%, #10a37f 0%, #0c8464 50%, #064d3c 100%)' }}
+            style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2f4fd1 50%, #213995 100%)' }}
           >
             <p className="text-xs font-semibold text-white/60 uppercase tracking-wider mb-4">Hover — Dark</p>
             <a href="#" className="hover-demo-anchor block mb-3 text-sm font-medium text-white">

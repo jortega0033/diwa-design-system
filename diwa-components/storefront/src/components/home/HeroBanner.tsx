@@ -1,11 +1,10 @@
-﻿import Link from 'next/link';
-import React from 'react';
+﻿import React from 'react';
 import styles from './HeroBanner.module.css';
 
 const FRAMEWORKS = ['React', 'Angular', 'Vue', 'Next.js', 'Vanilla JS'] as const;
 
 const STATS = [
-  { bold: '43', text: 'Components' },
+  { bold: '44', text: 'Components' },
   { bold: 'TypeScript', text: 'Ready' },
   { bold: 'CSS Tokens', text: 'System' },
   { bold: 'WCAG 2.2 AA', text: 'Compliant' },
@@ -45,24 +44,20 @@ export function HeroBanner() {
         fill="none"
         aria-hidden="true"
       >
-        <circle cx="150" cy="150" r="146" stroke="#10a37f" strokeWidth="1.5" strokeOpacity="0.18" />
-        <circle cx="150" cy="150" r="108" stroke="#10a37f" strokeWidth="1"   strokeOpacity="0.11" />
-        <circle cx="150" cy="150" r="70"  stroke="#10a37f" strokeWidth="0.8" strokeOpacity="0.07" />
-        <circle cx="150" cy="4"   r="4"   fill="#10a37f" fillOpacity="0.42" />
-        <circle cx="150" cy="296" r="4"   fill="#10a37f" fillOpacity="0.30" />
-        <circle cx="4"   cy="150" r="3"   fill="#10a37f" fillOpacity="0.28" />
-        <circle cx="150" cy="150" r="4"   fill="#10a37f" fillOpacity="0.35" />
+        <circle cx="150" cy="150" r="146" stroke="#3558e6" strokeWidth="1.5" strokeOpacity="0.18" />
+        <circle cx="150" cy="150" r="108" stroke="#3558e6" strokeWidth="1"   strokeOpacity="0.11" />
+        <circle cx="150" cy="150" r="70"  stroke="#3558e6" strokeWidth="0.8" strokeOpacity="0.07" />
+        <circle cx="150" cy="4"   r="4"   fill="#3558e6" fillOpacity="0.42" />
+        <circle cx="150" cy="296" r="4"   fill="#3558e6" fillOpacity="0.30" />
+        <circle cx="4"   cy="150" r="3"   fill="#3558e6" fillOpacity="0.28" />
+        <circle cx="150" cy="150" r="4"   fill="#3558e6" fillOpacity="0.35" />
       </svg>
 
       {/* Main content */}
       <div className={styles.body}>
-        <div className={styles.badge} aria-label="Design system version and compliance">
+        <div className={styles.badge} aria-label="Design system version">
           <span className={styles.badgeDot} aria-hidden="true" />
-          <span>v1.3.9</span>
-          <span className={styles.badgeSep} aria-hidden="true">·</span>
-          <span>43 Components</span>
-          <span className={styles.badgeSep} aria-hidden="true">·</span>
-          <span>WCAG 2.2 AA</span>
+          <span>v1.4.0</span>
         </div>
 
         <h1 id="hero-heading" className={styles.headline}>
@@ -78,18 +73,28 @@ export function HeroBanner() {
         </p>
 
         <div className={styles.ctas}>
-          <Link href="/developing" className={styles.ctaPrimary}>
+          <diwa-button href="/developing" variant="primary">
             Get Started
-            <ArrowRightIcon />
-          </Link>
-          <Link href="/components" className={styles.ctaSecondary}>
+          </diwa-button>
+          <diwa-button href="/components" variant="secondary">
             Browse Components
-          </Link>
+          </diwa-button>
         </div>
 
         <div className={styles.frameworks} aria-label="Supported frameworks">
-          {FRAMEWORKS.map((fw) => (
-            <span key={fw} className={styles.chip}>{fw}</span>
+          {FRAMEWORKS.map((fw, index) => (
+            <span key={fw} className={styles.frameworkItem}>
+              {index > 0 && (
+                <diwa-divider
+                  orientation="vertical"
+                  className={styles.frameworkDivider}
+                  aria-hidden="true"
+                />
+              )}
+              <diwa-badge size="sm" variant="neutral">
+                {fw}
+              </diwa-badge>
+            </span>
           ))}
         </div>
       </div>

@@ -18,6 +18,22 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.4.0',
+    date: 'March 26, 2026',
+    summary: 'Release alignment for package versions, wrapper compatibility, and storefront release metadata.',
+    added: [
+      'Added release metadata for v1.4.0 in the storefront changelog.',
+    ],
+    changed: [
+      'Bumped Diwa package versions to the next minor release across core and wrappers.',
+      'Updated wrapper peer dependency ranges to align with @diwacopilot/components v1.4.0.',
+      'Updated the home hero version badge to v1.4.0.',
+    ],
+    fixed: [],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '1.3.9',
     date: 'March 25, 2026',
     summary: 'Banner is now fully documented and polished across the component library and storefront.',

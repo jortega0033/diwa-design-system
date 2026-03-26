@@ -31,7 +31,7 @@ h1, h2 {
 /* ─── Focus visible ─────────────────────────────────────────────────────────── */
 
 :focus-visible {
-  outline: var(--diwa-focus-ring-width, 1px) solid var(--diwa-border-focus, #10a37f);
+  outline: var(--diwa-focus-ring-width, 1px) solid var(--diwa-border-focus, #3558e6);
   outline-offset: var(--diwa-focus-ring-offset, 1px);
 }
 

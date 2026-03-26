@@ -30,7 +30,7 @@ export default function StylesFocusPage() {
             </thead>
             <tbody>
               {[
-                { token: '--diwa-state-focus',      value: '#10a37f',                    role: 'Focus ring colour — brand accent' },
+                { token: '--diwa-state-focus',      value: '#3558e6',                    role: 'Focus ring colour — brand accent' },
                 { token: '--diwa-border-focus',     value: 'var(--diwa-state-focus)',    role: 'Alias for use in border contexts' },
                 { token: '--diwa-focus-ring-width', value: '1px',                        role: 'Focus outline width token (default)' },
                 { token: '--diwa-focus-ring-offset', value: '1px',                       role: 'Focus outline offset token (default)' },

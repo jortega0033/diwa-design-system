@@ -221,7 +221,7 @@ export function MotionPageClient() {
 
         <div
           className="rounded-xl p-8 flex flex-col gap-10"
-          style={{ background: 'radial-gradient(circle at 30% 40%, #10a37f 0%, #0c8464 50%, #064d3c 100%)' }}
+          style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2f4fd1 50%, #213995 100%)' }}
         >
           {/* Moving */}
           <div>

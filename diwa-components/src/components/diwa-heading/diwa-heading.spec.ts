@@ -44,4 +44,10 @@ describe('getHeadingTag', () => {
     host.appendChild(document.createElement('h3'));
     expect(getHeadingTag(host, 'h1', 'h1')).toBe('div');
   });
+
+  it('honours explicit tag when slotted children are not heading elements', () => {
+    const host = document.createElement('div');
+    host.appendChild(document.createElement('span'));
+    expect(getHeadingTag(host, 'h2', 'h3')).toBe('h3');
+  });
 });
