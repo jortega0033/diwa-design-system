@@ -1,6 +1,6 @@
 {
   "name": "@diwacopilot/components-angular",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Angular wrapper package for Diwa Web Components.",
   "license": "MIT",
   "type": "module",
@@ -22,7 +22,7 @@
   },
   "peerDependencies": {
     "@angular/core": ">=17.0.0 <21.0.0",
-    "@diwacopilot/components": "^1.4.0",
+    "@diwacopilot/components": "^1.4.1",
     "rxjs": "^7.8.0"
   },
   "devDependencies": {

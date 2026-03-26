@@ -18,6 +18,20 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.4.1',
+    date: 'March 26, 2026',
+    summary: 'Typography refinement release with updated base font and synchronized package patch versions.',
+    added: [],
+    changed: [
+      'Replaced the base UI font family from Onest to Albert Sans while keeping display and mono roles intact.',
+      'Bumped patch versions across the core package, framework wrappers, and storefront metadata.',
+      'Updated the home hero badge to display v1.4.1.',
+    ],
+    fixed: [],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '1.4.0',
     date: 'March 26, 2026',
     summary: 'Release alignment for package versions, wrapper compatibility, and storefront release metadata.',
