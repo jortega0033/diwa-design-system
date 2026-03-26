@@ -82,15 +82,8 @@ export function HeroBanner() {
         </div>
 
         <div className={styles.frameworks} aria-label="Supported frameworks">
-          {FRAMEWORKS.map((fw, index) => (
+          {FRAMEWORKS.map((fw) => (
             <span key={fw} className={styles.frameworkItem}>
-              {index > 0 && (
-                <diwa-divider
-                  orientation="vertical"
-                  className={styles.frameworkDivider}
-                  aria-hidden="true"
-                />
-              )}
               <diwa-badge size="sm" variant="neutral">
                 {fw}
               </diwa-badge>
