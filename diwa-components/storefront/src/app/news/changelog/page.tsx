@@ -18,15 +18,32 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '1.4.2',
+    date: 'March 27, 2026',
+    summary: 'Dropdown shipped with a polished menu system, while form configurators and helper text handling were corrected across the docs experience.',
+    added: [
+      'Added the Dropdown component to the core package and storefront documentation, including configurator, usage, API, accessibility, and examples pages.',
+    ],
+    changed: [
+      'Refined dropdown visuals, trigger behavior, submenu presentation, and placement stability for a more consistent enterprise menu experience.',
+      'Updated configurator controls to route helper copy through component-level description props where supported.',
+    ],
+    fixed: [
+      'Fixed configurator text and number inputs that could incorrectly coerce typed values to 0.',
+      'Fixed select, multi-select, and checkbox helper messages so they render whenever a message is provided.',
+      'Fixed dropdown hover and active states, submenu separation, and bottom-end placement jitter on open.',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '1.4.1',
     date: 'March 26, 2026',
     summary: 'Typography refinement release with updated base font and synchronized package patch versions.',
     added: [],
     changed: [
       'Replaced the base UI font family from Onest to Albert Sans while keeping display and mono roles intact.',
-      'Bumped patch versions across the core package, framework wrappers, and storefront metadata.',
-      'Updated the home hero badge to display v1.4.1.',
-    ],
+      'Bumped patch versions across the core package, framework wrappers, and storefront metadata.',    ],
     fixed: [],
     deprecated: [],
     removed: [],
@@ -41,7 +58,6 @@ const RELEASES: Release[] = [
     changed: [
       'Bumped Diwa package versions to the next minor release across core and wrappers.',
       'Updated wrapper peer dependency ranges to align with @diwacopilot/components v1.4.0.',
-      'Updated the home hero version badge to v1.4.0.',
     ],
     fixed: [],
     deprecated: [],

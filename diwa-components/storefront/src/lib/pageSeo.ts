@@ -271,7 +271,7 @@ export const pageSeo: Record<string, Metadata> = {
   '/components': buildMetadata({
     title: 'Components',
     description:
-      '43 accessible, framework-agnostic Diwa web components — from inputs and buttons to modals, tables, and more.',
+      '44 accessible, framework-agnostic Diwa web components — from inputs and buttons to modals, tables, and more.',
     pathname: '/components',
     ogSection: 'components',
   }),

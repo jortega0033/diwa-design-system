@@ -16,6 +16,7 @@ declare namespace React {
       'diwa-button-pure': DiwaElement;
       'diwa-checkbox': DiwaElement;
       'diwa-divider': DiwaElement;
+      'diwa-dropdown': DiwaElement;
       'diwa-flyout': DiwaElement;
       'diwa-heading': DiwaElement;
       'diwa-icon': DiwaElement;

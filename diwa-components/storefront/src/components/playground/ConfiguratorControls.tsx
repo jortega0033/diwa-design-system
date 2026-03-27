@@ -53,6 +53,27 @@ function propNameToLabel(name: string): string {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function getInputStringValue(event: FormEvent<HTMLElement>): string {
+  // React may deliver either a native InputEvent (detail=0) or a custom event.
+  // Always prefer target.value; fallback to custom-event detail for legacy emitters.
+  const target = event.target as HTMLInputElement | HTMLTextAreaElement | null;
+  if (target && typeof target.value === 'string') {
+    return target.value;
+  }
+
+  const detail = ((event.nativeEvent as unknown) as CustomEvent<string | number>).detail;
+  if (typeof detail === 'string') return detail;
+  if (typeof detail === 'number') return String(detail);
+  return '';
+}
+
+function getInputNumberValue(event: FormEvent<HTMLElement>): number {
+  const raw = getInputStringValue(event).trim();
+  if (raw.length === 0) return 0;
+  const next = Number(raw);
+  return Number.isNaN(next) ? 0 : next;
+}
+
 /* ── Toggle Switch ──────────────────────────────────────────────────────── */
 
 function Toggle({ checked, onChange, id }: { checked: boolean; onChange: (v: boolean) => void; id: string }) {
@@ -72,12 +93,14 @@ function DiwaSelectControl({
   label,
   options,
   value,
+  description,
   onValueChange,
 }: {
   id: string;
   label: string;
   options: string[];
   value: string;
+  description?: string;
   onValueChange: (value: string) => void;
 }) {
   const ref = useRef<HTMLElement | null>(null);
@@ -103,6 +126,7 @@ function DiwaSelectControl({
       }}
       value={value}
       label={label}
+      description={description ?? ''}
       hideLabel
       compact
     >
@@ -110,54 +134,6 @@ function DiwaSelectControl({
         <diwa-select-option key={opt} value={opt}>{opt}</diwa-select-option>
       ))}
     </diwa-select>
-  );
-}
-
-function DiwaSegmentedControl({
-  id,
-  label,
-  options,
-  value,
-  onValueChange,
-}: {
-  id: string;
-  label: string;
-  options: string[];
-  value: string;
-  onValueChange: (value: string) => void;
-}) {
-  const ref = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ value?: string }>).detail;
-      const next = detail?.value;
-      if (typeof next === 'string') onValueChange(next);
-    };
-
-    el.addEventListener('update', handler as EventListener);
-    return () => el.removeEventListener('update', handler as EventListener);
-  }, [onValueChange]);
-
-  return (
-    <diwa-segmented-control
-      id={id}
-      ref={(node: HTMLElement | null) => {
-        ref.current = node;
-      }}
-      value={value}
-      aria-label={label}
-      compact
-    >
-      {options.map((opt) => (
-        <diwa-segmented-control-item key={opt} value={opt}>
-          {opt}
-        </diwa-segmented-control-item>
-      ))}
-    </diwa-segmented-control>
   );
 }
 
@@ -251,56 +227,55 @@ function PropControl({
   def,
   value,
   modified,
+  helperText,
   onChange,
 }: {
   def: PropDefinition;
   value: unknown;
   modified: boolean;
+  helperText?: string;
   onChange: (name: string, value: unknown) => void;
 }) {
   const controlId = `prop-${def.name}`;
 
   if (def.type === 'boolean') {
     return (
-      <div className="flex items-center justify-between gap-3 min-h-[28px]">
-        <div className="flex items-center gap-1.5 min-w-0">
-          <label htmlFor={controlId} className="text-sm text-[var(--diwa-text-primary)] truncate cursor-pointer">
-            {def.label ?? propNameToLabel(def.name)}
-          </label>
-          {modified && <ModifiedDot />}
+      <div className="space-y-1">
+        <div className="flex items-center justify-between gap-3 min-h-[28px]">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <label htmlFor={controlId} className="text-sm text-[var(--diwa-text-primary)] truncate cursor-pointer">
+              {def.label ?? propNameToLabel(def.name)}
+            </label>
+            {modified && <ModifiedDot />}
+          </div>
+          <Toggle id={controlId} checked={Boolean(value)} onChange={(v) => onChange(def.name, v)} />
         </div>
-        <Toggle id={controlId} checked={Boolean(value)} onChange={(v) => onChange(def.name, v)} />
+        {helperText && (
+          <p className="text-[11px] text-[var(--diwa-text-tertiary)] leading-tight">
+            {helperText}
+          </p>
+        )}
       </div>
     );
   }
 
   if (def.type === 'select') {
-    const isSegmented = def.options.length <= 3;
     return (
       <div className="space-y-1.5">
         <div className="flex items-center gap-1.5">
-          <label htmlFor={isSegmented ? undefined : controlId} className="text-xs text-[var(--diwa-text-secondary)]">
+          <label htmlFor={controlId} className="text-xs text-[var(--diwa-text-secondary)]">
             {def.label ?? propNameToLabel(def.name)}
           </label>
           {modified && <ModifiedDot />}
         </div>
-        {isSegmented ? (
-          <DiwaSegmentedControl
-            id={controlId}
-            label={def.label ?? propNameToLabel(def.name)}
-            options={def.options}
-            value={String(value)}
-            onValueChange={(next) => onChange(def.name, next)}
-          />
-        ) : (
-          <DiwaSelectControl
-            id={controlId}
-            label={def.label ?? propNameToLabel(def.name)}
-            options={def.options}
-            value={String(value)}
-            onValueChange={(next) => onChange(def.name, next)}
-          />
-        )}
+        <DiwaSelectControl
+          id={controlId}
+          label={def.label ?? propNameToLabel(def.name)}
+          options={def.options}
+          value={String(value)}
+          description={helperText}
+          onValueChange={(next) => onChange(def.name, next)}
+        />
       </div>
     );
   }
@@ -321,12 +296,10 @@ function PropControl({
           max={def.max}
           step={def.step}
           label={def.label ?? propNameToLabel(def.name)}
+          description={helperText ?? ''}
           hideLabel
           compact
-          onInput={(e: FormEvent<HTMLElement>) => {
-            const next = Number(((e.nativeEvent as unknown) as CustomEvent<string>).detail ?? 0);
-            onChange(def.name, Number.isNaN(next) ? 0 : next);
-          }}
+          onInput={(e: FormEvent<HTMLElement>) => onChange(def.name, getInputNumberValue(e))}
         />
       </div>
     );
@@ -352,9 +325,10 @@ function PropControl({
           <diwa-input-text
             value={String(value)}
             label={`${def.name} hex value`}
+            description={helperText ?? ''}
             hideLabel
             compact
-            onInput={(e: FormEvent<HTMLElement>) => onChange(def.name, (((e.nativeEvent as unknown) as CustomEvent<string>).detail ?? ''))}
+            onInput={(e: FormEvent<HTMLElement>) => onChange(def.name, getInputStringValue(e))}
             className="flex-1"
           />
         </div>
@@ -403,9 +377,10 @@ function PropControl({
         id={controlId}
         value={String(value)}
         label={def.label ?? propNameToLabel(def.name)}
+        description={helperText ?? ''}
         hideLabel
         compact
-        onInput={(e: FormEvent<HTMLElement>) => onChange(def.name, (((e.nativeEvent as unknown) as CustomEvent<string>).detail ?? ''))}
+        onInput={(e: FormEvent<HTMLElement>) => onChange(def.name, getInputStringValue(e))}
       />
     </div>
   );
@@ -491,10 +466,21 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
         const defVal = defaults[def.name] ?? getDefault(def);
         const current = props[def.name] ?? defVal;
         const mod = isModified(props[def.name], defVal);
+        const usesControlDescription =
+          def.type === 'string'
+          || def.type === 'number'
+          || def.type === 'select'
+          || def.type === 'color';
         return (
           <div key={def.name}>
-            <PropControl def={def} value={current} modified={mod} onChange={update} />
-            {def.description && (
+            <PropControl
+              def={def}
+              value={current}
+              modified={mod}
+              helperText={def.description}
+              onChange={update}
+            />
+            {def.description && !usesControlDescription && def.type !== 'boolean' && (
               <p className="mt-1 text-[11px] text-[var(--diwa-text-tertiary)] leading-tight">
                 {def.description}
               </p>
@@ -525,7 +511,7 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
               hideLabel
               compact
               placeholder="Filter props..."
-              onInput={(e: FormEvent<HTMLElement>) => setFilter((((e.nativeEvent as unknown) as CustomEvent<string>).detail ?? ''))}
+              onInput={(e: FormEvent<HTMLElement>) => setFilter(getInputStringValue(e))}
             />
           </div>
         )}

@@ -1,6 +1,6 @@
 {
   "name": "@diwacopilot/components",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Diwa Design System - Framework-agnostic Web Components built with Stencil.js",
   "license": "MIT",
   "homepage": "https://diwacopilot.com",
@@ -58,6 +58,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.7.6",
     "@stencil/core": "~4.43.3",
     "lucide": "^0.577.0"
   },

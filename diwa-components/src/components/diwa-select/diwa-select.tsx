@@ -422,7 +422,7 @@ export class DiwaSelect {
     const labelId = `${this.internalId}-label`;
     const listboxId = `${this.internalId}-listbox`;
     const hintId = `${this.internalId}-hint`;
-    const hasMessage = !!this.message && this.state !== 'none';
+    const hasMessage = !!this.message;
     const hasValue = this.value !== undefined && this.value !== '';
     const displayLabel = hasValue ? (this.selectedLabel ?? this.value) : undefined;
 

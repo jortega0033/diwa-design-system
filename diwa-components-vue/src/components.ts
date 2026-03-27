@@ -104,6 +104,26 @@ export const DiwaDivider = /*@__PURE__*/ defineContainer<JSX.DiwaDivider>('diwa-
 ]);
 
 
+export const DiwaDropdown = /*@__PURE__*/ defineContainer<JSX.DiwaDropdown>('diwa-dropdown', undefined, [
+  'theme',
+  'open',
+  'disabled',
+  'submenu',
+  'placement',
+  'strategy',
+  'offsetPx',
+  'matchTriggerWidth',
+  'closeOnSelect',
+  'triggerLabel',
+  'triggerVariant',
+  'triggerSize',
+  'triggerIcon',
+  'hideTriggerLabel',
+  'toggle',
+  'select'
+]);
+
+
 export const DiwaFlyout = /*@__PURE__*/ defineContainer<JSX.DiwaFlyout>('diwa-flyout', undefined, [
   'theme',
   'open',

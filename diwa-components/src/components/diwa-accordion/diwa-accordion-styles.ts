@@ -144,7 +144,6 @@ export const getComponentCss = (): string => `
   }
 
   .content {
-    padding-bottom: var(--diwa-space-9);
     padding-inline: var(--diwa-space-2);
   }
 

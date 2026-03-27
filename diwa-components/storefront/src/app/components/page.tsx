@@ -66,6 +66,7 @@ const COMPONENT_FAMILIES: Array<{ title: string; labels: string[] }> = [
       'Tabs',
       'Tabs Bar',
       'Pagination',
+      'Dropdown',
       'Stepper Horizontal',
       'Scroller',
     ],

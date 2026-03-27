@@ -199,6 +199,38 @@ export declare interface DiwaDivider extends Components.DiwaDivider {}
 
 
 @ProxyCmp({
+  inputs: ['closeOnSelect', 'disabled', 'hideTriggerLabel', 'matchTriggerWidth', 'offsetPx', 'open', 'placement', 'strategy', 'submenu', 'theme', 'triggerIcon', 'triggerLabel', 'triggerSize', 'triggerVariant'],
+  methods: ['show', 'hide', 'toggleOpen']
+})
+@Component({
+  selector: 'diwa-dropdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['closeOnSelect', 'disabled', 'hideTriggerLabel', 'matchTriggerWidth', 'offsetPx', 'open', 'placement', 'strategy', 'submenu', 'theme', 'triggerIcon', 'triggerLabel', 'triggerSize', 'triggerVariant'],
+})
+export class DiwaDropdown {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['toggle', 'select']);
+  }
+}
+
+
+import type { DropdownToggleEventDetail as IDiwaDropdownDropdownToggleEventDetail } from '@diwacopilot/components';
+import type { DropdownSelectEventDetail as IDiwaDropdownDropdownSelectEventDetail } from '@diwacopilot/components';
+
+export declare interface DiwaDropdown extends Components.DiwaDropdown {
+
+  toggle: EventEmitter<CustomEvent<IDiwaDropdownDropdownToggleEventDetail>>;
+
+  select: EventEmitter<CustomEvent<IDiwaDropdownDropdownSelectEventDetail>>;
+}
+
+
+@ProxyCmp({
   inputs: ['backdrop', 'heading', 'open', 'position', 'theme']
 })
 @Component({

@@ -53,6 +53,7 @@ export const sitemap: NavSection[] = [
       { label: 'Button Pure', href: '/components/button-pure/configurator' },
       { label: 'Checkbox', href: '/components/checkbox/configurator' },
       { label: 'Divider', href: '/components/divider/configurator' },
+      { label: 'Dropdown', href: '/components/dropdown/configurator' },
       { label: 'Flyout', href: '/components/flyout/configurator' },
       { label: 'Heading', href: '/components/heading/configurator' },
       { label: 'Icon', href: '/components/icon/configurator' },

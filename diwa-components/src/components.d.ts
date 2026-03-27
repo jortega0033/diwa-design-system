@@ -13,6 +13,7 @@ import { ButtonSize, ButtonType, ButtonVariant } from "./components/diwa-button/
 import { ButtonPureAlignLabel, ButtonPureColor, ButtonPureSize, ButtonPureType } from "./components/diwa-button-pure/types";
 import { CheckboxState } from "./components/diwa-checkbox/types";
 import { DividerOrientation } from "./components/diwa-divider/types";
+import { DropdownPlacement, DropdownSelectEventDetail, DropdownStrategy, DropdownToggleEventDetail, Theme as Theme1 } from "./components/diwa-dropdown/types";
 import { FlyoutBackdrop, FlyoutPosition } from "./components/diwa-flyout/types";
 import { HeadingAlign, HeadingColor, HeadingSize, HeadingTag, HeadingWeight } from "./components/diwa-heading/types";
 import { InlineNotificationState } from "./components/diwa-inline-notification/types";
@@ -50,6 +51,7 @@ export { ButtonSize, ButtonType, ButtonVariant } from "./components/diwa-button/
 export { ButtonPureAlignLabel, ButtonPureColor, ButtonPureSize, ButtonPureType } from "./components/diwa-button-pure/types";
 export { CheckboxState } from "./components/diwa-checkbox/types";
 export { DividerOrientation } from "./components/diwa-divider/types";
+export { DropdownPlacement, DropdownSelectEventDetail, DropdownStrategy, DropdownToggleEventDetail, Theme as Theme1 } from "./components/diwa-dropdown/types";
 export { FlyoutBackdrop, FlyoutPosition } from "./components/diwa-flyout/types";
 export { HeadingAlign, HeadingColor, HeadingSize, HeadingTag, HeadingWeight } from "./components/diwa-heading/types";
 export { InlineNotificationState } from "./components/diwa-inline-notification/types";
@@ -535,6 +537,67 @@ export namespace Components {
           * @default 'dark'
          */
         "theme": Theme;
+    }
+    interface DiwaDropdown {
+        /**
+          * @default true
+         */
+        "closeOnSelect": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        "hide": () => Promise<void>;
+        /**
+          * @default false
+         */
+        "hideTriggerLabel": boolean;
+        /**
+          * @default false
+         */
+        "matchTriggerWidth": boolean;
+        /**
+          * @default 6
+         */
+        "offsetPx": number;
+        /**
+          * @default false
+         */
+        "open": boolean;
+        /**
+          * @default 'bottom-start'
+         */
+        "placement": DropdownPlacement;
+        "show": () => Promise<void>;
+        /**
+          * @default 'fixed'
+         */
+        "strategy": DropdownStrategy;
+        /**
+          * @default false
+         */
+        "submenu": boolean;
+        /**
+          * @default 'dark'
+         */
+        "theme": Theme1;
+        "toggleOpen": () => Promise<void>;
+        /**
+          * @default 'none'
+         */
+        "triggerIcon": string;
+        /**
+          * @default 'Options'
+         */
+        "triggerLabel": string;
+        /**
+          * @default 'sm'
+         */
+        "triggerSize": ButtonSize;
+        /**
+          * @default 'secondary'
+         */
+        "triggerVariant": ButtonVariant;
     }
     /**
      * @component diwa-flyout
@@ -2804,6 +2867,10 @@ export interface DiwaCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDiwaCheckboxElement;
 }
+export interface DiwaDropdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDiwaDropdownElement;
+}
 export interface DiwaFlyoutCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDiwaFlyoutElement;
@@ -3138,6 +3205,24 @@ declare global {
     var HTMLDiwaDividerElement: {
         prototype: HTMLDiwaDividerElement;
         new (): HTMLDiwaDividerElement;
+    };
+    interface HTMLDiwaDropdownElementEventMap {
+        "toggle": DropdownToggleEventDetail;
+        "select": DropdownSelectEventDetail;
+    }
+    interface HTMLDiwaDropdownElement extends Components.DiwaDropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDiwaDropdownElementEventMap>(type: K, listener: (this: HTMLDiwaDropdownElement, ev: DiwaDropdownCustomEvent<HTMLDiwaDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDiwaDropdownElementEventMap>(type: K, listener: (this: HTMLDiwaDropdownElement, ev: DiwaDropdownCustomEvent<HTMLDiwaDropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDiwaDropdownElement: {
+        prototype: HTMLDiwaDropdownElement;
+        new (): HTMLDiwaDropdownElement;
     };
     interface HTMLDiwaFlyoutElementEventMap {
         "dismiss": void;
@@ -4225,6 +4310,7 @@ declare global {
         "diwa-button-pure": HTMLDiwaButtonPureElement;
         "diwa-checkbox": HTMLDiwaCheckboxElement;
         "diwa-divider": HTMLDiwaDividerElement;
+        "diwa-dropdown": HTMLDiwaDropdownElement;
         "diwa-flyout": HTMLDiwaFlyoutElement;
         "diwa-heading": HTMLDiwaHeadingElement;
         "diwa-icon": HTMLDiwaIconElement;
@@ -4745,6 +4831,66 @@ declare namespace LocalJSX {
           * @default 'dark'
          */
         "theme"?: Theme;
+    }
+    interface DiwaDropdown {
+        /**
+          * @default true
+         */
+        "closeOnSelect"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "hideTriggerLabel"?: boolean;
+        /**
+          * @default false
+         */
+        "matchTriggerWidth"?: boolean;
+        /**
+          * @default 6
+         */
+        "offsetPx"?: number;
+        "onSelect"?: (event: DiwaDropdownCustomEvent<DropdownSelectEventDetail>) => void;
+        "onToggle"?: (event: DiwaDropdownCustomEvent<DropdownToggleEventDetail>) => void;
+        /**
+          * @default false
+         */
+        "open"?: boolean;
+        /**
+          * @default 'bottom-start'
+         */
+        "placement"?: DropdownPlacement;
+        /**
+          * @default 'fixed'
+         */
+        "strategy"?: DropdownStrategy;
+        /**
+          * @default false
+         */
+        "submenu"?: boolean;
+        /**
+          * @default 'dark'
+         */
+        "theme"?: Theme1;
+        /**
+          * @default 'none'
+         */
+        "triggerIcon"?: string;
+        /**
+          * @default 'Options'
+         */
+        "triggerLabel"?: string;
+        /**
+          * @default 'sm'
+         */
+        "triggerSize"?: ButtonSize;
+        /**
+          * @default 'secondary'
+         */
+        "triggerVariant"?: ButtonVariant;
     }
     /**
      * @component diwa-flyout
@@ -7223,6 +7369,22 @@ declare namespace LocalJSX {
         "theme": Theme;
         "orientation": DividerOrientation;
     }
+    interface DiwaDropdownAttributes {
+        "theme": Theme;
+        "open": boolean;
+        "disabled": boolean;
+        "submenu": boolean;
+        "placement": DropdownPlacement;
+        "strategy": DropdownStrategy;
+        "offsetPx": number;
+        "matchTriggerWidth": boolean;
+        "closeOnSelect": boolean;
+        "triggerLabel": string;
+        "triggerVariant": ButtonVariant;
+        "triggerSize": ButtonSize;
+        "triggerIcon": string;
+        "hideTriggerLabel": boolean;
+    }
     interface DiwaFlyoutAttributes {
         "theme": Theme;
         "open": boolean;
@@ -7738,6 +7900,7 @@ declare namespace LocalJSX {
         "diwa-button-pure": Omit<DiwaButtonPure, keyof DiwaButtonPureAttributes> & { [K in keyof DiwaButtonPure & keyof DiwaButtonPureAttributes]?: DiwaButtonPure[K] } & { [K in keyof DiwaButtonPure & keyof DiwaButtonPureAttributes as `attr:${K}`]?: DiwaButtonPureAttributes[K] } & { [K in keyof DiwaButtonPure & keyof DiwaButtonPureAttributes as `prop:${K}`]?: DiwaButtonPure[K] };
         "diwa-checkbox": Omit<DiwaCheckbox, keyof DiwaCheckboxAttributes> & { [K in keyof DiwaCheckbox & keyof DiwaCheckboxAttributes]?: DiwaCheckbox[K] } & { [K in keyof DiwaCheckbox & keyof DiwaCheckboxAttributes as `attr:${K}`]?: DiwaCheckboxAttributes[K] } & { [K in keyof DiwaCheckbox & keyof DiwaCheckboxAttributes as `prop:${K}`]?: DiwaCheckbox[K] };
         "diwa-divider": Omit<DiwaDivider, keyof DiwaDividerAttributes> & { [K in keyof DiwaDivider & keyof DiwaDividerAttributes]?: DiwaDivider[K] } & { [K in keyof DiwaDivider & keyof DiwaDividerAttributes as `attr:${K}`]?: DiwaDividerAttributes[K] } & { [K in keyof DiwaDivider & keyof DiwaDividerAttributes as `prop:${K}`]?: DiwaDivider[K] };
+        "diwa-dropdown": Omit<DiwaDropdown, keyof DiwaDropdownAttributes> & { [K in keyof DiwaDropdown & keyof DiwaDropdownAttributes]?: DiwaDropdown[K] } & { [K in keyof DiwaDropdown & keyof DiwaDropdownAttributes as `attr:${K}`]?: DiwaDropdownAttributes[K] } & { [K in keyof DiwaDropdown & keyof DiwaDropdownAttributes as `prop:${K}`]?: DiwaDropdown[K] };
         "diwa-flyout": Omit<DiwaFlyout, keyof DiwaFlyoutAttributes> & { [K in keyof DiwaFlyout & keyof DiwaFlyoutAttributes]?: DiwaFlyout[K] } & { [K in keyof DiwaFlyout & keyof DiwaFlyoutAttributes as `attr:${K}`]?: DiwaFlyoutAttributes[K] } & { [K in keyof DiwaFlyout & keyof DiwaFlyoutAttributes as `prop:${K}`]?: DiwaFlyout[K] };
         "diwa-heading": Omit<DiwaHeading, keyof DiwaHeadingAttributes> & { [K in keyof DiwaHeading & keyof DiwaHeadingAttributes]?: DiwaHeading[K] } & { [K in keyof DiwaHeading & keyof DiwaHeadingAttributes as `attr:${K}`]?: DiwaHeadingAttributes[K] } & { [K in keyof DiwaHeading & keyof DiwaHeadingAttributes as `prop:${K}`]?: DiwaHeading[K] };
         "diwa-icon": Omit<DiwaIcon, keyof DiwaIconAttributes> & { [K in keyof DiwaIcon & keyof DiwaIconAttributes]?: DiwaIcon[K] } & { [K in keyof DiwaIcon & keyof DiwaIconAttributes as `attr:${K}`]?: DiwaIconAttributes[K] } & { [K in keyof DiwaIcon & keyof DiwaIconAttributes as `prop:${K}`]?: DiwaIcon[K] };
@@ -7929,6 +8092,7 @@ declare module "@stencil/core" {
              * </div>
              */
             "diwa-divider": LocalJSX.IntrinsicElements["diwa-divider"] & JSXBase.HTMLAttributes<HTMLDiwaDividerElement>;
+            "diwa-dropdown": LocalJSX.IntrinsicElements["diwa-dropdown"] & JSXBase.HTMLAttributes<HTMLDiwaDropdownElement>;
             /**
              * @component diwa-flyout
              * A full-height overlay panel that slides in from the start or end edge of

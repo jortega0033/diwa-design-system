@@ -149,7 +149,7 @@ export class DiwaCheckbox {
 
   render() {
     const msgId = 'diwa-checkbox-msg';
-    const hasMessage = !!this.message && this.state !== 'none';
+    const hasMessage = !!this.message;
 
     return (
       <Host data-theme={this.theme}>

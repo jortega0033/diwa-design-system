@@ -9,6 +9,7 @@ export const DIRECTIVES = [
   d.DiwaButtonPure,
   d.DiwaCheckbox,
   d.DiwaDivider,
+  d.DiwaDropdown,
   d.DiwaFlyout,
   d.DiwaHeading,
   d.DiwaIcon,

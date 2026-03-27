@@ -446,7 +446,7 @@ export class DiwaMultiSelect {
     const labelId = `${this.internalId}-label`;
     const listboxId = `${this.internalId}-listbox`;
     const hintId = `${this.internalId}-hint`;
-    const hasMessage = !!this.message && this.state !== 'none';
+    const hasMessage = !!this.message;
     const hasValue = this.value.length > 0;
 
     return (

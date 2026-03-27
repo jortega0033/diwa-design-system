@@ -56,6 +56,13 @@ export const componentsSeo: Record<string, Metadata> = {
     pathname: '/components/divider/configurator',
     ogSection: 'components',
   }),
+  dropdown: buildMetadata({
+    title: 'Dropdown',
+    description:
+      'A layered menu surface for grouped actions and navigation. Uses Floating UI positioning, supports nested submenus, and accepts custom trigger content via slot.',
+    pathname: '/components/dropdown/configurator',
+    ogSection: 'components',
+  }),
   flyout: buildMetadata({
     title: 'Flyout',
     description:
