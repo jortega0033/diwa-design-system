@@ -122,10 +122,10 @@ Labels are linked to the inner input via a module-level unique ID counter.
 
 | Event | Payload | When |
 |---|---|---|
-| \`diwaInput\` | \`string\` | On every keystroke |
-| \`diwaChange\` | \`string\` | On blur / committed value |
-| \`diwaFocus\` | \`FocusEvent\` | On focus |
-| \`diwaBlur\` | \`FocusEvent\` | On blur |
+| \`input\` | \`string\` | On every keystroke |
+| \`change\` | \`string\` | On blur / committed value |
+| \`focus\` | \`FocusEvent\` | On focus |
+| \`blur\` | \`FocusEvent\` | On blur |
 
 ### CSS Custom Property override API
 

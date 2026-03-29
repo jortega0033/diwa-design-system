@@ -358,30 +358,30 @@ export class DiwaInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['diwaInput', 'diwaChange', 'diwaFocus', 'diwaBlur']);
+    proxyOutputs(this, this.el, ['input', 'change', 'focus', 'blur']);
   }
 }
 
 
 export declare interface DiwaInput extends Components.DiwaInput {
   /**
-   * Emitted on every keystroke (mirrors native `input` event).
+   * Emitted on every keystroke.
 Payload is the current string value.
    */
-  diwaInput: EventEmitter<CustomEvent<string>>;
+  input: EventEmitter<CustomEvent<string>>;
   /**
-   * Emitted when the input loses focus (mirrors native `change` event).
+   * Emitted when the input loses focus after value changes.
 Payload is the committed string value.
    */
-  diwaChange: EventEmitter<CustomEvent<string>>;
+  change: EventEmitter<CustomEvent<string>>;
   /**
    * Emitted when the input receives focus.
    */
-  diwaFocus: EventEmitter<CustomEvent<FocusEvent>>;
+  focus: EventEmitter<CustomEvent<FocusEvent>>;
   /**
    * Emitted when the input loses focus.
    */
-  diwaBlur: EventEmitter<CustomEvent<FocusEvent>>;
+  blur: EventEmitter<CustomEvent<FocusEvent>>;
 }
 
 
@@ -1642,7 +1642,7 @@ export class DiwaTextarea {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['input', 'change', 'blur']);
+    proxyOutputs(this, this.el, ['input', 'change', 'focus', 'blur']);
   }
 }
 
@@ -1656,6 +1656,10 @@ export declare interface DiwaTextarea extends Components.DiwaTextarea {
    * Emitted when the textarea loses focus after value changes.
    */
   change: EventEmitter<CustomEvent<string>>;
+  /**
+   * Emitted when the textarea receives focus.
+   */
+  focus: EventEmitter<CustomEvent<FocusEvent>>;
   /**
    * Emitted when the textarea loses focus.
    */

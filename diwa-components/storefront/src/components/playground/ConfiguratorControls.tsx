@@ -182,26 +182,29 @@ function AccordionSection({
   onReset?: () => void;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const sectionId = `configurator-group-${title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '') || 'default'}`;
 
   return (
     <div className="border-b border-[var(--diwa-border)] last:border-b-0">
-      <div className="flex items-center gap-2 hover:bg-[var(--diwa-bg-hover)] transition-colors">
-        <diwa-button-pure
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex items-center gap-2 flex-1 px-4 py-2.5 text-left min-w-0"
+          className="flex items-center gap-2 flex-1 px-4 py-2.5 text-left min-w-0 transition-colors hover:bg-[var(--diwa-bg-hover)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
           aria-expanded={open ? 'true' : 'false'}
-          icon="none"
-          color="secondary"
-          size="sm"
+          aria-controls={sectionId}
         >
           <svg
-            className={`w-3 h-3 shrink-0 text-[var(--diwa-text-tertiary)] transition-transform ${open ? 'rotate-90' : ''}`}
+            className={`block w-3 h-3 shrink-0 text-[var(--diwa-text-tertiary)] transition-transform ${open ? 'rotate-90' : ''}`}
             viewBox="0 0 6 10"
             fill="none"
           >
             <path d="M1 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="text-xs uppercase tracking-widest font-semibold text-[var(--diwa-text-secondary)] flex-1">
+          <span className="text-xs uppercase tracking-widest font-semibold leading-none text-[var(--diwa-text-secondary)] flex-1">
             {title}
           </span>
           {modifiedCount > 0 && (
@@ -209,14 +212,14 @@ function AccordionSection({
               {modifiedCount}
             </span>
           )}
-        </diwa-button-pure>
+        </button>
         {onReset && modifiedCount > 0 && (
           <div className="pr-3 shrink-0">
             <ResetButton onClick={onReset} label={`Reset ${title}`} />
           </div>
         )}
       </div>
-      {open && <div className="px-4 pb-3 space-y-3">{children}</div>}
+      {open && <div id={sectionId} className="px-4 pb-3 space-y-3">{children}</div>}
     </div>
   );
 }

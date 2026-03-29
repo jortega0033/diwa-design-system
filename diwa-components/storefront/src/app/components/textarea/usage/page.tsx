@@ -61,6 +61,10 @@ export default function TextareaUsagePage() {
 
       <Section title="React">
         <CodeSnippet code={reactSnippet} />
+        <p className="text-sm text-[var(--diwa-text-secondary)] mt-3">
+          React wrapper note: with <Code>DTextarea</Code>/<Code>DiwaTextarea</Code>, use
+          <Code> onInput</Code>/<Code> onChange</Code> and read text from <Code>event.detail</Code>.
+        </p>
       </Section>
 
       <Section title="Validation states">

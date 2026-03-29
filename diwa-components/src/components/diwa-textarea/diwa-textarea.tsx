@@ -66,25 +66,38 @@ export class DiwaTextarea {
   @Prop({ reflect: true }) theme: Theme = 'dark';
 
   /** Emitted on every keystroke. Detail contains the current value string. */
-  @Event({ bubbles: true }) input!: EventEmitter<string>;
+  @Event({ bubbles: true, composed: true }) input!: EventEmitter<string>;
 
   /** Emitted when the textarea loses focus after value changes. */
-  @Event({ bubbles: true }) change!: EventEmitter<string>;
+  @Event({ bubbles: true, composed: true }) change!: EventEmitter<string>;
+
+  /** Emitted when the textarea receives focus. */
+  @Event({ bubbles: false, composed: false }) focus!: EventEmitter<FocusEvent>;
 
   /** Emitted when the textarea loses focus. */
   @Event({ bubbles: false, composed: false }) blur!: EventEmitter<FocusEvent>;
 
   private handleInput = (e: Event): void => {
+    // Prevent duplicate callbacks caused by native composed input events.
+    e.stopPropagation();
     this.value = (e.target as HTMLTextAreaElement).value;
     this.input.emit(this.value);
   };
 
   private handleChange = (e: Event): void => {
+    // Prevent duplicate callbacks caused by native composed change events.
+    e.stopPropagation();
     this.value = (e.target as HTMLTextAreaElement).value;
     this.change.emit(this.value);
   };
 
+  private handleFocus = (e: FocusEvent): void => {
+    e.stopPropagation();
+    this.focus.emit(e);
+  };
+
   private handleBlur = (e: FocusEvent): void => {
+    e.stopPropagation();
     this.blur.emit(e);
   };
 
@@ -125,6 +138,7 @@ export class DiwaTextarea {
               aria-describedby={this.message ? msgId : this.description ? descId : undefined}
               onInput={this.handleInput}
               onChange={this.handleChange}
+              onFocus={this.handleFocus}
               onBlur={this.handleBlur}
             />
           </div>

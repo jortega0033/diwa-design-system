@@ -56,7 +56,7 @@ export class DiwaInput {
   /** Placeholder text shown when the field is empty. */
   @Prop() placeholder?: string;
 
-  /** Controlled value. Use with onDiwaChange for controlled form patterns. */
+  /** Controlled value. Update in response to the `change` event for controlled patterns. */
   @Prop({ mutable: true, reflect: false }) value: string = "";
 
   /** Marks the field as required. Sets aria-required on the inner input. */
@@ -106,26 +106,26 @@ export class DiwaInput {
   // ──────────────────────────────────────────────────────────────
 
   /**
-   * Emitted on every keystroke (mirrors native `input` event).
+   * Emitted on every keystroke.
    * Payload is the current string value.
    */
-  @Event() diwaInput!: EventEmitter<string>;
+  @Event({ bubbles: true, composed: true }) input!: EventEmitter<string>;
 
   /**
-   * Emitted when the input loses focus (mirrors native `change` event).
+   * Emitted when the input loses focus after value changes.
    * Payload is the committed string value.
    */
-  @Event() diwaChange!: EventEmitter<string>;
+  @Event({ bubbles: true, composed: true }) change!: EventEmitter<string>;
 
   /**
    * Emitted when the input receives focus.
    */
-  @Event() diwaFocus!: EventEmitter<FocusEvent>;
+  @Event({ bubbles: false, composed: false }) focus!: EventEmitter<FocusEvent>;
 
   /**
    * Emitted when the input loses focus.
    */
-  @Event() diwaBlur!: EventEmitter<FocusEvent>;
+  @Event({ bubbles: false, composed: false }) blur!: EventEmitter<FocusEvent>;
 
   // ──────────────────────────────────────────────────────────────
   // Private state / helpers
@@ -142,23 +142,29 @@ export class DiwaInput {
   }
 
   private handleInput = (e: Event): void => {
+    // Prevent the native <input> event from escaping shadow DOM as a second signal.
+    e.stopPropagation();
     const target = e.target as HTMLInputElement;
     this.value = target.value;
-    this.diwaInput.emit(this.value);
+    this.input.emit(this.value);
   };
 
   private handleChange = (e: Event): void => {
+    // Prevent duplicate consumer callbacks from native and custom events.
+    e.stopPropagation();
     const target = e.target as HTMLInputElement;
     this.value = target.value;
-    this.diwaChange.emit(this.value);
+    this.change.emit(this.value);
   };
 
   private handleFocus = (e: FocusEvent): void => {
-    this.diwaFocus.emit(e);
+    e.stopPropagation();
+    this.focus.emit(e);
   };
 
   private handleBlur = (e: FocusEvent): void => {
-    this.diwaBlur.emit(e);
+    e.stopPropagation();
+    this.blur.emit(e);
   };
 
   // ──────────────────────────────────────────────────────────────

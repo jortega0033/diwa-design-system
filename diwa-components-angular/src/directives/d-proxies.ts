@@ -103,10 +103,10 @@ export class DButton {
     [autocomplete]="autocomplete"
     [name]="name"
     [inputId]="inputId"
-    (diwaInput)="diwaInput.emit($event)"
-    (diwaChange)="diwaChange.emit($event)"
-    (diwaFocus)="diwaFocus.emit($event)"
-    (diwaBlur)="diwaBlur.emit($event)"
+    (input)="input.emit($event)"
+    (change)="change.emit($event)"
+    (focus)="focus.emit($event)"
+    (blur)="blur.emit($event)"
   ></diwa-input>`,
   inputs: ['type', 'label', 'placeholder', 'value', 'required', 'disabled', 'readonly', 'state', 'hint', 'autocomplete', 'name', 'inputId'],
 })
@@ -124,10 +124,10 @@ export class DInput {
   @Input() name?: string;
   @Input() inputId?: string;
 
-  @Output() diwaInput = new EventEmitter<CustomEvent<string>>();
-  @Output() diwaChange = new EventEmitter<CustomEvent<string>>();
-  @Output() diwaFocus = new EventEmitter<CustomEvent<FocusEvent>>();
-  @Output() diwaBlur = new EventEmitter<CustomEvent<FocusEvent>>();
+  @Output() input = new EventEmitter<CustomEvent<string>>();
+  @Output() change = new EventEmitter<CustomEvent<string>>();
+  @Output() focus = new EventEmitter<CustomEvent<FocusEvent>>();
+  @Output() blur = new EventEmitter<CustomEvent<FocusEvent>>();
 }
 
 // ─── DSpinner ────────────────────────────────────────────────────────────────

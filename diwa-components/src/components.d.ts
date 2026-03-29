@@ -860,7 +860,7 @@ export namespace Components {
          */
         "type": InputType;
         /**
-          * Controlled value. Use with onDiwaChange for controlled form patterns.
+          * Controlled value. Update in response to the `change` event for controlled patterns.
           * @default ""
          */
         "value": string;
@@ -3331,10 +3331,10 @@ declare global {
         new (): HTMLDiwaInlineNotificationElement;
     };
     interface HTMLDiwaInputElementEventMap {
-        "diwaInput": string;
-        "diwaChange": string;
-        "diwaFocus": FocusEvent;
-        "diwaBlur": FocusEvent;
+        "input": string;
+        "change": string;
+        "focus": FocusEvent;
+        "blur": FocusEvent;
     }
     /**
      * @component diwa-input
@@ -4244,6 +4244,7 @@ declare global {
     interface HTMLDiwaTextareaElementEventMap {
         "input": string;
         "change": string;
+        "focus": FocusEvent;
         "blur": FocusEvent;
     }
     /**
@@ -5138,19 +5139,19 @@ declare namespace LocalJSX {
         /**
           * Emitted when the input loses focus.
          */
-        "onDiwaBlur"?: (event: DiwaInputCustomEvent<FocusEvent>) => void;
+        "onBlur"?: (event: DiwaInputCustomEvent<FocusEvent>) => void;
         /**
-          * Emitted when the input loses focus (mirrors native `change` event). Payload is the committed string value.
+          * Emitted when the input loses focus after value changes. Payload is the committed string value.
          */
-        "onDiwaChange"?: (event: DiwaInputCustomEvent<string>) => void;
+        "onChange"?: (event: DiwaInputCustomEvent<string>) => void;
         /**
           * Emitted when the input receives focus.
          */
-        "onDiwaFocus"?: (event: DiwaInputCustomEvent<FocusEvent>) => void;
+        "onFocus"?: (event: DiwaInputCustomEvent<FocusEvent>) => void;
         /**
-          * Emitted on every keystroke (mirrors native `input` event). Payload is the current string value.
+          * Emitted on every keystroke. Payload is the current string value.
          */
-        "onDiwaInput"?: (event: DiwaInputCustomEvent<string>) => void;
+        "onInput"?: (event: DiwaInputCustomEvent<string>) => void;
         /**
           * Placeholder text shown when the field is empty.
          */
@@ -5181,7 +5182,7 @@ declare namespace LocalJSX {
          */
         "type"?: InputType;
         /**
-          * Controlled value. Use with onDiwaChange for controlled form patterns.
+          * Controlled value. Update in response to the `change` event for controlled patterns.
           * @default ""
          */
         "value"?: string;
@@ -7202,6 +7203,10 @@ declare namespace LocalJSX {
           * Emitted when the textarea loses focus after value changes.
          */
         "onChange"?: (event: DiwaTextareaCustomEvent<string>) => void;
+        /**
+          * Emitted when the textarea receives focus.
+         */
+        "onFocus"?: (event: DiwaTextareaCustomEvent<FocusEvent>) => void;
         /**
           * Emitted on every keystroke. Detail contains the current value string.
          */

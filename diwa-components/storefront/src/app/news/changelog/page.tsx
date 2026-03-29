@@ -18,6 +18,30 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '2.0.0',
+    date: 'March 29, 2026',
+    summary: 'Breaking event-contract alignment release: Input and Textarea now use native event names consistently across core and framework wrappers.',
+    added: [
+      'Added focus event support to `diwa-textarea` for parity with `diwa-input`.',
+      'Added migration guidance for React, Angular, and Vue event handler updates.',
+    ],
+    changed: [
+      'Standardized `diwa-input` events to native names: `input`, `change`, `focus`, `blur`.',
+      'Hardened React wrapper event wiring so `onInput`/`onChange` handlers receive stable custom events with `event.detail`.',
+      'Adjusted textarea event dispatch to prevent duplicate callback paths from shadow DOM native events.',
+      'Migration (React): `onDiwaInput={(e)=>setValue(e.detail)}` -> `onInput={(e)=>setValue(e.detail)}`.',
+      'Migration (Angular): `(diwaInput)=\"onInput($event)\"` -> `(input)=\"onInput($event)\"`.',
+      'Migration (Vue): `@diwaInput=\"onInput\"` -> `@input=\"onInput\"`.',
+    ],
+    fixed: [
+      'Fixed flaky React form behavior where textarea/input content could desync when relying on synthetic event paths.',
+    ],
+    deprecated: [],
+    removed: [
+      'Removed `diwaInput`, `diwaChange`, `diwaFocus`, and `diwaBlur` events from `diwa-input`.',
+    ],
+  },
+  {
     version: '1.4.2',
     date: 'March 27, 2026',
     summary: 'Dropdown shipped with a polished menu system, while form configurators and helper text handling were corrected across the docs experience.',

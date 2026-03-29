@@ -78,6 +78,10 @@ export default function InputTextUsagePage() {
 
       <Section title="React">
         <CodeSnippet code={reactSnippet} />
+        <p className="text-sm text-[var(--diwa-text-secondary)] mt-3">
+          React wrapper note: with <Code>DInput</Code>/<Code>DiwaInput</Code>, use
+          <Code> onInput</Code>/<Code> onChange</Code> and read the value from <Code>event.detail</Code>.
+        </p>
       </Section>
 
       <Section title="Validation states">

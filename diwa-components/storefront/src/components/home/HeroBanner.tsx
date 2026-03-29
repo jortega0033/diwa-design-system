@@ -57,7 +57,7 @@ export function HeroBanner() {
       <div className={styles.body}>
         <div className={styles.badge} aria-label="Design system version">
           <span className={styles.badgeDot} aria-hidden="true" />
-          <span>v1.4.2</span>
+          <span>v2.0.0</span>
         </div>
 
         <h1 id="hero-heading" className={styles.headline}>

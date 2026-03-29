@@ -181,10 +181,10 @@ export const DiwaInput = /*@__PURE__*/ defineContainer<JSX.DiwaInput>('diwa-inpu
   'name',
   'inputId',
   'theme',
-  'diwaInput',
-  'diwaChange',
-  'diwaFocus',
-  'diwaBlur'
+  'input',
+  'change',
+  'focus',
+  'blur'
 ]);
 
 
@@ -796,6 +796,7 @@ export const DiwaTextarea = /*@__PURE__*/ defineContainer<JSX.DiwaTextarea>('diw
   'theme',
   'input',
   'change',
+  'focus',
   'blur'
 ]);
 

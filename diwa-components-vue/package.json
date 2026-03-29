@@ -1,6 +1,6 @@
 {
   "name": "@diwacopilot/components-vue",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "description": "Vue wrapper package for Diwa Web Components.",
   "license": "MIT",
   "type": "module",
@@ -21,7 +21,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@diwacopilot/components": "^1.4.2",
+    "@diwacopilot/components": "^2.0.0",
     "vue": "^3.4.0"
   },
   "devDependencies": {
