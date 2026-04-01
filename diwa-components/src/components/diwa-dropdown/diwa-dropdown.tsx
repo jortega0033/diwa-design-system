@@ -277,7 +277,15 @@ export class DiwaDropdown {
         shift({ padding: 8 }),
         size({
           padding: 8,
-          apply: ({ rects, availableHeight, elements }) => {
+          apply: ({
+            rects,
+            availableHeight,
+            elements,
+          }: {
+            rects: { reference: { width: number } };
+            availableHeight: number;
+            elements: { floating: Element };
+          }) => {
             const panel = elements.floating as HTMLElement;
             panel.style.maxHeight = `${Math.max(120, availableHeight)}px`;
             if (this.matchTriggerWidth) {
