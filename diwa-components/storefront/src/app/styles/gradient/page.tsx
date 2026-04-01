@@ -11,31 +11,31 @@ const GRADIENT_TOKENS = [
     token: '--diwa-gradient-to-top',
     label: 'Gradient To Top',
     use: 'Fade text over an image from bottom — scrim rises upward',
-    style: 'linear-gradient(to top, #0b0b0c 0%, transparent 100%)',
+    style: 'linear-gradient(to top, var(--diwa-color-zinc-950) 0%, transparent 100%)',
   },
   {
     token: '--diwa-gradient-to-bottom',
     label: 'Gradient To Bottom',
     use: 'Fade text over an image from top — scrim falls downward',
-    style: 'linear-gradient(to bottom, #0b0b0c 0%, transparent 100%)',
+    style: 'linear-gradient(to bottom, var(--diwa-color-zinc-950) 0%, transparent 100%)',
   },
   {
     token: '--diwa-gradient-to-left',
     label: 'Gradient To Left',
     use: 'Horizontal scrim fading leftward — side-panel overlays',
-    style: 'linear-gradient(to left, #0b0b0c 0%, transparent 100%)',
+    style: 'linear-gradient(to left, var(--diwa-color-zinc-950) 0%, transparent 100%)',
   },
   {
     token: '--diwa-gradient-to-right',
     label: 'Gradient To Right',
     use: 'Horizontal scrim fading rightward — text-on-image banners',
-    style: 'linear-gradient(to right, #0b0b0c 0%, transparent 100%)',
+    style: 'linear-gradient(to right, var(--diwa-color-zinc-950) 0%, transparent 100%)',
   },
   {
     token: '--diwa-gradient-accent',
     label: 'Accent',
     use: 'Brand CTA surfaces, loading bars, decorative accents',
-    style: 'linear-gradient(135deg, #3558e6 0%, #2844b5 100%)',
+    style: 'linear-gradient(135deg, var(--diwa-color-accent-400) 0%, var(--diwa-color-accent-600) 100%)',
   },
 ];
 
@@ -57,11 +57,11 @@ export default function StylesGradientPage() {
                 {/* background image stand-in */}
                 <div
                   className="absolute inset-0"
-                  style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2f4fd1 50%, #213995 100%)' }}
+                  style={{ background: 'radial-gradient(circle at 30% 40%, var(--diwa-color-accent-400) 0%, var(--diwa-color-accent-600) 55%, var(--diwa-color-accent-700) 100%)' }}
                 />
                 {/* gradient overlay */}
                 <div className="absolute inset-0" style={{ background: row.style }} />
-                <span className="absolute bottom-2 left-3 text-xs font-medium text-white drop-shadow">
+                <span className="absolute bottom-2 left-3 text-xs font-medium text-[var(--diwa-text-inverse)] drop-shadow">
                   {row.label}
                 </span>
               </div>

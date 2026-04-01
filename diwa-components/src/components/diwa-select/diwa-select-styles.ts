@@ -100,8 +100,8 @@ export const getComponentCss = (
     }
   }
 
-  ${isOpen && !isUp ? '.trigger { border-color: var(--diwa-border-focus); border-radius: var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-input-radius, var(--diwa-radius-md)) 0 0; }' : ''}
-  ${isOpen && isUp ? '.trigger { border-color: var(--diwa-border-focus); border-radius: 0 0 var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-input-radius, var(--diwa-radius-md)); }' : ''}
+  ${isOpen && !isUp ? '.trigger { border-color: var(--diwa-border-focus); border-radius: var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-radius-xs) var(--diwa-radius-xs); }' : ''}
+  ${isOpen && isUp ? '.trigger { border-color: var(--diwa-border-focus); border-radius: var(--diwa-radius-xs) var(--diwa-radius-xs) var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-input-radius, var(--diwa-radius-md)); }' : ''}
 
   /* â”€â”€ Focus ring on trigger itself â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
@@ -148,7 +148,7 @@ export const getComponentCss = (
     background-color: var(--diwa-bg-elevated);
     border: var(--diwa-border-width-thin) solid var(--diwa-border-focus);
     border-top: none;
-    border-radius: 0 0 var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-input-radius, var(--diwa-radius-md));
+    border-radius: var(--diwa-radius-xs) var(--diwa-radius-xs) var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-input-radius, var(--diwa-radius-md));
     overflow: hidden;
     box-shadow: var(--diwa-shadow-lg);
     display: ${isOpen ? 'block' : 'none'};
@@ -159,7 +159,7 @@ export const getComponentCss = (
     bottom: 100%;
     border-top: var(--diwa-border-width-thin) solid var(--diwa-border-focus);
     border-bottom: none;
-    border-radius: var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-input-radius, var(--diwa-radius-md)) 0 0;
+    border-radius: var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-input-radius, var(--diwa-radius-md)) var(--diwa-radius-xs) var(--diwa-radius-xs);
     margin-bottom: -1px;
   }
 

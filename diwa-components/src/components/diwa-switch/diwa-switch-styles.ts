@@ -54,7 +54,7 @@ export const getComponentCss = (
       height: var(--diwa-switch-track-height);
       background: ${trackBg};
       border: var(--diwa-border-width-base) solid ${trackBorder};
-      border-radius: var(--diwa-radius-xl);
+      border-radius: var(--diwa-radius-full);
       box-sizing: border-box;
       flex-shrink: 0;
       transition: background var(--diwa-transition-base), border-color var(--diwa-transition-base), box-shadow var(--diwa-transition-fast);
@@ -73,7 +73,7 @@ export const getComponentCss = (
       width: var(--diwa-switch-thumb-size);
       height: var(--diwa-switch-thumb-size);
       background: var(--diwa-bg-surface);
-      border-radius: 50%;
+      border-radius: var(--diwa-radius-full);
       transform: ${thumbTranslate};
       box-shadow: var(--diwa-shadow-sm);
       transition: transform var(--diwa-transition-base), background var(--diwa-transition-base), box-shadow var(--diwa-transition-fast);

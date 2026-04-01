@@ -47,7 +47,7 @@ export const getComponentCss = (
     padding: 0;
     box-sizing: border-box;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: var(--diwa-radius-full);
     border: var(--diwa-border-width-medium) solid ${checked ? 'var(--diwa-accent)' : 'var(--diwa-border)'};
     background: ${checked ? 'var(--diwa-accent)' : 'transparent'};
     transition: border-color var(--diwa-transition-base), background var(--diwa-transition-base);
@@ -69,8 +69,8 @@ export const getComponentCss = (
     transform: translate(-50%, -50%);
     width: ${dotSize};
     height: ${dotSize};
-    border-radius: 50%;
-    background: var(--diwa-text-on-accent, #fff);
+    border-radius: var(--diwa-radius-full);
+    background: var(--diwa-text-inverse);
     opacity: ${checked ? '1' : '0'};
     pointer-events: none;
     transition: opacity var(--diwa-transition-base);

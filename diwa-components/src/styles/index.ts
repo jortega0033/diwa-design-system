@@ -11,12 +11,12 @@
 
 // ─── Border Radius ───────────────────────────────────────────────────────────
 
-export const borderRadiusXs   = '2px';
-export const borderRadiusSm   = '4px';
-export const borderRadiusMd   = '6px';
-export const borderRadiusLg   = '8px';
-export const borderRadiusXl   = '12px';
-export const borderRadius2Xl  = '16px';
+export const borderRadiusXs   = '0px';
+export const borderRadiusSm   = '0px';
+export const borderRadiusMd   = '0px';
+export const borderRadiusLg   = '0px';
+export const borderRadiusXl   = '0px';
+export const borderRadius2Xl  = '0px';
 export const borderRadiusFull = '9999px';
 
 // ─── Border Width ─────────────────────────────────────────────────────────────
@@ -28,7 +28,7 @@ export const borderWidthThick  = '4px';
 
 // ─── Focus Ring ───────────────────────────────────────────────────────────────
 
-export const focusRingWidth  = '1px';
+export const focusRingWidth  = '2px';
 export const focusRingOffset = '1px';
 export const touchTargetMinSize = '44px';
 export const touchTargetMinSizeCompact = '32px';

@@ -28,7 +28,7 @@ export default function StylesFrostedGlassPage() {
         {/* Blur scale demo */}
         <div
           className="relative rounded-xl overflow-hidden p-1 mb-6"
-          style={{ background: 'radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)' }}
+          style={{ background: 'radial-gradient(circle at 30% 40%, var(--diwa-color-accent-400) 0%, var(--diwa-color-accent-600) 55%, var(--diwa-color-accent-700) 100%)' }}
         >
           <div className="absolute inset-0 flex flex-wrap gap-2 p-4 pointer-events-none" aria-hidden>
             {Array.from({ length: 30 }).map((_, i) => (
@@ -43,15 +43,15 @@ export default function StylesFrostedGlassPage() {
             {BLUR_TOKENS.map((row) => (
               <div
                 key={row.token}
-                className="p-4 rounded-lg border border-white/20 flex flex-col gap-2"
+                className="p-4 rounded-lg border border-[var(--diwa-border)] flex flex-col gap-2"
                 style={{
-                  background: 'rgba(255,255,255,0.15)',
+                  background: 'var(--diwa-bg-frosted)',
                   backdropFilter: `blur(${row.value})`,
                   WebkitBackdropFilter: `blur(${row.value})`,
                 }}
               >
-                <code className="text-xs font-mono text-white font-semibold">{row.value}</code>
-                <p className="text-xs text-white/80">{row.token.replace('--diwa-blur-', '')}</p>
+                <code className="text-xs font-mono text-[var(--diwa-text-inverse)] font-semibold">{row.value}</code>
+                <p className="text-xs" style={{ color: 'var(--diwa-text-inverse)', opacity: 0.86 }}>{row.token.replace('--diwa-blur-', '')}</p>
               </div>
             ))}
           </div>

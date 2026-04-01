@@ -72,7 +72,7 @@ export const getComponentCss = (): string => `
 
   :host([variant="secondary"]) .inner {
     background-color: transparent;
-    color: var(--diwa-accent);
+    color: var(--diwa-accent-text, var(--diwa-accent));
     border-color: var(--diwa-accent);
   }
 

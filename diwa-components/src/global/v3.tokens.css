@@ -1,0 +1,175 @@
+/**
+ * Coming Soon Visual System Tokens (V3 reference)
+ * Source: diwa/landing/app/coming-soon/*
+ *
+ * This file is a complete design-token reference for the Coming Soon direction:
+ * - color + surfaces (light/dark)
+ * - typography + hierarchy scale
+ * - spacing + layout rhythm
+ * - shape system (square-first, no radius by default)
+ * - motion + interaction timing
+ * - component-level aliases (buttons, cards, borders)
+ */
+
+:root {
+  /* ============================================================
+    1) TYPOGRAPHY SYSTEM
+    ============================================================ */
+  --diwa-coming-font-family-base: Onest, "Avenir Next", "Segoe UI", sans-serif;
+  --diwa-coming-font-family-display: Onest, "Avenir Next", "Segoe UI", sans-serif;
+
+  --diwa-coming-font-size-kicker: 0.72rem;
+  --diwa-coming-font-size-body-sm: 0.93rem;
+  --diwa-coming-font-size-body: clamp(0.98rem, 0.92rem + 0.28vw, 1.16rem);
+  --diwa-coming-font-size-h3: 1.02rem;
+  --diwa-coming-font-size-h2: clamp(1.2rem, 1.1rem + 0.5vw, 1.55rem);
+  --diwa-coming-font-size-h1: clamp(2rem, 1.45rem + 2.8vw, 4.1rem);
+
+  --diwa-coming-font-weight-regular: 400;
+  --diwa-coming-font-weight-semibold: 600;
+  --diwa-coming-font-weight-bold: 700;
+
+  --diwa-coming-line-height-tight: 1.05;
+  --diwa-coming-line-height-body: 1.55;
+  --diwa-coming-line-height-relaxed: 1.65;
+
+  --diwa-coming-letter-spacing-kicker: 0.08em;
+  --diwa-coming-letter-spacing-badge: 0.04em;
+
+  /* ============================================================
+    2) SPACING + LAYOUT RHYTHM
+    ============================================================ */
+  --diwa-coming-space-1: 0.2rem;
+  --diwa-coming-space-2: 0.4rem;
+  --diwa-coming-space-3: 0.5rem;
+  --diwa-coming-space-4: 0.55rem;
+  --diwa-coming-space-5: 0.62rem;
+  --diwa-coming-space-6: 0.7rem;
+  --diwa-coming-space-7: 0.8rem;
+  --diwa-coming-space-8: 0.85rem;
+  --diwa-coming-space-9: 0.95rem;
+  --diwa-coming-space-10: 1rem;
+  --diwa-coming-space-11: 1.15rem;
+  --diwa-coming-space-12: 1.25rem;
+  --diwa-coming-space-13: 1.4rem;
+
+  --diwa-coming-layout-page-padding: clamp(1.25rem, 1rem + 1.2vw, 2.5rem);
+  --diwa-coming-layout-container-width: min(1120px, 100%);
+  --diwa-coming-layout-section-gap: clamp(2rem, 1.5rem + 2vw, 3rem);
+
+  /* ============================================================
+    3) SHAPE SYSTEM (square-first)
+    ============================================================ */
+  --diwa-coming-radius-none: 0;
+  --diwa-coming-radius-sm: 0;
+  --diwa-coming-radius-md: 0;
+  --diwa-coming-radius-lg: 0;
+  --diwa-coming-radius-xl: 0;
+
+  /* ============================================================
+    4) MOTION
+    ============================================================ */
+  --diwa-coming-motion-fast: 120ms;
+  --diwa-coming-motion-base: 220ms;
+  --diwa-coming-ease-standard: ease;
+
+  /* ============================================================
+    5) LIGHT THEME PALETTE
+    ============================================================ */
+  --diwa-coming-color-bg: #f5f4ef;
+  --diwa-coming-color-bg-top: #f8f6f1;
+  --diwa-coming-color-surface-card: #fffdf8;
+  --diwa-coming-color-text-primary: #1b1d23;
+  --diwa-coming-color-text-muted: #525866;
+  --diwa-coming-color-border: #d9d7cf;
+
+  --diwa-coming-color-accent: #0f8a7b;
+  --diwa-coming-color-accent-strong: #0c6f63;
+  --diwa-coming-color-accent-warm: #fcca46;
+  --diwa-coming-color-on-accent: #ffffff;
+
+  --diwa-coming-color-surface-82: rgba(255, 255, 255, 0.82);
+  --diwa-coming-color-surface-76: rgba(255, 255, 255, 0.76);
+  --diwa-coming-color-surface-72: rgba(255, 255, 255, 0.72);
+  --diwa-coming-color-surface-60: rgba(255, 255, 255, 0.6);
+
+  --diwa-coming-color-glow-green: rgba(15, 138, 123, 0.15);
+  --diwa-coming-color-glow-warm: rgba(252, 202, 70, 0.2);
+
+  /* ============================================================
+    6) CANONICAL SURFACE/CONTENT ALIASES
+    ============================================================ */
+  --diwa-coming-bg-base: var(--diwa-coming-color-bg);
+  --diwa-coming-bg-gradient-start: var(--diwa-coming-color-bg-top);
+  --diwa-coming-surface-card: var(--diwa-coming-color-surface-card);
+  --diwa-coming-text-primary: var(--diwa-coming-color-text-primary);
+  --diwa-coming-text-muted: var(--diwa-coming-color-text-muted);
+  --diwa-coming-border: var(--diwa-coming-color-border);
+
+  --diwa-coming-accent: var(--diwa-coming-color-accent);
+  --diwa-coming-accent-strong: var(--diwa-coming-color-accent-strong);
+  --diwa-coming-accent-warm: var(--diwa-coming-color-accent-warm);
+
+  --diwa-coming-overlay-surface-82: var(--diwa-coming-color-surface-82);
+  --diwa-coming-overlay-surface-76: var(--diwa-coming-color-surface-76);
+  --diwa-coming-overlay-surface-72: var(--diwa-coming-color-surface-72);
+  --diwa-coming-overlay-surface-60: var(--diwa-coming-color-surface-60);
+
+  --diwa-coming-glow-accent: var(--diwa-coming-color-glow-green);
+  --diwa-coming-glow-warm: var(--diwa-coming-color-glow-warm);
+
+  /* ============================================================
+    7) GRADIENT RECIPES
+    ============================================================ */
+  --diwa-coming-gradient-page:
+   radial-gradient(circle at 10% 10%, var(--diwa-coming-glow-accent), transparent 40%),
+   radial-gradient(circle at 90% 20%, var(--diwa-coming-glow-warm), transparent 35%),
+   linear-gradient(180deg, var(--diwa-coming-bg-gradient-start) 0%, var(--diwa-coming-bg-base) 100%);
+
+  --diwa-coming-gradient-surface:
+   linear-gradient(135deg, var(--diwa-coming-overlay-surface-82), var(--diwa-coming-overlay-surface-60));
+
+  --diwa-coming-gradient-cta:
+   linear-gradient(135deg, var(--diwa-coming-accent), var(--diwa-coming-accent-strong));
+
+  /* ============================================================
+    8) COMPONENT-LEVEL ALIASES
+    ============================================================ */
+  --diwa-coming-button-radius: var(--diwa-coming-radius-none);
+  --diwa-coming-button-border-width: 1px;
+  --diwa-coming-button-padding-y: var(--diwa-coming-space-6);
+  --diwa-coming-button-padding-x: var(--diwa-coming-space-10);
+  --diwa-coming-button-font-weight: var(--diwa-coming-font-weight-semibold);
+
+  --diwa-coming-card-radius: var(--diwa-coming-radius-none);
+  --diwa-coming-card-border-width: 1px;
+  --diwa-coming-card-padding: var(--diwa-coming-space-9);
+
+  --diwa-coming-section-radius: var(--diwa-coming-radius-none);
+  --diwa-coming-section-border-width: 1px;
+}
+
+/* ============================================================
+  9) DARK THEME OVERRIDES
+  ============================================================ */
+[data-theme='dark'] {
+  --diwa-coming-color-bg: #070d0c;
+  --diwa-coming-color-bg-top: #06100f;
+  --diwa-coming-color-surface-card: #0c1615;
+  --diwa-coming-color-text-primary: #e3f2ee;
+  --diwa-coming-color-text-muted: #9cb5ae;
+  --diwa-coming-color-border: #1f3531;
+
+  --diwa-coming-color-accent: #1ca390;
+  --diwa-coming-color-accent-strong: #118071;
+  --diwa-coming-color-accent-warm: #1ca390;
+  --diwa-coming-color-on-accent: #ffffff;
+
+  --diwa-coming-color-surface-82: rgba(16, 31, 29, 0.92);
+  --diwa-coming-color-surface-76: rgba(12, 24, 22, 0.88);
+  --diwa-coming-color-surface-72: rgba(10, 22, 20, 0.92);
+  --diwa-coming-color-surface-60: rgba(12, 23, 21, 0.8);
+
+  --diwa-coming-color-glow-green: rgba(28, 163, 144, 0.28);
+  --diwa-coming-color-glow-warm: rgba(28, 163, 144, 0.12);
+}

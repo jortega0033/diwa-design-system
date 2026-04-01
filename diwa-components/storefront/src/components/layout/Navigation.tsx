@@ -78,10 +78,10 @@ export function Navigation() {
                           href={item.href}
                           aria-current={active ? 'page' : undefined}
                           className={[
-                            'block pl-5 pr-3 py-1.5 rounded-md text-sm transition-colors',
+                            'block pl-5 pr-3 py-1.5 text-sm transition-colors',
                             active
-                              ? 'bg-[var(--diwa-accent-bg)] text-[var(--diwa-accent)] font-medium'
-                              : 'text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)] hover:bg-[var(--diwa-bg-hover)]',
+                              ? 'rounded-none bg-[var(--diwa-accent-bg)] text-[var(--diwa-accent)] font-medium'
+                              : 'rounded-md text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)] hover:bg-[var(--diwa-bg-hover)]',
                           ].join(' ')}
                         >
                           {item.label}

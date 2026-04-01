@@ -22,7 +22,7 @@ export const getComponentCss = (selected: boolean, disabled: boolean, compact: b
     padding: 0 ${compact ? 'var(--diwa-space-3)' : 'var(--diwa-space-4)'};
     border: none;
     box-sizing: border-box;
-    border-radius: calc(var(--diwa-radius-md) - var(--diwa-border-width-base));
+    border-radius: var(--diwa-radius-xs);
     background: ${selected ? 'var(--diwa-bg-elevated)' : 'transparent'};
     color: ${selected ? 'var(--diwa-text-primary)' : 'var(--diwa-text-secondary)'};
     font-size: ${compact ? 'var(--diwa-font-size-sm)' : 'var(--diwa-font-size-base)'};
@@ -31,7 +31,7 @@ export const getComponentCss = (selected: boolean, disabled: boolean, compact: b
     cursor: ${disabled ? 'not-allowed' : 'pointer'};
     opacity: ${disabled ? 0.4 : 1};
     white-space: nowrap;
-ihgdv weposapzkijhdbf1qqq\\    line-height: 1;
+  line-height: 1;
     transition: background 150ms ease, color 150ms ease;
     box-shadow: ${selected ? 'var(--diwa-shadow-sm)' : 'none'};
     height: ${compact ? '1.5rem' : '2rem'};

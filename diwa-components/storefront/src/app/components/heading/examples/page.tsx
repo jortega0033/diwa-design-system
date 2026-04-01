@@ -6,7 +6,7 @@ import { Playground } from '@/components/playground/Playground';
 import type { Story } from '@/models/story';
 import type { FrameworkCode } from '@/models/framework';
 
-// ─── Type scale ──────────────────────────────────────────────────────────────
+const QUICK_FOX = 'The quick brown fox jumps over the lazy dog';
 
 const typeScaleStory: Story<'diwa-heading'> = {
   generator: () => [
@@ -14,19 +14,17 @@ const typeScaleStory: Story<'diwa-heading'> = {
       tag: 'div' as const,
       properties: { className: 'space-y-4' },
       children: [
-        { tag: 'diwa-heading' as const, properties: { size: 'display' }, children: ['Display — Diwa Design System'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h1' },      children: ['H1 — Diwa Design System'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h2' },      children: ['H2 — Diwa Design System'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h3' },      children: ['H3 — Diwa Design System'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h4' },      children: ['H4 — Diwa Design System'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h5' },      children: ['H5 — Diwa Design System'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h6' },      children: ['H6 — Diwa Design System'] },
+        { tag: 'diwa-heading' as const, properties: { size: 'display' }, children: [`Display - ${QUICK_FOX}`] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h1' }, children: [`H1 - ${QUICK_FOX}`] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h2' }, children: [`H2 - ${QUICK_FOX}`] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h3' }, children: [`H3 - ${QUICK_FOX}`] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h4' }, children: [`H4 - ${QUICK_FOX}`] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h5' }, children: [`H5 - ${QUICK_FOX}`] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h6' }, children: [`H6 - ${QUICK_FOX}`] },
       ],
     },
   ],
 };
-
-// ─── Weight variants ─────────────────────────────────────────────────────────
 
 const weightStory: Story<'diwa-heading'> = {
   generator: () => [
@@ -34,14 +32,12 @@ const weightStory: Story<'diwa-heading'> = {
       tag: 'div' as const,
       properties: { className: 'space-y-3' },
       children: [
-        { tag: 'diwa-heading' as const, properties: { size: 'h3', weight: 'semibold' }, children: ['Semibold heading'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h3', weight: 'bold' },     children: ['Bold heading'] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h3', weight: 'semibold' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h3', weight: 'bold' }, children: [QUICK_FOX] },
       ],
     },
   ],
 };
-
-// ─── Colour variants ─────────────────────────────────────────────────────────
 
 const colorStory: Story<'diwa-heading'> = {
   generator: () => [
@@ -49,14 +45,12 @@ const colorStory: Story<'diwa-heading'> = {
       tag: 'div' as const,
       properties: { className: 'space-y-3' },
       children: [
-        { tag: 'diwa-heading' as const, properties: { size: 'h3', color: 'primary' },   children: ['Primary heading'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h3', color: 'secondary' }, children: ['Secondary heading'] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h3', color: 'primary' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h3', color: 'secondary' }, children: [QUICK_FOX] },
       ],
     },
   ],
 };
-
-// ─── Alignment ───────────────────────────────────────────────────────────────
 
 const alignStory: Story<'diwa-heading'> = {
   generator: () => [
@@ -64,15 +58,13 @@ const alignStory: Story<'diwa-heading'> = {
       tag: 'div' as const,
       properties: { className: 'space-y-3' },
       children: [
-        { tag: 'diwa-heading' as const, properties: { size: 'h4', align: 'start' },  children: ['Start aligned heading'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h4', align: 'center' }, children: ['Center aligned heading'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h4', align: 'end' },    children: ['End aligned heading'] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h4', align: 'start' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h4', align: 'center' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h4', align: 'end' }, children: [QUICK_FOX] },
       ],
     },
   ],
 };
-
-// ─── Semantic hierarchy ──────────────────────────────────────────────────────
 
 const hierarchyStory: Story<'diwa-heading'> = {
   generator: () => [
@@ -80,18 +72,16 @@ const hierarchyStory: Story<'diwa-heading'> = {
       tag: 'div' as const,
       properties: { className: 'space-y-2' },
       children: [
-        { tag: 'diwa-heading' as const, properties: { size: 'h1' },                          children: ['Page title'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h2' },                          children: ['Section heading'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h3' },                          children: ['Subsection heading'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h4', color: 'secondary' },      children: ['Card title'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h5', color: 'secondary' },      children: ['Group label'] },
-        { tag: 'diwa-heading' as const, properties: { size: 'h6', color: 'secondary' },      children: ['Sub-label'] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h1' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h2' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h3' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h4', color: 'secondary' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h5', color: 'secondary' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h6', color: 'secondary' }, children: [QUICK_FOX] },
       ],
     },
   ],
 };
-
-// ─── Tag override ────────────────────────────────────────────────────────────
 
 const tagOverrideStory: Story<'diwa-heading'> = {
   generator: () => [
@@ -99,83 +89,68 @@ const tagOverrideStory: Story<'diwa-heading'> = {
       tag: 'div' as const,
       properties: { className: 'space-y-3' },
       children: [
-        {
-          tag: 'diwa-heading' as const,
-          properties: { size: 'h1', tag: 'h3' },
-          children: ['Visual size h1, semantic h3'],
-        },
-        {
-          tag: 'diwa-heading' as const,
-          properties: { size: 'h5', tag: 'h2' },
-          children: ['Visual size h5, semantic h2'],
-        },
+        { tag: 'diwa-heading' as const, properties: { size: 'h1', tag: 'h3' }, children: [QUICK_FOX] },
+        { tag: 'diwa-heading' as const, properties: { size: 'h5', tag: 'h2' }, children: [QUICK_FOX] },
       ],
     },
   ],
 };
 
-// ─── Ellipsis ────────────────────────────────────────────────────────────────
-
 const ellipsisCode: FrameworkCode = {
   html: `<diwa-heading size="h3" ellipsis style="display: block; max-width: 360px">
-  Diwa Design System — Building the future, one component at a time.
+  The quick brown fox jumps over the lazy dog and keeps running through typography tests.
 </diwa-heading>`,
   react: `<diwa-heading
   size="h3"
   ellipsis
   style={{ display: 'block', maxWidth: '360px' }}
 >
-  Diwa Design System — Building the future, one component at a time.
+  The quick brown fox jumps over the lazy dog and keeps running through typography tests.
 </diwa-heading>`,
   angular: `<diwa-heading
   size="h3"
   ellipsis
   style="display: block; max-width: 360px"
 >
-  Diwa Design System — Building the future, one component at a time.
+  The quick brown fox jumps over the lazy dog and keeps running through typography tests.
 </diwa-heading>`,
   vue: `<diwa-heading
   size="h3"
   ellipsis
   :style="{ display: 'block', maxWidth: '360px' }"
 >
-  Diwa Design System — Building the future, one component at a time.
+  The quick brown fox jumps over the lazy dog and keeps running through typography tests.
 </diwa-heading>`,
 };
-
-// ─── Hero editorial demo ─────────────────────────────────────────────────────
 
 const heroCode: FrameworkCode = {
-  html: `<diwa-heading size="display">Diwa Design System</diwa-heading>
+  html: `<diwa-heading size="display">The quick brown fox jumps over the lazy dog</diwa-heading>
 <diwa-heading size="h3" color="secondary" style="margin-top: 12px">
-  Build faster. Ship consistently. Scale with confidence.
+  The quick brown fox jumps over the lazy dog and keeps typography readable.
 </diwa-heading>`,
   react: `<>
-  <diwa-heading size="display">Diwa Design System</diwa-heading>
+  <diwa-heading size="display">The quick brown fox jumps over the lazy dog</diwa-heading>
   <diwa-heading size="h3" color="secondary" style={{ marginTop: '12px' }}>
-    Build faster. Ship consistently. Scale with confidence.
+    The quick brown fox jumps over the lazy dog and keeps typography readable.
   </diwa-heading>
 </>`,
-  angular: `<diwa-heading size="display">Diwa Design System</diwa-heading>
+  angular: `<diwa-heading size="display">The quick brown fox jumps over the lazy dog</diwa-heading>
 <diwa-heading size="h3" color="secondary" style="margin-top: 12px">
-  Build faster. Ship consistently. Scale with confidence.
+  The quick brown fox jumps over the lazy dog and keeps typography readable.
 </diwa-heading>`,
-  vue: `<diwa-heading size="display">Diwa Design System</diwa-heading>
+  vue: `<diwa-heading size="display">The quick brown fox jumps over the lazy dog</diwa-heading>
 <diwa-heading size="h3" color="secondary" :style="{ marginTop: '12px' }">
-  Build faster. Ship consistently. Scale with confidence.
+  The quick brown fox jumps over the lazy dog and keeps typography readable.
 </diwa-heading>`,
 };
-
-// ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function HeadingExamplesPage() {
   return (
     <div className="space-y-12">
-
       <section className="space-y-4">
         <h2 className="text-base font-semibold text-[var(--diwa-text-primary)]">Type scale</h2>
         <p className="text-sm text-[var(--diwa-text-secondary)]">
-          All seven heading sizes rendered with fluid type tokens — sizes scale fluidly between viewport breakpoints.
+          All seven heading sizes rendered with fluid type tokens - sizes scale fluidly between viewport breakpoints.
         </p>
         <ComponentStory story={typeScaleStory} />
       </section>
@@ -207,7 +182,7 @@ export default function HeadingExamplesPage() {
         <h2 className="text-base font-semibold text-[var(--diwa-text-primary)]">Tag override</h2>
         <p className="text-sm text-[var(--diwa-text-secondary)]">
           Use the <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">tag</code> prop
-          to decouple visual size from semantic level — useful when page structure constraints differ from visual intent.
+          to decouple visual size from semantic level - useful when page structure constraints differ from visual intent.
         </p>
         <ComponentStory story={tagOverrideStory} />
       </section>
@@ -220,7 +195,7 @@ export default function HeadingExamplesPage() {
         </p>
         <Playground frameworkCode={ellipsisCode}>
           <diwa-heading size="h3" ellipsis style={{ display: 'block', maxWidth: '360px' }}>
-            Diwa Design System — Building the future, one component at a time.
+            The quick brown fox jumps over the lazy dog and keeps running through typography tests.
           </diwa-heading>
         </Playground>
       </section>
@@ -233,14 +208,13 @@ export default function HeadingExamplesPage() {
         </p>
         <Playground frameworkCode={heroCode}>
           <div>
-            <diwa-heading size="display">Diwa Design System</diwa-heading>
+            <diwa-heading size="display">The quick brown fox jumps over the lazy dog</diwa-heading>
             <diwa-heading size="h3" color="secondary" style={{ marginTop: '12px' }}>
-              Build faster. Ship consistently. Scale with confidence.
+              The quick brown fox jumps over the lazy dog and keeps typography readable.
             </diwa-heading>
           </div>
         </Playground>
       </section>
-
     </div>
   );
 }

@@ -100,19 +100,19 @@ describe('diwa-banner', () => {
   it('uses correct state tokens for each variant', () => {
     const successCss = getComponentCss('success', true);
     expect(successCss).toContain('--diwa-notification-success-soft');
-    expect(successCss).toContain('--diwa-color-success-100');
+    expect(successCss).toContain('--diwa-notification-success-border');
 
     const errorCss = getComponentCss('error', true);
     expect(errorCss).toContain('--diwa-notification-error-soft');
-    expect(errorCss).toContain('--diwa-color-danger-200');
+    expect(errorCss).toContain('--diwa-notification-error-border');
 
     const warningCss = getComponentCss('warning', true);
     expect(warningCss).toContain('--diwa-notification-warning-soft');
-    expect(warningCss).toContain('--diwa-color-warning-100');
+    expect(warningCss).toContain('--diwa-notification-warning-border');
 
     const infoCss = getComponentCss('info', true);
     expect(infoCss).toContain('--diwa-notification-info-soft');
-    expect(infoCss).toContain('--diwa-color-info-300');
+    expect(infoCss).toContain('--diwa-notification-info-border');
   });
 
   // ── Styles — accessibility & motion ─────────────────────────────────────

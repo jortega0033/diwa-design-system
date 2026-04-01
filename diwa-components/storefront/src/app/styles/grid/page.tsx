@@ -21,10 +21,10 @@ function GridTile({
 }) {
   const bg =
     color === 'accent'
-      ? 'rgba(16,163,127,0.18)'
+      ? 'var(--diwa-state-active)'
       : color === 'surface'
-      ? 'rgba(16,163,127,0.08)'
-      : 'rgba(16,163,127,0.05)';
+      ? 'var(--diwa-state-hover)'
+      : 'var(--diwa-bg-frosted)';
 
   return (
     <div

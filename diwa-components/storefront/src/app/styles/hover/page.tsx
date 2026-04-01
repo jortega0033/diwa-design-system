@@ -12,7 +12,7 @@ export default function StylesHoverPage() {
       <h1 className="text-2xl font-bold text-[var(--diwa-text-primary)] mb-3">Hover</h1>
       <p className="text-sm text-[var(--diwa-text-secondary)] mb-10 leading-relaxed max-w-2xl">
         Hover overlays are translucent state tokens layered on top of any background rather than
-        hardcoded colours. This ensures correct contrast in both Noir and Light themes without
+        hardcoded colours. This ensures correct contrast in both Dark and Light themes without
         duplicating rules. The{' '}
         <code className="font-mono text-[var(--diwa-accent)]">:hover</code> state gives visual
         feedback on interactive elements and is only visible when a pointer is over the element.
@@ -54,27 +54,28 @@ export default function StylesHoverPage() {
 
         {/* Demo panels — dark + light */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-          {/* Noir panel */}
+          {/* Dark panel */}
           <div
+            data-theme="dark"
             className="p-5 rounded-lg"
-            style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2f4fd1 50%, #213995 100%)' }}
+            style={{ background: 'radial-gradient(circle at 30% 40%, var(--diwa-color-accent-400) 0%, var(--diwa-color-accent-600) 55%, var(--diwa-color-accent-700) 100%)' }}
           >
-            <p className="text-xs font-semibold text-white/60 uppercase tracking-wider mb-4">Hover — Dark</p>
-            <a href="#" className="hover-demo-anchor block mb-3 text-sm font-medium text-white">
+            <p className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: 'var(--diwa-text-secondary)' }}>Hover — Dark</p>
+            <a href="#" className="hover-demo-anchor block mb-3 text-sm font-medium text-[var(--diwa-text-inverse)]">
               Some Anchor
             </a>
-            <p className="text-sm text-white/80 leading-relaxed">
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--diwa-text-inverse)', opacity: 0.86 }}>
               Lorem Ipsum{' '}
-              <a href="#" className="hover-demo-anchor text-white font-medium">
+              <a href="#" className="hover-demo-anchor text-[var(--diwa-text-inverse)] font-medium">
                 is simply dummy text of the printing
               </a>{' '}
               and typesetting industry.
             </p>
             <div className="flex gap-2 mt-4 flex-wrap">
-              <div className="hover-demo-tile px-3 py-2 rounded-md text-xs text-white border border-white/30">
+              <div className="hover-demo-tile px-3 py-2 rounded-md text-xs text-[var(--diwa-text-inverse)] border border-[var(--diwa-border)]">
                 state-hover overlay
               </div>
-              <div className="hover-demo-tile px-3 py-2 rounded-md text-xs text-white bg-white/10">
+              <div className="hover-demo-tile px-3 py-2 rounded-md text-xs text-[var(--diwa-text-inverse)]" style={{ background: 'var(--diwa-bg-frosted)' }}>
                 bg-surface tile
               </div>
             </div>
@@ -116,9 +117,9 @@ export default function StylesHoverPage() {
             </thead>
             <tbody>
               {[
-                { token: '--diwa-state-hover',    value: 'rgba(148,149,152,.18)', role: 'Standard hover overlay — works on any bg in both themes' },
-                { token: '--diwa-state-active',   value: 'rgba(126,127,130,.20)', role: 'Pressed / active overlay' },
-                { token: '--diwa-state-disabled', value: '#52525b / #949598',     role: 'Disabled element fill — theme-aware' },
+                { token: '--diwa-state-hover',    value: 'Theme-resolved overlay token', role: 'Standard hover overlay — works on any bg in both themes' },
+                { token: '--diwa-state-active',   value: 'Theme-resolved overlay token', role: 'Pressed / active overlay' },
+                { token: '--diwa-state-disabled', value: 'Theme-resolved state token',   role: 'Disabled element fill — theme-aware' },
               ].map((row) => (
                 <tr key={row.token} className="border-b border-[var(--diwa-border)] last:border-0">
                   <td className="py-2.5 pr-6 text-xs font-mono text-[var(--diwa-accent)]">{row.token}</td>

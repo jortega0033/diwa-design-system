@@ -17,26 +17,26 @@ const SKELETON_STYLES = `
   .diwa-skeleton-light {
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.04) 25%,
-      rgba(0, 0, 0, 0.10) 50%,
-      rgba(0, 0, 0, 0.04) 75%
+      var(--diwa-state-hover) 25%,
+      var(--diwa-state-active) 50%,
+      var(--diwa-state-hover) 75%
     );
     background-size: 200% 100%;
     animation: diwa-skeleton-pulse 2s ease-in-out infinite;
-    border-radius: 4px;
+    border-radius: var(--diwa-radius-sm);
   }
 
   /* Dark skeleton */
   .diwa-skeleton-dark {
     background: linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.04) 25%,
-      rgba(255, 255, 255, 0.12) 50%,
-      rgba(255, 255, 255, 0.04) 75%
+      var(--diwa-bg-frosted) 25%,
+      var(--diwa-state-hover) 50%,
+      var(--diwa-bg-frosted) 75%
     );
     background-size: 200% 100%;
     animation: diwa-skeleton-pulse 2s ease-in-out infinite;
-    border-radius: 4px;
+    border-radius: var(--diwa-radius-sm);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -86,9 +86,10 @@ export default function StylesSkeletonPage() {
           {/* Dark */}
           <div
             className="p-6 rounded-xl"
-            style={{ background: '#1a1a1a' }}
+            data-theme="dark"
+            style={{ background: 'var(--diwa-bg-surface)', border: '1px solid var(--diwa-border)' }}
           >
-            <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-5">
+            <p className="text-xs font-semibold uppercase tracking-wider mb-5" style={{ color: 'var(--diwa-text-secondary)' }}>
               Skeleton Dark
             </p>
             {/* Box placeholder */}

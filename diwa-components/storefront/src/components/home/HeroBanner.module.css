@@ -2,7 +2,7 @@
 .hero {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: var(--diwa-radius-md);
   border: 1px solid var(--diwa-border);
   background: var(--diwa-bg-surface);
   margin-bottom: 3rem;
@@ -34,7 +34,7 @@
 .glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 55% 65% at 88% 50%, rgba(53, 88, 230, 0.2) 0%, transparent 70%);
+  background: radial-gradient(ellipse 55% 65% at 88% 50%, var(--diwa-accent-bg) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -43,6 +43,7 @@
   right: -80px;
   top: 50%;
   transform: translateY(-58%);
+  color: var(--diwa-accent);
   pointer-events: none;
 }
 
@@ -66,21 +67,21 @@
   color: var(--diwa-accent);
   margin-bottom: 1.5rem;
   padding: 0.3rem 0.75rem 0.3rem 0.6rem;
-  border: 1px solid rgba(53, 88, 230, 0.32);
-  border-radius: 9999px;
-  background: rgba(53, 88, 230, 0.08);
+  border: 1px solid var(--diwa-border-focus);
+  border-radius: var(--diwa-radius-xs);
+  background: var(--diwa-accent-bg);
 }
 
 .badgeDot {
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: var(--diwa-radius-full);
   background: var(--diwa-accent);
   flex-shrink: 0;
 }
 
 .badgeSep {
-  color: rgba(53, 88, 230, 0.45);
+  color: var(--diwa-text-muted);
   font-weight: 400;
 }
 
@@ -120,8 +121,8 @@
   align-items: center;
   gap: 0.4rem;
   background: var(--diwa-accent);
-  color: #fff;
-  border-radius: 0.5rem;
+  color: var(--diwa-text-inverse);
+  border-radius: var(--diwa-button-radius);
   padding: 0.5625rem 1.125rem;
   font-size: 0.875rem;
   font-weight: 600;
@@ -140,7 +141,7 @@
   border: 1px solid var(--diwa-border);
   background: transparent;
   color: var(--diwa-text-primary);
-  border-radius: 0.5rem;
+  border-radius: var(--diwa-button-radius);
   padding: 0.5625rem 1.125rem;
   font-size: 0.875rem;
   font-weight: 500;
@@ -180,7 +181,7 @@
   gap: 0;
   border-top: 1px solid var(--diwa-border);
   padding: 0.875rem 2.5rem;
-  background: rgba(0, 0, 0, 0.12);
+  background: var(--diwa-bg-frosted);
 }
 
 .stat {

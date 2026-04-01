@@ -6,9 +6,9 @@ import { SidebarProvider } from '@/context/SidebarContext';
 import { Canvas } from '@/components/layout/Canvas';
 import { SITE_URL, SITE_NAME } from '@/lib/seo';
 import '@/styles/globals.css';
-import { Albert_Sans, Geist_Mono } from 'next/font/google';
+import { Onest, Geist_Mono } from 'next/font/google';
 
-const albertSans = Albert_Sans({
+const onest = Onest({
   subsets: ['latin'],
   display: 'swap',
   variable: '--diwa-font-family-base',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" className={`${albertSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${onest.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         {/*
          * Blocking inline script — runs synchronously before first paint to apply

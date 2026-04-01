@@ -18,22 +18,22 @@ type StateTokens = { bg: string; border: string; iconColor: string };
 const STATE_TOKENS: Record<BannerState, StateTokens> = {
   info: {
     bg: 'var(--diwa-notification-info-soft)',
-    border: 'var(--diwa-color-info-300)',
+    border: 'var(--diwa-notification-info-border)',
     iconColor: 'var(--diwa-text-primary)',
   },
   success: {
     bg: 'var(--diwa-notification-success-soft)',
-    border: 'var(--diwa-color-success-100)',
+    border: 'var(--diwa-notification-success-border)',
     iconColor: 'var(--diwa-text-primary)',
   },
   warning: {
     bg: 'var(--diwa-notification-warning-soft)',
-    border: 'var(--diwa-color-warning-100)',
+    border: 'var(--diwa-notification-warning-border)',
     iconColor: 'var(--diwa-text-primary)',
   },
   error: {
     bg: 'var(--diwa-notification-error-soft)',
-    border: 'var(--diwa-color-danger-200)',
+    border: 'var(--diwa-notification-error-border)',
     iconColor: 'var(--diwa-text-primary)',
   },
 };

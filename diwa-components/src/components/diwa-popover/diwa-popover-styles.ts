@@ -28,6 +28,7 @@ export const getComponentCss = (isOpen: boolean, direction: PopoverDirection): s
       padding: 0;
       background: none;
       border: none;
+      color: var(--diwa-text-secondary);
       border-radius: var(--diwa-radius-sm);
       transition: color var(--diwa-transition-base);
     }

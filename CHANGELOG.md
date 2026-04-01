@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.0 - 2026-04-01
+
+- Breaking change: migrated Diwa Design System visual baseline to the Coming Soon V3 reference system.
+- Reworked global semantic token defaults in `diwa-components/src/global/app.css` for the new dark-green-forward theme direction.
+- Added complete V3 reference token source in `diwa-components/src/global/v3.tokens.css` (light/dark, typography, spacing, shape, motion, component aliases).
+- Updated typography foundation to the new display/body profile based on the coming-soon direction.
+- Updated shape system toward square-first controls and set `--diwa-button-radius: 0` to remove rounded button corners.
+- Bumped all publishable packages to `3.0.0` and aligned wrapper peer dependency ranges to `@diwacopilot/components@^3.0.0`.
+
 ## 2.0.0 - 2026-03-29
 
 - Breaking change: standardized `diwa-input` events to native names `input`, `change`, `focus`, and `blur`.

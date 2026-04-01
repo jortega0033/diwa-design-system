@@ -140,7 +140,7 @@ export function registerDiwaOnce(): void {
         title: 'Keep focus-visible states obvious',
         description: 'Never remove outlines without a visible replacement.',
         code: `:focus-visible {
-        outline: var(--diwa-focus-ring-width, 1px) solid var(--diwa-border-focus, #3558e6);
+          outline: var(--diwa-focus-ring-width, 2px) solid var(--diwa-border-focus, #0f8a7b);
   outline-offset: var(--diwa-focus-ring-offset, 1px);
 }`,
       },

@@ -63,7 +63,7 @@ export const getComponentCss = (): string => `
   ::slotted(a.active),
   ::slotted(button.active),
   ::slotted([aria-selected="true"]) {
-    color: var(--diwa-accent) !important;
+    color: var(--diwa-accent-text, var(--diwa-accent)) !important;
     border-bottom-color: var(--diwa-accent) !important;
     font-weight: var(--diwa-font-weight-medium) !important;
   }

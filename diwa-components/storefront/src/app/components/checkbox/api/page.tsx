@@ -134,12 +134,12 @@ export default function CheckboxApiPage() {
             ],
             [
               <Code key="2">--diwa-accent</Code>,
-              '#3558e6',
+              '#0f8a7b',
               'Fill and border colour of the checked and indeterminate states.',
             ],
             [
               <Code key="3">--diwa-accent-hover</Code>,
-              '#2f4fd1',
+              '#0d7c6f',
               'Fill colour when hovering over a checked checkbox.',
             ],
             [
@@ -159,7 +159,7 @@ export default function CheckboxApiPage() {
             ],
             [
               <Code key="7">--diwa-text-primary</Code>,
-              '#e6e6e7 (dark) / #010205 (light)',
+              '#e3f2ee (dark) / #010205 (light)',
               'Label text colour.',
             ],
             [

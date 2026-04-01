@@ -11,12 +11,6 @@ export type NavSection = {
 
 export const sitemap: NavSection[] = [
   {
-    title: 'Getting Started',
-    items: [
-      { label: 'Introduction', href: '/' },
-    ],
-  },
-  {
     title: 'News',
     items: [
       { label: 'Changelog', href: '/news/changelog' },

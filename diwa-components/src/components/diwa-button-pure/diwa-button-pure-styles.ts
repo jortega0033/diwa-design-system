@@ -166,7 +166,7 @@ export const getComponentCss = (
     flex-shrink: 0;
     border: var(--diwa-border-width-base) solid currentColor;
     border-top-color: transparent;
-    border-radius: 50%;
+    border-radius: var(--diwa-radius-full);
     animation: diwa-bp-spin var(--diwa-spinner-duration, 0.7s) linear infinite;
   }
 
@@ -181,7 +181,7 @@ export const getComponentCss = (
   /* ── Colour aliases (foreground only) ───────────────────────────────── */
   :host([color="primary"]) .root { color: var(--diwa-text-primary); }
   :host([color="secondary"]) .root { color: var(--diwa-text-secondary); }
-  :host([color="accent"]) .root { color: var(--diwa-accent); }
+  :host([color="accent"]) .root { color: var(--diwa-accent-text, var(--diwa-accent)); }
   :host([color="danger"]) .root { color: var(--diwa-notification-error); }
   :host([color="inherit"]) .root { color: inherit; }
 `;

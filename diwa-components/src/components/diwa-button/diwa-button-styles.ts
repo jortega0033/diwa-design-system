@@ -111,17 +111,18 @@ export const getComponentCss = (
 
   :host([variant="secondary"]) .inner {
     background-color: transparent;
-    color: var(--diwa-accent);
-    border-color: var(--diwa-accent);
+    color: var(--diwa-text-primary);
+    border-color: var(--diwa-input-border, var(--diwa-border-light));
   }
 
   :host([variant="secondary"]) .inner:hover:not(:disabled) {
-    background-color: var(--diwa-accent-bg);
-    border-color: var(--diwa-accent-hover);
+    background-color: var(--diwa-bg-hover);
+    border-color: var(--diwa-border-hover);
   }
 
   :host([variant="secondary"]) .inner:active:not(:disabled) {
-    background-color: var(--diwa-accent-muted);
+    background-color: var(--diwa-bg-active);
+    border-color: var(--diwa-border-hover);
     transform: translateY(1px);
   }
 
@@ -208,7 +209,7 @@ export const getComponentCss = (
     flex-shrink: 0;
     border: var(--diwa-border-width-base) solid currentColor;
     border-top-color: transparent;
-    border-radius: 50%;
+    border-radius: var(--diwa-radius-full);
     animation: diwa-spin var(--diwa-spinner-duration, 0.7s) linear infinite;
   }
 

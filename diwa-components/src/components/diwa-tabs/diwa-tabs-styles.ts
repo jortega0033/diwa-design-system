@@ -48,7 +48,7 @@ export const getComponentCss = (): string => `
   }
 
   .tab-btn[aria-selected="true"] {
-    color: var(--diwa-accent);
+    color: var(--diwa-accent-text, var(--diwa-accent));
     border-bottom-color: var(--diwa-accent);
     font-weight: var(--diwa-font-weight-medium);
   }

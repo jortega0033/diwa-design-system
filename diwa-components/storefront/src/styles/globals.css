@@ -13,14 +13,14 @@
 }
 
 body {
-  font-family: var(--diwa-font-family-base, 'Albert Sans', system-ui, sans-serif);
+  font-family: var(--diwa-font-family-base, 'Onest', system-ui, sans-serif);
   background: var(--diwa-bg-base, #0b0b0c);
   color: var(--diwa-text-primary, #e6e6e7);
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--diwa-font-family-base, 'Albert Sans', system-ui, sans-serif);
+  font-family: var(--diwa-font-family-display, 'Onest', system-ui, sans-serif);
   font-weight: var(--diwa-font-weight-semibold, 600);
 }
 
@@ -31,7 +31,7 @@ h1, h2 {
 /* ─── Focus visible ─────────────────────────────────────────────────────────── */
 
 :focus-visible {
-  outline: var(--diwa-focus-ring-width, 1px) solid var(--diwa-border-focus, #3558e6);
+  outline: var(--diwa-focus-ring-width, 2px) solid var(--diwa-border-focus, #0f8a7b);
   outline-offset: var(--diwa-focus-ring-offset, 1px);
 }
 

@@ -17,6 +17,8 @@
  * main diwa app, with --diwa- namespace prefix added.
  */
 
+@import './v3.tokens.css';
+
 /* ============================================================
    1. CORE PALETTE — Primitive values
       Never reference these in component styles directly.
@@ -24,15 +26,15 @@
    ============================================================ */
 
 :root {
-   /* Primary Accent — Cobalt Blue */
-   --diwa-color-accent-50:  rgba(53, 88, 230, 0.08);
-   --diwa-color-accent-100: rgba(53, 88, 230, 0.12);
-   --diwa-color-accent-200: rgba(53, 88, 230, 0.2);
-   --diwa-color-accent-300: rgba(53, 88, 230, 0.32);
-   --diwa-color-accent-400: #3558e6;
-   --diwa-color-accent-500: #2f4fd1;
-   --diwa-color-accent-600: #2844b5;
-   --diwa-color-accent-700: #213995;
+   /* Primary Accent — V3 Coming Soon Green */
+   --diwa-color-accent-50:  rgba(15, 138, 123, 0.08);
+   --diwa-color-accent-100: rgba(15, 138, 123, 0.12);
+   --diwa-color-accent-200: rgba(15, 138, 123, 0.2);
+   --diwa-color-accent-300: rgba(15, 138, 123, 0.32);
+   --diwa-color-accent-400: #0f8a7b;
+   --diwa-color-accent-500: #0d7c6f;
+   --diwa-color-accent-600: #0c6f63;
+   --diwa-color-accent-700: #09584f;
 
   /* Zinc Scale — True Neutral */
   --diwa-color-zinc-50:  #fafafa;
@@ -107,65 +109,65 @@
 
   /* ── 2a. Primary ─────────────────────────────────────────── */
   /* The main foreground/text color. Inverse of Background Base. */
-  --diwa-primary:         #e6e6e7;             /* PDS: colorPrimaryDark #FBFCFF */
+   --diwa-primary:         #e3f2ee;
 
   /* ── 2b. Background ──────────────────────────────────────── */
-   --diwa-bg-base:         #111319;                     /* lifted from near-black for less visual crush */
-   --diwa-bg-raised:       #1a1d25;                     /* nav/sidebar, subtle lift above base */
-   --diwa-bg-surface:      #20242d;                     /* cards and panels with clearer separation */
-  --diwa-bg-shading:      rgba(17, 17, 19, 0.85);      /* modal backdrops, scrim         — PDS colorShadingDark rgba(38,38,41,.67) */
-  --diwa-bg-frosted:      hsl(240 3% 18% / 35%);       /* frosted-glass overlays         — PDS colorFrostedDark hsl(240 3% 26%/35%) */
+   --diwa-bg-base:         #070d0c;
+   --diwa-bg-raised:       #0b1413;
+   --diwa-bg-surface:      #0c1615;
+  --diwa-bg-shading:      rgba(7, 13, 12, 0.86);
+  --diwa-bg-frosted:      rgba(12, 24, 22, 0.55);
 
   /* Legacy aliases — kept for backwards compatibility */
   --diwa-bg-primary:      var(--diwa-bg-base);
-   --diwa-bg-content:      #181c24;                     /* main content area */
-   --diwa-bg-secondary:    #151922;                     /* cards on content */
-   --diwa-bg-tertiary:     #20242d;                     /* nested cards */
-   --diwa-bg-elevated:     #171b24;                     /* modals */
-   --diwa-bg-hover:        #2a303b;                     /* hover state */
-   --diwa-bg-active:       #353d4b;                     /* active/pressed state */
+   --diwa-bg-content:      #0a1312;
+   --diwa-bg-secondary:    #0c1615;
+   --diwa-bg-tertiary:     #101d1b;
+   --diwa-bg-elevated:     #111f1d;
+   --diwa-bg-hover:        rgba(28, 163, 144, 0.12);
+   --diwa-bg-active:       rgba(28, 163, 144, 0.2);
   --diwa-bg-glass:        var(--diwa-bg-shading);
-   --diwa-bg-input:        rgba(24, 28, 36, 0.88);
+   --diwa-bg-input:        rgba(10, 22, 20, 0.92);
 
   /* ── 2c. Contrast ────────────────────────────────────────── */
   /* Use for borders, dividers, and secondary text — never for interactive color. */
-   --diwa-contrast-low:    #333b48;                     /* subtle borders and separators */
-   --diwa-contrast-medium: #8d97aa;                     /* secondary text */
-   --diwa-contrast-high:   #c5cede;                     /* headings and labels */
+   --diwa-contrast-low:    #1f3531;
+   --diwa-contrast-medium: #9cb5ae;
+   --diwa-contrast-high:   #cbe2dc;
 
   /*
    * WCAG Contrast Verification (Noir / [data-theme="light"])
    * ---------------------------------------------------------
    * --diwa-text-primary  (#e6e6e7) on --diwa-bg-content (#18181b):   14.5:1 ✓ AA
    * --diwa-text-secondary(#a1a1aa) on --diwa-bg-secondary(#111113):   7.3:1 ✓ AA  (was zinc-500 = 3.9:1 ✗ → fixed)
-   * --diwa-accent        (#3558e6) on --diwa-bg-content (#181c24):    5.7:1 ✓ AA  (UI component ≥3:1)
-   * --diwa-border-focus  (#3558e6) on --diwa-bg-base   (#111319):    5.8:1 ✓ AA  (focus ring ≥3:1)
+   * --diwa-accent        (#0f8a7b) on --diwa-bg-content (#0a1312):    >= 3:1 target for UI states
+   * --diwa-border-focus  (#0f8a7b) on --diwa-bg-base   (#070d0c):    >= 3:1 target for focus ring
    */
 
   /* Text aliases */
   --diwa-text-primary:    var(--diwa-primary);
-   --diwa-text-secondary:  #aab4c7;
-   --diwa-text-tertiary:   #8d97aa;
-   --diwa-text-muted:      #6f7a90;
-   --diwa-text-disabled:   #5c667a;
+   --diwa-text-secondary:  #9cb5ae;
+   --diwa-text-tertiary:   #87a098;
+   --diwa-text-muted:      #6e8780;
+   --diwa-text-disabled:   #5c726c;
    --diwa-text-inverse:    var(--diwa-color-white);     /* white text on cobalt accent remains readable */
 
   /* Border aliases */
-   --diwa-border:          #3a4354;
-   --diwa-border-hover:    #4b566b;
-   --diwa-border-light:    rgba(58, 67, 84, 0.55);
+   --diwa-border:          #1f3531;
+   --diwa-border-hover:    #2d4a45;
+   --diwa-border-light:    rgba(31, 53, 49, 0.6);
 
   /* ── 2d. State ───────────────────────────────────────────── */
   /* Interactive state overlays — applied on top of any background color. */
-   --diwa-state-hover:     rgba(142, 153, 176, 0.16);
-   --diwa-state-active:    rgba(124, 136, 162, 0.24);
-   --diwa-state-focus:     var(--diwa-color-accent-400); /* #3558e6 — Diwa brand cobalt accent */
+   --diwa-state-hover:     rgba(28, 163, 144, 0.14);
+   --diwa-state-active:    rgba(28, 163, 144, 0.24);
+   --diwa-state-focus:     var(--diwa-color-accent-400);
   --diwa-state-disabled:  var(--diwa-color-zinc-600);  /* #52525b               — PDS colorDisabledDark #7E7F82 */
 
   /* Accent / focus aliases */
   --diwa-accent:          var(--diwa-state-focus);
   --diwa-accent-hover:    var(--diwa-color-accent-500);
-   --diwa-accent-active:   var(--diwa-color-accent-600); /* #2844b5 pressed/active primary */
+   --diwa-accent-active:   var(--diwa-color-accent-600); /* #0c6f63 pressed/active primary */
   --diwa-accent-muted:    var(--diwa-color-accent-200);
   --diwa-accent-bg:       var(--diwa-color-accent-100);
   --diwa-border-focus:    var(--diwa-state-focus);
@@ -176,15 +178,19 @@
 
   --diwa-notification-success:       var(--diwa-color-success-500); /* #22c55e  — PDS colorSuccessDark     #09D087 */
    --diwa-notification-success-soft:  #003320;  /* tinted   — PDS colorSuccessSoftDark #003320 */
+   --diwa-notification-success-border: var(--diwa-notification-success);
 
   --diwa-notification-warning:       var(--diwa-color-warning-500); /* #f59e0b  — PDS colorWarningDark     #F7CB47 */
    --diwa-notification-warning-soft:  #362b0a;  /* tinted   — PDS colorWarningSoftDark #362B0A */
+   --diwa-notification-warning-border: var(--diwa-notification-warning);
 
   --diwa-notification-error:         var(--diwa-color-danger-500);  /* #ef4444  — PDS colorErrorDark       #FC4040 */
    --diwa-notification-error-soft:    #3a0f0f;  /* tinted   — PDS colorErrorSoftDark   #3A0F0F */
+   --diwa-notification-error-border:   var(--diwa-notification-error);
 
   --diwa-notification-info:          var(--diwa-color-info-400);    /* #178bff  — PDS colorInfoDark        #178BFF */
    --diwa-notification-info-soft:     #04294e;  /* tinted   — PDS colorInfoSoftDark    #04294E */
+   --diwa-notification-info-border:    var(--diwa-notification-info);
 
   /* Legacy status aliases */
   --diwa-danger:          var(--diwa-notification-error);
@@ -206,20 +212,19 @@
      3. TYPOGRAPHY
      ============================================================ */
 
-   --diwa-font-family-base: 'Albert Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-                            Roboto, sans-serif;
-   --diwa-font-family-display: 'Sora', 'Albert Sans', sans-serif;
+   --diwa-font-family-base: 'Onest', 'Avenir Next', 'Segoe UI', Roboto, sans-serif;
+   --diwa-font-family-display: 'Onest', 'Avenir Next', 'Segoe UI', Roboto, sans-serif;
   --diwa-font-family-mono: 'Geist Mono', 'SF Mono', Monaco, Consolas, monospace;
 
-  --diwa-font-size-xs:   10px;
-  --diwa-font-size-sm:   11px;
-  --diwa-font-size-md:   12px;
-  --diwa-font-size-base: 14px;
-  --diwa-font-size-lg:   16px;
-  --diwa-font-size-xl:   18px;
-  --diwa-font-size-2xl:  18px;
-  --diwa-font-size-3xl:  20px;
-  --diwa-font-size-4xl:  24px;
+   --diwa-font-size-xs:   11px;
+   --diwa-font-size-sm:   12px;
+   --diwa-font-size-md:   13px;
+   --diwa-font-size-base: 15px;
+   --diwa-font-size-lg:   17px;
+   --diwa-font-size-xl:   20px;
+   --diwa-font-size-2xl:  24px;
+   --diwa-font-size-3xl:  32px;
+   --diwa-font-size-4xl:  48px;
 
   /* Fluid type scale — grows from min viewport (480px) to max (1760px) */
   --diwa-font-size-fluid-sm:   clamp(11px, 0.65rem + 0.2vw, 13px);   /* 11→13px  */
@@ -275,12 +280,12 @@
      5. BORDER RADIUS
      ============================================================ */
 
-  --diwa-radius-xs:   2px;
-  --diwa-radius-sm:   4px;
-  --diwa-radius-md:   6px;
-  --diwa-radius-lg:   8px;
-  --diwa-radius-xl:   12px;
-  --diwa-radius-2xl:  16px;
+   --diwa-radius-xs:   0;
+   --diwa-radius-sm:   0;
+   --diwa-radius-md:   0;
+   --diwa-radius-lg:   0;
+   --diwa-radius-xl:   0;
+   --diwa-radius-2xl:  0;
   --diwa-radius-full: 9999px;
 
 
@@ -297,7 +302,7 @@
      5c. FOCUS RING
      ============================================================ */
 
-  --diwa-focus-ring-width:  1px;  /* slimmer default focus outline */
+   --diwa-focus-ring-width:  2px;  /* WCAG 2.2-friendly focus thickness */
   --diwa-focus-ring-offset: 1px;  /* subtle gap between element and ring */
 
   /* ============================================================
@@ -432,7 +437,7 @@
   --diwa-button-bg:            var(--diwa-accent);
   --diwa-button-bg-hover:      var(--diwa-accent-hover);
   --diwa-button-color:         var(--diwa-text-inverse);
-  --diwa-button-radius:        var(--diwa-radius-md);
+   --diwa-button-radius:        0;
   --diwa-button-height:        40px;
   --diwa-button-height-sm:     32px;
   --diwa-button-height-lg:     44px;
@@ -519,49 +524,51 @@
   --diwa-primary:         #010205;             /* PDS colorPrimaryLight  #010205 */
 
   /* ── Background ─────────────────────────────────────────── */
-   --diwa-bg-base:         #ffffff;             /* clean white canvas */
-   --diwa-bg-raised:       #e8f0fa;             /* nav/sidebar — cobalt-blue tinted depth */
-   --diwa-bg-surface:      #f3f7fd;             /* cards/panels — very light tint, distinct from white */
-  --diwa-bg-shading:      rgba(1, 2, 5, 0.67); /* PDS colorShadingLight  rgba(1,2,5,.67) */
-  --diwa-bg-frosted:      hsl(240 4% 85% / 35%); /* PDS colorFrostedLight  hsl(240 4% 85%/35%) */
+   --diwa-bg-base:         #f5f4ef;
+   --diwa-bg-raised:       #f8f6f1;
+   --diwa-bg-surface:      #fffdf8;
+  --diwa-bg-shading:      rgba(27, 29, 35, 0.62);
+  --diwa-bg-frosted:      rgba(255, 255, 255, 0.76);
 
   /* Legacy bg aliases */
   --diwa-bg-primary:      var(--diwa-bg-base);
-   --diwa-bg-content:      #f0f5fc;             /* main content well */
-   --diwa-bg-secondary:    #e4eef8;             /* cards on content */
-   --diwa-bg-tertiary:     #d8e6f4;             /* nested cards */
+   --diwa-bg-content:      #f8f6f1;
+   --diwa-bg-secondary:    #fffdf8;
+   --diwa-bg-tertiary:     #ffffff;
   --diwa-bg-elevated:     #ffffff;
-   --diwa-bg-hover:        rgba(53, 88, 230, 0.12);
-   --diwa-bg-active:       rgba(53, 88, 230, 0.20);
+   --diwa-bg-hover:        rgba(15, 138, 123, 0.12);
+   --diwa-bg-active:       rgba(15, 138, 123, 0.2);
   --diwa-bg-glass:        var(--diwa-bg-shading);
    --diwa-bg-input:        rgba(255, 255, 255, 0.97);
 
   /* ── Contrast ────────────────────────────────────────────── */
-   --diwa-contrast-low:    #a8bdd8;             /* borders — stronger on deeper canvas */
-   --diwa-contrast-medium: #4e5a74;             /* secondary text */
-   --diwa-contrast-high:   #38435b;             /* headings and labels */
+   --diwa-contrast-low:    #d9d7cf;
+   --diwa-contrast-medium: #525866;
+   --diwa-contrast-high:   #1b1d23;
 
   /* Text aliases */
   --diwa-text-primary:    var(--diwa-primary);
   --diwa-text-secondary:  var(--diwa-contrast-medium);
-   --diwa-text-tertiary:   #5c6880;
-   --diwa-text-muted:      #728198;
-   --diwa-text-disabled:   #8c95ad;
+   --diwa-text-tertiary:   #676f80;
+   --diwa-text-muted:      #6f7686;
+   --diwa-text-disabled:   #8c929d;
   --diwa-text-inverse:    #ffffff;
 
   /* Border aliases */
   --diwa-border:          var(--diwa-contrast-low);
-   --diwa-border-hover:    #8aabcc;
-   --diwa-border-light:    rgba(168, 189, 216, 0.65);
+   --diwa-border-hover:    #c4c2ba;
+   --diwa-border-light:    rgba(217, 215, 207, 0.7);
 
   /* ── State ───────────────────────────────────────────────── */
-   --diwa-state-hover:     rgba(53, 88, 230, 0.12);
-   --diwa-state-active:    rgba(53, 88, 230, 0.18);
-   --diwa-state-focus:     var(--diwa-color-accent-400); /* #3558e6 — Diwa brand cobalt accent */
+   --diwa-state-hover:     rgba(15, 138, 123, 0.12);
+   --diwa-state-active:    rgba(15, 138, 123, 0.18);
+   --diwa-state-focus:     var(--diwa-color-accent-400);
   --diwa-state-disabled:  #949598;             /* PDS colorDisabledLight #949598 */
 
   /* Accent aliases */
   --diwa-accent:          var(--diwa-state-focus);
+   --diwa-accent-text:     var(--diwa-accent);
+   --diwa-accent-text:     #0a6458;
   --diwa-accent-hover:    var(--diwa-color-accent-500);
   --diwa-accent-active:   var(--diwa-color-accent-600);
   --diwa-accent-muted:    var(--diwa-color-accent-200);
@@ -571,15 +578,19 @@
   /* ── Notification ────────────────────────────────────────── */
   --diwa-notification-success:       #197e10;  /* PDS colorSuccessLight      #197E10 */
   --diwa-notification-success-soft:  #e4ffec;  /* PDS colorSuccessSoftLight  #E4FFEC */
+   --diwa-notification-success-border: var(--diwa-notification-success);
 
   --diwa-notification-warning:       #f3be00;  /* PDS colorWarningLight      #F3BE00 */
   --diwa-notification-warning-soft:  #fff4d2;  /* PDS colorWarningSoftLight  #FFF4D2 */
+   --diwa-notification-warning-border: #6f5200;
 
   --diwa-notification-error:         #cc1922;  /* PDS colorErrorLight        #CC1922 */
   --diwa-notification-error-soft:    #ffe2e4;  /* PDS colorErrorSoftLight    #FFE2E4 */
+   --diwa-notification-error-border:   var(--diwa-notification-error);
 
-  --diwa-notification-info:          #2762ec;  /* PDS colorInfoLight         #2762EC */
-  --diwa-notification-info-soft:     #bdd4ff;  /* deeper than canvas blue to stay distinct */
+   --diwa-notification-info:          #0f8a7b;
+   --diwa-notification-info-soft:     #d9f3ed;
+   --diwa-notification-info-border:    var(--diwa-notification-info);
 
   /* Legacy status aliases */
   --diwa-danger:          var(--diwa-notification-error);

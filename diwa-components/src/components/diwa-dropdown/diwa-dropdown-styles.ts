@@ -207,7 +207,7 @@ export const getComponentCss = (isOpen: boolean, isPositioned: boolean): string 
     padding: 0 !important;
     min-height: 0 !important;
     background: var(--diwa-border);
-    border-radius: 1px;
+    border-radius: var(--diwa-radius-xs);
     pointer-events: none;
     cursor: default;
   }

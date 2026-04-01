@@ -259,14 +259,12 @@ describe('app.css — WCAG contrast documentation', () => {
     expect(appCss).toContain('7.3:1');
   });
 
-  test('documents accent contrast ratio of ≥5:1', () => {
-    // Accepts either 5.7:1 (on bg-content) notation
-    expect(appCss).toMatch(/5\.\d+:1/);
+  test('documents accent contrast target for UI states', () => {
+    expect(appCss).toContain('>= 3:1 target for UI states');
   });
 
-  test('documents focus ring contrast ratio of ≥5:1', () => {
-    // Accepts 5.8:1 notation for border-focus on bg-base
-    expect(appCss).toMatch(/5\.\d+:1/);
+  test('documents focus ring contrast target', () => {
+    expect(appCss).toContain('>= 3:1 target for focus ring');
   });
 });
 
@@ -406,9 +404,8 @@ describe('app.css — structural integrity', () => {
     expect(appCss).toContain('--diwa-text-inverse:    var(--diwa-color-white)');
   });
 
-  test('--diwa-text-secondary uses the tuned dark-theme value', () => {
-    // Secondary text is now explicitly tuned for the rebalanced dark palette.
-    expect(appCss).toContain('--diwa-text-secondary:  #aab4c7;');
+  test('--diwa-text-secondary uses the v3 coming-soon dark value', () => {
+    expect(appCss).toContain('--diwa-text-secondary:  #9cb5ae;');
   });
 
   test('component override tokens declare diwa-button vars', () => {

@@ -56,7 +56,7 @@ export default function StylesSpacingPage() {
           Spacing Fluid
           <span className="text-[var(--diwa-text-muted)] font-normal ml-2">(xs – 3xl)</span>
         </p>
-        <div className="p-8 rounded-xl mb-8" style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2f4fd1 50%, #213995 100%)' }}>
+        <div className="p-8 rounded-none mb-8" style={{ background: 'radial-gradient(circle at 30% 40%, var(--diwa-color-accent-400) 0%, var(--diwa-color-accent-600) 55%, var(--diwa-color-accent-700) 100%)' }}>
           <div className="flex flex-wrap items-end gap-8">
             {FLUID_SCALE.map((row) => (
               <div key={row.token} className="flex flex-col items-center gap-3">
@@ -65,12 +65,12 @@ export default function StylesSpacingPage() {
                   style={{
                     width: `${row.maxPx}px`,
                     height: `${row.maxPx}px`,
-                    background: 'rgba(255,255,255,0.30)',
-                    border: '1px solid rgba(255,255,255,0.25)',
+                    background: 'var(--diwa-bg-frosted)',
+                    border: '1px solid var(--diwa-border)',
                   }}
                 />
-                <span className="text-xs font-semibold text-white/80">{row.label}</span>
-                <span className="text-xs text-white/50 font-mono">{row.minPx}–{row.maxPx}px</span>
+                <span className="text-xs font-semibold" style={{ color: 'var(--diwa-text-inverse)', opacity: 0.84 }}>{row.label}</span>
+                <span className="text-xs font-mono" style={{ color: 'var(--diwa-text-inverse)', opacity: 0.56 }}>{row.minPx}–{row.maxPx}px</span>
               </div>
             ))}
           </div>
@@ -105,7 +105,7 @@ export default function StylesSpacingPage() {
           Spacing Static
           <span className="text-[var(--diwa-text-muted)] font-normal ml-2">(1 – 12)</span>
         </p>
-        <div className="p-8 rounded-xl mb-8" style={{ background: 'radial-gradient(circle at 30% 40%, #3558e6 0%, #2f4fd1 50%, #213995 100%)' }}>
+        <div className="p-8 rounded-none mb-8" style={{ background: 'radial-gradient(circle at 30% 40%, var(--diwa-color-accent-400) 0%, var(--diwa-color-accent-600) 55%, var(--diwa-color-accent-700) 100%)' }}>
           <div className="flex flex-wrap items-end gap-6">
             {STATIC_SCALE.map((row) => (
               <div key={row.token} className="flex flex-col items-center gap-3">
@@ -114,12 +114,12 @@ export default function StylesSpacingPage() {
                   style={{
                     width: `${row.px}px`,
                     height: `${row.px}px`,
-                    background: 'rgba(255,255,255,0.30)',
-                    border: '1px solid rgba(255,255,255,0.25)',
+                    background: 'var(--diwa-bg-frosted)',
+                    border: '1px solid var(--diwa-border)',
                   }}
                 />
-                <span className="text-xs font-semibold text-white/80">{row.label}</span>
-                <span className="text-xs text-white/50 font-mono">{row.px}px</span>
+                <span className="text-xs font-semibold" style={{ color: 'var(--diwa-text-inverse)', opacity: 0.84 }}>{row.label}</span>
+                <span className="text-xs font-mono" style={{ color: 'var(--diwa-text-inverse)', opacity: 0.56 }}>{row.px}px</span>
               </div>
             ))}
           </div>

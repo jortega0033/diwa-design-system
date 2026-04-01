@@ -15,7 +15,7 @@ export const headingStory: Story<'diwa-heading'> = {
     {
       tag: 'diwa-heading' as const,
       properties,
-      children: ['Diwa Design System'],
+      children: ['The quick brown fox jumps over the lazy dog'],
     },
   ],
 };

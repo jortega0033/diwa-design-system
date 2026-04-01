@@ -47,9 +47,9 @@ export const getComponentCss = (state: StepState, isLast: boolean): string => {
   .circle {
     width: var(--diwa-stepper-step-size);
     height: var(--diwa-stepper-step-size);
-    border-radius: 50%;
+    border-radius: var(--diwa-radius-full);
     background: ${circleColor};
-    color: var(--diwa-text-on-accent, #fff);
+    color: var(--diwa-text-inverse);
     display: flex;
     align-items: center;
     justify-content: center;

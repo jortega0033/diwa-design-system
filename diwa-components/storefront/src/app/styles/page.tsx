@@ -53,7 +53,7 @@ export default function StylesIntroductionPage() {
           Typed exports in <code className="font-mono text-[var(--diwa-accent)]">src/styles/index.ts</code> mirror those values for JS/TS usage.
         </p>
         <CodeSnippet code={`:root {
-        --diwa-accent: #3558e6;
+  --diwa-accent: #0f8a7b;
   --diwa-space-4: 1rem;
   --diwa-focus-ring-width: 2px;
 }`} />
@@ -72,11 +72,11 @@ export default function StylesIntroductionPage() {
   color: var(--diwa-text-primary);
 }`} />
           <CodeSnippet code={`// JS / TS
-import { borderRadiusLg, spacing4, getFocusStyle } from '@diwacopilot/components/styles';
+import { borderRadiusLg, space4, getFocusStyle } from '@diwacopilot/components/styles';
 
 const cardStyle = {
   borderRadius: borderRadiusLg,
-  padding: spacing4,
+  padding: space4,
   ...getFocusStyle(),
 };`} />
         </div>

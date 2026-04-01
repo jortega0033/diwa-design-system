@@ -44,20 +44,20 @@ export function HeroBanner() {
         fill="none"
         aria-hidden="true"
       >
-        <circle cx="150" cy="150" r="146" stroke="#3558e6" strokeWidth="1.5" strokeOpacity="0.18" />
-        <circle cx="150" cy="150" r="108" stroke="#3558e6" strokeWidth="1"   strokeOpacity="0.11" />
-        <circle cx="150" cy="150" r="70"  stroke="#3558e6" strokeWidth="0.8" strokeOpacity="0.07" />
-        <circle cx="150" cy="4"   r="4"   fill="#3558e6" fillOpacity="0.42" />
-        <circle cx="150" cy="296" r="4"   fill="#3558e6" fillOpacity="0.30" />
-        <circle cx="4"   cy="150" r="3"   fill="#3558e6" fillOpacity="0.28" />
-        <circle cx="150" cy="150" r="4"   fill="#3558e6" fillOpacity="0.35" />
+        <circle cx="150" cy="150" r="146" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.18" />
+        <circle cx="150" cy="150" r="108" stroke="currentColor" strokeWidth="1" strokeOpacity="0.11" />
+        <circle cx="150" cy="150" r="70" stroke="currentColor" strokeWidth="0.8" strokeOpacity="0.07" />
+        <circle cx="150" cy="4" r="4" fill="currentColor" fillOpacity="0.42" />
+        <circle cx="150" cy="296" r="4" fill="currentColor" fillOpacity="0.30" />
+        <circle cx="4" cy="150" r="3" fill="currentColor" fillOpacity="0.28" />
+        <circle cx="150" cy="150" r="4" fill="currentColor" fillOpacity="0.35" />
       </svg>
 
       {/* Main content */}
       <div className={styles.body}>
         <div className={styles.badge} aria-label="Design system version">
           <span className={styles.badgeDot} aria-hidden="true" />
-          <span>v2.0.0</span>
+          <span>v3.0.0</span>
         </div>
 
         <h1 id="hero-heading" className={styles.headline}>

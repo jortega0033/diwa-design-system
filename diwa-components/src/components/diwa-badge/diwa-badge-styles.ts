@@ -12,7 +12,7 @@ const VARIANT_CSS: Record<BadgeVariant, string> = {
     --diwa-badge-border-color: color-mix(in srgb, var(--diwa-accent) 25%, transparent);
     --_badge-dot-color: var(--diwa-accent);
     background-color: var(--diwa-accent-bg);
-    color: var(--diwa-accent);
+    color: var(--diwa-accent-text, var(--diwa-accent));
   `,
   info: `
     --diwa-badge-border-color: color-mix(in srgb, var(--diwa-notification-info) 25%, transparent);
@@ -83,7 +83,7 @@ export function getComponentCss(variant: BadgeVariant, size: BadgeSize): string 
     display: none;
     width: ${sm ? '5px' : '6px'};
     height: ${sm ? '5px' : '6px'};
-    border-radius: 50%;
+    border-radius: var(--diwa-radius-full);
     background-color: var(--_badge-dot-color, currentColor);
     flex-shrink: 0;
     animation: diwa-badge-pulse 2s ease-in-out infinite;

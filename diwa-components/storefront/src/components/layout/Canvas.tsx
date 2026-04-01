@@ -1,6 +1,7 @@
 'use client';
 
 import React, { type ReactNode, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Navigation } from './Navigation';
 import { useSidebar } from '@/context/SidebarContext';
@@ -70,9 +71,9 @@ export function Canvas({ children }: { children: ReactNode }) {
           >
             <MenuIcon />
           </button>
-          <span className="font-semibold text-sm tracking-tight">
+          <Link href="/" className="font-semibold text-sm tracking-tight hover:text-[var(--diwa-accent)] transition-colors" aria-label="Go to home page">
             Diwa Design System
-          </span>
+          </Link>
         </div>
 
         <div className="flex items-center gap-2">

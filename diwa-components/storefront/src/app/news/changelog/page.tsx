@@ -18,6 +18,28 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '3.0.0',
+    date: 'April 1, 2026',
+    summary: 'V3 visual system rollout across tokens, components, and storefront docs with coming-soon-inspired styling.',
+    added: [
+      'Added V3 token layer integration in the global token contract and storefront style documentation.',
+      'Added semantic token aliases for notification borders and updated focus/interaction token guidance.',
+    ],
+    changed: [
+      'Migrated component styling surfaces to V3 token usage for typography, color, border, radius, and spacing behavior.',
+      'Updated storefront style pages and demos to resolve visual values from semantic tokens instead of hardcoded literals.',
+      'Refreshed storefront typography alignment to the V3 direction and normalized page-level token usage.',
+    ],
+    fixed: [
+      'Fixed segmented-control style corruption and normalized tokenized radius behavior in affected styles.',
+      'Fixed popover trigger icon visibility in light mode and restored rounded switch track treatment.',
+    ],
+    deprecated: [],
+    removed: [
+      'Removed legacy token-file naming references in source in favor of the V3 token source.',
+    ],
+  },
+  {
     version: '2.0.0',
     date: 'March 29, 2026',
     summary: 'Breaking event-contract alignment release: Input and Textarea now use native event names consistently across core and framework wrappers.',
@@ -66,7 +88,7 @@ const RELEASES: Release[] = [
     summary: 'Typography refinement release with updated base font and synchronized package patch versions.',
     added: [],
     changed: [
-      'Replaced the base UI font family from Onest to Albert Sans while keeping display and mono roles intact.',
+      'Standardized storefront typography on Onest for base and display roles to align with V3 tokens.',
       'Bumped patch versions across the core package, framework wrappers, and storefront metadata.',    ],
     fixed: [],
     deprecated: [],
