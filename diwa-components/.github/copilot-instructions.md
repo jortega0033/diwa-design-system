@@ -6,11 +6,7 @@ applyTo: "**"
 
 ## Workspace root
 
-Use this as the default command location:
-
-`D:\Projects\diwa-design-system`
-
-Primary scripts run from root workspace `package.json`.
+Run primary scripts from the **repo root** (`diwa-design-system/`) via root `package.json`. Do not run commands from inside `diwa-components/` unless using a legacy compatibility command.
 
 ## Repository layout
 
