@@ -212,8 +212,8 @@
      3. TYPOGRAPHY
      ============================================================ */
 
-   --diwa-font-family-base: 'Onest', 'Avenir Next', 'Segoe UI', Roboto, sans-serif;
-   --diwa-font-family-display: 'Onest', 'Avenir Next', 'Segoe UI', Roboto, sans-serif;
+   --diwa-font-family-base: 'Onest', 'Segoe UI', Roboto, sans-serif;
+   --diwa-font-family-display: 'Sora', 'Onest', 'Segoe UI', Roboto, sans-serif;
   --diwa-font-family-mono: 'Geist Mono', 'SF Mono', Monaco, Consolas, monospace;
 
    --diwa-font-size-xs:   11px;
@@ -234,6 +234,7 @@
   --diwa-font-size-fluid-2xl:  clamp(18px, 1rem + 0.8vw,   24px);    /* 18→24px  */
   --diwa-font-size-fluid-3xl:  clamp(20px, 1.1rem + 1.1vw, 28px);    /* 20→28px  */
   --diwa-font-size-fluid-4xl:  clamp(24px, 1.3rem + 1.6vw, 36px);    /* 24→36px  */
+  --diwa-font-size-fluid-5xl:  clamp(36px, 1.95rem + 3vw,  60px);    /* 36→60px  — display / marketing hero */
 
   --diwa-line-height-tight:   1.1;
   --diwa-line-height-normal:  1.5;
@@ -567,7 +568,6 @@
 
   /* Accent aliases */
   --diwa-accent:          var(--diwa-state-focus);
-   --diwa-accent-text:     var(--diwa-accent);
    --diwa-accent-text:     #0a6458;
   --diwa-accent-hover:    var(--diwa-color-accent-500);
   --diwa-accent-active:   var(--diwa-color-accent-600);

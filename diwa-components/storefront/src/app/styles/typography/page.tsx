@@ -11,40 +11,40 @@ export const metadata: Metadata = stylesSeo['/styles/typography'];
 type TypeStyle = { label: string; size: string; weight: number; lh: number };
 
 const DISPLAY_STYLES: TypeStyle[] = [
-  { label: 'Display Large',  size: 'var(--diwa-font-size-fluid-4xl)', weight: 700, lh: 1.1 },
-  { label: 'Display Medium', size: 'var(--diwa-font-size-fluid-3xl)', weight: 700, lh: 1.1 },
-  { label: 'Display Small',  size: 'var(--diwa-font-size-fluid-2xl)', weight: 700, lh: 1.1 },
+  { label: 'Display Large',  size: 'var(--diwa-font-size-fluid-5xl)', weight: 700, lh: 1.05 },
+  { label: 'Display Medium', size: 'var(--diwa-font-size-fluid-4xl)', weight: 700, lh: 1.08 },
+  { label: 'Display Small',  size: 'var(--diwa-font-size-fluid-3xl)', weight: 700, lh: 1.12 },
 ];
 
 const HEADING_STYLES: TypeStyle[] = [
-  { label: 'Heading XX Large', size: 'var(--diwa-font-size-fluid-3xl)',  weight: 600, lh: 1.1 },
-  { label: 'Heading X Large',  size: 'var(--diwa-font-size-fluid-2xl)',  weight: 600, lh: 1.2 },
-  { label: 'Heading Large',    size: 'var(--diwa-font-size-fluid-xl)',   weight: 600, lh: 1.3 },
-  { label: 'Heading Medium',   size: 'var(--diwa-font-size-fluid-lg)',   weight: 600, lh: 1.4 },
-  { label: 'Heading Small',    size: 'var(--diwa-font-size-fluid-base)', weight: 600, lh: 1.4 },
+  { label: 'Heading XX Large', size: 'var(--diwa-font-size-fluid-4xl)',  weight: 600, lh: 1.08 },
+  { label: 'Heading X Large',  size: 'var(--diwa-font-size-fluid-3xl)',  weight: 600, lh: 1.12 },
+  { label: 'Heading Large',    size: 'var(--diwa-font-size-fluid-2xl)',  weight: 600, lh: 1.18 },
+  { label: 'Heading Medium',   size: 'var(--diwa-font-size-fluid-xl)',   weight: 600, lh: 1.22 },
+  { label: 'Heading Small',    size: 'var(--diwa-font-size-fluid-lg)',   weight: 600, lh: 1.3 },
 ];
 
 const TEXT_STYLES: TypeStyle[] = [
-  { label: 'Text X Large', size: 'var(--diwa-font-size-fluid-lg)',   weight: 400, lh: 1.6 },
-  { label: 'Text Large',   size: 'var(--diwa-font-size-fluid-base)', weight: 400, lh: 1.6 },
-  { label: 'Text Medium',  size: 'var(--diwa-font-size-lg)',         weight: 400, lh: 1.6 },
-  { label: 'Text Small',   size: 'var(--diwa-font-size-base)',       weight: 400, lh: 1.6 },
-  { label: 'Text X Small', size: 'var(--diwa-font-size-sm)',         weight: 400, lh: 1.5 },
-  { label: 'Text XX Small',size: 'var(--diwa-font-size-xs)',         weight: 400, lh: 1.5 },
+  { label: 'Text X Large', size: 'var(--diwa-font-size-xl)',          weight: 400, lh: 1.6 },
+  { label: 'Text Large',   size: 'var(--diwa-font-size-lg)',          weight: 400, lh: 1.6 },
+  { label: 'Text Medium',  size: 'var(--diwa-font-size-base)',        weight: 400, lh: 1.6 },
+  { label: 'Text Small',   size: 'var(--diwa-font-size-sm)',          weight: 400, lh: 1.5 },
+  { label: 'Text X Small', size: 'var(--diwa-font-size-xs)',          weight: 400, lh: 1.5 },
+  { label: 'Text XX Small',size: 'var(--diwa-font-size-fluid-sm)',    weight: 400, lh: 1.5 },
 ];
 
 /* ── Token reference data ─────────────────────────────────────────────────── */
 
 const STATIC_SCALE = [
-  { token: '--diwa-font-size-xs',   value: '10px', sample: 'Aa', label: 'xs'   },
-  { token: '--diwa-font-size-sm',   value: '11px', sample: 'Aa', label: 'sm'   },
-  { token: '--diwa-font-size-md',   value: '12px', sample: 'Aa', label: 'md'   },
-  { token: '--diwa-font-size-base', value: '13px', sample: 'Aa', label: 'base' },
-  { token: '--diwa-font-size-lg',   value: '14px', sample: 'Aa', label: 'lg'   },
-  { token: '--diwa-font-size-xl',   value: '16px', sample: 'Aa', label: 'xl'   },
-  { token: '--diwa-font-size-2xl',  value: '18px', sample: 'Aa', label: '2xl'  },
-  { token: '--diwa-font-size-3xl',  value: '20px', sample: 'Aa', label: '3xl'  },
-  { token: '--diwa-font-size-4xl',  value: '24px', sample: 'Aa', label: '4xl'  },
+  { token: '--diwa-font-size-xs',   value: '11px', sample: 'Aa', label: 'xs'   },
+  { token: '--diwa-font-size-sm',   value: '12px', sample: 'Aa', label: 'sm'   },
+  { token: '--diwa-font-size-md',   value: '13px', sample: 'Aa', label: 'md'   },
+  { token: '--diwa-font-size-base', value: '15px', sample: 'Aa', label: 'base' },
+  { token: '--diwa-font-size-lg',   value: '17px', sample: 'Aa', label: 'lg'   },
+  { token: '--diwa-font-size-xl',   value: '20px', sample: 'Aa', label: 'xl'   },
+  { token: '--diwa-font-size-2xl',  value: '24px', sample: 'Aa', label: '2xl'  },
+  { token: '--diwa-font-size-3xl',  value: '32px', sample: 'Aa', label: '3xl'  },
+  { token: '--diwa-font-size-4xl',  value: '48px', sample: 'Aa', label: '4xl'  },
 ];
 
 const FLUID_SCALE = [
@@ -54,7 +54,8 @@ const FLUID_SCALE = [
   { token: '--diwa-font-size-fluid-xl',   range: '16–20px',  desc: 'Subheadings' },
   { token: '--diwa-font-size-fluid-2xl',  range: '18–24px',  desc: 'Section headings' },
   { token: '--diwa-font-size-fluid-3xl',  range: '20–28px',  desc: 'Page headings' },
-  { token: '--diwa-font-size-fluid-4xl',  range: '24–36px',  desc: 'Hero / display' },
+  { token: '--diwa-font-size-fluid-4xl',  range: '24–36px',  desc: 'Hero / display medium' },
+  { token: '--diwa-font-size-fluid-5xl',  range: '36–60px',  desc: 'Hero / display large' },
 ];
 
 const WEIGHTS = [
@@ -69,10 +70,11 @@ export default function StylesTypographyPage() {
     <div className="max-w-3xl">
       <h1 className="text-2xl font-bold text-[var(--diwa-text-primary)] mb-3">Typography</h1>
       <p className="text-sm text-[var(--diwa-text-secondary)] mb-10 leading-relaxed max-w-2xl">
-        Diwa uses <strong className="text-[var(--diwa-text-primary)]">Inter</strong> as the UI
-        typeface with a compact 10–24px static scale optimised for dense AI interfaces. A fluid
-        variant layer uses <code className="font-mono text-[var(--diwa-accent)]">clamp()</code> to
-        scale headings smoothly between the 480px and 1760px breakpoints.
+        Diwa uses <strong className="text-[var(--diwa-text-primary)]">Onest</strong> for base UI
+        text and <strong className="text-[var(--diwa-text-primary)]">Sora</strong> for display
+        headings to create a premium but readable hierarchy. The static scale runs from 11–48px,
+        with a fluid layer powered by <code className="font-mono text-[var(--diwa-accent)]">clamp()</code>{' '}
+        that adapts between the 480px and 1760px breakpoints.
       </p>
 
       <Section title="Example">
@@ -134,14 +136,14 @@ export default function StylesTypographyPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-lg bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)]">
             <code className="text-xs text-[var(--diwa-accent)] block mb-2">--diwa-font-family-base</code>
-            <p className="text-2xl font-medium text-[var(--diwa-text-primary)] mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <p className="text-2xl font-medium text-[var(--diwa-text-primary)] mb-1" style={{ fontFamily: 'var(--diwa-font-family-base)' }}>
               The quick brown fox
             </p>
-            <p className="text-xs text-[var(--diwa-text-secondary)]">Inter, system-ui fallback stack</p>
+            <p className="text-xs text-[var(--diwa-text-secondary)]">Onest, Segoe UI, Roboto fallback stack</p>
           </div>
           <div className="p-4 rounded-lg bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)]">
             <code className="text-xs text-[var(--diwa-accent)] block mb-2">--diwa-font-family-mono</code>
-            <p className="text-xl text-[var(--diwa-text-primary)] mb-1" style={{ fontFamily: 'Geist Mono, monospace' }}>
+            <p className="text-xl text-[var(--diwa-text-primary)] mb-1" style={{ fontFamily: 'var(--diwa-font-family-mono)' }}>
               const x = &apos;value&apos;;
             </p>
             <p className="text-xs text-[var(--diwa-text-secondary)]">Geist Mono, Consolas fallback</p>
@@ -248,7 +250,7 @@ export default function StylesTypographyPage() {
           <DontCard><DontList items={[
             "Don't use fluid tokens for body text — fluid scaling breaks reading rhythm.",
             "Don't mix font families within a single semantic role.",
-            "Don't use font-weight above 700 — the Inter variable range only covers 100–700.",
+            "Don't use font-weight above 700 unless a heavier token is explicitly introduced and tested.",
             "Don't hard-code font sizes in px from outside the token scale.",
           ]} /></DontCard>
         </div>

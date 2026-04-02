@@ -1,6 +1,6 @@
 {
   "name": "@diwacopilot/components-react",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "React wrapper package for Diwa Web Components.",
   "license": "MIT",
   "type": "module",

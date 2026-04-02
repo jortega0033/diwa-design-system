@@ -18,6 +18,28 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '3.0.1',
+    date: 'April 2, 2026',
+    summary: 'Premium typography and storefront polish release focused on display hierarchy, token consistency, and docs accuracy.',
+    added: [
+      'Added fluid display tier token `--diwa-font-size-fluid-5xl` for premium hero and marketing-level headings.',
+      'Added Sora loading in storefront root layout and bound it to `--diwa-font-family-display`.',
+    ],
+    changed: [
+      'Updated heading scale and line-height behavior for clearer hierarchy from display through h6.',
+      'Updated text sizing behavior to expose `--diwa-text-font-size` and `--diwa-text-line-height` overrides for shadow-DOM-safe tuning.',
+      'Refined tag typography to reduce aggressive uppercase/spacing feel for premium readability.',
+      'Tokenized HeroBanner typography and spacing values for stronger design-system consistency.',
+      'Updated typography documentation to reflect Onest (base) + Sora (display) and current token ranges.',
+    ],
+    fixed: [
+      'Removed duplicate `--diwa-accent-text` assignment in light theme token definitions.',
+      'Removed stale Inter references from typography docs samples and guidance copy.',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '3.0.0',
     date: 'April 1, 2026',
     summary: 'V3 visual system rollout across tokens, components, and storefront docs with coming-soon-inspired styling.',
@@ -88,7 +110,7 @@ const RELEASES: Release[] = [
     summary: 'Typography refinement release with updated base font and synchronized package patch versions.',
     added: [],
     changed: [
-      'Standardized storefront typography on Onest for base and display roles to align with V3 tokens.',
+      'Standardized storefront typography on Onest for base and display roles for that release baseline (later refined to Sora display in v3.0.1).',
       'Bumped patch versions across the core package, framework wrappers, and storefront metadata.',    ],
     fixed: [],
     deprecated: [],

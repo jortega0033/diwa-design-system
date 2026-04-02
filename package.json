@@ -1,7 +1,7 @@
 {
   "name": "diwa-design-system",
   "private": true,
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Root workspace orchestration for Diwa Design System",
   "workspaces": [
     "diwa-components",

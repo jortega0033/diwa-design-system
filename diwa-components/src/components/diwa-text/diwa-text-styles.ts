@@ -2,7 +2,7 @@ import type { TextAlign, TextColor, TextSize, TextWeight } from './types';
 
 const FONT_SIZE: Record<TextSize, string> = {
   'x-small':  'var(--diwa-font-size-xs)',
-  'small':    'var(--diwa-font-size-md)',
+  'small':    'var(--diwa-font-size-sm)',
   'medium':   'var(--diwa-font-size-base)',
   'large':    'var(--diwa-font-size-lg)',
   'x-large':  'var(--diwa-font-size-xl)',
@@ -43,9 +43,9 @@ export const getComponentCss = (
   .text {
     margin: 0;
     padding: 0;
-    font-size: ${FONT_SIZE[size]};
+    font-size: var(--diwa-text-font-size, ${FONT_SIZE[size]});
     font-weight: ${FONT_WEIGHT[weight]};
-    line-height: var(--diwa-line-height-normal);
+    line-height: var(--diwa-text-line-height, var(--diwa-line-height-relaxed));
     text-align: ${align};
     color: ${COLOR[color]};
     ${ellipsis ? 'overflow: hidden; text-overflow: ellipsis; white-space: nowrap;' : ''}

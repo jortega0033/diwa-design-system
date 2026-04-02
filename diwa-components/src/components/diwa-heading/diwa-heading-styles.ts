@@ -1,13 +1,13 @@
 import type { HeadingAlign, HeadingColor, HeadingSize, HeadingWeight } from './types';
 
 const FONT_SIZE: Record<HeadingSize, string> = {
-  'display': 'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-4xl))',
-  'h1':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-3xl))',
-  'h2':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-2xl))',
-  'h3':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-xl))',
-  'h4':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-lg))',
-  'h5':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-base))',
-  'h6':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-sm))',
+  'display': 'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-5xl))',
+  'h1':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-4xl))',
+  'h2':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-3xl))',
+  'h3':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-2xl))',
+  'h4':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-xl))',
+  'h5':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-lg))',
+  'h6':      'var(--diwa-heading-font-size, var(--diwa-font-size-fluid-base))',
   'inherit': 'var(--diwa-heading-font-size, inherit)',
 };
 
@@ -27,6 +27,17 @@ const FONT_WEIGHT: Record<HeadingWeight, string> = {
   bold:     'var(--diwa-font-weight-bold)',
 };
 
+const LINE_HEIGHT: Record<HeadingSize, string> = {
+  'display': '1.05',
+  'h1': '1.08',
+  'h2': '1.12',
+  'h3': '1.18',
+  'h4': '1.22',
+  'h5': '1.3',
+  'h6': '1.35',
+  'inherit': 'inherit',
+};
+
 const COLOR: Record<HeadingColor, string> = {
   primary:   'var(--diwa-heading-color, var(--diwa-text-primary))',
   secondary: 'var(--diwa-heading-color, var(--diwa-text-secondary))',
@@ -43,7 +54,7 @@ export const getComponentCss = (
 
   :host {
     display: block;
-    font-family: var(--diwa-font-family-base);
+    font-family: var(--diwa-font-family-display, var(--diwa-font-family-base));
   }
 
   :host([hidden]) {
@@ -55,7 +66,7 @@ export const getComponentCss = (
     padding: 0;
     font-size: ${FONT_SIZE[size]};
     font-weight: ${FONT_WEIGHT[weight]};
-    line-height: var(--diwa-heading-line-height, var(--diwa-line-height-tight));
+    line-height: var(--diwa-heading-line-height, ${LINE_HEIGHT[size]});
     letter-spacing: ${LETTER_SPACING[size]};
     text-align: ${align};
     color: ${COLOR[color]};

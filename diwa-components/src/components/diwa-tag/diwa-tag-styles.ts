@@ -51,10 +51,10 @@ export const getComponentCss = (variant: TagVariant, compact: boolean): string =
       padding: 0 ${paddingX};
       font-family: var(--diwa-font-family-base);
       font-size: ${fontSize};
-      font-weight: var(--diwa-font-weight-semibold);
+      font-weight: var(--diwa-font-weight-medium);
       line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      text-transform: none;
+      letter-spacing: 0.01em;
       color: var(--diwa-tag-color, ${color});
       background: var(--diwa-tag-bg, ${bg});
       border: var(--diwa-border-width-thin) solid currentColor;
