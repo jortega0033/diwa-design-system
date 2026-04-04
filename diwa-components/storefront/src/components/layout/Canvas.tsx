@@ -60,9 +60,9 @@ export function Canvas({ children }: { children: ReactNode }) {
   }, [setTheme]);
 
   return (
-    <div className="h-screen flex flex-col bg-[var(--diwa-bg-base)] text-[var(--diwa-text-primary)]">
+    <div className="h-screen flex flex-col bg-[var(--diwa-sf-shell-canvas)] text-[var(--diwa-text-primary)]">
       {/* -- Header ------------------------------------------------ */}
-      <header className="h-16 shrink-0 z-50 flex items-center justify-between px-4 border-b border-[var(--diwa-border)] bg-[var(--diwa-bg-base)]">
+      <header className="h-16 shrink-0 z-50 flex items-center justify-between px-4 border-b border-[var(--diwa-border)] bg-[var(--diwa-sf-shell-header)]">
         <div className="flex items-center gap-3">
           <button
             onClick={toggleSidebarStart}
@@ -99,13 +99,13 @@ export function Canvas({ children }: { children: ReactNode }) {
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar start */}
         {isSidebarStartOpen && (
-          <aside className="w-60 shrink-0 border-r border-[var(--diwa-border)] overflow-y-auto bg-[var(--diwa-bg-raised)] flex flex-col">
+          <aside className="w-60 shrink-0 border-r border-[var(--diwa-border)] overflow-y-auto bg-[var(--diwa-sf-shell-sidebar-start)] flex flex-col">
             <Navigation />
           </aside>
         )}
 
         {/* Main */}
-        <main ref={mainRef} className="flex-1 min-w-0 overflow-y-auto">
+        <main ref={mainRef} className="flex-1 min-w-0 overflow-y-auto bg-[var(--diwa-sf-shell-main)]">
           <div className="max-w-4xl mx-auto px-8 py-8">
             {children}
           </div>
@@ -113,7 +113,7 @@ export function Canvas({ children }: { children: ReactNode }) {
 
         {/* Sidebar end - visible only on configurator pages */}
         {isSidebarEndOpen && (
-          <aside className="w-72 shrink-0 border-l border-[var(--diwa-border)] overflow-y-auto bg-[var(--diwa-bg-base)] flex flex-col">
+          <aside className="w-72 shrink-0 border-l border-[var(--diwa-border)] overflow-y-auto bg-[var(--diwa-sf-shell-sidebar-end)] flex flex-col">
             {/* Portal target - ConfiguratorControls renders here via createPortal */}
             <div id="diwa-sidebar-end" className="flex-1 overflow-y-auto" />
           </aside>

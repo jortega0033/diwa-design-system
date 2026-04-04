@@ -34,7 +34,7 @@ export function Playground({ children, frameworkCode, codeVisible = true, previe
     <div className="rounded-lg overflow-hidden border border-[var(--diwa-border)] mb-8">
       {/* Live preview */}
       <div
-        className={['p-8 flex items-center justify-center min-h-[140px] bg-[var(--diwa-bg-surface)]', previewClassName].filter(Boolean).join(' ')}
+        className={['p-8 flex items-center justify-center min-h-[140px] bg-[var(--diwa-sf-shell-panel)]', previewClassName].filter(Boolean).join(' ')}
         data-preview
       >
         {children}

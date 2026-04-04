@@ -69,7 +69,7 @@ export function CodeBlock({ frameworkCode, visible, onToggle }: CodeBlockProps) 
   return (
     <div>
       {/* Tab bar — always visible */}
-      <div className="flex items-center border-t border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)]">
+      <div className="flex items-center border-t border-[var(--diwa-border)] bg-[var(--diwa-sf-shell-panel)]">
         {/* Framework tabs */}
         <div className="flex items-end flex-1">
           {FRAMEWORKS.map(({ id, label }) => {
@@ -81,7 +81,7 @@ export function CodeBlock({ frameworkCode, visible, onToggle }: CodeBlockProps) 
                 className={[
                   'px-4 py-2.5 min-h-[var(--diwa-button-height)] text-xs font-medium border-b-2 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]',
                   isActive
-                    ? 'border-[var(--diwa-accent)] text-[var(--diwa-accent)] bg-[var(--diwa-bg-base)]'
+                    ? 'border-[var(--diwa-accent)] text-[var(--diwa-accent)] bg-[var(--diwa-sf-shell-main)]'
                     : 'border-transparent text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)]',
                 ].join(' ')}
               >
@@ -118,7 +118,7 @@ export function CodeBlock({ frameworkCode, visible, onToggle }: CodeBlockProps) 
           customStyle={{
             margin: 0,
             padding: '1rem 1.25rem',
-            background: 'var(--diwa-bg-base)',
+            background: 'var(--diwa-sf-shell-code)',
             fontSize: '0.8125rem',
             lineHeight: '1.65',
             maxHeight: '420px',

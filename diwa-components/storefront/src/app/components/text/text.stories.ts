@@ -5,7 +5,7 @@ export const textStory: Story<'diwa-text'> = {
   state: {
     properties: {
       tag: 'p',
-      size: 'small',
+      size: 'medium',
       weight: 'regular',
       align: 'start',
       color: 'primary',
@@ -33,7 +33,7 @@ export const textPropDefinitions: PropDefinition[] = [
     name: 'size',
     type: 'select',
     options: ['x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'],
-    defaultValue: 'small',
+    defaultValue: 'medium',
     description: 'Visual size of the text element',
   },
   {

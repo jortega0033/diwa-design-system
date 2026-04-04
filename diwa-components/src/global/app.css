@@ -109,58 +109,58 @@
 
   /* ── 2a. Primary ─────────────────────────────────────────── */
   /* The main foreground/text color. Inverse of Background Base. */
-   --diwa-primary:         #e3f2ee;
+   --diwa-primary:         #f5f5f5;
 
   /* ── 2b. Background ──────────────────────────────────────── */
-   --diwa-bg-base:         #070d0c;
-   --diwa-bg-raised:       #0b1413;
-   --diwa-bg-surface:      #0c1615;
-  --diwa-bg-shading:      rgba(7, 13, 12, 0.86);
-  --diwa-bg-frosted:      rgba(12, 24, 22, 0.55);
+   --diwa-bg-base:         #080808;
+   --diwa-bg-raised:       #121212;
+   --diwa-bg-surface:      #1a1a1a;
+  --diwa-bg-shading:      rgba(8, 8, 8, 0.86);
+  --diwa-bg-frosted:      rgba(18, 18, 18, 0.55);
 
   /* Legacy aliases — kept for backwards compatibility */
   --diwa-bg-primary:      var(--diwa-bg-base);
-   --diwa-bg-content:      #0a1312;
-   --diwa-bg-secondary:    #0c1615;
-   --diwa-bg-tertiary:     #101d1b;
-   --diwa-bg-elevated:     #111f1d;
-   --diwa-bg-hover:        rgba(28, 163, 144, 0.12);
-   --diwa-bg-active:       rgba(28, 163, 144, 0.2);
+   --diwa-bg-content:      #111111;
+   --diwa-bg-secondary:    #1a1a1a;
+   --diwa-bg-tertiary:     #202020;
+   --diwa-bg-elevated:     #242424;
+   --diwa-bg-hover:        rgba(191, 191, 191, 0.12);
+   --diwa-bg-active:       rgba(191, 191, 191, 0.2);
   --diwa-bg-glass:        var(--diwa-bg-shading);
-   --diwa-bg-input:        rgba(10, 22, 20, 0.92);
+   --diwa-bg-input:        rgba(22, 22, 22, 0.92);
 
   /* ── 2c. Contrast ────────────────────────────────────────── */
   /* Use for borders, dividers, and secondary text — never for interactive color. */
-   --diwa-contrast-low:    #1f3531;
-   --diwa-contrast-medium: #9cb5ae;
-   --diwa-contrast-high:   #cbe2dc;
+   --diwa-contrast-low:    #282828;
+   --diwa-contrast-medium: #b3b3b3;
+   --diwa-contrast-high:   #f0f0f0;
 
   /*
    * WCAG Contrast Verification (Noir / [data-theme="light"])
    * ---------------------------------------------------------
    * --diwa-text-primary  (#e6e6e7) on --diwa-bg-content (#18181b):   14.5:1 ✓ AA
    * --diwa-text-secondary(#a1a1aa) on --diwa-bg-secondary(#111113):   7.3:1 ✓ AA  (was zinc-500 = 3.9:1 ✗ → fixed)
-   * --diwa-accent        (#0f8a7b) on --diwa-bg-content (#0a1312):    >= 3:1 target for UI states
-   * --diwa-border-focus  (#0f8a7b) on --diwa-bg-base   (#070d0c):    >= 3:1 target for focus ring
+   * --diwa-accent        (#0f8a7b) on --diwa-bg-content (#111111):    >= 3:1 target for UI states
+   * --diwa-border-focus  (#0f8a7b) on --diwa-bg-base   (#080808):    >= 3:1 target for focus ring
    */
 
   /* Text aliases */
   --diwa-text-primary:    var(--diwa-primary);
-   --diwa-text-secondary:  #9cb5ae;
-   --diwa-text-tertiary:   #87a098;
-   --diwa-text-muted:      #6e8780;
-   --diwa-text-disabled:   #5c726c;
+   --diwa-text-secondary:  #b3b3b3;
+   --diwa-text-tertiary:   #9a9a9a;
+   --diwa-text-muted:      #7f7f7f;
+   --diwa-text-disabled:   #666666;
    --diwa-text-inverse:    var(--diwa-color-white);     /* white text on cobalt accent remains readable */
 
   /* Border aliases */
-   --diwa-border:          #1f3531;
-   --diwa-border-hover:    #2d4a45;
-   --diwa-border-light:    rgba(31, 53, 49, 0.6);
+   --diwa-border:          #282828;
+   --diwa-border-hover:    #3a3a3a;
+   --diwa-border-light:    rgba(40, 40, 40, 0.65);
 
   /* ── 2d. State ───────────────────────────────────────────── */
   /* Interactive state overlays — applied on top of any background color. */
-   --diwa-state-hover:     rgba(28, 163, 144, 0.14);
-   --diwa-state-active:    rgba(28, 163, 144, 0.24);
+   --diwa-state-hover:     rgba(191, 191, 191, 0.14);
+   --diwa-state-active:    rgba(191, 191, 191, 0.24);
    --diwa-state-focus:     var(--diwa-color-accent-400);
   --diwa-state-disabled:  var(--diwa-color-zinc-600);  /* #52525b               — PDS colorDisabledDark #7E7F82 */
 
@@ -212,8 +212,8 @@
      3. TYPOGRAPHY
      ============================================================ */
 
-   --diwa-font-family-base: 'Onest', 'Segoe UI', Roboto, sans-serif;
-   --diwa-font-family-display: 'Sora', 'Onest', 'Segoe UI', Roboto, sans-serif;
+   --diwa-font-family-base: 'Outfit', 'Segoe UI', Roboto, sans-serif;
+   --diwa-font-family-display: 'Instrument Sans', 'Outfit', 'Segoe UI', Roboto, sans-serif;
   --diwa-font-family-mono: 'Geist Mono', 'SF Mono', Monaco, Consolas, monospace;
 
    --diwa-font-size-xs:   11px;
@@ -225,6 +225,13 @@
    --diwa-font-size-2xl:  24px;
    --diwa-font-size-3xl:  32px;
    --diwa-font-size-4xl:  48px;
+
+   /* Role-level text sizing for consistent form/control typography */
+   --diwa-text-size-control: var(--diwa-font-size-base);
+   --diwa-text-size-label: var(--diwa-font-size-base);
+   --diwa-text-size-supporting: var(--diwa-font-size-base);
+   --diwa-text-size-compact-control: var(--diwa-font-size-md);
+   --diwa-text-size-compact-supporting: var(--diwa-font-size-sm);
 
   /* Fluid type scale — grows from min viewport (480px) to max (1760px) */
   --diwa-font-size-fluid-sm:   clamp(11px, 0.65rem + 0.2vw, 13px);   /* 11→13px  */
@@ -522,53 +529,53 @@
 [data-theme="light"] {
 
   /* ── Primary ───────────────────────────────────────────── */
-  --diwa-primary:         #010205;             /* PDS colorPrimaryLight  #010205 */
+   --diwa-primary:         #0f0f0f;
 
   /* ── Background ─────────────────────────────────────────── */
-   --diwa-bg-base:         #f5f4ef;
-   --diwa-bg-raised:       #f8f6f1;
-   --diwa-bg-surface:      #fffdf8;
-  --diwa-bg-shading:      rgba(27, 29, 35, 0.62);
-  --diwa-bg-frosted:      rgba(255, 255, 255, 0.76);
+   --diwa-bg-base:         #f5f5f5;
+   --diwa-bg-raised:       #fafafa;
+   --diwa-bg-surface:      #ffffff;
+  --diwa-bg-shading:      rgba(20, 20, 20, 0.24);
+  --diwa-bg-frosted:      rgba(255, 255, 255, 0.84);
 
   /* Legacy bg aliases */
   --diwa-bg-primary:      var(--diwa-bg-base);
-   --diwa-bg-content:      #f8f6f1;
-   --diwa-bg-secondary:    #fffdf8;
+   --diwa-bg-content:      #fafafa;
+   --diwa-bg-secondary:    #ffffff;
    --diwa-bg-tertiary:     #ffffff;
   --diwa-bg-elevated:     #ffffff;
-   --diwa-bg-hover:        rgba(15, 138, 123, 0.12);
-   --diwa-bg-active:       rgba(15, 138, 123, 0.2);
+   --diwa-bg-hover:        rgba(64, 64, 64, 0.1);
+   --diwa-bg-active:       rgba(64, 64, 64, 0.16);
   --diwa-bg-glass:        var(--diwa-bg-shading);
    --diwa-bg-input:        rgba(255, 255, 255, 0.97);
 
   /* ── Contrast ────────────────────────────────────────────── */
-   --diwa-contrast-low:    #d9d7cf;
-   --diwa-contrast-medium: #525866;
-   --diwa-contrast-high:   #1b1d23;
+   --diwa-contrast-low:    #d9d9d9;
+   --diwa-contrast-medium: #4f4f4f;
+   --diwa-contrast-high:   #111111;
 
   /* Text aliases */
   --diwa-text-primary:    var(--diwa-primary);
   --diwa-text-secondary:  var(--diwa-contrast-medium);
-   --diwa-text-tertiary:   #676f80;
-   --diwa-text-muted:      #6f7686;
-   --diwa-text-disabled:   #8c929d;
+   --diwa-text-tertiary:   #666666;
+   --diwa-text-muted:      #777777;
+   --diwa-text-disabled:   #9a9a9a;
   --diwa-text-inverse:    #ffffff;
 
   /* Border aliases */
   --diwa-border:          var(--diwa-contrast-low);
-   --diwa-border-hover:    #c4c2ba;
-   --diwa-border-light:    rgba(217, 215, 207, 0.7);
+   --diwa-border-hover:    #c7c7c7;
+   --diwa-border-light:    rgba(217, 217, 217, 0.7);
 
   /* ── State ───────────────────────────────────────────────── */
-   --diwa-state-hover:     rgba(15, 138, 123, 0.12);
-   --diwa-state-active:    rgba(15, 138, 123, 0.18);
+   --diwa-state-hover:     rgba(64, 64, 64, 0.1);
+   --diwa-state-active:    rgba(64, 64, 64, 0.16);
    --diwa-state-focus:     var(--diwa-color-accent-400);
   --diwa-state-disabled:  #949598;             /* PDS colorDisabledLight #949598 */
 
   /* Accent aliases */
   --diwa-accent:          var(--diwa-state-focus);
-   --diwa-accent-text:     #0a6458;
+   --diwa-accent-text:     #2f2f2f;
   --diwa-accent-hover:    var(--diwa-color-accent-500);
   --diwa-accent-active:   var(--diwa-color-accent-600);
   --diwa-accent-muted:    var(--diwa-color-accent-200);
@@ -588,8 +595,8 @@
   --diwa-notification-error-soft:    #ffe2e4;  /* PDS colorErrorSoftLight    #FFE2E4 */
    --diwa-notification-error-border:   var(--diwa-notification-error);
 
-   --diwa-notification-info:          #0f8a7b;
-   --diwa-notification-info-soft:     #d9f3ed;
+   --diwa-notification-info:          #2762ec;
+   --diwa-notification-info-soft:     #e9efff;
    --diwa-notification-info-border:    var(--diwa-notification-info);
 
   /* Legacy status aliases */

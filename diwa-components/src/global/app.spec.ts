@@ -405,7 +405,7 @@ describe('app.css — structural integrity', () => {
   });
 
   test('--diwa-text-secondary uses the v3 coming-soon dark value', () => {
-    expect(appCss).toContain('--diwa-text-secondary:  #9cb5ae;');
+    expect(appCss).toContain('--diwa-text-secondary:  #b3b3b3;');
   });
 
   test('component override tokens declare diwa-button vars', () => {

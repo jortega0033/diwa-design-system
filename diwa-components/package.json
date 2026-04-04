@@ -1,6 +1,6 @@
 {
   "name": "@diwacopilot/components",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Diwa Design System - Framework-agnostic Web Components built with Stencil.js",
   "license": "MIT",
   "homepage": "https://designsystem.diwacopilot.com/",

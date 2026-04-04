@@ -4,7 +4,7 @@
   overflow: hidden;
   border-radius: var(--diwa-radius-md);
   border: 1px solid var(--diwa-border);
-  background: var(--diwa-bg-surface);
+  background: var(--diwa-gradient-surface);
   margin-bottom: var(--diwa-space-11);
 }
 
@@ -15,7 +15,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--diwa-accent) 0%, transparent 55%);
+  background: linear-gradient(90deg, var(--diwa-contrast-medium) 0%, transparent 55%);
   pointer-events: none;
   z-index: 2;
 }
@@ -34,7 +34,7 @@
 .glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 55% 65% at 88% 50%, var(--diwa-accent-bg) 0%, transparent 70%);
+  background: radial-gradient(ellipse 55% 65% at 88% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 

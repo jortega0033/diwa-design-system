@@ -185,7 +185,7 @@ export const getComponentCss = (
 
   .message {
     display: block;
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-supporting, var(--diwa-font-size-base));
     line-height: 1.4;
     color: ${messageColor};
     /* Indent to align under the label, not the checkbox */

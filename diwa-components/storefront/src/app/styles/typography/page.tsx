@@ -70,8 +70,8 @@ export default function StylesTypographyPage() {
     <div className="max-w-3xl">
       <h1 className="text-2xl font-bold text-[var(--diwa-text-primary)] mb-3">Typography</h1>
       <p className="text-sm text-[var(--diwa-text-secondary)] mb-10 leading-relaxed max-w-2xl">
-        Diwa uses <strong className="text-[var(--diwa-text-primary)]">Onest</strong> for base UI
-        text and <strong className="text-[var(--diwa-text-primary)]">Sora</strong> for display
+        Diwa uses <strong className="text-[var(--diwa-text-primary)]">Outfit</strong> for base UI
+        text and <strong className="text-[var(--diwa-text-primary)]">Instrument Sans</strong> for display
         headings to create a premium but readable hierarchy. The static scale runs from 11–48px,
         with a fluid layer powered by <code className="font-mono text-[var(--diwa-accent)]">clamp()</code>{' '}
         that adapts between the 480px and 1760px breakpoints.
@@ -139,7 +139,7 @@ export default function StylesTypographyPage() {
             <p className="text-2xl font-medium text-[var(--diwa-text-primary)] mb-1" style={{ fontFamily: 'var(--diwa-font-family-base)' }}>
               The quick brown fox
             </p>
-            <p className="text-xs text-[var(--diwa-text-secondary)]">Onest, Segoe UI, Roboto fallback stack</p>
+            <p className="text-xs text-[var(--diwa-text-secondary)]">Outfit, Segoe UI, Roboto fallback stack</p>
           </div>
           <div className="p-4 rounded-lg bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)]">
             <code className="text-xs text-[var(--diwa-accent)] block mb-2">--diwa-font-family-mono</code>

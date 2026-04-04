@@ -60,7 +60,7 @@ export const getComponentCss = (
   }
 
   .description {
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-supporting, var(--diwa-font-size-base));
     color: var(--diwa-text-secondary);
     line-height: 1.4;
     margin-bottom: var(--diwa-space-1);
@@ -76,7 +76,7 @@ export const getComponentCss = (
   }
 
   .message {
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-supporting, var(--diwa-font-size-base));
     color: ${messageColor};
     line-height: 1.4;
   }

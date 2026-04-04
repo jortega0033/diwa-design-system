@@ -15,8 +15,8 @@
   /* ============================================================
     1) TYPOGRAPHY SYSTEM
     ============================================================ */
-  --diwa-coming-font-family-base: Onest, "Avenir Next", "Segoe UI", sans-serif;
-  --diwa-coming-font-family-display: Onest, "Avenir Next", "Segoe UI", sans-serif;
+  --diwa-coming-font-family-base: Outfit, "Avenir Next", "Segoe UI", sans-serif;
+  --diwa-coming-font-family-display: "Instrument Sans", Outfit, "Avenir Next", "Segoe UI", sans-serif;
 
   --diwa-coming-font-size-kicker: 0.72rem;
   --diwa-coming-font-size-body-sm: 0.93rem;

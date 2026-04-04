@@ -80,7 +80,7 @@ export function Navigation() {
                           className={[
                             'block pl-5 pr-3 py-1.5 text-sm transition-colors',
                             active
-                              ? 'rounded-none bg-[var(--diwa-accent-bg)] text-[var(--diwa-accent)] font-medium'
+                              ? 'rounded-none bg-[var(--diwa-sf-shell-selected)] text-[var(--diwa-accent)] font-medium'
                               : 'rounded-md text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)] hover:bg-[var(--diwa-bg-hover)]',
                           ].join(' ')}
                         >

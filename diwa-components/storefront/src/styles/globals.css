@@ -13,14 +13,14 @@
 }
 
 body {
-  font-family: var(--diwa-font-family-base, 'Onest', system-ui, sans-serif);
+  font-family: var(--diwa-font-family-base, 'Outfit', system-ui, sans-serif);
   background: var(--diwa-bg-base, #0b0b0c);
   color: var(--diwa-text-primary, #e6e6e7);
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--diwa-font-family-display, 'Sora', 'Onest', system-ui, sans-serif);
+  font-family: var(--diwa-font-family-display, 'Instrument Sans', 'Outfit', system-ui, sans-serif);
   font-weight: var(--diwa-font-weight-semibold, 600);
 }
 
@@ -40,10 +40,30 @@ h1, h2 {
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
+
+  --diwa-sf-shell-canvas: #121212;
+  --diwa-sf-shell-header: #121212;
+  --diwa-sf-shell-sidebar-start: #1a1a1a;
+  --diwa-sf-shell-main: #181818;
+  --diwa-sf-shell-sidebar-end: #171717;
+  --diwa-sf-shell-panel: #202020;
+  --diwa-sf-shell-code: #0f0f0f;
+  --diwa-sf-shell-sticky: rgba(20, 20, 20, 0.92);
+  --diwa-sf-shell-selected: rgba(255, 255, 255, 0.08);
 }
 
 [data-theme="light"] {
   color-scheme: light;
+
+  --diwa-sf-shell-canvas: #f5f6f7;
+  --diwa-sf-shell-header: #ffffff;
+  --diwa-sf-shell-sidebar-start: #f1f3f5;
+  --diwa-sf-shell-main: #fbfcfd;
+  --diwa-sf-shell-sidebar-end: #f4f5f7;
+  --diwa-sf-shell-panel: #ffffff;
+  --diwa-sf-shell-code: #f2f4f6;
+  --diwa-sf-shell-sticky: rgba(255, 255, 255, 0.92);
+  --diwa-sf-shell-selected: #e7ebf0;
 }
 
 /* ─── Scrollbar styling ─────────────────────────────────────────────────────── */

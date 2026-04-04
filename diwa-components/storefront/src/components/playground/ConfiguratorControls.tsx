@@ -208,7 +208,7 @@ function AccordionSection({
             {title}
           </span>
           {modifiedCount > 0 && (
-            <span className="text-[10px] tabular-nums font-medium text-[var(--diwa-accent)] bg-[var(--diwa-accent-bg)] px-1.5 py-0.5 rounded-full">
+            <span className="text-[10px] tabular-nums font-medium text-[var(--diwa-accent)] bg-[var(--diwa-sf-shell-selected)] px-1.5 py-0.5 rounded-full">
               {modifiedCount}
             </span>
           )}
@@ -497,7 +497,7 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
   const controls = (
     <div className="flex flex-col h-full">
       {/* ── Header with search + reset ──────────────────────────── */}
-      <div className="px-4 pt-3 pb-2 space-y-2 border-b border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)]/70 backdrop-blur-sm">
+      <div className="px-4 pt-3 pb-2 space-y-2 border-b border-[var(--diwa-border)] bg-[var(--diwa-sf-shell-sticky)] backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <h3 className="text-xs uppercase tracking-widest font-semibold text-[var(--diwa-text-secondary)]">
             Properties

@@ -1,0 +1,76 @@
+# Diwa Design System - Agent Instructions
+
+Read this file before implementing changes. It defines architecture boundaries, quality gates, and specialist agents for this repository.
+
+## Repository Scope
+
+Diwa Design System is a multi-package workspace with one source of truth for components and generated wrappers.
+
+- Core web components: `diwa-components/` (Stencil)
+- Documentation storefront: `diwa-components/storefront/` (Next.js 16, static export)
+- Generated wrappers:
+  - `diwa-components-react/`
+  - `diwa-components-vue/`
+  - `diwa-components-angular/`
+
+## Non-Negotiable Rules
+
+1. Edit component behavior in `diwa-components/src/components/*` and shared tokens/styles in `diwa-components/src/global/*`.
+2. Do not hand-maintain generated wrapper proxy files:
+   - `diwa-components-react/src/components.ts`
+   - `diwa-components-vue/src/components.ts`
+   - `diwa-components-angular/src/directives/proxies.ts`
+   Regenerate via Stencil build.
+3. Do not edit generated distribution artifacts directly:
+   - `diwa-components/dist-custom-elements/*`
+   - `diwa-components/dist/*`
+   - `diwa-components/loader/*`
+4. Keep storefront statically exportable (`output: 'export'`) and compatible with asset syncing scripts.
+5. Preserve accessibility contracts and interaction states (focus, hover, active, reduced motion).
+6. Keep token-first styling with `--diwa-*` variables. Avoid hardcoded ad-hoc colors in component styles unless explicitly justified.
+7. Run quality gates relevant to your change before claiming completion.
+
+## Core Commands (Root)
+
+```bash
+npm run build
+npm run test
+npm run test:ux
+npm run type-check
+npm run build:storefront
+npm run agency:validate:control-heights
+```
+
+For storefront release output and deploy prep:
+
+```bash
+npm run build:storefront:release
+```
+
+## Agent Team
+
+Always-on governance:
+
+- `Diwa DS Guardrails` (non-invocable)
+
+User-invocable specialists:
+
+- `Diwa DS SDLC Lead`
+- `Diwa DS Web Components Engineer`
+- `Diwa DS Storefront Developer`
+- `Diwa DS Wrapper Maintainer`
+- `Diwa DS Accessibility Auditor`
+- `Diwa DS QA Tester`
+- `Diwa DS Release Automator`
+- `Diwa DS Technical Writer`
+
+## When To Use Which Agent
+
+- End-to-end planning and dependency sequencing: `Diwa DS SDLC Lead`
+- Component logic, tokens, Shadow DOM behavior: `Diwa DS Web Components Engineer`
+- Docs site pages, nav, SEO cards, static export concerns: `Diwa DS Storefront Developer`
+- React/Vue/Angular package integration and generation pipeline: `Diwa DS Wrapper Maintainer`
+- WCAG, keyboard, reduced motion, semantic/ARIA checks: `Diwa DS Accessibility Auditor`
+- Regression validation and failing test triage: `Diwa DS QA Tester`
+- CI workflow, build/release/deploy hardening: `Diwa DS Release Automator`
+- Docs, migration notes, contributor guidance: `Diwa DS Technical Writer`

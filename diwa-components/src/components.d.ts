@@ -2666,7 +2666,7 @@ export namespace Components {
         "ellipsis": boolean;
         /**
           * Font size tier. Maps to the diwa type scale.
-          * @default 'small'
+          * @default 'medium'
          */
         "size": TextSize;
         /**
@@ -7091,7 +7091,7 @@ declare namespace LocalJSX {
         "ellipsis"?: boolean;
         /**
           * Font size tier. Maps to the diwa type scale.
-          * @default 'small'
+          * @default 'medium'
          */
         "size"?: TextSize;
         /**

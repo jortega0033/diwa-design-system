@@ -68,7 +68,7 @@ export const getInputCss = (
 
   .label {
     display: block;
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-label, var(--diwa-font-size-base));
     font-weight: var(--diwa-font-weight-semibold);
     color: var(--diwa-text-secondary);
     line-height: var(--diwa-line-height-normal);
@@ -153,7 +153,7 @@ export const getInputCss = (
     outline: none;
     margin: 0;
     font-family: inherit;
-    font-size: var(--diwa-font-size-base);
+    font-size: var(--diwa-text-size-control, var(--diwa-font-size-base));
     color: var(--diwa-text-primary);
     line-height: var(--diwa-line-height-normal);
   }
@@ -237,7 +237,7 @@ export const getInputCss = (
   /* ── Description ────────────────────────────────────────────────── */
 
   .description {
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-supporting, var(--diwa-font-size-base));
     color: var(--diwa-text-secondary);
     margin: 0;
     line-height: var(--diwa-line-height-normal);
@@ -246,7 +246,7 @@ export const getInputCss = (
   /* ── Message (state-coloured) ───────────────────────────────────── */
 
   .message {
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-supporting, var(--diwa-font-size-base));
     color: ${messageColor};
     margin: 0;
     line-height: var(--diwa-line-height-normal);

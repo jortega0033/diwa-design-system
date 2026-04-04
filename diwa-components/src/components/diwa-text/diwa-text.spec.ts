@@ -3,10 +3,10 @@ import { DiwaText } from './diwa-text';
 import { getComponentCss } from './diwa-text-styles';
 
 describe('diwa-text', () => {
-  it('defaults to p tag and small size', () => {
+  it('defaults to p tag and medium size', () => {
     const c = new DiwaText();
     expect(c.tag).toBe('p');
-    expect(c.size).toBe('small');
+    expect(c.size).toBe('medium');
   });
 
   it('reflects color and weight into CSS output', () => {

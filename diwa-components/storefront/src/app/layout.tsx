@@ -6,15 +6,15 @@ import { SidebarProvider } from '@/context/SidebarContext';
 import { Canvas } from '@/components/layout/Canvas';
 import { SITE_URL, SITE_NAME } from '@/lib/seo';
 import '@/styles/globals.css';
-import { Onest, Geist_Mono, Sora } from 'next/font/google';
+import { Outfit, Geist_Mono, Instrument_Sans } from 'next/font/google';
 
-const onest = Onest({
+const outfit = Outfit({
   subsets: ['latin'],
   display: 'swap',
   variable: '--diwa-font-family-base',
 });
 
-const sora = Sora({
+const instrumentSans = Instrument_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--diwa-font-family-display',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" className={`${onest.variable} ${sora.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${outfit.variable} ${instrumentSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         {/*
          * Blocking inline script — runs synchronously before first paint to apply

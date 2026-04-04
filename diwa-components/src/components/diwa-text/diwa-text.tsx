@@ -32,7 +32,7 @@ export class DiwaText {
   @Prop({ reflect: true }) tag: TextTag = 'p';
 
   /** Font size tier. Maps to the diwa type scale. */
-  @Prop({ reflect: true }) size: TextSize = 'small';
+  @Prop({ reflect: true }) size: TextSize = 'medium';
 
   /** Font weight. */
   @Prop({ reflect: true }) weight: TextWeight = 'regular';

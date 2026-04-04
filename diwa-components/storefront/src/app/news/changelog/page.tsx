@@ -18,19 +18,38 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '3.1.0',
+    date: 'April 4, 2026',
+    summary: 'Storefront shell neutrality and release alignment update for all packages and docs metadata.',
+    added: [
+      'Added dedicated neutral storefront shell tokens for dark and light mode layout surfaces.',
+      'Added v3.1.0 release metadata to package manifests and storefront hero/changelog surfaces.',
+    ],
+    changed: [
+      'Updated storefront structural backgrounds (canvas, header, sidebars, main, configurator/code panels) to neutral gray/white palettes.',
+      'Updated navigation selected-row and configurator sticky/chip backgrounds to neutral shell states while preserving accent for interactive emphasis.',
+      'Updated HeroBanner displayed version to v3.1.0.',
+    ],
+    fixed: [
+      'Fixed residual green-tinted structural backgrounds in both dark and light storefront themes.',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '3.0.1',
     date: 'April 2, 2026',
     summary: 'Premium typography and storefront polish release focused on display hierarchy, token consistency, and docs accuracy.',
     added: [
       'Added fluid display tier token `--diwa-font-size-fluid-5xl` for premium hero and marketing-level headings.',
-      'Added Sora loading in storefront root layout and bound it to `--diwa-font-family-display`.',
+      'Added Instrument Sans loading in storefront root layout and bound it to `--diwa-font-family-display`.',
     ],
     changed: [
       'Updated heading scale and line-height behavior for clearer hierarchy from display through h6.',
       'Updated text sizing behavior to expose `--diwa-text-font-size` and `--diwa-text-line-height` overrides for shadow-DOM-safe tuning.',
       'Refined tag typography to reduce aggressive uppercase/spacing feel for premium readability.',
       'Tokenized HeroBanner typography and spacing values for stronger design-system consistency.',
-      'Updated typography documentation to reflect Onest (base) + Sora (display) and current token ranges.',
+      'Updated typography documentation to reflect Outfit (base) + Instrument Sans (display) and current token ranges.',
     ],
     fixed: [
       'Removed duplicate `--diwa-accent-text` assignment in light theme token definitions.',
@@ -110,7 +129,7 @@ const RELEASES: Release[] = [
     summary: 'Typography refinement release with updated base font and synchronized package patch versions.',
     added: [],
     changed: [
-      'Standardized storefront typography on Onest for base and display roles for that release baseline (later refined to Sora display in v3.0.1).',
+      'Standardized storefront typography on Outfit for base and display roles for that release baseline (later refined to Instrument Sans display in v3.0.1).',
       'Bumped patch versions across the core package, framework wrappers, and storefront metadata.',    ],
     fixed: [],
     deprecated: [],

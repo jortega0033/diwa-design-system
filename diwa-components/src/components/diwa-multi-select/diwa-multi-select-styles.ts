@@ -28,7 +28,7 @@ export const getComponentCss = (
   .label {
     display: block;
     margin-bottom: var(--diwa-space-1);
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-label, var(--diwa-font-size-base));
     font-weight: var(--diwa-font-weight-semibold);
     color: var(--diwa-text-secondary);
     line-height: var(--diwa-line-height-normal);
@@ -58,7 +58,7 @@ export const getComponentCss = (
   .description {
     display: block;
     margin-top: var(--diwa-space-2);
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-supporting, var(--diwa-font-size-base));
     color: var(--diwa-text-secondary);
     line-height: var(--diwa-line-height-normal);
   }
@@ -78,7 +78,7 @@ export const getComponentCss = (
     border: var(--diwa-border-width-thin) solid var(--diwa-input-border);
     border-radius: var(--diwa-input-radius, var(--diwa-radius-md));
 
-    font-size: var(--diwa-font-size-base);
+    font-size: var(--diwa-text-size-control, var(--diwa-font-size-base));
     font-weight: var(--diwa-font-weight-normal);
     font-family: inherit;
     color: var(--diwa-text-primary);
@@ -137,7 +137,7 @@ export const getComponentCss = (
     cursor: pointer;
     border-radius: var(--diwa-radius-sm);
     line-height: 0;
-    font-size: var(--diwa-font-size-base);
+    font-size: var(--diwa-text-size-control, var(--diwa-font-size-base));
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -212,7 +212,7 @@ export const getComponentCss = (
     border: var(--diwa-border-width-thin) solid var(--diwa-input-border);
     border-radius: var(--diwa-radius-sm);
     color: var(--diwa-text-primary);
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-control, var(--diwa-font-size-base));
     font-family: inherit;
     outline: none;
     transition: border-color var(--diwa-transition-fast);
@@ -256,7 +256,7 @@ export const getComponentCss = (
 
   :host([compact]) .trigger {
     min-height: var(--diwa-button-height-sm, 32px);
-    font-size: var(--diwa-font-size-md);
+    font-size: var(--diwa-text-size-compact-control, var(--diwa-font-size-md));
     padding: 0 var(--diwa-space-2);
   }
 
@@ -280,7 +280,7 @@ export const getComponentCss = (
   .message {
     display: block;
     margin-top: var(--diwa-space-1);
-    font-size: var(--diwa-font-size-sm);
+    font-size: var(--diwa-text-size-supporting, var(--diwa-font-size-base));
     line-height: var(--diwa-line-height-normal);
     color: var(--diwa-text-secondary);
   }
