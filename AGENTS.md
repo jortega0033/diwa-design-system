@@ -30,6 +30,15 @@ Diwa Design System is a multi-package workspace with one source of truth for com
 6. Keep token-first styling with `--diwa-*` variables. Avoid hardcoded ad-hoc colors in component styles unless explicitly justified.
 7. Run quality gates relevant to your change before claiming completion.
 
+## DESIGN.md Integration
+
+- `DESIGN.md` at the repository root defines look-and-feel guidance for UI generation and refinement.
+- Precedence order is strict:
+   1. Architecture, security, and release constraints in this file (`AGENTS.md`)
+   2. Package-level technical constraints (Stencil generation boundaries, static export rules, test gates)
+   3. Visual guidance in `DESIGN.md`
+- `DESIGN.md` must never be used to justify changes that break accessibility contracts, static export compatibility, generated wrapper boundaries, or token-first styling rules.
+
 ## Core Commands (Root)
 
 ```bash

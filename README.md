@@ -115,6 +115,12 @@ npm install @diwacopilot/components @diwacopilot/components-angular
 - Token-first styling with `--diwa-*` variables
 - Interaction contract tests (`npm run test:ux`)
 
+## DESIGN.md Guidance
+
+- The repository root `DESIGN.md` defines UI look-and-feel guidance for humans and AI agents.
+- `AGENTS.md` remains authoritative for architecture, security, generation boundaries, and quality gates.
+- If guidance conflicts, follow `AGENTS.md` first, then apply `DESIGN.md`.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for root workspace workflow and CI expectations.
