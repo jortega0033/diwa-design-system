@@ -75,12 +75,7 @@ requireText("diwa-components/src/components/diwa-checkbox/diwa-checkbox-styles.t
   "min-height: ${compact ? 'var(--diwa-button-height-sm, 32px)' : 'var(--diwa-button-height, 40px)'};",
 ]);
 
-// 3) Governance contract lock (tracked files).
-requireText("docs/agency-agents/ADAPTATION_LAYER.md", controlHeightRuleChecks);
-requireText("diwa-components/.github/copilot-instructions.md", controlHeightRuleChecks);
-requireText(".github/prompts/ui-ux-pro-max/PROMPT.md", controlHeightRuleChecks);
-
-// 4) Governance contract lock (optional local-only files).
+// 3) Optional local guidance files may restate the same lock, but are not required.
 requireTextIfPresent("diwa-components/prompts/component.instructions.md", controlHeightRuleChecks);
 requireTextIfPresent("diwa-components/prompts/patterns.md", controlHeightRuleChecks);
 requireTextIfPresent("diwa-components/.codex/skills/ui-ux-pro-max/SKILL.md", controlHeightRuleChecks);

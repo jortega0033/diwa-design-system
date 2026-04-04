@@ -24,7 +24,7 @@ jobs:
       - name: Install (npm)
         run: npm ci
 
-      - name: Agency control-height gate
+      - name: Control-height gate
         run: npm run agency:validate:control-heights
 
       - name: Build packages
@@ -64,7 +64,7 @@ jobs:
       - name: Install (pnpm)
         run: pnpm install --frozen-lockfile
 
-      - name: Agency control-height gate
+      - name: Control-height gate
         run: pnpm run agency:validate:control-heights
 
       - name: Build components

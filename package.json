@@ -33,12 +33,6 @@
     "deploy:storefront": "npm run build:storefront:release && firebase deploy --only hosting:designDocs --project diwa-copilot-ai-fd65d",
     "deploy:storefront:preview": "npm run build:storefront:release && firebase hosting:channel:deploy preview --only designDocs --project diwa-copilot-ai-fd65d",
     "agency:validate:control-heights": "node scripts/agency-validate-control-heights.cjs",
-    "agents:install:curated": "node scripts/install-agency-curated.cjs --tool all",
-    "agents:install:curated:cursor": "node scripts/install-agency-curated.cjs --tool cursor",
-    "agents:install:curated:opencode": "node scripts/install-agency-curated.cjs --tool opencode",
-    "agents:install:curated:aider": "node scripts/install-agency-curated.cjs --tool aider",
-    "agents:install:curated:windsurf": "node scripts/install-agency-curated.cjs --tool windsurf",
-    "agents:install:curated:codex": "node scripts/install-agency-curated.cjs --tool codex",
     "legacy:dev": "npm --prefix diwa-components run dev",
     "legacy:build": "npm --prefix diwa-components run build",
     "legacy:test": "npm --prefix diwa-components run test"
