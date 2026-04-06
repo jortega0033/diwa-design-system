@@ -1,7 +1,7 @@
 {
   "name": "diwa-design-system",
   "private": true,
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Root workspace orchestration for Diwa Design System",
   "workspaces": [
     "diwa-components",
@@ -30,8 +30,8 @@
     "sync:stencil-assets": "node scripts/sync-stencil-assets.cjs",
     "postprocess:storefront:out": "node scripts/alias-next-flight-files.cjs",
     "build:storefront:release": "npm run build:components && npm run sync:stencil-assets && npm run build:storefront && npm run postprocess:storefront:out",
-    "deploy:storefront": "npm run build:storefront:release && firebase deploy --only hosting:designDocs --project diwa-copilot-ai-fd65d",
-    "deploy:storefront:preview": "npm run build:storefront:release && firebase hosting:channel:deploy preview --only designDocs --project diwa-copilot-ai-fd65d",
+    "deploy:storefront": "npm run build:storefront:release && firebase deploy --only hosting:designDocs --project diwa-copilot-ai-491108",
+    "deploy:storefront:preview": "npm run build:storefront:release && firebase hosting:channel:deploy preview --only designDocs --project diwa-copilot-ai-491108",
     "agency:validate:control-heights": "node scripts/agency-validate-control-heights.cjs",
     "legacy:dev": "npm --prefix diwa-components run dev",
     "legacy:build": "npm --prefix diwa-components run build",

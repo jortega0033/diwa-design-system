@@ -14,9 +14,15 @@ export const textStory: Story<'diwa-text'> = {
   },
   generator: ({ properties } = {}) => [
     {
-      tag: 'diwa-text' as const,
-      properties,
-      children: ['The quick brown fox jumps over the lazy dog.'],
+      tag: 'div' as const,
+      properties: { className: 'w-full' },
+      children: [
+        {
+          tag: 'diwa-text' as const,
+          properties,
+          children: ['The quick brown fox jumps over the lazy dog.'],
+        },
+      ],
     },
   ],
 };

@@ -18,6 +18,22 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: '3.1.1',
+    date: 'April 6, 2026',
+    summary: 'Patch release — description font-size alignment to diwa-text small (12px) across all form input and selection control components.',
+    added: [],
+    changed: [
+      'Updated description font-size to var(--diwa-font-size-sm) (12px) in all 13 form input components (diwa-input-text, diwa-input-email, diwa-input-search, diwa-input-password, diwa-input-date, diwa-input-tel, diwa-input-number, diwa-input-time, diwa-input-url, diwa-input-month, diwa-input-week, diwa-pin-code, diwa-textarea).',
+      'Updated description font-size to var(--diwa-font-size-sm) in diwa-select, diwa-multi-select, and diwa-radio-group.',
+      'Updated HeroBanner displayed version to v3.1.1.',
+    ],
+    fixed: [
+      'Fixed description text rendering too large (15px) relative to surrounding supporting text hierarchy; now consistent with diwa-text size="small".',
+    ],
+    deprecated: [],
+    removed: [],
+  },
+  {
     version: '3.1.0',
     date: 'April 4, 2026',
     summary: 'Storefront shell neutrality and release alignment update for all packages and docs metadata.',

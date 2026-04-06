@@ -317,7 +317,7 @@ function PropControl({
           </label>
           {modified && <ModifiedDot />}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
           <input
             id={controlId}
             type="color"
@@ -332,7 +332,7 @@ function PropControl({
             hideLabel
             compact
             onInput={(e: FormEvent<HTMLElement>) => onChange(def.name, getInputStringValue(e))}
-            className="flex-1"
+            className="w-full sm:flex-1"
           />
         </div>
       </div>
@@ -342,8 +342,8 @@ function PropControl({
   if (def.type === 'range') {
     return (
       <div className="space-y-1.5">
-        <div className="flex items-center justify-between gap-1.5">
-          <div className="flex items-center gap-1.5">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
+          <div className="flex items-center gap-1.5 min-w-0">
             <label htmlFor={controlId} className="text-xs text-[var(--diwa-text-secondary)]">
               {def.label ?? propNameToLabel(def.name)}
             </label>
@@ -498,7 +498,7 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
     <div className="flex flex-col h-full">
       {/* ── Header with search + reset ──────────────────────────── */}
       <div className="px-4 pt-3 pb-2 space-y-2 border-b border-[var(--diwa-border)] bg-[var(--diwa-sf-shell-sticky)] backdrop-blur-sm">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <h3 className="text-xs uppercase tracking-widest font-semibold text-[var(--diwa-text-secondary)]">
             Properties
           </h3>

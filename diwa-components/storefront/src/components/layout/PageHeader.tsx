@@ -26,7 +26,7 @@ export function PageHeader({ title, description, tabs }: Props) {
 
   return (
     <div className="mb-0">
-      <h1 className="text-3xl font-bold text-[var(--diwa-text-primary)] mb-2">{title}</h1>
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--diwa-text-primary)] mb-2">{title}</h1>
 
       {description && (
         <p className="text-[var(--diwa-text-secondary)] mb-6 leading-relaxed max-w-2xl">
@@ -35,16 +35,17 @@ export function PageHeader({ title, description, tabs }: Props) {
       )}
 
       <nav
-        className="flex border-b border-[var(--diwa-border)] mb-8"
+        className="border-b border-[var(--diwa-border)] mb-8 overflow-x-auto"
         aria-label="Component page tabs"
       >
-        {tabs.map((tab) => {
+        <div className="flex min-w-max">
+          {tabs.map((tab) => {
           if (!tab.href) {
             return (
               <span
                 key={tab.label}
                 title="Coming soon"
-                className="px-4 py-2.5 text-sm font-medium border-b-2 border-transparent -mb-px text-[var(--diwa-text-muted)] cursor-not-allowed select-none opacity-50"
+                className="px-4 py-2.5 text-sm font-medium border-b-2 border-transparent -mb-px text-[var(--diwa-text-muted)] cursor-not-allowed select-none opacity-50 whitespace-nowrap"
                 aria-disabled="true"
               >
                 {tab.label}
@@ -59,7 +60,7 @@ export function PageHeader({ title, description, tabs }: Props) {
               href={tab.href}
               aria-current={isActive ? 'page' : undefined}
               className={[
-                'px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors',
+                'px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
                 isActive
                   ? 'border-[var(--diwa-accent)] text-[var(--diwa-accent)]'
                   : 'border-transparent text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)]',
@@ -68,7 +69,8 @@ export function PageHeader({ title, description, tabs }: Props) {
               {tab.label}
             </Link>
           );
-        })}
+          })}
+        </div>
       </nav>
     </div>
   );

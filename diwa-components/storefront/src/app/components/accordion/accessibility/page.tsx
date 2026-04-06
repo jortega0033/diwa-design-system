@@ -8,11 +8,11 @@ export default function AccordionAccessibilityPage() {
     <div className="max-w-3xl">
       <Section title="Keyboard interaction">
         <div className="overflow-x-auto rounded-lg border border-[var(--diwa-border)]">
-          <table className="w-full text-sm">
+          <table className="w-full min-w-[36rem] text-sm">
             <thead>
               <tr className="bg-[var(--diwa-bg-surface)] border-b border-[var(--diwa-border)]">
-                <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-widest text-[var(--diwa-text-secondary)] w-1/3">Key</th>
-                <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-widest text-[var(--diwa-text-secondary)]">Action</th>
+                <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-widest text-[var(--diwa-text-secondary)] whitespace-nowrap">Key</th>
+                <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-widest text-[var(--diwa-text-secondary)] whitespace-nowrap">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -41,11 +41,11 @@ export default function AccordionAccessibilityPage() {
           The following ARIA attributes are managed internally by the component:
         </p>
         <div className="overflow-x-auto rounded-lg border border-[var(--diwa-border)]">
-          <table className="w-full text-sm">
+          <table className="w-full min-w-[36rem] text-sm">
             <thead>
               <tr className="bg-[var(--diwa-bg-surface)] border-b border-[var(--diwa-border)]">
-                <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-widest text-[var(--diwa-text-secondary)] w-2/5">Attribute</th>
-                <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-widest text-[var(--diwa-text-secondary)]">Description</th>
+                <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-widest text-[var(--diwa-text-secondary)] whitespace-nowrap">Attribute</th>
+                <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-widest text-[var(--diwa-text-secondary)] whitespace-nowrap">Description</th>
               </tr>
             </thead>
             <tbody>

@@ -69,30 +69,32 @@ export function CodeBlock({ frameworkCode, visible, onToggle }: CodeBlockProps) 
   return (
     <div>
       {/* Tab bar — always visible */}
-      <div className="flex items-center border-t border-[var(--diwa-border)] bg-[var(--diwa-sf-shell-panel)]">
+      <div className="flex flex-wrap items-center border-t border-[var(--diwa-border)] bg-[var(--diwa-sf-shell-panel)]">
         {/* Framework tabs */}
-        <div className="flex items-end flex-1">
-          {FRAMEWORKS.map(({ id, label }) => {
-            const isActive = framework === id;
-            return (
-              <button
-                key={id}
-                onClick={() => selectFramework(id)}
-                className={[
-                  'px-4 py-2.5 min-h-[var(--diwa-button-height)] text-xs font-medium border-b-2 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]',
-                  isActive
-                    ? 'border-[var(--diwa-accent)] text-[var(--diwa-accent)] bg-[var(--diwa-sf-shell-main)]'
-                    : 'border-transparent text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)]',
-                ].join(' ')}
-              >
-                {label}
-              </button>
-            );
-          })}
+        <div className="order-1 basis-full min-w-0 overflow-x-auto">
+          <div className="flex items-end min-w-max">
+            {FRAMEWORKS.map(({ id, label }) => {
+              const isActive = framework === id;
+              return (
+                <button
+                  key={id}
+                  onClick={() => selectFramework(id)}
+                  className={[
+                    'px-4 py-2.5 min-h-[var(--diwa-button-height)] text-xs font-medium border-b-2 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)] whitespace-nowrap',
+                    isActive
+                      ? 'border-[var(--diwa-accent)] text-[var(--diwa-accent)] bg-[var(--diwa-sf-shell-main)]'
+                      : 'border-transparent text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)]',
+                  ].join(' ')}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-1 px-2">
+        <div className="order-2 w-full sm:w-auto flex items-center justify-end gap-1 px-2 py-1 border-t border-[var(--diwa-border)] sm:border-t-0 sm:ml-auto">
           <button
             onClick={handleCopy}
             className="px-3 py-2 min-h-[var(--diwa-button-height)] text-xs font-medium rounded text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)] hover:bg-[var(--diwa-bg-hover)] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"

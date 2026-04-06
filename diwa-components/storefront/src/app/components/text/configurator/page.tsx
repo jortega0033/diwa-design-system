@@ -9,6 +9,7 @@ export default function TextConfiguratorPage() {
       tagName="diwa-text"
       story={textStory}
       propDefinitions={textPropDefinitions}
+      previewClassName="justify-start items-start"
     />
   );
 }

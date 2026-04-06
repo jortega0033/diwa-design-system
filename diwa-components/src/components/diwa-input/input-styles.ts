@@ -237,7 +237,7 @@ export const getInputCss = (
   /* ── Description ────────────────────────────────────────────────── */
 
   .description {
-    font-size: var(--diwa-text-size-supporting, var(--diwa-font-size-base));
+    font-size: var(--diwa-font-size-sm);
     color: var(--diwa-text-secondary);
     margin: 0;
     line-height: var(--diwa-line-height-normal);
