@@ -17,8 +17,6 @@
  * main diwa app, with --diwa- namespace prefix added.
  */
 
-@import './v3.tokens.css';
-
 /* ============================================================
    1. CORE PALETTE — Primitive values
       Never reference these in component styles directly.
