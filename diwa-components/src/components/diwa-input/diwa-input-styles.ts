@@ -77,6 +77,13 @@ export const getComponentCss = (): string => `
     line-height: var(--diwa-line-height-normal);
   }
 
+  /* Keep a single focus indicator: wrapper ring only (no native inner outline). */
+  .input:focus,
+  .input:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
   .input::placeholder {
     color: var(--diwa-input-placeholder-color, var(--diwa-text-muted));
   }

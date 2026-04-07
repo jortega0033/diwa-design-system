@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import styles from './HeroBanner.module.css';
+import storefrontPackage from '../../../package.json';
 
 const FRAMEWORKS = ['React', 'Angular', 'Vue', 'Next.js', 'Vanilla JS'] as const;
 
@@ -9,6 +10,8 @@ const STATS = [
   { bold: 'CSS Tokens', text: 'System' },
   { bold: 'WCAG 2.2 AA', text: 'Compliant' },
 ] as const;
+
+const STOREFRONT_VERSION = storefrontPackage.version;
 
 function ArrowRightIcon() {
   return (
@@ -57,7 +60,7 @@ export function HeroBanner() {
       <div className={styles.body}>
         <div className={styles.badge} aria-label="Design system version">
           <span className={styles.badgeDot} aria-hidden="true" />
-          <span>v3.1.2</span>
+          <span>v{STOREFRONT_VERSION}</span>
         </div>
 
         <h1 id="hero-heading" className={styles.headline}>

@@ -18,7 +18,7 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
-    version: '3.1.2',
+    version: '3.1.3',
     date: 'April 7, 2026',
     summary: 'Patch release — focus ring normalization for form controls plus storefront release-surface alignment.',
     added: [],

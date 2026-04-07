@@ -158,6 +158,13 @@ export const getInputCss = (
     line-height: var(--diwa-line-height-normal);
   }
 
+  /* Keep a single focus indicator: wrapper ring only (no native inner outline). */
+  input.input:focus,
+  input.input:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
   input.input::placeholder {
     color: var(--diwa-text-disabled);
     opacity: 1;
