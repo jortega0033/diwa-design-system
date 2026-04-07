@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.2 - 2026-04-07
+
+- Patch release focused on focus-ring consistency and release-surface alignment.
+- Bumped all workspace packages and storefront metadata to `3.1.2`.
+- Scoped global `:focus-visible` behavior to avoid host-plus-inner focus stacking on DS form controls.
+- Removed storefront-level focus overrides that could conflict with component-owned focus states.
+- Updated storefront HeroBanner and changelog release metadata to `v3.1.2`.
+
 ## 3.0.0 - 2026-04-01
 
 - Breaking change: migrated Diwa Design System visual baseline to the Coming Soon V3 reference system.

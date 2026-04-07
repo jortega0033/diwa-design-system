@@ -28,13 +28,6 @@ h1, h2 {
   letter-spacing: -0.01em;
 }
 
-/* ─── Focus visible ─────────────────────────────────────────────────────────── */
-
-:focus-visible {
-  outline: var(--diwa-focus-ring-width, 2px) solid var(--diwa-border-focus, #0f8a7b);
-  outline-offset: var(--diwa-focus-ring-offset, 1px);
-}
-
 /* ─── colour-scheme hints (enables native form control theming) ─────────────── */
 
 :root,

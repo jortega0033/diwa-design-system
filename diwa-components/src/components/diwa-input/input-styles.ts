@@ -231,7 +231,7 @@ export const getInputCss = (
 
   .suffix-btn:focus-visible {
     outline: var(--diwa-focus-ring-width) solid var(--diwa-border-focus);
-    outline-offset: -2px;
+    outline-offset: var(--diwa-focus-ring-offset);
   }
 
   /* ── Description ────────────────────────────────────────────────── */

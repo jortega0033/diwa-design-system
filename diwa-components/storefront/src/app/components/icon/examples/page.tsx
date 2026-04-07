@@ -36,7 +36,7 @@ function IconGrid() {
         placeholder="Filter icons…"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="mb-5 w-full max-w-sm px-3 py-2 text-sm rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] placeholder:text-[var(--diwa-text-tertiary)] focus:outline-none focus:ring-1 focus:ring-[var(--diwa-border-focus)]"
+        className="mb-5 w-full max-w-sm px-3 py-2 text-sm rounded-md border border-[var(--diwa-border)] bg-[var(--diwa-bg-surface)] text-[var(--diwa-text-primary)] placeholder:text-[var(--diwa-text-tertiary)]"
       />
       <p className="text-xs text-[var(--diwa-text-tertiary)] mb-4">
         {filtered.length} icon{filtered.length !== 1 ? 's' : ''}

@@ -148,7 +148,7 @@ export const getComponentCss = (
 
   .trigger__reset:focus-visible {
     outline: var(--diwa-focus-ring-width) solid var(--diwa-border-focus);
-    outline-offset: -2px;
+    outline-offset: var(--diwa-focus-ring-offset);
   }
 
   .trigger__reset:focus:not(:focus-visible) {

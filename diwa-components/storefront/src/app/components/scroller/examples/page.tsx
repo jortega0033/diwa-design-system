@@ -31,7 +31,7 @@ function FilterableTagsDemo() {
         placeholder="Filter tags…"
         value={filter}
         onChange={(e) => setFilter((e.target as HTMLInputElement).value)}
-        className="w-full max-w-xs px-3 py-1.5 rounded border border-[var(--diwa-border)] bg-[var(--diwa-bg-input)] text-sm text-[var(--diwa-text-primary)] placeholder:text-[var(--diwa-text-secondary)] outline-none focus-visible:ring-2 focus-visible:ring-[var(--diwa-border-focus)]"
+        className="w-full max-w-xs px-3 py-1.5 rounded border border-[var(--diwa-border)] bg-[var(--diwa-bg-input)] text-sm text-[var(--diwa-text-primary)] placeholder:text-[var(--diwa-text-secondary)]"
       />
       <diwa-scroller>
         <div style={{ display: 'flex', gap: '8px', padding: '4px 2px' }}>

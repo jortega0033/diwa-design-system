@@ -26,7 +26,6 @@ export type Theme = 'light' | 'dark';
  * @param selector — CSS selector for the inner interactive element (e.g. '.inner')
  */
 export const getFocusStyle = (selector: string): string => `
-  :host(:focus-visible) ${selector},
   ${selector}:focus-visible {
     outline: var(--diwa-focus-ring-width) solid var(--diwa-border-focus);
     outline-offset: var(--diwa-focus-ring-offset);
