@@ -69,9 +69,9 @@ export function CodeBlock({ frameworkCode, visible, onToggle }: CodeBlockProps) 
   return (
     <div>
       {/* Tab bar — always visible */}
-      <div className="flex flex-wrap items-center border-t border-[var(--diwa-border)] bg-[var(--diwa-sf-shell-panel)]">
+      <div className="flex flex-nowrap items-center border-t border-[var(--diwa-border)] bg-[var(--diwa-sf-shell-panel)]">
         {/* Framework tabs */}
-        <div className="order-1 basis-full min-w-0 overflow-x-auto">
+        <div className="min-w-0 flex-1 overflow-x-auto">
           <div className="flex items-end min-w-max">
             {FRAMEWORKS.map(({ id, label }) => {
               const isActive = framework === id;
@@ -80,7 +80,7 @@ export function CodeBlock({ frameworkCode, visible, onToggle }: CodeBlockProps) 
                   key={id}
                   onClick={() => selectFramework(id)}
                   className={[
-                    'px-4 py-2.5 min-h-[var(--diwa-button-height)] text-xs font-medium border-b-2 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)] whitespace-nowrap',
+                    'px-4 py-2.5 min-h-[var(--diwa-button-height)] text-xs font-medium border-b-2 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)] whitespace-nowrap cursor-pointer',
                     isActive
                       ? 'border-[var(--diwa-accent)] text-[var(--diwa-accent)] bg-[var(--diwa-sf-shell-main)]'
                       : 'border-transparent text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)]',
@@ -94,17 +94,17 @@ export function CodeBlock({ frameworkCode, visible, onToggle }: CodeBlockProps) 
         </div>
 
         {/* Actions */}
-        <div className="order-2 w-full sm:w-auto flex items-center justify-end gap-1 px-2 py-1 border-t border-[var(--diwa-border)] sm:border-t-0 sm:ml-auto">
+        <div className="ml-auto shrink-0 flex items-center justify-end gap-1 px-2 py-1">
           <button
             onClick={handleCopy}
-            className="px-3 py-2 min-h-[var(--diwa-button-height)] text-xs font-medium rounded text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)] hover:bg-[var(--diwa-bg-hover)] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
+            className="px-3 py-2 min-h-[var(--diwa-button-height)] text-xs font-medium rounded text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)] hover:bg-[var(--diwa-bg-hover)] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)] cursor-pointer"
             aria-label="Copy code"
           >
             {copied ? '✓ Copied' : 'Copy'}
           </button>
           <button
             onClick={onToggle}
-            className="px-3 py-2 min-h-[var(--diwa-button-height)] text-xs font-medium rounded text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)] hover:bg-[var(--diwa-bg-hover)] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)]"
+            className="px-3 py-2 min-h-[var(--diwa-button-height)] text-xs font-medium rounded text-[var(--diwa-text-secondary)] hover:text-[var(--diwa-text-primary)] hover:bg-[var(--diwa-bg-hover)] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--diwa-border-focus)] cursor-pointer"
             aria-expanded={visible}
           >
             {visible ? '▲ Hide' : '▼ Show'}

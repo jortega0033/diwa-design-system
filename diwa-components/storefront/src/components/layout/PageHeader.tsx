@@ -35,7 +35,7 @@ export function PageHeader({ title, description, tabs }: Props) {
       )}
 
       <nav
-        className="border-b border-[var(--diwa-border)] mb-8 overflow-x-auto"
+        className="border-b border-[var(--diwa-border)] mb-8 overflow-x-auto overflow-y-hidden"
         aria-label="Component page tabs"
       >
         <div className="flex min-w-max">

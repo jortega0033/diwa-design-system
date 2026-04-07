@@ -254,7 +254,7 @@ function PropControl({
           <Toggle id={controlId} checked={Boolean(value)} onChange={(v) => onChange(def.name, v)} />
         </div>
         {helperText && (
-          <p className="text-[11px] text-[var(--diwa-text-tertiary)] leading-tight">
+          <p className="text-xs text-[var(--diwa-text-tertiary)] leading-relaxed">
             {helperText}
           </p>
         )}
@@ -484,7 +484,7 @@ export function ConfiguratorControls({ propDefinitions, storyState, setStoryStat
               onChange={update}
             />
             {def.description && !usesControlDescription && def.type !== 'boolean' && (
-              <p className="mt-1 text-[11px] text-[var(--diwa-text-tertiary)] leading-tight">
+              <p className="mt-1 text-xs text-[var(--diwa-text-tertiary)] leading-relaxed">
                 {def.description}
               </p>
             )}
