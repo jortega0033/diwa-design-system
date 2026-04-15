@@ -174,12 +174,20 @@ export class DiwaSelect {
     // slotchange events are composed:false and never reach the host in shadow DOM.
     // Use a MutationObserver on the host's light DOM children to detect option additions/removals.
     this.childObserver = new MutationObserver(() => this.handleChildrenChanged());
-    this.childObserver.observe(this.host, { childList: true, subtree: true });
+    this.childObserver.observe(this.host, { childList: true, subtree: true, characterData: true });
   }
 
   disconnectedCallback(): void {
     document.removeEventListener('mousedown', this.onClickOutside, true);
     this.childObserver?.disconnect();
+  }
+
+  componentWillLoad(): void {
+    // Pre-collect options so trigger text can resolve selected labels on first paint.
+    this.collectOptions();
+    this.syncSelectionFromValue();
+    this.syncChildThemes();
+    this.syncChildCompact();
   }
 
   componentDidLoad(): void {
@@ -414,6 +422,12 @@ export class DiwaSelect {
     return text.length > 0 ? text : undefined;
   }
 
+  private getTriggerDisplayLabel(): string | undefined {
+    const hasValue = this.value !== undefined && this.value !== '';
+    if (!hasValue) return undefined;
+    return this.selectedLabel;
+  }
+
   // ──────────────────────────────────────────────────────────────
   // Render
   // ──────────────────────────────────────────────────────────────
@@ -423,8 +437,7 @@ export class DiwaSelect {
     const listboxId = `${this.internalId}-listbox`;
     const hintId = `${this.internalId}-hint`;
     const hasMessage = !!this.message;
-    const hasValue = this.value !== undefined && this.value !== '';
-    const displayLabel = hasValue ? (this.selectedLabel ?? this.value) : undefined;
+    const displayLabel = this.getTriggerDisplayLabel();
 
     return (
       <Host data-theme={this.theme}>
