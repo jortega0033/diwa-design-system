@@ -1,18 +1,27 @@
-import { Component, Element, Event, EventEmitter, Host, Prop, State, h } from '@stencil/core';
-import { createInputInstanceId } from '../diwa-input/id';
+import { Component, Element, Event, EventEmitter, Prop, State } from '@stencil/core';
 import type { InputFieldState } from '../diwa-input/types';
 import type { Theme } from '../../utils/styles';
+import {
+  type InputVariantHost,
+  getInputVariantIds,
+  getSharedInputAttrs,
+  handleBlurEvent,
+  handleChangeEvent,
+  handleFocusEvent,
+  handleInputEvent,
+  initializeInputVariantSlots,
+  renderInputVariantShell,
+} from '../diwa-input/input-variant-shared';
 import { getComponentCss } from './diwa-input-date-styles';
 
 @Component({
   tag: 'diwa-input-date',
   shadow: { delegatesFocus: true },
 })
-export class DiwaInputDate {
+export class DiwaInputDate implements InputVariantHost {
   @Element() el!: HTMLElement;
-  @State() private _hasStart = false;
-  @State() private _hasEnd = false;
-  private readonly _instanceId = createInputInstanceId('diwa-input-date');
+  @State() _hasStart = false;
+  @State() _hasEnd = false;
 
   @Prop() label: string = '';
   @Prop() description: string = '';
@@ -29,9 +38,7 @@ export class DiwaInputDate {
   @Prop() autoComplete?: string;
   @Prop() theme: Theme = 'dark';
 
-  /** ISO 8601 date string (YYYY-MM-DD) for the minimum allowed date. */
   @Prop() min?: string;
-  /** ISO 8601 date string (YYYY-MM-DD) for the maximum allowed date. */
   @Prop() max?: string;
 
   @Event({ bubbles: true }) change!: EventEmitter<string>;
@@ -40,74 +47,31 @@ export class DiwaInputDate {
   @Event({ bubbles: false }) focus!: EventEmitter<FocusEvent>;
 
   connectedCallback(): void {
-    this._hasStart = !!this.el.querySelector('[slot="start"]');
-    this._hasEnd = !!this.el.querySelector('[slot="end"]');
+    initializeInputVariantSlots(this);
   }
 
-  private handleInput = (e: Event): void => {
-    this.value = (e.target as HTMLInputElement).value;
-    this.input.emit(this.value);
-  };
-
-  private handleChange = (e: Event): void => {
-    this.value = (e.target as HTMLInputElement).value;
-    this.change.emit(this.value);
-  };
-
-  private handleBlur = (e: FocusEvent): void => { this.blur.emit(e); };
-  private handleFocus = (e: FocusEvent): void => { this.focus.emit(e); };
+  private handleInput = (e: Event): void => handleInputEvent(this, e);
+  private handleChange = (e: Event): void => handleChangeEvent(this, e);
+  private handleBlur = (e: FocusEvent): void => handleBlurEvent(this, e);
+  private handleFocus = (e: FocusEvent): void => handleFocusEvent(this, e);
 
   render() {
-    const inputId = `${this._instanceId}-input`;
-    const descId = `${this._instanceId}-desc`;
-    const msgId = `${this._instanceId}-msg`;
+    const ids = getInputVariantIds(this, 'diwa-input-date');
+    const sharedAttrs = getSharedInputAttrs(this, ids);
 
-    return (
-      <Host data-theme={this.theme}>
-        <style innerHTML={getComponentCss(this.state, this.disabled, this.readonly, this.compact, this._hasStart, this._hasEnd, false)} />
-        <div class="root">
-          {!this.hideLabel && this.label && (
-            <div class="label-row">
-              <label class="label" htmlFor={inputId}>
-                {this.label}
-                {this.required && <span class="required" aria-hidden="true"> *</span>}
-              </label>
-              <slot name="label-after" />
-            </div>
-          )}
-          <div class="input-wrapper">
-            {this._hasStart && <div class="slot-start"><slot name="start" /></div>}
-            <input
-              id={inputId}
-              class="input"
-              type="date"
-              name={this.name || undefined}
-              value={this.value}
-              disabled={this.disabled}
-              required={this.required}
-              readOnly={this.readonly}
-              min={this.min}
-              max={this.max}
-              autocomplete={this.autoComplete}
-              aria-label={this.hideLabel && this.label ? this.label : undefined}
-              aria-invalid={this.state === 'error' ? 'true' : undefined}
-              aria-required={this.required ? 'true' : undefined}
-              aria-describedby={this.message ? msgId : this.description ? descId : undefined}
-              onInput={this.handleInput}
-              onChange={this.handleChange}
-              onBlur={this.handleBlur}
-              onFocus={this.handleFocus}
-            />
-            {this._hasEnd && <div class="slot-end"><slot name="end" /></div>}
-          </div>
-          {!this.message && this.description && (
-            <p id={descId} class="description">{this.description}</p>
-          )}
-          {this.message && (
-            <p id={msgId} class="message">{this.message}</p>
-          )}
-        </div>
-      </Host>
-    );
+    return renderInputVariantShell(this, {
+      ids,
+      type: 'date',
+      styleText: getComponentCss(this.state, this.disabled, this.readonly, this.compact, this._hasStart, this._hasEnd, false),
+      inputAttrs: {
+        ...sharedAttrs,
+        min: this.min,
+        max: this.max,
+      },
+      onInput: this.handleInput,
+      onChange: this.handleChange,
+      onBlur: this.handleBlur,
+      onFocus: this.handleFocus,
+    });
   }
 }

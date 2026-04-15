@@ -887,17 +887,11 @@ export namespace Components {
           * @default ''
          */
         "label": string;
-        /**
-          * ISO 8601 date string (YYYY-MM-DD) for the maximum allowed date.
-         */
         "max"?: string;
         /**
           * @default ''
          */
         "message": string;
-        /**
-          * ISO 8601 date string (YYYY-MM-DD) for the minimum allowed date.
-         */
         "min"?: string;
         /**
           * @default ''
@@ -1005,17 +999,11 @@ export namespace Components {
           * @default ''
          */
         "label": string;
-        /**
-          * Maximum month in YYYY-MM format.
-         */
         "max"?: string;
         /**
           * @default ''
          */
         "message": string;
-        /**
-          * Minimum month in YYYY-MM format.
-         */
         "min"?: string;
         /**
           * @default ''
@@ -1068,17 +1056,11 @@ export namespace Components {
           * @default ''
          */
         "label": string;
-        /**
-          * Maximum allowed value.
-         */
         "max"?: number;
         /**
           * @default ''
          */
         "message": string;
-        /**
-          * Minimum allowed value.
-         */
         "min"?: number;
         /**
           * @default ''
@@ -1100,9 +1082,6 @@ export namespace Components {
           * @default 'none'
          */
         "state": InputFieldState;
-        /**
-          * Step increment.
-         */
         "step"?: number;
         /**
           * @default 'dark'
@@ -1156,7 +1135,6 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * Show the eye icon button to toggle password visibility.
           * @default true
          */
         "showToggle": boolean;
@@ -1216,7 +1194,6 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * Show the clear (×) button when the field has a value.
           * @default true
          */
         "showClearButton": boolean;
@@ -1368,17 +1345,11 @@ export namespace Components {
           * @default ''
          */
         "label": string;
-        /**
-          * Maximum time in HH:MM format.
-         */
         "max"?: string;
         /**
           * @default ''
          */
         "message": string;
-        /**
-          * Minimum time in HH:MM format.
-         */
         "min"?: string;
         /**
           * @default ''
@@ -1400,9 +1371,6 @@ export namespace Components {
           * @default 'none'
          */
         "state": InputFieldState;
-        /**
-          * Step in seconds.
-         */
         "step"?: number;
         /**
           * @default 'dark'
@@ -1490,17 +1458,11 @@ export namespace Components {
           * @default ''
          */
         "label": string;
-        /**
-          * Maximum week in YYYY-Www format (e.g. 2024-W52).
-         */
         "max"?: string;
         /**
           * @default ''
          */
         "message": string;
-        /**
-          * Minimum week in YYYY-Www format (e.g. 2024-W01).
-         */
         "min"?: string;
         /**
           * @default ''
@@ -5209,17 +5171,11 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
-        /**
-          * ISO 8601 date string (YYYY-MM-DD) for the maximum allowed date.
-         */
         "max"?: string;
         /**
           * @default ''
          */
         "message"?: string;
-        /**
-          * ISO 8601 date string (YYYY-MM-DD) for the minimum allowed date.
-         */
         "min"?: string;
         /**
           * @default ''
@@ -5335,17 +5291,11 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
-        /**
-          * Maximum month in YYYY-MM format.
-         */
         "max"?: string;
         /**
           * @default ''
          */
         "message"?: string;
-        /**
-          * Minimum month in YYYY-MM format.
-         */
         "min"?: string;
         /**
           * @default ''
@@ -5402,17 +5352,11 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
-        /**
-          * Maximum allowed value.
-         */
         "max"?: number;
         /**
           * @default ''
          */
         "message"?: string;
-        /**
-          * Minimum allowed value.
-         */
         "min"?: number;
         /**
           * @default ''
@@ -5438,9 +5382,6 @@ declare namespace LocalJSX {
           * @default 'none'
          */
         "state"?: InputFieldState;
-        /**
-          * Step increment.
-         */
         "step"?: number;
         /**
           * @default 'dark'
@@ -5498,7 +5439,6 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
-          * Show the eye icon button to toggle password visibility.
           * @default true
          */
         "showToggle"?: boolean;
@@ -5562,7 +5502,6 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
-          * Show the clear (×) button when the field has a value.
           * @default true
          */
         "showClearButton"?: boolean;
@@ -5722,17 +5661,11 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
-        /**
-          * Maximum time in HH:MM format.
-         */
         "max"?: string;
         /**
           * @default ''
          */
         "message"?: string;
-        /**
-          * Minimum time in HH:MM format.
-         */
         "min"?: string;
         /**
           * @default ''
@@ -5758,9 +5691,6 @@ declare namespace LocalJSX {
           * @default 'none'
          */
         "state"?: InputFieldState;
-        /**
-          * Step in seconds.
-         */
         "step"?: number;
         /**
           * @default 'dark'
@@ -5852,17 +5782,11 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
-        /**
-          * Maximum week in YYYY-Www format (e.g. 2024-W52).
-         */
         "max"?: string;
         /**
           * @default ''
          */
         "message"?: string;
-        /**
-          * Minimum week in YYYY-Www format (e.g. 2024-W01).
-         */
         "min"?: string;
         /**
           * @default ''
