@@ -16,7 +16,9 @@ export default function MultiSelectAccessibilityPage() {
             { key: 'Home', action: 'Move keyboard highlight to the first visible option.' },
             { key: 'End', action: 'Move keyboard highlight to the last visible option.' },
             { key: 'Enter / Space', action: 'Toggle the currently highlighted option.' },
-            { key: 'Escape / Tab', action: 'Close the dropdown and return focus to the trigger.' },
+            { key: 'Tab (open state)', action: 'Close the dropdown, then continue to the next focus target via native browser Tab order.' },
+            { key: 'Shift + Tab (open state)', action: 'Close the dropdown, then continue to the previous focus target via native browser Tab order.' },
+            { key: 'Escape (open state)', action: 'Close the dropdown and restore focus to the trigger.' },
           ]}
         />
       </Section>
@@ -44,9 +46,9 @@ export default function MultiSelectAccessibilityPage() {
       <Section title="Focus management">
         <p className="text-sm text-[var(--diwa-text-secondary)] leading-relaxed">
           When the dropdown opens, focus moves automatically to the filter input so users can type immediately.
-          Keyboard navigation highlights options — each highlighted option receives focus via{' '}
-          <code className="font-mono text-xs bg-[var(--diwa-bg-surface)] px-1.5 py-0.5 rounded">setFocus()</code>.
-          When the dropdown closes (Escape, Tab, or click-outside), focus returns to the trigger.
+          Keyboard navigation updates the highlighted option while users stay in the input/filter workflow.
+          When the dropdown closes via Escape, focus returns to the trigger. In open state,
+          Tab and Shift + Tab close the dropdown and continue with native browser focus progression.
           The reset (✕) button is reachable by Tab when a selection exists.
         </p>
       </Section>
@@ -67,7 +69,7 @@ export default function MultiSelectAccessibilityPage() {
             {
               criterion: '2.1.1 Keyboard — A',
               status: 'Pass',
-              detail: 'Full keyboard navigation: Tab opens, arrow keys navigate options, Enter/Space toggles selection, Escape closes. The filter input and reset button are also keyboard-operable.',
+              detail: 'Full keyboard navigation: Enter/Space/Arrow keys open and navigate options, Enter/Space toggles selection, Escape closes with trigger focus restore, and Tab/Shift + Tab close while preserving native focus order. The filter input and reset button are also keyboard-operable.',
             },
             {
               criterion: '2.4.7 Focus Visible — AA',

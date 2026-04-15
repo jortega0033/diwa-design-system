@@ -383,11 +383,15 @@ export class DiwaSelect {
     }
 
     switch (e.key) {
-      case 'Escape':
-      case 'Tab': {
+      case 'Escape': {
         e.preventDefault();
         this.isOpen = false;
         this.triggerEl.focus();
+        break;
+      }
+      case 'Tab': {
+        // Allow native focus traversal to avoid keyboard traps.
+        this.isOpen = false;
         break;
       }
       case 'ArrowDown': {
@@ -425,6 +429,22 @@ export class DiwaSelect {
         }
         break;
       }
+    }
+  };
+
+  private onListboxKeyDown = (e: KeyboardEvent): void => {
+    if (this.disabled || !this.isOpen) return;
+
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      this.isOpen = false;
+      this.triggerEl.focus();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      // Do not cancel Tab in popup content; close and let focus leave the widget.
+      this.isOpen = false;
     }
   };
 
@@ -518,6 +538,7 @@ export class DiwaSelect {
           id={listboxId}
           aria-multiselectable="false"
           aria-labelledby={this.label ? labelId : undefined}
+          onKeyDown={this.onListboxKeyDown}
           part="dropdown"
         >
           {/* Filter */}
@@ -528,6 +549,7 @@ export class DiwaSelect {
               placeholder="Filter options…"
               aria-label="Filter options"
               onInput={this.onFilterInput}
+              onKeyDown={this.onTriggerKeyDown}
               ref={(el) => (this.filterInputEl = el as HTMLInputElement)}
               part="filter-input"
             />
