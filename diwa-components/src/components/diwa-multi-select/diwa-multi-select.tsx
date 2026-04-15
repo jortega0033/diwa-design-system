@@ -355,11 +355,15 @@ export class DiwaMultiSelect {
     }
 
     switch (e.key) {
-      case 'Escape':
-      case 'Tab': {
+      case 'Escape': {
         e.preventDefault();
         this.isOpen = false;
         this.triggerEl.focus();
+        break;
+      }
+      case 'Tab': {
+        // Do not trap focus for non-modal dropdowns.
+        this.isOpen = false;
         break;
       }
       case 'ArrowDown': {
@@ -397,6 +401,22 @@ export class DiwaMultiSelect {
         }
         break;
       }
+    }
+  };
+
+  private onListboxKeyDown = (e: KeyboardEvent): void => {
+    if (this.disabled || !this.isOpen) return;
+
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      this.isOpen = false;
+      this.triggerEl.focus();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      // Close and allow native Tab / Shift+Tab focus progression.
+      this.isOpen = false;
     }
   };
 
@@ -519,6 +539,7 @@ export class DiwaMultiSelect {
           role="dialog"
           aria-label={this.label}
           aria-hidden={this.isOpen ? undefined : 'true'}
+          onKeyDown={this.onListboxKeyDown}
           part="dropdown"
         >
           {/* Filter */}

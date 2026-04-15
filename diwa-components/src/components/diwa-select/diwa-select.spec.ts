@@ -52,6 +52,28 @@ describe('diwa-select component', () => {
     expect((s as any).triggerEl.focus).toHaveBeenCalled();
   });
 
+  it('onListboxKeyDown closes on Tab without preventDefault and closes on Escape with focus restore', () => {
+    const s = new DiwaSelect();
+    const focus = vi.fn();
+
+    (s as any).isOpen = true;
+    (s as any).triggerEl = { focus } as unknown as HTMLDivElement;
+
+    const tabEvent = { key: 'Tab', preventDefault: vi.fn() } as unknown as KeyboardEvent;
+    (s as any).onListboxKeyDown(tabEvent);
+    expect((s as any).isOpen).toBe(false);
+    expect((tabEvent as any).preventDefault).not.toHaveBeenCalled();
+    expect(focus).not.toHaveBeenCalled();
+
+    (s as any).isOpen = true;
+
+    const escapeEvent = { key: 'Escape', preventDefault: vi.fn() } as unknown as KeyboardEvent;
+    (s as any).onListboxKeyDown(escapeEvent);
+    expect((s as any).isOpen).toBe(false);
+    expect((escapeEvent as any).preventDefault).toHaveBeenCalled();
+    expect(focus).toHaveBeenCalledTimes(1);
+  });
+
   it('uses selected option label for preselected value on initial lifecycle sync', () => {
     const s = new DiwaSelect();
     s.value = 'apple';

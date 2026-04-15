@@ -16,7 +16,9 @@ export default function SelectAccessibilityPage() {
             { key: 'Home', action: 'Move keyboard highlight to the first visible option.' },
             { key: 'End', action: 'Move keyboard highlight to the last visible option.' },
             { key: 'Enter / Space', action: 'Select the highlighted option and close the dropdown.' },
-            { key: 'Escape / Tab', action: 'Close the dropdown without changing the selection.' },
+            { key: 'Tab (open state)', action: 'Close the dropdown without changing the selection, then continue to the next focus target via native browser Tab order.' },
+            { key: 'Shift + Tab (open state)', action: 'Close the dropdown without changing the selection, then continue to the previous focus target via native browser Tab order.' },
+            { key: 'Escape (open state)', action: 'Close the dropdown without changing the selection and restore focus to the trigger.' },
           ]}
         />
       </Section>
@@ -44,7 +46,8 @@ export default function SelectAccessibilityPage() {
       <Section title="Focus management">
         <p className="text-sm text-[var(--diwa-text-secondary)] leading-relaxed">
           When the dropdown opens, focus moves to the filter input. Selecting an option closes the dropdown
-          and returns focus to the trigger automatically. Escape and Tab also return focus to the trigger.
+          and returns focus to the trigger automatically. In open state, Tab closes and follows native browser
+          focus progression, while Escape closes and restores focus to the trigger.
         </p>
       </Section>
 
@@ -64,7 +67,7 @@ export default function SelectAccessibilityPage() {
             {
               criterion: '2.1.1 Keyboard — A',
               status: 'Pass',
-              detail: 'Full keyboard navigation: Tab opens, arrow keys highlight options, Enter/Space selects, Escape closes without selection change.',
+              detail: 'Full keyboard navigation: Enter/Space/Arrow keys open and navigate options, Enter/Space selects, Escape closes with trigger focus restore, and Tab/Shift + Tab close while preserving native focus order.',
             },
             {
               criterion: '2.4.7 Focus Visible — AA',

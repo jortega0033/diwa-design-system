@@ -11,7 +11,7 @@ describe('diwa-select interactions', () => {
     expect((s as any).isOpen).toBe(false);
   });
 
-  it('onTriggerKeyDown opens on ArrowDown and closes on Escape', () => {
+  it('onTriggerKeyDown opens on ArrowDown and closes on Escape with focus restoration', () => {
     const s = new DiwaSelect();
     const evOpen = { key: 'ArrowDown', preventDefault: vi.fn() } as unknown as KeyboardEvent;
     (s as any).isOpen = false;
@@ -25,5 +25,20 @@ describe('diwa-select interactions', () => {
     expect((evClose as any).preventDefault).toHaveBeenCalled();
     expect((s as any).isOpen).toBe(false);
     expect((s as any).triggerEl.focus).toHaveBeenCalled();
+  });
+
+  it('onTriggerKeyDown closes on Tab without preventDefault or refocusing trigger', () => {
+    const s = new DiwaSelect();
+    const focus = vi.fn();
+    const evTab = { key: 'Tab', preventDefault: vi.fn() } as unknown as KeyboardEvent;
+
+    (s as any).isOpen = true;
+    (s as any).triggerEl = { focus } as unknown as HTMLDivElement;
+
+    (s as any).onTriggerKeyDown(evTab);
+
+    expect((s as any).isOpen).toBe(false);
+    expect((evTab as any).preventDefault).not.toHaveBeenCalled();
+    expect(focus).not.toHaveBeenCalled();
   });
 });
