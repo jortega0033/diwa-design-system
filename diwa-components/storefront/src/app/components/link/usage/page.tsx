@@ -49,12 +49,30 @@ export default function LinkUsagePage() {
 <diwa-link href="/report.pdf" download icon="download">Download report</diwa-link>`} />
       </Section>
 
-      <Section title="Compact">
+      <Section title="Sizes">
         <p className="text-sm text-[var(--diwa-text-secondary)] mb-4">
-          Use <Code>compact</Code> to enable dense mode and reduce link size in tables, metadata
-          blocks, or sidebars.
+          Use <Code>size</Code> to control density: <Code>xs</Code> for tight metadata rows,
+          <Code>sm</Code> for dense layouts, <Code>md</Code> as the default, and <Code>lg</Code>{' '}
+          for emphasis.
         </p>
-        <CodeSnippet code={`<diwa-link href="/details" compact>View details</diwa-link>`} />
+        <CodeSnippet code={`<diwa-link href="/details" size="xs">View details</diwa-link>
+<diwa-link href="/details" size="sm">View details</diwa-link>
+<diwa-link href="/details">View details</diwa-link>
+<diwa-link href="/details" size="lg">View details</diwa-link>`} />
+      </Section>
+
+      <Section title="Migration from compact">
+        <p className="text-sm text-[var(--diwa-text-secondary)] mb-4">
+          The legacy <Code>compact</Code> prop has been removed.
+        </p>
+        <CodeSnippet code={`<!-- Before -->
+<diwa-link href="/details" compact>View details</diwa-link>
+
+<!-- After -->
+<diwa-link href="/details" size="sm">View details</diwa-link>
+
+<!-- Default replaces compact={false} -->
+<diwa-link href="/details">View details</diwa-link>`} />
       </Section>
 
       <Section title="External links">

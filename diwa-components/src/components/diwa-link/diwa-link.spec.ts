@@ -11,4 +11,14 @@ describe('diwa-link', () => {
     const c = new DiwaLink();
     expect(c.icon).toBe('none');
   });
+
+  it('uses md as the default size', () => {
+    const c = new DiwaLink();
+    expect(c.size).toBe('md');
+  });
+
+  it('does not expose compact prop', () => {
+    const c = new DiwaLink() as any;
+    expect(c.compact).toBeUndefined();
+  });
 });

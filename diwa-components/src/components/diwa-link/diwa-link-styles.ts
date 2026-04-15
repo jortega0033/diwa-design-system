@@ -121,14 +121,6 @@ export const getComponentCss = (): string => `
     transform: translateY(1px);
   }
 
-  /* ── Compact ────────────────────────────────────────────────────────── */
-
-  :host([compact]) .inner {
-    height: var(--diwa-button-height-sm, 32px);
-    padding: 0 var(--diwa-button-padding-x-sm, 10px);
-    font-size: var(--diwa-font-size-md);
-  }
-
   /* ── Size: sm ───────────────────────────────────────────────────────── */
 
   :host([size="sm"]) .inner {
@@ -189,10 +181,6 @@ export const getComponentCss = (): string => `
   :host([hide-label]) .inner {
     width: var(--diwa-button-height, 40px);
     padding: 0;
-  }
-
-  :host([hide-label][compact]) .inner {
-    width: var(--diwa-button-height-sm, 32px);
   }
 
   :host([hide-label][size="sm"]) .inner {

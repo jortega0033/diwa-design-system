@@ -10,7 +10,7 @@ export const linkStory: Story<'diwa-link'> = {
       href: '#',
       target: '_self',
       hideLabel: false,
-      compact: false,
+      size: 'md',
       theme: 'dark',
       label: 'Some label',
     },
@@ -71,11 +71,12 @@ export const linkStoryDisabled: Story<'diwa-link'> = {
   ],
 };
 
-export const linkStoryCompact: Story<'diwa-link'> = {
+export const linkStorySizes: Story<'diwa-link'> = {
   generator: () => [
-    { tag: 'diwa-link' as const, properties: { variant: 'primary', href: '#', compact: true }, children: ['Compact Primary'] },
-    { tag: 'diwa-link' as const, properties: { variant: 'secondary', href: '#', compact: true }, children: ['Compact Secondary'] },
-    { tag: 'diwa-link' as const, properties: { variant: 'ghost', href: '#', compact: true }, children: ['Compact Ghost'] },
+    { tag: 'diwa-link' as const, properties: { variant: 'primary', href: '#', size: 'xs' }, children: ['Extra Small'] },
+    { tag: 'diwa-link' as const, properties: { variant: 'primary', href: '#', size: 'sm' }, children: ['Small'] },
+    { tag: 'diwa-link' as const, properties: { variant: 'primary', href: '#', size: 'md' }, children: ['Medium'] },
+    { tag: 'diwa-link' as const, properties: { variant: 'primary', href: '#', size: 'lg' }, children: ['Large'] },
   ],
 };
 
@@ -86,7 +87,7 @@ export const linkPropDefinitions: PropDefinition[] = [
   { name: 'href', type: 'string', defaultValue: '#', description: 'URL the link navigates to' },
   { name: 'target', type: 'select', options: ['_self', '_blank', '_parent', '_top'], defaultValue: '_self', description: 'Anchor target for navigation' },
   { name: 'hideLabel', type: 'boolean', defaultValue: false, description: 'Hide visible label while keeping it accessible' },
-  { name: 'compact', type: 'boolean', defaultValue: false, description: 'Use compact spacing for inline layout' },
+  { name: 'size', type: 'select', options: ['xs', 'sm', 'md', 'lg'], defaultValue: 'md', description: 'Size scale for link text and icon' },
   { name: 'disabled', type: 'boolean', defaultValue: false, description: 'Disable interaction and apply muted styling' },
   { name: 'theme', type: 'select', options: ['dark', 'light'], defaultValue: 'dark', description: 'Visual theme for the preview' },
 ];

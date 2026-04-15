@@ -19,10 +19,14 @@ export default function LinkApiPage() {
             [<Code key="rel">rel</Code>, <Code key="t">string</Code>, <Code key="d">undefined</Code>, 'Relationship of the target. Defaults to noopener noreferrer when target="_blank".'],
             [<Code key="icon">icon</Code>, <Code key="t">string</Code>, <Code key="d">&apos;none&apos;</Code>, 'Lucide icon name (kebab-case), or "none" to hide icon.'],
             [<Code key="hide-label">hideLabel</Code>, <Code key="t">boolean</Code>, <Code key="d">false</Code>, 'Visually hides the label (icon-only mode). Always pair with label.'],
-            [<Code key="compact">compact</Code>, <Code key="t">boolean</Code>, <Code key="d">false</Code>, 'Enables dense mode with a smaller font size.'],
+            [<Code key="size">size</Code>, <Code key="t">&apos;xs&apos; | &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;</Code>, <Code key="d">&apos;md&apos;</Code>, 'Controls link size and icon scale.'],
             [<Code key="label">label</Code>, <Code key="t">string</Code>, <Code key="d">undefined</Code>, 'Accessible aria-label for icon-only usage.'],
           ]}
         />
+        <p className="text-sm text-[var(--diwa-text-secondary)] mt-4">
+          Migration: replace legacy <Code>compact</Code> usage with <Code>size="sm"</Code>.
+          Omitted size uses the <Code>md</Code> default.
+        </p>
       </Section>
 
       <Section title="Events">
