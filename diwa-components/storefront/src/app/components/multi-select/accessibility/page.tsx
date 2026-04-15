@@ -46,8 +46,7 @@ export default function MultiSelectAccessibilityPage() {
       <Section title="Focus management">
         <p className="text-sm text-[var(--diwa-text-secondary)] leading-relaxed">
           When the dropdown opens, focus moves automatically to the filter input so users can type immediately.
-          Keyboard navigation highlights options — each highlighted option receives focus via{' '}
-          <code className="font-mono text-xs bg-[var(--diwa-bg-surface)] px-1.5 py-0.5 rounded">setFocus()</code>.
+          Keyboard navigation updates the highlighted option while users stay in the input/filter workflow.
           When the dropdown closes via Escape, focus returns to the trigger. In open state,
           Tab and Shift + Tab close the dropdown and continue with native browser focus progression.
           The reset (✕) button is reachable by Tab when a selection exists.

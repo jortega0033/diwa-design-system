@@ -67,6 +67,14 @@ describe('diwa-select component', () => {
 
     (s as any).isOpen = true;
 
+    const shiftTabEvent = { key: 'Tab', shiftKey: true, preventDefault: vi.fn() } as unknown as KeyboardEvent;
+    (s as any).onListboxKeyDown(shiftTabEvent);
+    expect((s as any).isOpen).toBe(false);
+    expect((shiftTabEvent as any).preventDefault).not.toHaveBeenCalled();
+    expect(focus).not.toHaveBeenCalled();
+
+    (s as any).isOpen = true;
+
     const escapeEvent = { key: 'Escape', preventDefault: vi.fn() } as unknown as KeyboardEvent;
     (s as any).onListboxKeyDown(escapeEvent);
     expect((s as any).isOpen).toBe(false);

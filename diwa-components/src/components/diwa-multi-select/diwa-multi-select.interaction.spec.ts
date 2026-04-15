@@ -89,6 +89,14 @@ describe('diwa-multi-select interactions', () => {
 
     (ms as any).isOpen = true;
 
+    const shiftTabEvent = { key: 'Tab', shiftKey: true, preventDefault: vi.fn() } as unknown as KeyboardEvent;
+    (ms as any).onListboxKeyDown(shiftTabEvent);
+    expect((ms as any).isOpen).toBe(false);
+    expect((shiftTabEvent as any).preventDefault).not.toHaveBeenCalled();
+    expect(focus).not.toHaveBeenCalled();
+
+    (ms as any).isOpen = true;
+
     const escapeEvent = { key: 'Escape', preventDefault: vi.fn() } as unknown as KeyboardEvent;
     (ms as any).onListboxKeyDown(escapeEvent);
     expect((ms as any).isOpen).toBe(false);

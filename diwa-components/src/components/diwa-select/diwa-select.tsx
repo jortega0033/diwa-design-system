@@ -549,6 +549,7 @@ export class DiwaSelect {
               placeholder="Filter options…"
               aria-label="Filter options"
               onInput={this.onFilterInput}
+              onKeyDown={this.onTriggerKeyDown}
               ref={(el) => (this.filterInputEl = el as HTMLInputElement)}
               part="filter-input"
             />
