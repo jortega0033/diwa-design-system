@@ -1,4 +1,5 @@
 import { Component, Element, Event, EventEmitter, Host, Prop, State, h } from '@stencil/core';
+import { createInputInstanceId } from '../diwa-input/id';
 import type { InputFieldState } from '../diwa-input/types';
 import type { Theme } from '../../utils/styles';
 import { getComponentCss } from './diwa-input-search-styles';
@@ -11,6 +12,7 @@ export class DiwaInputSearch {
   @Element() el!: HTMLElement;
   @State() private _hasStart = false;
   @State() private _hasEnd = false;
+  private readonly _instanceId = createInputInstanceId('diwa-input-search');
 
   @Prop() label: string = '';
   @Prop() description: string = '';
@@ -60,9 +62,9 @@ export class DiwaInputSearch {
   };
 
   render() {
-    const inputId = 'input';
-    const descId = 'desc';
-    const msgId = 'msg';
+    const inputId = `${this._instanceId}-input`;
+    const descId = `${this._instanceId}-desc`;
+    const msgId = `${this._instanceId}-msg`;
     const hasSuffix = this.showClearButton && !!this.value && !this.disabled && !this.readonly;
 
     return (

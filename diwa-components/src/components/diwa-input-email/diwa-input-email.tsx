@@ -1,4 +1,5 @@
 import { Component, Element, Event, EventEmitter, Host, Prop, State, h } from '@stencil/core';
+import { createInputInstanceId } from '../diwa-input/id';
 import type { InputFieldState } from '../diwa-input/types';
 import type { Theme } from '../../utils/styles';
 import { getComponentCss } from './diwa-input-email-styles';
@@ -11,6 +12,7 @@ export class DiwaInputEmail {
   @Element() el!: HTMLElement;
   @State() private _hasStart = false;
   @State() private _hasEnd = false;
+  private readonly _instanceId = createInputInstanceId('diwa-input-email');
 
   @Prop() label: string = '';
   @Prop() description: string = '';
@@ -51,9 +53,9 @@ export class DiwaInputEmail {
   private handleFocus = (e: FocusEvent): void => { this.focus.emit(e); };
 
   render() {
-    const inputId = 'input';
-    const descId = 'desc';
-    const msgId = 'msg';
+    const inputId = `${this._instanceId}-input`;
+    const descId = `${this._instanceId}-desc`;
+    const msgId = `${this._instanceId}-msg`;
 
     return (
       <Host data-theme={this.theme}>
