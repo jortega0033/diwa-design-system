@@ -172,14 +172,22 @@ export class DiwaSelect {
   connectedCallback(): void {
     document.addEventListener('mousedown', this.onClickOutside, true);
     // slotchange events are composed:false and never reach the host in shadow DOM.
-    // Use a MutationObserver on the host's light DOM children to detect option additions/removals.
-    this.childObserver = new MutationObserver(() => this.handleChildrenChanged());
-    this.childObserver.observe(this.host, { childList: true, subtree: true });
+    // Observe light DOM changes, but only react when mutations affect select options.
+    this.childObserver = new MutationObserver((records) => this.handleObservedMutations(records));
+    this.childObserver.observe(this.host, { childList: true, subtree: true, characterData: true });
   }
 
   disconnectedCallback(): void {
     document.removeEventListener('mousedown', this.onClickOutside, true);
     this.childObserver?.disconnect();
+  }
+
+  componentWillLoad(): void {
+    // Pre-collect options so trigger text can resolve selected labels on first paint.
+    this.collectOptions();
+    this.syncSelectionFromValue();
+    this.syncChildThemes();
+    this.syncChildCompact();
   }
 
   componentDidLoad(): void {
@@ -246,6 +254,37 @@ export class DiwaSelect {
     this.syncChildThemes();
     this.syncChildCompact();
     forceUpdate(this.host);
+  }
+
+  private handleObservedMutations(records: MutationRecord[]): void {
+    if (!this.hasOptionRelatedMutation(records)) return;
+    this.handleChildrenChanged();
+  }
+
+  private hasOptionRelatedMutation(records: MutationRecord[]): boolean {
+    const isOptionNode = (node: Node | null): boolean => {
+      if (!node) return false;
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node as Element;
+        return el.matches('diwa-select-option') || !!el.closest('diwa-select-option');
+      }
+      return !!node.parentElement?.closest('diwa-select-option');
+    };
+
+    return records.some((record) => {
+      if (isOptionNode(record.target)) return true;
+
+      if (record.type === 'childList') {
+        for (let i = 0; i < record.addedNodes.length; i++) {
+          if (isOptionNode(record.addedNodes.item(i))) return true;
+        }
+        for (let i = 0; i < record.removedNodes.length; i++) {
+          if (isOptionNode(record.removedNodes.item(i))) return true;
+        }
+      }
+
+      return false;
+    });
   }
 
   private syncSelectionFromValue(): void {
@@ -414,6 +453,12 @@ export class DiwaSelect {
     return text.length > 0 ? text : undefined;
   }
 
+  private getTriggerDisplayLabel(): string | undefined {
+    const hasValue = this.value !== undefined && this.value !== '';
+    if (!hasValue) return undefined;
+    return this.selectedLabel;
+  }
+
   // ──────────────────────────────────────────────────────────────
   // Render
   // ──────────────────────────────────────────────────────────────
@@ -423,8 +468,7 @@ export class DiwaSelect {
     const listboxId = `${this.internalId}-listbox`;
     const hintId = `${this.internalId}-hint`;
     const hasMessage = !!this.message;
-    const hasValue = this.value !== undefined && this.value !== '';
-    const displayLabel = hasValue ? (this.selectedLabel ?? this.value) : undefined;
+    const displayLabel = this.getTriggerDisplayLabel();
 
     return (
       <Host data-theme={this.theme}>
