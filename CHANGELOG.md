@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Breaking change: removed `compact` from `diwa-link`. Migrate `compact={true}` to `size="sm"`, and `compact={false}` (or omitted) to default `size="md"`.
+
 ## 3.1.3 - 2026-04-07
 
 - Patch release focused on focus-ring consistency and release-surface alignment.

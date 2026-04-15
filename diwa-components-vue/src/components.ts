@@ -456,7 +456,6 @@ export const DiwaLink = /*@__PURE__*/ defineContainer<JSX.DiwaLink>('diwa-link',
   'rel',
   'icon',
   'hideLabel',
-  'compact',
   'size',
   'label',
   'disabled'

@@ -47,11 +47,8 @@ export class DiwaLink {
   /** Hides the label visually (icon-only mode). Keep slot text for screen readers. */
   @Prop({ reflect: true }) hideLabel: boolean = false;
 
-  /** Compact (smaller) size variant. Kept for backward compatibility. */
-  @Prop({ reflect: true }) compact: boolean = false;
-
-  /** Size variant: xs | sm | md | lg. If omitted, `compact` maps to `sm`. */
-  @Prop({ reflect: true }) size?: LinkSize;
+  /** Size variant: xs | sm | md | lg. */
+  @Prop({ reflect: true }) size: LinkSize = "md";
 
   /** Accessible aria-label override — useful for icon-only links. */
   @Prop() label?: string;
@@ -59,13 +56,21 @@ export class DiwaLink {
   /** Disabled state. Sets aria-disabled and prevents interaction. */
   @Prop({ reflect: true }) disabled: boolean = false;
 
+  private get normalizedSize(): LinkSize {
+    return this.size === "xs" || this.size === "sm" || this.size === "md" || this.size === "lg"
+      ? this.size
+      : "md";
+  }
+
+  private get iconSize(): number {
+    const iconSizeMap: Record<LinkSize, number> = { xs: 14, sm: 16, md: 20, lg: 24 };
+    return iconSizeMap[this.normalizedSize];
+  }
+
   render() {
     const isAnchor = !!this.href;
     const Tag = isAnchor ? ("a" as any) : ("span" as any);
     const hasIcon = this.icon !== "none";
-    const resolvedSize = this.size ?? (this.compact ? 'sm' : 'md');
-    const iconSizeMap: Record<string, number> = { xs: 14, sm: 16, md: 20, lg: 24 };
-    const iconSize = iconSizeMap[resolvedSize] ?? 20;
 
     const anchorProps = isAnchor
       ? {
@@ -86,7 +91,7 @@ export class DiwaLink {
         <Tag class="inner" {...anchorProps} part="base">
           {hasIcon && (
             <span class="icon" aria-hidden="true">
-              <diwa-icon name={this.icon} size={iconSize} />
+              <diwa-icon name={this.icon} size={this.iconSize} />
             </span>
           )}
           <span

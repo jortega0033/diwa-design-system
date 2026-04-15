@@ -8,7 +8,7 @@ import {
   linkStoryDanger,
   linkStoryDisabled,
   linkStoryWithIcon,
-  linkStoryCompact,
+  linkStorySizes,
 } from '../link.stories';
 
 export default function LinkExamplesPage() {
@@ -30,8 +30,8 @@ export default function LinkExamplesPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-4">Compact</h2>
-        <ComponentStory story={linkStoryCompact} />
+        <h2 className="text-xl font-semibold mb-4">Sizes</h2>
+        <ComponentStory story={linkStorySizes} />
       </section>
 
       <section>

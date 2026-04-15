@@ -1542,11 +1542,6 @@ export namespace Components {
      */
     interface DiwaLink {
         /**
-          * Compact (smaller) size variant. Kept for backward compatibility.
-          * @default false
-         */
-        "compact": boolean;
-        /**
           * Disabled state. Sets aria-disabled and prevents interaction.
           * @default false
          */
@@ -1578,9 +1573,10 @@ export namespace Components {
          */
         "rel"?: string;
         /**
-          * Size variant: xs | sm | md | lg. If omitted, `compact` maps to `sm`.
+          * Size variant: xs | sm | md | lg.
+          * @default "md"
          */
-        "size"?: LinkSize;
+        "size": LinkSize;
         /**
           * Target attribute — where to open the linked URL.
           * @default "_self"
@@ -5908,11 +5904,6 @@ declare namespace LocalJSX {
      */
     interface DiwaLink {
         /**
-          * Compact (smaller) size variant. Kept for backward compatibility.
-          * @default false
-         */
-        "compact"?: boolean;
-        /**
           * Disabled state. Sets aria-disabled and prevents interaction.
           * @default false
          */
@@ -5944,7 +5935,8 @@ declare namespace LocalJSX {
          */
         "rel"?: string;
         /**
-          * Size variant: xs | sm | md | lg. If omitted, `compact` maps to `sm`.
+          * Size variant: xs | sm | md | lg.
+          * @default "md"
          */
         "size"?: LinkSize;
         /**
@@ -7639,7 +7631,6 @@ declare namespace LocalJSX {
         "rel": string;
         "icon": string;
         "hideLabel": boolean;
-        "compact": boolean;
         "size": LinkSize;
         "label": string;
         "disabled": boolean;

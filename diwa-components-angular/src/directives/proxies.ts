@@ -738,14 +738,14 @@ export declare interface DiwaInputWeek extends Components.DiwaInputWeek {
 
 
 @ProxyCmp({
-  inputs: ['compact', 'disabled', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'target', 'theme', 'variant']
+  inputs: ['disabled', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'target', 'theme', 'variant']
 })
 @Component({
   selector: 'diwa-link',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['compact', 'disabled', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'target', 'theme', 'variant'],
+  inputs: ['disabled', 'download', 'hideLabel', 'href', 'icon', 'label', 'rel', 'size', 'target', 'theme', 'variant'],
 })
 export class DiwaLink {
   protected el: HTMLElement;
