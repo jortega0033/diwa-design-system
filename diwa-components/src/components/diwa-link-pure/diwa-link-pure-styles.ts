@@ -62,6 +62,10 @@ export const getComponentCss = (): string => `
 
   /* ── Size ───────────────────────────────────────────────────────────── */
 
+  :host([size="xs"]) .root {
+    font-size: var(--diwa-font-size-xs);
+  }
+
   :host([size="sm"]) .root {
     font-size: var(--diwa-font-size-sm);
   }
