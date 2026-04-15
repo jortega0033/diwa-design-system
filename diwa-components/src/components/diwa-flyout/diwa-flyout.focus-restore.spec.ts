@@ -1,14 +1,20 @@
-import { describe, it, expect, vi } from 'vitest';
+import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
 import { DiwaFlyout } from './diwa-flyout';
 
 describe('diwa-flyout — focus restore', () => {
-  it('focuses the first focusable target on open when available', () => {
-    const fly = new DiwaFlyout();
-    const previousRaf = globalThis.requestAnimationFrame;
-    globalThis.requestAnimationFrame = ((cb: FrameRequestCallback) => {
+  beforeEach(() => {
+    vi.stubGlobal('requestAnimationFrame', ((cb: FrameRequestCallback) => {
       cb(0);
       return 0;
-    }) as typeof requestAnimationFrame;
+    }) as typeof requestAnimationFrame);
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('focuses the first focusable target on open when available', () => {
+    const fly = new DiwaFlyout();
 
     const host = document.createElement('diwa-flyout');
     const sr = host.attachShadow({ mode: 'open' });
@@ -25,17 +31,10 @@ describe('diwa-flyout — focus restore', () => {
 
     expect(buttonFocusSpy).toHaveBeenCalledTimes(1);
     expect(panelFocusSpy).not.toHaveBeenCalled();
-
-    globalThis.requestAnimationFrame = previousRaf;
   });
 
   it('focuses the panel on open and restores focus to opener on close', () => {
     const fly = new DiwaFlyout();
-    const previousRaf = globalThis.requestAnimationFrame;
-    globalThis.requestAnimationFrame = ((cb: FrameRequestCallback) => {
-      cb(0);
-      return 0;
-    }) as typeof requestAnimationFrame;
 
     const opener = document.createElement('button');
     document.body.appendChild(opener);
@@ -57,7 +56,6 @@ describe('diwa-flyout — focus restore', () => {
     expect(openerFocusSpy).toHaveBeenCalled();
 
     opener.remove();
-    globalThis.requestAnimationFrame = previousRaf;
   });
 
   it('resets one-shot dismiss lock after close and reopen', () => {

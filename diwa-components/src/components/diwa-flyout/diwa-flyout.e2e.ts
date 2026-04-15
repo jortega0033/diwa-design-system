@@ -1,6 +1,24 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 describe('diwa-flyout', () => {
+  const getDeepActiveElement = async (page: Awaited<ReturnType<typeof newE2EPage>>) =>
+    page.evaluate(() => {
+      let active: Element | null = document.activeElement;
+      while (active instanceof HTMLElement && active.shadowRoot?.activeElement) {
+        active = active.shadowRoot.activeElement;
+      }
+
+      if (!(active instanceof HTMLElement)) {
+        return { id: '', ariaLabel: '', tagName: '' };
+      }
+
+      return {
+        id: active.id || '',
+        ariaLabel: active.getAttribute('aria-label') || '',
+        tagName: active.tagName,
+      };
+    });
+
   it('moves focus into flyout on open and restores to opener on Escape dismiss', async () => {
     const page = await newE2EPage({
       html: `
@@ -22,8 +40,8 @@ describe('diwa-flyout', () => {
     await page.click('#opener');
     await page.waitForChanges();
 
-    const activeAfterOpen = await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName);
-    expect(activeAfterOpen).not.toBe('BODY');
+    const activeAfterOpen = await getDeepActiveElement(page);
+    expect(activeAfterOpen.ariaLabel).toBe('Close flyout');
 
     await page.keyboard.press('Escape');
     await page.waitForChanges();
@@ -48,15 +66,27 @@ describe('diwa-flyout', () => {
     await page.click('#last');
     await page.keyboard.press('Tab');
     await page.waitForChanges();
-    const activeAfterTab = await page.evaluate(() => document.activeElement?.id);
-    expect(activeAfterTab).toBe('first');
+    const activeAfterTabFromLast = await getDeepActiveElement(page);
+    expect(activeAfterTabFromLast.ariaLabel).toBe('Close flyout');
+
+    await page.keyboard.press('Tab');
+    await page.waitForChanges();
+    const activeAfterCloseTab = await getDeepActiveElement(page);
+    expect(activeAfterCloseTab.id).toBe('first');
 
     await page.click('#first');
     await page.keyboard.down('Shift');
     await page.keyboard.press('Tab');
     await page.keyboard.up('Shift');
     await page.waitForChanges();
-    const activeAfterShiftTab = await page.evaluate(() => document.activeElement?.id);
-    expect(activeAfterShiftTab).toBe('last');
+    const activeAfterShiftTabFromFirst = await getDeepActiveElement(page);
+    expect(activeAfterShiftTabFromFirst.ariaLabel).toBe('Close flyout');
+
+    await page.keyboard.down('Shift');
+    await page.keyboard.press('Tab');
+    await page.keyboard.up('Shift');
+    await page.waitForChanges();
+    const activeAfterShiftTabFromClose = await getDeepActiveElement(page);
+    expect(activeAfterShiftTabFromClose.id).toBe('last');
   });
 });

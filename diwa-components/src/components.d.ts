@@ -608,8 +608,8 @@ export namespace Components {
      * - Panel has `role="dialog"` and `aria-modal="true"`
      * - Clicking the backdrop, pressing Escape, or clicking the dismiss button
      * emits the `dismiss` event; the consumer sets `open={false}`
-     * - Focus moves to the panel when opened and returns to the trigger element
-     * when closed
+     * - Focus moves to the first focusable element when opened, falling back to
+     * the panel, and returns to the trigger element when closed
      * - Tab/Shift+Tab are trapped inside the flyout while open
      * - Body scroll is locked (`overflow: hidden`) while the flyout is open
      * Usage:
@@ -3230,8 +3230,8 @@ declare global {
      * - Panel has `role="dialog"` and `aria-modal="true"`
      * - Clicking the backdrop, pressing Escape, or clicking the dismiss button
      * emits the `dismiss` event; the consumer sets `open={false}`
-     * - Focus moves to the panel when opened and returns to the trigger element
-     * when closed
+     * - Focus moves to the first focusable element when opened, falling back to
+     * the panel, and returns to the trigger element when closed
      * - Tab/Shift+Tab are trapped inside the flyout while open
      * - Body scroll is locked (`overflow: hidden`) while the flyout is open
      * Usage:
@@ -4894,8 +4894,8 @@ declare namespace LocalJSX {
      * - Panel has `role="dialog"` and `aria-modal="true"`
      * - Clicking the backdrop, pressing Escape, or clicking the dismiss button
      * emits the `dismiss` event; the consumer sets `open={false}`
-     * - Focus moves to the panel when opened and returns to the trigger element
-     * when closed
+     * - Focus moves to the first focusable element when opened, falling back to
+     * the panel, and returns to the trigger element when closed
      * - Tab/Shift+Tab are trapped inside the flyout while open
      * - Body scroll is locked (`overflow: hidden`) while the flyout is open
      * Usage:
@@ -8092,8 +8092,8 @@ declare module "@stencil/core" {
              * - Panel has `role="dialog"` and `aria-modal="true"`
              * - Clicking the backdrop, pressing Escape, or clicking the dismiss button
              * emits the `dismiss` event; the consumer sets `open={false}`
-             * - Focus moves to the panel when opened and returns to the trigger element
-             * when closed
+             * - Focus moves to the first focusable element when opened, falling back to
+             * the panel, and returns to the trigger element when closed
              * - Tab/Shift+Tab are trapped inside the flyout while open
              * - Body scroll is locked (`overflow: hidden`) while the flyout is open
              * Usage:

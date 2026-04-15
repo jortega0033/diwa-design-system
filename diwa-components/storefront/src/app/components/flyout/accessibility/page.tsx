@@ -139,7 +139,7 @@ export default function FlyoutAccessibilityPage() {
             so screen readers announce the open affordance correctly.
           </li>
           <li>
-            <strong className="text-[var(--diwa-text-primary)]">Slotted content</strong>{' '}
+            <strong className="text-[var(--diwa-text-primary)]">Heading and accessible name</strong>{' '}
             — provide a meaningful{' '}
             <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">heading</code>{' '}
             prop; it becomes the accessible name of the dialog via{' '}
