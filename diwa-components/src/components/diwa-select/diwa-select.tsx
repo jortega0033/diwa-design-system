@@ -275,11 +275,11 @@ export class DiwaSelect {
       if (isOptionNode(record.target)) return true;
 
       if (record.type === 'childList') {
-        for (const node of record.addedNodes) {
-          if (isOptionNode(node)) return true;
+        for (let i = 0; i < record.addedNodes.length; i++) {
+          if (isOptionNode(record.addedNodes.item(i))) return true;
         }
-        for (const node of record.removedNodes) {
-          if (isOptionNode(node)) return true;
+        for (let i = 0; i < record.removedNodes.length; i++) {
+          if (isOptionNode(record.removedNodes.item(i))) return true;
         }
       }
 
