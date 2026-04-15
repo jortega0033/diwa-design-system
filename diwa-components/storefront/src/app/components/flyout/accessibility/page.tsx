@@ -12,18 +12,13 @@ export default function FlyoutAccessibilityPage() {
           },
           {
             key: 'Tab / Shift+Tab',
-            action: 'Navigates between focusable elements inside the panel. Note: V1 does not implement a full focus trap — Tab can move focus outside the panel.',
+            action: 'Moves between focusable elements inside the panel and is trapped while the flyout is open.',
           },
           {
             key: 'Enter / Space',
             action: 'Activates the focused button (dismiss button, or any interactive element in body/footer slots).',
           },
         ]} />
-        <p className="mt-3 text-xs text-[var(--diwa-text-secondary)]">
-          <strong className="text-[var(--diwa-text-primary)]">V1 limitation:</strong> A full
-          focus trap (preventing Tab from leaving the panel while open) is not yet implemented.
-          This will be added in V2.
-        </p>
       </Section>
 
       <Section title="Screen reader behaviour">
@@ -92,8 +87,8 @@ export default function FlyoutAccessibilityPage() {
             {
               criterion: '2.1.2',
               name: 'No Keyboard Trap',
-              status: 'Partial',
-              detail: 'V1 has no full focus trap, so Tab can exit the panel. This is documented and targeted for V2.',
+              status: 'Pass',
+              detail: 'Tab and Shift+Tab are intentionally contained inside the open flyout and loop through its focusable elements.',
             },
             {
               criterion: '2.3.3',
@@ -147,8 +142,8 @@ export default function FlyoutAccessibilityPage() {
             <strong className="text-[var(--diwa-text-primary)]">Slotted content</strong>{' '}
             — provide a meaningful{' '}
             <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">heading</code>{' '}
-            slot; it becomes the accessible name of the dialog via{' '}
-            <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">aria-labelledby</code>{' '}
+            prop; it becomes the accessible name of the dialog via{' '}
+            <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">aria-label</code>{' '}
             and helps users understand the panel's purpose.
           </li>
         </ul>

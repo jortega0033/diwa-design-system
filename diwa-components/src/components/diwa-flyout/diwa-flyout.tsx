@@ -1,5 +1,6 @@
 import {
   Component,
+  Element,
   Event,
   type EventEmitter,
   Host,
@@ -10,7 +11,17 @@ import {
 } from '@stencil/core';
 import type { FlyoutBackdrop, FlyoutPosition } from './types';
 import type { Theme } from '../../utils/styles';
+import { getFocusableElements, trapFocus } from '../diwa-modal/diwa-modal-utils';
 import { getComponentCss } from './diwa-flyout-styles';
+
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ');
 
 /**
  * @component diwa-flyout
@@ -25,11 +36,8 @@ import { getComponentCss } from './diwa-flyout-styles';
  *     emits the `dismiss` event; the consumer sets `open={false}`
  *   - Focus moves to the panel when opened and returns to the trigger element
  *     when closed
+ *   - Tab/Shift+Tab are trapped inside the flyout while open
  *   - Body scroll is locked (`overflow: hidden`) while the flyout is open
- *
- * V1 limitations:
- *   - No focus trap: Tab can navigate outside the panel. A full focus trap
- *     will be added in V2.
  *
  * Usage:
  *   <diwa-flyout heading="Settings" open={isOpen} onDismiss={() => setIsOpen(false)}>
@@ -48,8 +56,11 @@ import { getComponentCss } from './diwa-flyout-styles';
   shadow: true,
 })
 export class DiwaFlyout {
+  @Element() host!: HTMLElement;
+
   private panelEl?: HTMLDivElement;
   private savedFocusEl: HTMLElement | null = null;
+  private hasPendingDismiss = false;
 
   // ──────────────────────────────────────────────────────────────
   // Props
@@ -103,12 +114,19 @@ export class DiwaFlyout {
   @Watch('open')
   onOpenChange(nextOpen: boolean): void {
     if (nextOpen) {
+      this.hasPendingDismiss = false;
       document.body.style.overflow = 'hidden';
       this.savedFocusEl = document.activeElement as HTMLElement;
       requestAnimationFrame(() => {
-        this.panelEl?.focus();
+        const focusable = this.getFlyoutFocusableElements();
+        if (focusable.length) {
+          focusable[0].focus();
+        } else {
+          this.panelEl?.focus();
+        }
       });
     } else {
+      this.hasPendingDismiss = false;
       document.body.style.overflow = '';
       this.savedFocusEl?.focus();
       this.savedFocusEl = null;
@@ -126,9 +144,27 @@ export class DiwaFlyout {
   /** Close on Escape key while the flyout is open. */
   @Listen('keydown', { target: 'window' })
   onKeyDown(e: KeyboardEvent): void {
-    if (this.open && e.key === 'Escape') {
+    if (!this.open) return;
+
+    if (e.key === 'Escape') {
       e.preventDefault();
-      this.dismiss.emit();
+      this.handleDismiss();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      const sr = this.host?.shadowRoot;
+      if (!sr) return;
+      const focusable = this.getFlyoutFocusableElements();
+      const active = (e.composedPath()[0] as Element | undefined) ?? sr.activeElement;
+
+      if (!focusable.length) {
+        e.preventDefault();
+        this.panelEl?.focus();
+        return;
+      }
+
+      trapFocus(e, focusable, active ?? null);
     }
   }
 
@@ -137,7 +173,46 @@ export class DiwaFlyout {
   // ──────────────────────────────────────────────────────────────
 
   private handleDismiss = (): void => {
+    if (this.hasPendingDismiss) return;
+    this.hasPendingDismiss = true;
     this.dismiss.emit();
+  };
+
+  private isFocusableElement = (el: Element): el is HTMLElement =>
+    el instanceof HTMLElement && el.matches(FOCUSABLE_SELECTOR);
+
+  private collectFocusableElements = (root: Element | ShadowRoot, set: Set<HTMLElement>): void => {
+    getFocusableElements(root).forEach((el) => set.add(el));
+
+    root.querySelectorAll('slot').forEach((slotEl) => {
+      const slot = slotEl as HTMLSlotElement;
+      slot.assignedElements({ flatten: true }).forEach((assigned) => {
+        if (this.isFocusableElement(assigned)) {
+          set.add(assigned);
+        }
+        getFocusableElements(assigned).forEach((el) => set.add(el));
+        if (assigned.shadowRoot) {
+          this.collectFocusableElements(assigned.shadowRoot, set);
+        }
+      });
+    });
+
+    root.querySelectorAll('*').forEach((el) => {
+      const host = el as HTMLElement & { shadowRoot?: ShadowRoot | null };
+      if (host.shadowRoot) {
+        this.collectFocusableElements(host.shadowRoot, set);
+      }
+    });
+  };
+
+  private getFlyoutFocusableElements = (): HTMLElement[] => {
+    const sr = this.host?.shadowRoot;
+    if (!sr) return [];
+
+    const focusable = new Set<HTMLElement>();
+    this.collectFocusableElements(sr, focusable);
+
+    return Array.from(focusable).filter((el) => !el.hasAttribute('disabled') && el.tabIndex !== -1);
   };
 
   // ──────────────────────────────────────────────────────────────

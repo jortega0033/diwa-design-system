@@ -610,10 +610,8 @@ export namespace Components {
      * emits the `dismiss` event; the consumer sets `open={false}`
      * - Focus moves to the panel when opened and returns to the trigger element
      * when closed
+     * - Tab/Shift+Tab are trapped inside the flyout while open
      * - Body scroll is locked (`overflow: hidden`) while the flyout is open
-     * V1 limitations:
-     * - No focus trap: Tab can navigate outside the panel. A full focus trap
-     * will be added in V2.
      * Usage:
      * <diwa-flyout heading="Settings" open={isOpen} onDismiss={() => setIsOpen(false)}>
      * <p>Flyout body content.</p>
@@ -3234,10 +3232,8 @@ declare global {
      * emits the `dismiss` event; the consumer sets `open={false}`
      * - Focus moves to the panel when opened and returns to the trigger element
      * when closed
+     * - Tab/Shift+Tab are trapped inside the flyout while open
      * - Body scroll is locked (`overflow: hidden`) while the flyout is open
-     * V1 limitations:
-     * - No focus trap: Tab can navigate outside the panel. A full focus trap
-     * will be added in V2.
      * Usage:
      * <diwa-flyout heading="Settings" open={isOpen} onDismiss={() => setIsOpen(false)}>
      * <p>Flyout body content.</p>
@@ -4900,10 +4896,8 @@ declare namespace LocalJSX {
      * emits the `dismiss` event; the consumer sets `open={false}`
      * - Focus moves to the panel when opened and returns to the trigger element
      * when closed
+     * - Tab/Shift+Tab are trapped inside the flyout while open
      * - Body scroll is locked (`overflow: hidden`) while the flyout is open
-     * V1 limitations:
-     * - No focus trap: Tab can navigate outside the panel. A full focus trap
-     * will be added in V2.
      * Usage:
      * <diwa-flyout heading="Settings" open={isOpen} onDismiss={() => setIsOpen(false)}>
      * <p>Flyout body content.</p>
@@ -8100,10 +8094,8 @@ declare module "@stencil/core" {
              * emits the `dismiss` event; the consumer sets `open={false}`
              * - Focus moves to the panel when opened and returns to the trigger element
              * when closed
+             * - Tab/Shift+Tab are trapped inside the flyout while open
              * - Body scroll is locked (`overflow: hidden`) while the flyout is open
-             * V1 limitations:
-             * - No focus trap: Tab can navigate outside the panel. A full focus trap
-             * will be added in V2.
              * Usage:
              * <diwa-flyout heading="Settings" open={isOpen} onDismiss={() => setIsOpen(false)}>
              * <p>Flyout body content.</p>

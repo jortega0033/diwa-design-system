@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Breaking change: removed `compact` from `diwa-link`. Migrate `compact={true}` to `size="sm"`, and `compact={false}` (or omitted) to default `size="md"`.
+- Improved `diwa-flyout` accessibility: Tab/Shift+Tab focus is now trapped inside the open panel, and focus still returns to the trigger on close.
 
 ## 3.1.3 - 2026-04-07
 
