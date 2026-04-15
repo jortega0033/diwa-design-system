@@ -20,6 +20,7 @@ export default function LinkApiPage() {
             [<Code key="icon">icon</Code>, <Code key="t">string</Code>, <Code key="d">&apos;none&apos;</Code>, 'Lucide icon name (kebab-case), or "none" to hide icon.'],
             [<Code key="hide-label">hideLabel</Code>, <Code key="t">boolean</Code>, <Code key="d">false</Code>, 'Visually hides the label (icon-only mode). Always pair with label.'],
             [<Code key="size">size</Code>, <Code key="t">&apos;xs&apos; | &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;</Code>, <Code key="d">&apos;md&apos;</Code>, 'Controls link size and icon scale.'],
+            [<Code key="disabled">disabled</Code>, <Code key="t">boolean</Code>, <Code key="d">false</Code>, 'Disables interaction and applies muted styling.'],
             [<Code key="label">label</Code>, <Code key="t">string</Code>, <Code key="d">undefined</Code>, 'Accessible aria-label for icon-only usage.'],
           ]}
         />

@@ -71,7 +71,7 @@ export default function LinkUsagePage() {
 <!-- After -->
 <diwa-link href="/details" size="sm">View details</diwa-link>
 
-<!-- Default replaces compact={false} -->
+<!-- Default replaces compact="false" (or omitted compact) -->
 <diwa-link href="/details">View details</diwa-link>`} />
       </Section>
 
