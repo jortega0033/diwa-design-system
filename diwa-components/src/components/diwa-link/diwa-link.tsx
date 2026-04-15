@@ -56,12 +56,21 @@ export class DiwaLink {
   /** Disabled state. Sets aria-disabled and prevents interaction. */
   @Prop({ reflect: true }) disabled: boolean = false;
 
+  private get normalizedSize(): LinkSize {
+    return this.size === "xs" || this.size === "sm" || this.size === "md" || this.size === "lg"
+      ? this.size
+      : "md";
+  }
+
+  private get iconSize(): number {
+    const iconSizeMap: Record<LinkSize, number> = { xs: 14, sm: 16, md: 20, lg: 24 };
+    return iconSizeMap[this.normalizedSize];
+  }
+
   render() {
     const isAnchor = !!this.href;
     const Tag = isAnchor ? ("a" as any) : ("span" as any);
     const hasIcon = this.icon !== "none";
-    const iconSizeMap: Record<LinkSize, number> = { xs: 14, sm: 16, md: 20, lg: 24 };
-    const iconSize = iconSizeMap[this.size];
 
     const anchorProps = isAnchor
       ? {
@@ -82,7 +91,7 @@ export class DiwaLink {
         <Tag class="inner" {...anchorProps} part="base">
           {hasIcon && (
             <span class="icon" aria-hidden="true">
-              <diwa-icon name={this.icon} size={iconSize} />
+              <diwa-icon name={this.icon} size={this.iconSize} />
             </span>
           )}
           <span

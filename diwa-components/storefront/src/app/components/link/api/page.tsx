@@ -12,7 +12,7 @@ export default function LinkApiPage() {
           columns={['Name', 'Type', 'Default', 'Description']}
           rows={[
             [<Code key="theme">theme</Code>, <Code key="t">&apos;light&apos; | &apos;dark&apos;</Code>, <Code key="d">&apos;dark&apos;</Code>, 'Per-component theme override.'],
-            [<Code key="variant">variant</Code>, <Code key="t">&apos;primary&apos; | &apos;secondary&apos; | &apos;ghost&apos;</Code>, <Code key="d">&apos;primary&apos;</Code>, 'Visual style variant.'],
+            [<Code key="variant">variant</Code>, <Code key="t">&apos;primary&apos; | &apos;secondary&apos; | &apos;ghost&apos; | &apos;danger&apos;</Code>, <Code key="d">&apos;primary&apos;</Code>, 'Visual style variant.'],
             [<Code key="href">href</Code>, <Code key="t">string</Code>, <Code key="d">undefined</Code>, 'URL the link navigates to. Renders as <a> when set, <span> otherwise.'],
             [<Code key="target">target</Code>, <Code key="t">&apos;_self&apos; | &apos;_blank&apos; | &apos;_parent&apos; | &apos;_top&apos;</Code>, <Code key="d">&apos;_self&apos;</Code>, 'Where to open the linked URL.'],
             [<Code key="download">download</Code>, <Code key="t">string</Code>, <Code key="d">undefined</Code>, 'Triggers browser download dialog for the linked resource.'],
