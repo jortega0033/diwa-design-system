@@ -172,8 +172,8 @@ export class DiwaSelect {
   connectedCallback(): void {
     document.addEventListener('mousedown', this.onClickOutside, true);
     // slotchange events are composed:false and never reach the host in shadow DOM.
-    // Use a MutationObserver on the host's light DOM children to detect option additions/removals.
-    this.childObserver = new MutationObserver(() => this.handleChildrenChanged());
+    // Observe light DOM changes, but only react when mutations affect select options.
+    this.childObserver = new MutationObserver((records) => this.handleObservedMutations(records));
     this.childObserver.observe(this.host, { childList: true, subtree: true, characterData: true });
   }
 
@@ -254,6 +254,37 @@ export class DiwaSelect {
     this.syncChildThemes();
     this.syncChildCompact();
     forceUpdate(this.host);
+  }
+
+  private handleObservedMutations(records: MutationRecord[]): void {
+    if (!this.hasOptionRelatedMutation(records)) return;
+    this.handleChildrenChanged();
+  }
+
+  private hasOptionRelatedMutation(records: MutationRecord[]): boolean {
+    const isOptionNode = (node: Node | null): boolean => {
+      if (!node) return false;
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node as Element;
+        return el.matches('diwa-select-option') || !!el.closest('diwa-select-option');
+      }
+      return !!node.parentElement?.closest('diwa-select-option');
+    };
+
+    return records.some((record) => {
+      if (isOptionNode(record.target)) return true;
+
+      if (record.type === 'childList') {
+        for (const node of record.addedNodes) {
+          if (isOptionNode(node)) return true;
+        }
+        for (const node of record.removedNodes) {
+          if (isOptionNode(node)) return true;
+        }
+      }
+
+      return false;
+    });
   }
 
   private syncSelectionFromValue(): void {

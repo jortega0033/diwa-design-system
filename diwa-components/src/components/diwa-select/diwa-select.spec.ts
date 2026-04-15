@@ -97,4 +97,42 @@ describe('diwa-select component', () => {
 
     expect((s as any).getTriggerDisplayLabel()).toBeUndefined();
   });
+
+  it('ignores non-option mutation records', () => {
+    const s = new DiwaSelect();
+    const onChildrenChanged = vi.fn();
+    (s as any).handleChildrenChanged = onChildrenChanged;
+
+    const external = document.createElement('div');
+    const externalText = document.createTextNode('updated label');
+    external.appendChild(externalText);
+
+    (s as any).handleObservedMutations([
+      {
+        type: 'characterData',
+        target: externalText,
+      } as unknown as MutationRecord,
+    ]);
+
+    expect(onChildrenChanged).not.toHaveBeenCalled();
+  });
+
+  it('handles option-related mutation records', () => {
+    const s = new DiwaSelect();
+    const onChildrenChanged = vi.fn();
+    (s as any).handleChildrenChanged = onChildrenChanged;
+
+    const option = document.createElement('diwa-select-option');
+    const labelText = document.createTextNode('Apple');
+    option.appendChild(labelText);
+
+    (s as any).handleObservedMutations([
+      {
+        type: 'characterData',
+        target: labelText,
+      } as unknown as MutationRecord,
+    ]);
+
+    expect(onChildrenChanged).toHaveBeenCalledTimes(1);
+  });
 });
