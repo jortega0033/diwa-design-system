@@ -38,8 +38,11 @@ export class DiwaInputTime implements InputVariantHost {
   @Prop() autoComplete?: string;
   @Prop() theme: Theme = 'dark';
 
+  /** Minimum time value in HH:mm or HH:mm:ss format. */
   @Prop() min?: string;
+  /** Maximum time value in HH:mm or HH:mm:ss format. */
   @Prop() max?: string;
+  /** Step interval in seconds for time selection. */
   @Prop() step?: number;
 
   @Event({ bubbles: true }) change!: EventEmitter<string>;

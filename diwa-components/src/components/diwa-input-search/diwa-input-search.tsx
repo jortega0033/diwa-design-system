@@ -39,6 +39,10 @@ export class DiwaInputSearch implements InputVariantHost {
   @Prop() autoComplete?: string;
   @Prop() theme: Theme = 'dark';
 
+  /**
+   * Shows a clear button when enabled and the input has a value.
+   * The clear button is hidden when the component is disabled or readonly.
+   */
   @Prop() showClearButton: boolean = true;
 
   @Event({ bubbles: true }) change!: EventEmitter<string>;

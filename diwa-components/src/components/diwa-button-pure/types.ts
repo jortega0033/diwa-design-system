@@ -1,4 +1,4 @@
-export type ButtonPureSize = 'xs' | 'sm' | 'md' | 'lg';
+export type ButtonPureSize = 'sm' | 'md' | 'lg';
 
 /** Controls which side the label appears on relative to the icon. */
 export type ButtonPureAlignLabel = 'start' | 'end';

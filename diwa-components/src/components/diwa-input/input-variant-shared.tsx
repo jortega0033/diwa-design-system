@@ -43,7 +43,6 @@ export interface InputVariantRenderOptions {
   type: string;
   styleText: string;
   inputAttrs?: InputAttrs;
-  hasSuffix?: boolean;
   suffix?: any;
   onInput: (e: Event) => void;
   onChange: (e: Event) => void;

@@ -887,11 +887,17 @@ export namespace Components {
           * @default ''
          */
         "label": string;
+        /**
+          * Maximum date in YYYY-MM-DD format.
+         */
         "max"?: string;
         /**
           * @default ''
          */
         "message": string;
+        /**
+          * Minimum date in YYYY-MM-DD format.
+         */
         "min"?: string;
         /**
           * @default ''
@@ -999,11 +1005,17 @@ export namespace Components {
           * @default ''
          */
         "label": string;
+        /**
+          * Maximum month value in YYYY-MM format.
+         */
         "max"?: string;
         /**
           * @default ''
          */
         "message": string;
+        /**
+          * Minimum month value in YYYY-MM format.
+         */
         "min"?: string;
         /**
           * @default ''
@@ -1056,11 +1068,17 @@ export namespace Components {
           * @default ''
          */
         "label": string;
+        /**
+          * Maximum numeric value allowed.
+         */
         "max"?: number;
         /**
           * @default ''
          */
         "message": string;
+        /**
+          * Minimum numeric value allowed.
+         */
         "min"?: number;
         /**
           * @default ''
@@ -1082,6 +1100,9 @@ export namespace Components {
           * @default 'none'
          */
         "state": InputFieldState;
+        /**
+          * Step increment for numeric input.
+         */
         "step"?: number;
         /**
           * @default 'dark'
@@ -1135,6 +1156,7 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Controls whether the password visibility toggle button is shown.
           * @default true
          */
         "showToggle": boolean;
@@ -1194,6 +1216,7 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Shows a clear button when enabled and the input has a value. The clear button is hidden when the component is disabled or readonly.
           * @default true
          */
         "showClearButton": boolean;
@@ -1345,11 +1368,17 @@ export namespace Components {
           * @default ''
          */
         "label": string;
+        /**
+          * Maximum time value in HH:mm or HH:mm:ss format.
+         */
         "max"?: string;
         /**
           * @default ''
          */
         "message": string;
+        /**
+          * Minimum time value in HH:mm or HH:mm:ss format.
+         */
         "min"?: string;
         /**
           * @default ''
@@ -1371,6 +1400,9 @@ export namespace Components {
           * @default 'none'
          */
         "state": InputFieldState;
+        /**
+          * Step interval in seconds for time selection.
+         */
         "step"?: number;
         /**
           * @default 'dark'
@@ -1458,11 +1490,17 @@ export namespace Components {
           * @default ''
          */
         "label": string;
+        /**
+          * Maximum week value in YYYY-Www format.
+         */
         "max"?: string;
         /**
           * @default ''
          */
         "message": string;
+        /**
+          * Minimum week value in YYYY-Www format.
+         */
         "min"?: string;
         /**
           * @default ''
@@ -5171,11 +5209,17 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
+        /**
+          * Maximum date in YYYY-MM-DD format.
+         */
         "max"?: string;
         /**
           * @default ''
          */
         "message"?: string;
+        /**
+          * Minimum date in YYYY-MM-DD format.
+         */
         "min"?: string;
         /**
           * @default ''
@@ -5291,11 +5335,17 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
+        /**
+          * Maximum month value in YYYY-MM format.
+         */
         "max"?: string;
         /**
           * @default ''
          */
         "message"?: string;
+        /**
+          * Minimum month value in YYYY-MM format.
+         */
         "min"?: string;
         /**
           * @default ''
@@ -5352,11 +5402,17 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
+        /**
+          * Maximum numeric value allowed.
+         */
         "max"?: number;
         /**
           * @default ''
          */
         "message"?: string;
+        /**
+          * Minimum numeric value allowed.
+         */
         "min"?: number;
         /**
           * @default ''
@@ -5382,6 +5438,9 @@ declare namespace LocalJSX {
           * @default 'none'
          */
         "state"?: InputFieldState;
+        /**
+          * Step increment for numeric input.
+         */
         "step"?: number;
         /**
           * @default 'dark'
@@ -5439,6 +5498,7 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
+          * Controls whether the password visibility toggle button is shown.
           * @default true
          */
         "showToggle"?: boolean;
@@ -5502,6 +5562,7 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
+          * Shows a clear button when enabled and the input has a value. The clear button is hidden when the component is disabled or readonly.
           * @default true
          */
         "showClearButton"?: boolean;
@@ -5661,11 +5722,17 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
+        /**
+          * Maximum time value in HH:mm or HH:mm:ss format.
+         */
         "max"?: string;
         /**
           * @default ''
          */
         "message"?: string;
+        /**
+          * Minimum time value in HH:mm or HH:mm:ss format.
+         */
         "min"?: string;
         /**
           * @default ''
@@ -5691,6 +5758,9 @@ declare namespace LocalJSX {
           * @default 'none'
          */
         "state"?: InputFieldState;
+        /**
+          * Step interval in seconds for time selection.
+         */
         "step"?: number;
         /**
           * @default 'dark'
@@ -5782,11 +5852,17 @@ declare namespace LocalJSX {
           * @default ''
          */
         "label"?: string;
+        /**
+          * Maximum week value in YYYY-Www format.
+         */
         "max"?: string;
         /**
           * @default ''
          */
         "message"?: string;
+        /**
+          * Minimum week value in YYYY-Www format.
+         */
         "min"?: string;
         /**
           * @default ''

@@ -38,8 +38,11 @@ export class DiwaInputNumber implements InputVariantHost {
   @Prop() autoComplete?: string;
   @Prop() theme: Theme = 'dark';
 
+  /** Minimum numeric value allowed. */
   @Prop() min?: number;
+  /** Maximum numeric value allowed. */
   @Prop() max?: number;
+  /** Step increment for numeric input. */
   @Prop() step?: number;
 
   @Event({ bubbles: true }) change!: EventEmitter<string>;

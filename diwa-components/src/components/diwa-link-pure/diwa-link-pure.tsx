@@ -76,7 +76,7 @@ export class DiwaLinkPure {
     const isAnchor = !!this.href;
     const Tag = isAnchor ? ("a" as any) : ("span" as any);
     const hasIcon = this.icon !== "none";
-    const iconSize = this.size === "xs" ? 12 : this.size === "sm" ? 14 : this.size === "lg" ? 20 : 16;
+    const iconSize = this.size === "sm" ? 14 : this.size === "lg" ? 20 : 16;
 
     const anchorProps = isAnchor
       ? {

@@ -38,7 +38,9 @@ export class DiwaInputWeek implements InputVariantHost {
   @Prop() autoComplete?: string;
   @Prop() theme: Theme = 'dark';
 
+  /** Minimum week value in YYYY-Www format. */
   @Prop() min?: string;
+  /** Maximum week value in YYYY-Www format. */
   @Prop() max?: string;
 
   @Event({ bubbles: true }) change!: EventEmitter<string>;

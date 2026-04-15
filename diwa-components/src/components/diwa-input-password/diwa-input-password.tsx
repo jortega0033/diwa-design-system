@@ -38,6 +38,7 @@ export class DiwaInputPassword implements InputVariantHost {
   @Prop() autoComplete?: string;
   @Prop() theme: Theme = 'dark';
 
+  /** Controls whether the password visibility toggle button is shown. */
   @Prop() showToggle: boolean = true;
   @State() private showPassword: boolean = false;
 
@@ -74,6 +75,7 @@ export class DiwaInputPassword implements InputVariantHost {
           class="suffix-btn"
           type="button"
           aria-label={this.showPassword ? 'Hide password' : 'Show password'}
+          aria-pressed={this.showPassword ? 'true' : 'false'}
           onClick={this.handleToggle}
         >
           <diwa-icon name={this.showPassword ? 'eye-off' : 'eye'} size={16} />

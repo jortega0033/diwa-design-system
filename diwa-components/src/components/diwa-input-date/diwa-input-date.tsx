@@ -38,7 +38,9 @@ export class DiwaInputDate implements InputVariantHost {
   @Prop() autoComplete?: string;
   @Prop() theme: Theme = 'dark';
 
+  /** Minimum date in YYYY-MM-DD format. */
   @Prop() min?: string;
+  /** Maximum date in YYYY-MM-DD format. */
   @Prop() max?: string;
 
   @Event({ bubbles: true }) change!: EventEmitter<string>;

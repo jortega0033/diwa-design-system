@@ -115,7 +115,7 @@ export class DiwaButtonPure {
 
   /** Icon pixel size scaled to the current size tier. */
   private get iconSize(): number {
-    return this.size === "xs" ? 12 : this.size === "sm" ? 14 : this.size === "lg" ? 20 : 16;
+    return this.size === "sm" ? 14 : this.size === "lg" ? 20 : 16;
   }
 
   private readonly handleClick = (e: MouseEvent): void => {

@@ -8,8 +8,6 @@ describe('diwa-button-pure component', () => {
     expect(b.size).toBe('md');
     expect(b.icon).toBe('arrow-right');
     expect((b as any).isInteractive).toBe(true);
-    b.size = 'xs';
-    expect((b as any).iconSize).toBe(12);
     b.size = 'sm';
     expect((b as any).iconSize).toBe(14);
     b.size = 'lg';
