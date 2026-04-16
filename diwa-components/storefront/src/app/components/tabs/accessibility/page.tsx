@@ -9,13 +9,21 @@ export default function TabsAccessibilityPage() {
         <KeyboardTable
           rows={[
             { key: 'Tab', action: 'Moves focus to the active tab button.' },
-            { key: 'Arrow Left / Arrow Up', action: 'Moves focus to the previous tab and activates it.' },
-            { key: 'Arrow Right / Arrow Down', action: 'Moves focus to the next tab and activates it.' },
-            { key: 'Home', action: 'Activates and focuses the first tab.' },
-            { key: 'End', action: 'Activates and focuses the last tab.' },
-            { key: 'Tab (from tab bar)', action: 'Moves focus into the active panel content.' },
+            { key: 'Shift + Tab', action: 'Moves focus to the previous focusable element before the tab list.' },
+            { key: 'Enter / Space', action: 'When a tab button is focused, native button behavior activates that tab.' },
+            { key: 'Tab (from tab button)', action: 'Moves focus out of the tab list to the next focusable element.' },
           ]}
         />
+        <p className="mt-4 text-sm text-[var(--diwa-text-secondary)]">
+          Planned work:{' '}
+          <a
+            href="https://github.com/jortega0033/diwa-design-system/issues/13"
+            className="text-[var(--diwa-text-primary)] underline underline-offset-2"
+          >
+            DS-006
+          </a>{' '}
+          will add full ARIA APG arrow-key navigation guidance after implementation ships.
+        </p>
       </Section>
 
       <Section title="Screen reader behaviour">
@@ -48,7 +56,7 @@ export default function TabsAccessibilityPage() {
             {
               criterion: '2.1.1 Keyboard — A',
               status: 'Pass',
-              detail: 'Tab moves focus to the active tab button. Arrow keys navigate between tabs and activate them simultaneously. Home and End jump to first and last tab.',
+              detail: 'The tab list is keyboard reachable with Tab/Shift+Tab. Focused native tab buttons can be activated with Enter/Space.',
             },
             {
               criterion: '2.4.7 Focus Visible — AA',
@@ -92,7 +100,11 @@ export default function TabsAccessibilityPage() {
           </li>
           <li>
             <strong className="text-[var(--diwa-text-primary)]">Focus management</strong>{' '}
-            — when a tab is activated, focus remains on the tab button. Users press Tab again to move focus into the active panel content. This follows the ARIA Authoring Practices Guide pattern for tabs with automatic activation.
+            — when a tab is activated, focus remains on the tab button. Users press Tab again to move focus into the active panel content.
+          </li>
+          <li>
+            <strong className="text-[var(--diwa-text-primary)]">Current keyboard scope</strong>{' '}
+            — this page documents currently shipped behavior only. Arrow Left/Right and Home/End guidance will be documented when DS-006 lands.
           </li>
           <li>
             <strong className="text-[var(--diwa-text-primary)]">Meaningful tab labels</strong>{' '}
