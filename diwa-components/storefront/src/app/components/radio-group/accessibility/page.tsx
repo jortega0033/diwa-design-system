@@ -98,6 +98,10 @@ export default function RadioGroupAccessibilityPage() {
             <code className="px-1 py-0.5 rounded bg-[var(--diwa-bg-surface)] border border-[var(--diwa-border)] text-xs font-mono">label</code>{' '}
             prop so the radiogroup has an accessible name and screen readers announce the group context before reading each option.
           </li>
+          <li>
+            <strong className="text-[var(--diwa-text-primary)]">Disabled semantics</strong>{' '}
+            — use item-level disabled states for unavailable choices and group-level disabled when the entire field is temporarily unavailable. When the group is re-enabled, individually disabled options remain unavailable and keep native disabled semantics.
+          </li>
         </ul>
       </Section>
     </div>

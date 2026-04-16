@@ -64,6 +64,8 @@ export class DiwaRadioGroup {
 
   private readonly internalId = `diwa-rg-${++radioGroupIdCounter}`;
   private readonly fallbackName = `diwa-radio-group-${++radioGroupNameCounter}`;
+  private readonly itemDisabledStates = new WeakMap<HTMLDiwaRadioGroupItemElement, boolean>();
+  private lastDisabled = false;
 
   /**
    * Emitted when the selected value changes.
@@ -93,14 +95,32 @@ export class DiwaRadioGroup {
       this.host.querySelectorAll('diwa-radio-group-item'),
     ) as HTMLDiwaRadioGroupItemElement[];
     const groupName = this.name || this.fallbackName;
+    const enteringDisabled = this.disabled && !this.lastDisabled;
+    const leavingDisabled = !this.disabled && this.lastDisabled;
+
     items.forEach((item) => {
-      (item as any).checked = item.value === this.value;
-      if (!(item as any).name) {
-        (item as any).name = groupName;
+      const radioItem = item as any;
+      const currentDisabled = Boolean(radioItem.disabled);
+      const storedDisabled = this.itemDisabledStates.get(item);
+      const explicitDisabled = leavingDisabled ? (storedDisabled ?? currentDisabled) : currentDisabled;
+
+      if (this.disabled) {
+        if (enteringDisabled || !this.itemDisabledStates.has(item)) {
+          this.itemDisabledStates.set(item, currentDisabled);
+        }
+      } else {
+        this.itemDisabledStates.set(item, explicitDisabled);
       }
-      (item as any).disabled = this.disabled;
-      (item as any).compact = this.compact;
+
+      radioItem.checked = item.value === this.value;
+      if (!radioItem.name) {
+        radioItem.name = groupName;
+      }
+      radioItem.disabled = this.disabled ? true : (this.itemDisabledStates.get(item) ?? currentDisabled);
+      radioItem.compact = this.compact;
     });
+
+    this.lastDisabled = this.disabled;
   }
 
   render() {

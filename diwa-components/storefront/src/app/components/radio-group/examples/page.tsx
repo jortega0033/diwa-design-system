@@ -70,6 +70,21 @@ const disabledStory: Story<'diwa-radio-group'> = {
   ],
 };
 
+const individualDisabledStory: Story<'diwa-radio-group'> = {
+  state: { properties: { label: 'Delivery speed', value: 'standard', theme: 'dark' } },
+  generator: ({ properties } = {}) => [
+    {
+      tag: 'diwa-radio-group' as const,
+      properties: properties ?? {},
+      children: [
+        { tag: 'diwa-radio-group-item' as const, properties: { value: 'standard' }, children: ['Standard'] },
+        { tag: 'diwa-radio-group-item' as const, properties: { value: 'express', disabled: true }, children: ['Express (unavailable)'] },
+        { tag: 'diwa-radio-group-item' as const, properties: { value: 'overnight' }, children: ['Overnight'] },
+      ],
+    },
+  ],
+};
+
 const compactStory: Story<'diwa-radio-group'> = {
   state: { properties: { label: 'Pick a size', value: 'm', compact: true, theme: 'dark' } },
   generator: ({ properties } = {}) => [
@@ -158,7 +173,17 @@ export default function RadioGroupExamplesPage() {
         <ComponentStory story={successStory} />
       </ExampleSection>
 
-      <ExampleSection title="Disabled">
+      <ExampleSection
+        title="Individual disabled option"
+        description="Use item-level disabled states when one choice is unavailable. If the parent group is temporarily disabled and then re-enabled, individually disabled options remain unavailable."
+      >
+        <ComponentStory story={individualDisabledStory} />
+      </ExampleSection>
+
+      <ExampleSection
+        title="Entire group disabled"
+        description="Use the group disabled prop to temporarily lock the whole field. Re-enabling the group restores each item's own disabled state."
+      >
         <ComponentStory story={disabledStory} />
       </ExampleSection>
     </div>
