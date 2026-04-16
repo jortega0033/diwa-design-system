@@ -2,6 +2,8 @@ import { Component, Element, Event, type EventEmitter, Host, Prop, Watch, h } fr
 import type { Theme } from '../../utils/styles';
 import { getComponentCss } from './diwa-radio-group-item-styles';
 
+let radioGroupItemIdCounter = 0;
+
 /**
  * @component diwa-radio-group-item
  *
@@ -37,6 +39,8 @@ export class DiwaRadioGroupItem {
   /** Reduces size for denser layouts. */
   @Prop({ reflect: true }) compact: boolean = false;
 
+  private readonly internalId = `diwa-rgi-${++radioGroupItemIdCounter}`;
+
   /**
    * Internal event dispatched to the parent group when the user selects this item.
    * Consumers should listen to the parent group's `update` event instead.
@@ -57,7 +61,7 @@ export class DiwaRadioGroupItem {
   };
 
   render() {
-    const labelId = `diwa-rgi-${this.value || Math.random().toString(36).slice(2, 7)}`;
+    const labelId = this.internalId;
 
     return (
       <Host>

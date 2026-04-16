@@ -3,6 +3,9 @@ import type { RadioGroupDirection, RadioGroupState, RadioGroupUpdateEventDetail 
 import type { Theme } from '../../utils/styles';
 import { getComponentCss } from './diwa-radio-group-styles';
 
+let radioGroupIdCounter = 0;
+let radioGroupNameCounter = 0;
+
 /**
  * @component diwa-radio-group
  *
@@ -59,6 +62,9 @@ export class DiwaRadioGroup {
   /** Native name attribute shared by all radio inputs in the group. */
   @Prop() name: string = '';
 
+  private readonly internalId = `diwa-rg-${++radioGroupIdCounter}`;
+  private readonly fallbackName = `diwa-radio-group-${++radioGroupNameCounter}`;
+
   /**
    * Emitted when the selected value changes.
    * `event.detail.value` is the newly selected value.
@@ -86,7 +92,7 @@ export class DiwaRadioGroup {
     const items = Array.from(
       this.host.querySelectorAll('diwa-radio-group-item'),
     ) as HTMLDiwaRadioGroupItemElement[];
-    const groupName = this.name || `diwa-radio-group-${Math.random().toString(36).slice(2, 7)}`;
+    const groupName = this.name || this.fallbackName;
     items.forEach((item) => {
       (item as any).checked = item.value === this.value;
       if (!(item as any).name) {
@@ -98,7 +104,7 @@ export class DiwaRadioGroup {
   }
 
   render() {
-    const id = `diwa-rg-${this.host.id || Math.random().toString(36).slice(2, 7)}`;
+    const id = this.host.id || this.internalId;
     const descId = this.description ? `${id}-desc` : undefined;
     const msgId = this.message && this.state !== 'none' ? `${id}-msg` : undefined;
 
