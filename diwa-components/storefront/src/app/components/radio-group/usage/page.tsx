@@ -33,7 +33,7 @@ export default function RadioGroupUsagePage() {
           <DontCard>
             <DontList items={[
               "Don't use a radio group for binary yes/no choices - prefer a checkbox or switch.",
-              "Don't mix enabled and disabled options without a clear reason.",
+              "Don't disable individual options without making the reason for unavailability clear.",
               "Don't use more than 7 options - consider a select instead.",
             ]} />
           </DontCard>

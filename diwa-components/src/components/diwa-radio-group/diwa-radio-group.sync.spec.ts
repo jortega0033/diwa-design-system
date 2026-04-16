@@ -17,6 +17,58 @@ describe('diwa-radio-group syncChildren', () => {
     (rg as any).syncChildren();
     expect(item.disabled).toBe(true);
     expect(item.compact).toBe(true);
+
+    rg.disabled = false;
+    (rg as any).syncChildren();
+    expect(item.disabled).toBe(false);
+  });
+
+  it('restores mixed per-item disabled states after parent toggle cycles', () => {
+    const rg = new DiwaRadioGroup();
+    const itemA: any = { value: 'a', disabled: true, name: undefined };
+    const itemB: any = { value: 'b', disabled: false, name: undefined };
+    (rg as any).host = { querySelectorAll: () => [itemA, itemB] } as any;
+
+    (rg as any).syncChildren();
+    expect(itemA.disabled).toBe(true);
+    expect(itemB.disabled).toBe(false);
+
+    rg.disabled = true;
+    (rg as any).syncChildren();
+    expect(itemA.disabled).toBe(true);
+    expect(itemB.disabled).toBe(true);
+
+    rg.disabled = false;
+    (rg as any).syncChildren();
+    expect(itemA.disabled).toBe(true);
+    expect(itemB.disabled).toBe(false);
+
+    rg.disabled = true;
+    (rg as any).syncChildren();
+    rg.disabled = false;
+    (rg as any).syncChildren();
+    expect(itemA.disabled).toBe(true);
+    expect(itemB.disabled).toBe(false);
+  });
+
+  it('preserves authored disabled state for items added while the parent is disabled', () => {
+    const rg = new DiwaRadioGroup();
+    const items: any[] = [];
+    (rg as any).host = { querySelectorAll: () => items } as any;
+
+    rg.disabled = true;
+    const itemA: any = { value: 'a', disabled: true, name: undefined };
+    const itemB: any = { value: 'b', disabled: false, name: undefined };
+    items.push(itemA, itemB);
+
+    (rg as any).syncChildren();
+    expect(itemA.disabled).toBe(true);
+    expect(itemB.disabled).toBe(true);
+
+    rg.disabled = false;
+    (rg as any).syncChildren();
+    expect(itemA.disabled).toBe(true);
+    expect(itemB.disabled).toBe(false);
   });
 
   it('keeps fallback names stable across sync cycles', () => {

@@ -6,6 +6,7 @@
 - Improved `diwa-flyout` accessibility: Tab/Shift+Tab focus is now trapped inside the open panel, and focus still returns to the trigger on close.
 - Fixed keyboard flow for `diwa-select` and `diwa-multi-select`: pressing Tab/Shift+Tab while open now closes the dropdown and preserves native browser focus progression; Escape still closes and restores trigger focus.
 - Fixed `diwa-radio-group` and `diwa-radio-group-item` accessibility wiring by replacing nondeterministic random fallback IDs with stable component-scoped IDs for group naming and ARIA references.
+- Fixed `diwa-radio-group` disabled-state semantics so parent-level disablement no longer erases item-level disabled options when the group is re-enabled.
 
 ## 3.1.3 - 2026-04-07
 

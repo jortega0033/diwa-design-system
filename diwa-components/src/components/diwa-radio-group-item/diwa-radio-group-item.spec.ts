@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { DiwaRadioGroupItem } from './diwa-radio-group-item';
 
 describe('diwa-radio-group-item', () => {
@@ -23,5 +23,26 @@ describe('diwa-radio-group-item', () => {
     const b = new DiwaRadioGroupItem() as any;
 
     expect(a.internalId).not.toBe(b.internalId);
+  });
+
+  it('does not emit when the item is disabled', () => {
+    const item = new DiwaRadioGroupItem() as any;
+    item.disabled = true;
+    item.radioSelect = { emit: vi.fn() };
+
+    item.handleChange();
+
+    expect(item.checked).toBe(false);
+    expect(item.radioSelect.emit).not.toHaveBeenCalled();
+  });
+
+  it('emits and marks checked when the item is enabled', () => {
+    const item = new DiwaRadioGroupItem() as any;
+    item.radioSelect = { emit: vi.fn() };
+
+    item.handleChange();
+
+    expect(item.checked).toBe(true);
+    expect(item.radioSelect.emit).toHaveBeenCalledWith({ value: '' });
   });
 });

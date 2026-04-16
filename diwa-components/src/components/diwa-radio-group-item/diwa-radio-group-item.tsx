@@ -8,8 +8,9 @@ let radioGroupItemIdCounter = 0;
  * @component diwa-radio-group-item
  *
  * A single radio option used inside `diwa-radio-group`.
- * The group sets `checked`, `name`, and `disabled` automatically — you
- * only need to provide `value` and the label via the default slot.
+ * The group sets `checked` and `name` automatically. Group-level disabled
+ * temporarily makes every option unavailable without erasing this item's own
+ * `disabled` intent.
  *
  * Usage:
  *   <diwa-radio-group-item value="s">Small</diwa-radio-group-item>
@@ -33,7 +34,7 @@ export class DiwaRadioGroupItem {
   /** Native name — set automatically by the parent group. */
   @Prop({ mutable: true, reflect: true }) name: string = '';
 
-  /** Whether this option is disabled. Also set by the parent group when the whole group is disabled. */
+  /** Whether this option is disabled for this specific option. */
   @Prop({ reflect: true }) disabled: boolean = false;
 
   /** Reduces size for denser layouts. */

@@ -53,6 +53,6 @@ export const radioGroupPropDefinitions: PropDefinition[] = [
   { name: 'direction', type: 'select', options: ['column', 'row'], defaultValue: 'column', description: 'Layout direction of the radio items' },
   { name: 'compact', type: 'boolean', defaultValue: false, description: 'Use compact spacing between items' },
   { name: 'required', type: 'boolean', defaultValue: false, description: 'Marks the group as required for form validation' },
-  { name: 'disabled', type: 'boolean', defaultValue: false, description: 'Disable all radio items' },
+  { name: 'disabled', type: 'boolean', defaultValue: false, description: 'Temporarily disable the entire group; item-level disabled states are restored when re-enabled' },
   { name: 'state', type: 'select', options: ['none', 'error', 'success'], defaultValue: 'none', description: 'Visual validation state for the control' },
 ];
