@@ -24,6 +24,9 @@ jobs:
       - name: Install (npm)
         run: npm ci
 
+      - name: Token-contract gate
+        run: npm run validate:tokens
+
       - name: Control-height gate
         run: npm run agency:validate:control-heights
 
@@ -63,6 +66,9 @@ jobs:
 
       - name: Install (pnpm)
         run: pnpm install --frozen-lockfile
+
+      - name: Token-contract gate
+        run: pnpm run validate:tokens
 
       - name: Control-height gate
         run: pnpm run agency:validate:control-heights
