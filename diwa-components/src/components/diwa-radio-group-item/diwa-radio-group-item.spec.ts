@@ -7,4 +7,21 @@ describe('diwa-radio-group-item', () => {
     expect(c.checked).toBe(false);
     expect(c.name).toBe('');
   });
+
+  it('uses a stable internal id regardless of value changes', () => {
+    const c = new DiwaRadioGroupItem() as any;
+    const firstId = c.internalId;
+
+    c.value = 'first';
+    c.value = 'second';
+
+    expect(c.internalId).toBe(firstId);
+  });
+
+  it('generates unique internal ids across instances', () => {
+    const a = new DiwaRadioGroupItem() as any;
+    const b = new DiwaRadioGroupItem() as any;
+
+    expect(a.internalId).not.toBe(b.internalId);
+  });
 });

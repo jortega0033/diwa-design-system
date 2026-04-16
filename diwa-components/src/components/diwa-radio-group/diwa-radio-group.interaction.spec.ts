@@ -17,13 +17,20 @@ describe('diwa-radio-group interactions', () => {
     expect(itemB.checked).toBe(true);
   });
 
-  it('assigns name to children when not provided', () => {
+  it('assigns a stable fallback name to children when not provided', () => {
     const rg = new DiwaRadioGroup();
-    const item = { value: 'x' } as any;
-    (rg as any).host = { querySelectorAll: () => [item] } as any;
+    const itemA = { value: 'x' } as any;
+    const itemB = { value: 'y' } as any;
+    const items = [itemA] as any[];
+    (rg as any).host = { querySelectorAll: () => items } as any;
 
     rg.componentDidLoad();
+    const firstAssignedName = (itemA as any).name;
 
-    expect((item as any).name).toMatch(/diwa-radio-group-/);
+    items.push(itemB);
+    rg.componentDidUpdate();
+
+    expect((itemA as any).name).toBe(firstAssignedName);
+    expect((itemB as any).name).toBe(firstAssignedName);
   });
 });
