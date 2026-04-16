@@ -247,6 +247,7 @@
   --diwa-line-height-loose:   1.8;
 
   --diwa-font-weight-normal:   400;
+   --diwa-font-weight-regular:  400;
   --diwa-font-weight-medium:   500;
   --diwa-font-weight-semibold: 600;
   --diwa-font-weight-bold:     700;
@@ -257,9 +258,11 @@
      ============================================================ */
 
   --diwa-space-px:    1px;   /* pixel-precise optical offset — icon nudge, hairline lines */
+   --diwa-space-0-25:  1px;   /* legacy micro-step token */
   --diwa-space-0-5:   2px;   /* micro spacing — visual gap, required asterisk nudge */
   --diwa-space-0-75:  3px;   /* micro inset — e.g. segmented-control inner padding */
   --diwa-space-1:  4px;
+   --diwa-space-1-5: 6px; /* legacy half-step token */
   --diwa-space-2:  6px; /* intentionally non-uniform — matches PDS compact rhythm */
   --diwa-space-3:  8px;
   --diwa-space-4:  10px;
@@ -366,6 +369,7 @@
   --diwa-z-sticky:   200;
   --diwa-z-overlay:  500;
   --diwa-z-modal:    1000;
+   --diwa-z-banner:   1100;
   --diwa-z-toast:    1100;
   --diwa-z-tooltip:  12000;
 
@@ -445,8 +449,10 @@
   --diwa-button-color:         var(--diwa-text-inverse);
    --diwa-button-radius:        0;
   --diwa-button-height:        40px;
+   --diwa-button-height-xs:     24px;
   --diwa-button-height-sm:     32px;
   --diwa-button-height-lg:     44px;
+   --diwa-button-padding-x-xs:  8px;
   --diwa-button-padding-x:     16px;
   --diwa-button-padding-x-sm:  10px;
   --diwa-button-font-size:     var(--diwa-font-size-base);
@@ -457,15 +463,34 @@
   --diwa-input-padding-x:  12px;
   --diwa-input-radius:     var(--diwa-radius-md);
   --diwa-input-border:     var(--diwa-border-light);
+   --diwa-input-border-focus: var(--diwa-border-focus);
+   --diwa-input-border-error: var(--diwa-danger);
+   --diwa-input-border-success: var(--diwa-success);
   --diwa-input-bg:         var(--diwa-bg-input);
+   --diwa-input-color:      var(--diwa-text-primary);
+   --diwa-input-font-size:  var(--diwa-font-size-base);
+   --diwa-input-placeholder-color: var(--diwa-text-muted);
 
   /* diwa-badge (stub) */
+   --diwa-badge-height:       24px;
+   --diwa-badge-height-sm:    20px;
+   --diwa-badge-padding-x:    var(--diwa-space-2);
+   --diwa-badge-padding-x-sm: var(--diwa-space-1-5);
+   --diwa-badge-font-size:    var(--diwa-font-size-md);
+   --diwa-badge-font-size-sm: var(--diwa-font-size-xs);
+   --diwa-badge-font-weight:  var(--diwa-font-weight-medium);
+   --diwa-badge-border-color: var(--diwa-border);
   --diwa-badge-radius:     var(--diwa-radius-full);
+
+   /* diwa-banner */
+   --diwa-banner-position-top:        90px;
+   --diwa-banner-position-top-mobile: 64px;
 
   /* diwa-spinner */
   --diwa-spinner-size-sm:  14px;
   --diwa-spinner-size-md:  16px;
   --diwa-spinner-size-lg:  20px;
+   --diwa-spinner-color:    var(--diwa-text-primary);
 
   /* diwa-icon (shared icon dimensions used across many components) */
   --diwa-icon-size-sm:  14px;
@@ -495,10 +520,37 @@
   --diwa-toast-max-width: 420px;
 
   /* diwa-flyout */
+   --diwa-flyout-width:     var(--diwa-flyout-min-width);
   --diwa-flyout-min-width: 320px;
 
   /* diwa-modal */
+   --diwa-modal-width:             min(640px, calc(100vw - var(--diwa-space-8)));
+   --diwa-modal-max-height:        calc(100vh - var(--diwa-space-10));
   --diwa-modal-header-min-height: 56px;
+
+   /* diwa-heading */
+   --diwa-heading-font-size:      var(--diwa-font-size-fluid-2xl);
+   --diwa-heading-line-height:    var(--diwa-line-height-tight);
+   --diwa-heading-letter-spacing: 0;
+   --diwa-heading-color:          var(--diwa-text-primary);
+
+   /* diwa-text */
+   --diwa-text-font-size:  var(--diwa-font-size-base);
+   --diwa-text-line-height: var(--diwa-line-height-normal);
+
+   /* diwa-table */
+   --diwa-table-header-bg:        var(--diwa-bg-secondary);
+   --diwa-table-border-color:     var(--diwa-border);
+   --diwa-table-row-border-width: var(--diwa-border-width-thin);
+   --diwa-table-column-border:    var(--diwa-border-light);
+   --diwa-table-padding-x:        var(--diwa-space-4);
+   --diwa-table-padding-y:        var(--diwa-space-3);
+   --diwa-table-hover-color:      var(--diwa-bg-hover);
+   --diwa-table-stripe-color:     color-mix(in srgb, var(--diwa-bg-hover) 55%, transparent);
+
+   /* diwa-tag */
+   --diwa-tag-bg:    var(--diwa-bg-hover);
+   --diwa-tag-color: var(--diwa-text-secondary);
 
   /* diwa-stepper-horizontal-item */
   --diwa-stepper-step-size: 28px;

@@ -33,6 +33,8 @@
     "deploy:storefront": "npm run build:storefront:release && firebase deploy --only hosting:designDocs --project diwa-copilot-ai-491108",
     "deploy:storefront:preview": "npm run build:storefront:release && firebase hosting:channel:deploy preview --only designDocs --project diwa-copilot-ai-491108",
     "agency:validate:control-heights": "node scripts/agency-validate-control-heights.cjs",
+    "agency:validate:token-contract": "node scripts/validate-token-contract.cjs",
+    "validate:tokens": "node scripts/validate-token-contract.cjs",
     "legacy:dev": "npm --prefix diwa-components run dev",
     "legacy:build": "npm --prefix diwa-components run build",
     "legacy:test": "npm --prefix diwa-components run test"
