@@ -42,8 +42,8 @@ jobs:
       - name: Storefront type-check
         run: npm run type-check
 
-      - name: Storefront build
-        run: npm run build:storefront
+      - name: Storefront build (full release pipeline)
+        run: npm run build:storefront:release
 
   pnpm-smoke:
     name: pnpm smoke
@@ -79,5 +79,14 @@ jobs:
       - name: Build wrappers
         run: pnpm run build:wrappers
 
-      - name: Storefront build
-        run: pnpm --filter @diwacopilot/storefront run build
+      - name: Unit tests
+        run: pnpm run test
+
+      - name: UX tests
+        run: pnpm run test:ux
+
+      - name: Storefront type-check
+        run: pnpm run type-check
+
+      - name: Storefront build (full release pipeline)
+        run: pnpm run build:storefront:release

@@ -2043,8 +2043,9 @@ export namespace Components {
     /**
      * @component diwa-radio-group-item
      * A single radio option used inside `diwa-radio-group`.
-     * The group sets `checked`, `name`, and `disabled` automatically — you
-     * only need to provide `value` and the label via the default slot.
+     * The group sets `checked` and `name` automatically. Group-level disabled
+     * temporarily makes every option unavailable without erasing this item's own
+     * `disabled` intent.
      * Usage:
      * <diwa-radio-group-item value="s">Small</diwa-radio-group-item>
      */
@@ -2060,7 +2061,7 @@ export namespace Components {
          */
         "compact": boolean;
         /**
-          * Whether this option is disabled. Also set by the parent group when the whole group is disabled.
+          * Whether this option is disabled for this specific option.
           * @default false
          */
         "disabled": boolean;
@@ -3796,8 +3797,9 @@ declare global {
     /**
      * @component diwa-radio-group-item
      * A single radio option used inside `diwa-radio-group`.
-     * The group sets `checked`, `name`, and `disabled` automatically — you
-     * only need to provide `value` and the label via the default slot.
+     * The group sets `checked` and `name` automatically. Group-level disabled
+     * temporarily makes every option unavailable without erasing this item's own
+     * `disabled` intent.
      * Usage:
      * <diwa-radio-group-item value="s">Small</diwa-radio-group-item>
      */
@@ -6422,8 +6424,9 @@ declare namespace LocalJSX {
     /**
      * @component diwa-radio-group-item
      * A single radio option used inside `diwa-radio-group`.
-     * The group sets `checked`, `name`, and `disabled` automatically — you
-     * only need to provide `value` and the label via the default slot.
+     * The group sets `checked` and `name` automatically. Group-level disabled
+     * temporarily makes every option unavailable without erasing this item's own
+     * `disabled` intent.
      * Usage:
      * <diwa-radio-group-item value="s">Small</diwa-radio-group-item>
      */
@@ -6439,7 +6442,7 @@ declare namespace LocalJSX {
          */
         "compact"?: boolean;
         /**
-          * Whether this option is disabled. Also set by the parent group when the whole group is disabled.
+          * Whether this option is disabled for this specific option.
           * @default false
          */
         "disabled"?: boolean;
@@ -8274,8 +8277,9 @@ declare module "@stencil/core" {
             /**
              * @component diwa-radio-group-item
              * A single radio option used inside `diwa-radio-group`.
-             * The group sets `checked`, `name`, and `disabled` automatically — you
-             * only need to provide `value` and the label via the default slot.
+             * The group sets `checked` and `name` automatically. Group-level disabled
+             * temporarily makes every option unavailable without erasing this item's own
+             * `disabled` intent.
              * Usage:
              * <diwa-radio-group-item value="s">Small</diwa-radio-group-item>
              */

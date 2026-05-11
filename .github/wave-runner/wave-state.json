@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "phase": "IDLE",
+  "wave_number": 1,
+  "batch_index": 0,
+  "batches": [],
+  "current_pr": null,
+  "blocked_reason": null,
+  "last_run": null,
+  "log": []
+}

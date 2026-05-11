@@ -56,10 +56,8 @@ function propagate(dir) {
       const src = path.join(dir, filename);
       for (const dest of descendants) {
         const target = path.join(dest, filename);
-        if (!fs.existsSync(target)) {
-          fs.copyFileSync(src, target);
-          created++;
-        }
+        fs.copyFileSync(src, target);
+        created++;
       }
     }
   }

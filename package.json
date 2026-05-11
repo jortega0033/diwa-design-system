@@ -16,7 +16,8 @@
     "publish:components:react": "npm publish --workspace diwa-components-react",
     "publish:components:vue": "npm publish --workspace diwa-components-vue",
     "publish:components:angular": "npm publish --workspace diwa-components-angular",
-    "publish:all": "npm run publish:components && npm run publish:components:react && npm run publish:components:vue && npm run publish:components:angular",
+    "prerelease": "node -e \"const s=require('child_process').execSync('git status --porcelain').toString().trim();if(s){console.error('Release blocked: uncommitted changes\\n'+s);process.exit(1);}console.log('Working tree clean — release gate passed.');\"",
+    "publish:all": "npm run prerelease && npm run publish:components && npm run publish:components:react && npm run publish:components:vue && npm run publish:components:angular",
     "build:components": "npm --workspace @diwacopilot/components run build",
     "build:wrapper:react": "npm --workspace @diwacopilot/components-react run build",
     "build:wrapper:vue": "npm --workspace @diwacopilot/components-vue run build",
@@ -29,15 +30,13 @@
     "build:storefront": "npm --workspace @diwacopilot/storefront run build",
     "sync:stencil-assets": "node scripts/sync-stencil-assets.cjs",
     "postprocess:storefront:out": "node scripts/alias-next-flight-files.cjs",
+    "smoke-check": "node scripts/hosting-smoke-check.cjs",
     "build:storefront:release": "npm run build:components && npm run sync:stencil-assets && npm run build:storefront && npm run postprocess:storefront:out",
     "deploy:storefront": "npm run build:storefront:release && firebase deploy --only hosting:designDocs --project diwa-copilot-ai-491108",
     "deploy:storefront:preview": "npm run build:storefront:release && firebase hosting:channel:deploy preview --only designDocs --project diwa-copilot-ai-491108",
     "agency:validate:control-heights": "node scripts/agency-validate-control-heights.cjs",
     "agency:validate:token-contract": "node scripts/validate-token-contract.cjs",
-    "validate:tokens": "node scripts/validate-token-contract.cjs",
-    "legacy:dev": "npm --prefix diwa-components run dev",
-    "legacy:build": "npm --prefix diwa-components run build",
-    "legacy:test": "npm --prefix diwa-components run test"
+    "validate:tokens": "node scripts/validate-token-contract.cjs"
   },
   "engines": {
     "node": ">=20.0.0"
