@@ -94,7 +94,7 @@ trap release_lock EXIT
 # ---------------------------------------------------------------------------
 
 batch_issues() {
-  log "Fetching and batching all open issues..."
+  log "Fetching and batching all open issues..." >&2
 
   python3 - <<'PYEOF'
 import subprocess, json, sys
@@ -176,7 +176,7 @@ copilot_has_reviewed() {
 run_claude() {
   local prompt="$1"
   cd "$REPO_DIR"
-  claude -p "$prompt" 2>&1
+  claude --dangerously-skip-permissions -p "$prompt" 2>&1
 }
 
 # ---------------------------------------------------------------------------
