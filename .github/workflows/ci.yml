@@ -24,6 +24,9 @@ jobs:
       - name: Install (npm)
         run: npm ci
 
+      - name: Governance check
+        run: npm run governance:check
+
       - name: Token-contract gate
         run: npm run validate:tokens
 
@@ -66,6 +69,9 @@ jobs:
 
       - name: Install (pnpm)
         run: pnpm install --frozen-lockfile
+
+      - name: Governance check
+        run: pnpm run governance:check
 
       - name: Token-contract gate
         run: pnpm run validate:tokens
