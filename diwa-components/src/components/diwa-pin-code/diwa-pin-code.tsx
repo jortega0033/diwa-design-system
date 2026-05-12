@@ -60,7 +60,7 @@ export class DiwaPinCode {
   private emitUpdate(): void {
     const boxes = this.getBoxes();
     const value = boxes.map((b) => b.value).join('');
-    const isComplete = value.length === this.length && !value.includes('');
+    const isComplete = value.length === this.length;
     this.update.emit({ value, isComplete });
   }
 
