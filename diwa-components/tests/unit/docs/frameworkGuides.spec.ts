@@ -13,8 +13,9 @@ describe('frameworkGuides event contracts', () => {
       expect(FRAMEWORK_GUIDES.react.eventCode).toContain('name: string');
     });
 
-    it('includes value field in SelectChangeEventDetail shape', () => {
+    it('includes value field in SelectChangeEventDetail shape (string, not array)', () => {
       expect(FRAMEWORK_GUIDES.react.eventCode).toContain('value: string');
+      expect(FRAMEWORK_GUIDES.react.eventCode).not.toContain('value: string[]');
     });
   });
 
