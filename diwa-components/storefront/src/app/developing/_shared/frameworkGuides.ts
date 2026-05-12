@@ -62,7 +62,7 @@ export const FRAMEWORK_GUIDES: Record<FrameworkGuideKey, FrameworkGuide> = {
     installCommand: 'npm install @diwacopilot/components @diwacopilot/components-react',
     setupCode: `import React from 'react';\nimport { DButton } from '@diwacopilot/components-react';\n\nexport function App() {\n  return <DButton variant="primary">Save</DButton>;\n}`,
     firstComponentCode: `import { DButton } from '@diwacopilot/components-react';\n\nexport function SaveAction() {\n  return <DButton variant="primary">Save</DButton>;\n}`,
-    eventCode: `import { DSelect } from '@diwacopilot/components-react';\n\nexport function RegionSelect() {\n  return (\n    <DSelect\n      label="Region"\n      onUpdate={(event: CustomEvent<{ value: string }>) => {\n        console.log(event.detail.value);\n      }}\n    />\n  );\n}`,
+    eventCode: `import { DSelect } from '@diwacopilot/components-react';\n\nexport function RegionSelect() {\n  return (\n    <DSelect\n      label="Region"\n      onChange={(event: CustomEvent<{ name: string; value: string }>) => {\n        console.log(event.detail.value);\n      }}\n    />\n  );\n}`,
     ssrAndTestingNotes: [
       'React wrapper components handle custom-element registration for browser rendering.',
       'For SSR apps, follow the Next.js integration route when hydration constraints apply.',
@@ -102,7 +102,7 @@ export const FRAMEWORK_GUIDES: Record<FrameworkGuideKey, FrameworkGuide> = {
     installCommand: 'npm install @diwacopilot/components @diwacopilot/components-vue',
     setupCode: `<script setup lang="ts">\nimport { DButton } from '@diwacopilot/components-vue';\n</script>\n\n<template>\n  <DButton variant="primary">Save</DButton>\n</template>`,
     firstComponentCode: `<script setup lang="ts">\nimport { DInputText } from '@diwacopilot/components-vue';\n</script>\n\n<template>\n  <DInputText label="Name" placeholder="Ada Lovelace" />\n</template>`,
-    eventCode: `<script setup lang="ts">\nimport { DMultiSelect } from '@diwacopilot/components-vue';\n\nfunction onUpdate(event: CustomEvent<{ values: string[] }>) {\n  console.log(event.detail.values);\n}\n</script>\n\n<template>\n  <DMultiSelect label="Regions" @update="onUpdate" />\n</template>`,
+    eventCode: `<script setup lang="ts">\nimport { DMultiSelect } from '@diwacopilot/components-vue';\n\nfunction onChange(event: CustomEvent<{ name: string; value: string[] }>) {\n  console.log(event.detail.value);\n}\n</script>\n\n<template>\n  <DMultiSelect label="Regions" @change="onChange" />\n</template>`,
     ssrAndTestingNotes: [
       'Vue wrappers provide component-friendly bindings while still using Diwa custom elements internally.',
       'For SSR frameworks, use client-only wrappers when hydration constraints require it.',
