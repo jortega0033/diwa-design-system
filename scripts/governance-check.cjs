@@ -66,7 +66,7 @@ function checkProjectIdAlignment() {
     return;
   }
 
-  const workflowId = match[1];
+  const workflowId = match[1].replace(/^["']|["']$/g, '');
   if (workflowId !== canonicalId) {
     fail(
       `projectId mismatch.\n` +
@@ -96,24 +96,38 @@ function checkWorkflowRunTrigger() {
     return;
   }
 
-  if (!deployYml.includes('workflow_run:')) {
+  const hasWorkflowRunTrigger = /^\s*workflow_run:\s*$/m.test(deployYml);
+  const hasCIWorkflow = /workflows:\s*\[["']CI["']\]/.test(deployYml);
+  const hasCompletedType = /types:\s*\[completed\]/.test(deployYml);
+
+  if (!hasWorkflowRunTrigger) {
     fail(
       'deploy-storefront.yml does not use the workflow_run trigger. ' +
       'Add "on: workflow_run: workflows: [\\"CI\\"] types: [completed]" ' +
       'to ensure deploys wait for CI to finish.'
     );
+  } else if (!hasCIWorkflow) {
+    fail(
+      'workflow_run trigger is present but does not reference the CI workflow. ' +
+      'Add `workflows: ["CI"]` under the workflow_run trigger.'
+    );
+  } else if (!hasCompletedType) {
+    fail(
+      'workflow_run trigger is present but is missing `types: [completed]`. ' +
+      'Add `types: [completed]` to prevent deploys from firing on workflow start.'
+    );
   } else {
-    pass('workflow_run trigger is present');
+    pass('workflow_run trigger is correctly wired to the CI workflow');
   }
 
-  if (!deployYml.includes("conclusion == 'success'")) {
+  if (!/^\s*if:.*github\.event\.workflow_run\.conclusion\s*==\s*['"]success['"]/m.test(deployYml)) {
     fail(
-      "deploy job is missing the `conclusion == 'success'` guard. " +
-      'Add `if: github.event.workflow_run.conclusion == \'success\'` ' +
+      "deploy job is missing the `conclusion == 'success'` guard on an if: line. " +
+      "Add `if: github.event.workflow_run.conclusion == 'success'` " +
       'to the deploy job to skip deploys on failed CI runs.'
     );
   } else {
-    pass("conclusion == 'success' guard is present — broken commits will not ship");
+    pass("conclusion == 'success' guard is present on a deploy job if: condition — broken commits will not ship");
   }
 }
 
