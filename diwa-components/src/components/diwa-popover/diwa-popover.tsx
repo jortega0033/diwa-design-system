@@ -25,10 +25,12 @@ export class DiwaPopover {
 
   @State() private isOpen: boolean = false;
 
+  private triggerRef?: HTMLButtonElement;
+
   @Listen('keydown', { target: 'window' })
   handleGlobalKeydown(e: KeyboardEvent): void {
     if (e.key === 'Escape' && this.isOpen) {
-      this.isOpen = false;
+      this.closePanel();
     }
   }
 
@@ -39,12 +41,25 @@ export class DiwaPopover {
     }
 
     if (!e.composedPath().includes(this.host)) {
-      this.isOpen = false;
+      this.closePanel();
     }
   }
 
+  private closePanel(): void {
+    this.isOpen = false;
+    this.triggerRef?.focus();
+  }
+
   private toggle = (): void => {
-    this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+      this.closePanel();
+    } else {
+      this.isOpen = true;
+      requestAnimationFrame(() => {
+        const panel = this.host?.shadowRoot?.querySelector<HTMLElement>('.panel');
+        panel?.querySelector<HTMLElement>('[data-autofocus], button, a, input')?.focus();
+      });
+    }
   };
 
   render() {
@@ -56,8 +71,9 @@ export class DiwaPopover {
             class="trigger"
             type="button"
             aria-expanded={String(this.isOpen)}
-            aria-haspopup="true"
+            aria-haspopup="dialog"
             onClick={this.toggle}
+            ref={(el) => (this.triggerRef = el as HTMLButtonElement)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +95,8 @@ export class DiwaPopover {
         </slot>
         <div
           class="panel"
-          role="tooltip"
+          role="dialog"
+          aria-label="Popover"
           aria-hidden={String(!this.isOpen)}
         >
           {this.description && <p>{this.description}</p>}

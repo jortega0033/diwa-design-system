@@ -34,7 +34,7 @@ describe('diwa-popover (tooltip) - panel role & visibility', () => {
     if (typeof node === 'object') {
       const props = node.props || {};
       const cls = props.class || props.className || '';
-      if (props.role === 'tooltip' || (typeof cls === 'string' && cls.includes('panel'))) return node;
+      if (props.role === 'dialog' || (typeof cls === 'string' && cls.includes('panel'))) return node;
 
       const children = props.children || node.children;
       if (children) return findPanel(children);
@@ -43,7 +43,7 @@ describe('diwa-popover (tooltip) - panel role & visibility', () => {
     return undefined;
   };
 
-  it('panel role is tooltip and aria-hidden updates when toggled', () => {
+  it('panel role is dialog and aria-hidden updates when toggled', () => {
     const p = new DiwaPopover();
 
     (p as any).isOpen = false;
@@ -51,7 +51,7 @@ describe('diwa-popover (tooltip) - panel role & visibility', () => {
     const panelClosed = findPanel(vnodeClosed);
 
     expect(panelClosed).toBeDefined();
-    expect(panelClosed.props.role).toBe('tooltip');
+    expect(panelClosed.props.role).toBe('dialog');
     expect(panelClosed.props['aria-hidden']).toBe('true');
 
     (p as any).isOpen = true;

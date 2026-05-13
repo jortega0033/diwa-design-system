@@ -509,7 +509,7 @@ export class DiwaSelect {
           aria-haspopup="listbox"
           aria-expanded={this.isOpen ? 'true' : 'false'}
           aria-controls={listboxId}
-          aria-labelledby={this.label ? labelId : undefined}
+          aria-labelledby={(this.label || this.host.querySelector('[slot="label"]')) ? labelId : undefined}
           aria-required={this.required ? 'true' : undefined}
           aria-invalid={this.state === 'error' ? 'true' : undefined}
           aria-describedby={hasMessage ? hintId : undefined}
@@ -537,7 +537,7 @@ export class DiwaSelect {
           role="listbox"
           id={listboxId}
           aria-multiselectable="false"
-          aria-labelledby={this.label ? labelId : undefined}
+          aria-labelledby={(this.label || this.host.querySelector('[slot="label"]')) ? labelId : undefined}
           onKeyDown={this.onListboxKeyDown}
           part="dropdown"
         >
