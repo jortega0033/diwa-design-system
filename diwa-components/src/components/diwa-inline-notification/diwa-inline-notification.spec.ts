@@ -35,11 +35,13 @@ describe('diwa-inline-notification', () => {
   // ── action event ──────────────────────────────────────────────────────────
 
   it('emits action when action button is clicked', () => {
+    c.actionLabel = 'Retry';
     (c as any).handleAction();
     expect((c as any).action.emit).toHaveBeenCalledTimes(1);
   });
 
   it('action event carries no payload (EventEmitter<void>)', () => {
+    c.actionLabel = 'Retry';
     (c as any).handleAction();
     const callArgs = (c as any).action.emit.mock.calls[0];
     expect(callArgs[0]).toBeUndefined();
