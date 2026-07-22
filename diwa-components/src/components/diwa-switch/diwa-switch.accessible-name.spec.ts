@@ -17,6 +17,10 @@ describe('diwa-switch — accessible name (WCAG 4.1.2)', () => {
     });
   });
 
+  const makeHost = (idAttr: string | null = null) => ({
+    getAttribute: vi.fn().mockReturnValue(idAttr),
+  });
+
   const findByClass = (node: any, cls: string): any => {
     if (node == null) return undefined;
     if (Array.isArray(node)) {
@@ -36,34 +40,58 @@ describe('diwa-switch — accessible name (WCAG 4.1.2)', () => {
     return undefined;
   };
 
-  it('generates a stable labelId at class instantiation', () => {
+  it('generates a stable labelId in componentWillLoad (sequential counter)', () => {
     const sw = new DiwaSwitch();
+    (sw as any).host = makeHost(null);
+    (sw as any).componentWillLoad();
     expect(typeof (sw as any).labelId).toBe('string');
     expect((sw as any).labelId).toMatch(/^diwa-sw-label-\d+$/);
   });
 
-  it('two instances receive distinct labelIds', () => {
+  it('uses host id attribute as labelId base when host has id', () => {
+    const sw = new DiwaSwitch();
+    (sw as any).host = makeHost('my-switch');
+    (sw as any).componentWillLoad();
+    expect((sw as any).labelId).toBe('my-switch-label');
+  });
+
+  it('two instances receive distinct labelIds when no host id', () => {
     const sw1 = new DiwaSwitch();
+    (sw1 as any).host = makeHost(null);
+    (sw1 as any).componentWillLoad();
+
     const sw2 = new DiwaSwitch();
+    (sw2 as any).host = makeHost(null);
+    (sw2 as any).componentWillLoad();
+
     expect((sw1 as any).labelId).not.toBe((sw2 as any).labelId);
   });
 
   it('label span has id matching labelId', () => {
     const sw = new DiwaSwitch();
+    (sw as any).host = makeHost(null);
+    (sw as any).componentWillLoad();
     const vnode = (sw as any).render();
     const labelSpan = findByClass(vnode, 'label');
+    expect((sw as any).labelId).toBeTruthy();
     expect(labelSpan?.props?.id).toBe((sw as any).labelId);
   });
 
   it('track element has aria-labelledby matching labelId', () => {
     const sw = new DiwaSwitch();
+    (sw as any).host = makeHost(null);
+    (sw as any).componentWillLoad();
     const vnode = (sw as any).render();
     const track = findByClass(vnode, 'track');
+    expect((sw as any).labelId).toBeTruthy();
     expect(track?.props?.['aria-labelledby']).toBe((sw as any).labelId);
   });
 
   it('aria-checked reflects checked prop', () => {
     const sw = new DiwaSwitch();
+    (sw as any).host = makeHost(null);
+    (sw as any).componentWillLoad();
+
     sw.checked = true;
     const vnode = (sw as any).render();
     const track = findByClass(vnode, 'track');
@@ -75,10 +103,10 @@ describe('diwa-switch — accessible name (WCAG 4.1.2)', () => {
     expect(track2?.props?.['aria-checked']).toBe('false');
   });
 
-  it('componentDidLoad emits console.error when host has no text and no aria-label', () => {
+  it('componentDidLoad emits console.error when host has no child nodes and no aria-label', () => {
     const sw = new DiwaSwitch();
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-    (sw as any).host = { textContent: '', hasAttribute: vi.fn().mockReturnValue(false) };
+    (sw as any).host = { childNodes: [], hasAttribute: vi.fn().mockReturnValue(false) };
 
     (sw as any).componentDidLoad();
 
@@ -88,10 +116,23 @@ describe('diwa-switch — accessible name (WCAG 4.1.2)', () => {
     errorSpy.mockRestore();
   });
 
-  it('componentDidLoad does not emit console.error when host has slotted text', () => {
+  it('componentDidLoad does not emit console.error when host has a slotted text node', () => {
     const sw = new DiwaSwitch();
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-    (sw as any).host = { textContent: 'Email notifications', hasAttribute: vi.fn().mockReturnValue(false) };
+    const textNode = document.createTextNode('Email notifications');
+    (sw as any).host = { childNodes: [textNode], hasAttribute: vi.fn().mockReturnValue(false) };
+
+    (sw as any).componentDidLoad();
+
+    expect(errorSpy).not.toHaveBeenCalled();
+    errorSpy.mockRestore();
+  });
+
+  it('componentDidLoad does not emit console.error when host has a slotted element child', () => {
+    const sw = new DiwaSwitch();
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const labelEl = document.createElement('span');
+    (sw as any).host = { childNodes: [labelEl], hasAttribute: vi.fn().mockReturnValue(false) };
 
     (sw as any).componentDidLoad();
 
@@ -102,7 +143,7 @@ describe('diwa-switch — accessible name (WCAG 4.1.2)', () => {
   it('componentDidLoad does not emit console.error when host has aria-label attribute', () => {
     const sw = new DiwaSwitch();
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-    (sw as any).host = { textContent: '', hasAttribute: vi.fn().mockReturnValue(true) };
+    (sw as any).host = { childNodes: [], hasAttribute: vi.fn().mockReturnValue(true) };
 
     (sw as any).componentDidLoad();
 

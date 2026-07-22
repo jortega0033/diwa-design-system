@@ -38,10 +38,20 @@ export class DiwaSwitch {
   /** Emitted when the checked state changes. */
   @Event({ bubbles: false, composed: false }) update!: EventEmitter<SwitchUpdateEventDetail>;
 
-  private readonly labelId = `diwa-sw-label-${++switchIdCounter}`;
+  private labelId!: string;
+
+  componentWillLoad(): void {
+    const hostId = this.host?.getAttribute('id');
+    this.labelId = hostId ? `${hostId}-label` : `diwa-sw-label-${++switchIdCounter}`;
+  }
 
   componentDidLoad(): void {
-    const hasSlottedLabel = (this.host?.textContent ?? '').trim().length > 0;
+    const hasSlottedLabel = Array.from(this.host?.childNodes ?? []).some(
+      (n) =>
+        n.nodeType === Node.TEXT_NODE
+          ? (n.textContent?.trim().length ?? 0) > 0
+          : n.nodeType === Node.ELEMENT_NODE,
+    );
     const hasAriaLabel = this.host?.hasAttribute('aria-label');
     if (!hasSlottedLabel && !hasAriaLabel) {
       // eslint-disable-next-line no-console
