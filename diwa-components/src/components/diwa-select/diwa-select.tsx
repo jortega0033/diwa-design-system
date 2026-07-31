@@ -489,13 +489,14 @@ export class DiwaSelect {
     const hintId = `${this.internalId}-hint`;
     const hasMessage = !!this.message;
     const displayLabel = this.getTriggerDisplayLabel();
+    const hasSlottedLabel = !!(this.label || this.host.querySelector('[slot="label"]'));
 
     return (
       <Host data-theme={this.theme}>
         <style innerHTML={getComponentCss(this.isOpen, this.disabled, this.state, this.compact, this.dropdownClass.includes('--up'))} />
 
         {/* Label */}
-        {(this.label || this.host.querySelector('[slot="label"]')) && (
+        {hasSlottedLabel && (
           <span class="label" id={labelId} part="label">
             <slot name="label">{this.label}</slot>
             {this.required && <span class="label__required" aria-hidden="true">*</span>}
@@ -509,7 +510,7 @@ export class DiwaSelect {
           aria-haspopup="listbox"
           aria-expanded={this.isOpen ? 'true' : 'false'}
           aria-controls={listboxId}
-          aria-labelledby={this.label ? labelId : undefined}
+          aria-labelledby={hasSlottedLabel ? labelId : undefined}
           aria-required={this.required ? 'true' : undefined}
           aria-invalid={this.state === 'error' ? 'true' : undefined}
           aria-describedby={hasMessage ? hintId : undefined}
@@ -537,7 +538,7 @@ export class DiwaSelect {
           role="listbox"
           id={listboxId}
           aria-multiselectable="false"
-          aria-labelledby={this.label ? labelId : undefined}
+          aria-labelledby={hasSlottedLabel ? labelId : undefined}
           onKeyDown={this.onListboxKeyDown}
           part="dropdown"
         >

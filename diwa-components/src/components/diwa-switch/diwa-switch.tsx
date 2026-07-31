@@ -1,7 +1,9 @@
-import { Component, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
+import { Component, Element, Event, type EventEmitter, Host, Prop, h } from '@stencil/core';
 import type { Theme } from '../../utils/styles';
 import type { SwitchAlignLabel, SwitchUpdateEventDetail } from './types';
 import { getComponentCss } from './diwa-switch-styles';
+
+let switchIdCounter = 0;
 
 /**
  * @slot default — Label text for the switch.
@@ -13,6 +15,8 @@ import { getComponentCss } from './diwa-switch-styles';
   shadow: { delegatesFocus: true },
 })
 export class DiwaSwitch {
+  @Element() host!: HTMLElement;
+
   /** Whether the switch is in the on state. */
   @Prop({ reflect: true }) checked: boolean = false;
 
@@ -33,6 +37,27 @@ export class DiwaSwitch {
 
   /** Emitted when the checked state changes. */
   @Event({ bubbles: false, composed: false }) update!: EventEmitter<SwitchUpdateEventDetail>;
+
+  private labelId!: string;
+
+  componentWillLoad(): void {
+    const hostId = this.host?.getAttribute('id');
+    this.labelId = hostId ? `${hostId}-label` : `diwa-sw-label-${++switchIdCounter}`;
+  }
+
+  componentDidLoad(): void {
+    const hasSlottedLabel = Array.from(this.host?.childNodes ?? []).some(
+      (n) =>
+        n.nodeType === Node.TEXT_NODE
+          ? (n.textContent?.trim().length ?? 0) > 0
+          : n.nodeType === Node.ELEMENT_NODE,
+    );
+    const hasAriaLabel = this.host?.hasAttribute('aria-label');
+    if (!hasSlottedLabel && !hasAriaLabel) {
+      // eslint-disable-next-line no-console
+      console.error('[diwa-switch] An accessible label is required. Use slot content or aria-label.');
+    }
+  }
 
   private handleClick = (): void => {
     if (this.disabled || this.loading) return;
@@ -59,6 +84,7 @@ export class DiwaSwitch {
             role="switch"
             aria-checked={String(this.checked)}
             aria-disabled={this.disabled || this.loading ? 'true' : undefined}
+            aria-labelledby={this.labelId}
             tabIndex={this.disabled || this.loading ? -1 : 0}
             onKeyDown={this.handleKeyDown}
           >
@@ -69,7 +95,7 @@ export class DiwaSwitch {
               </span>
             )}
           </span>
-          <span class="label">
+          <span class="label" id={this.labelId}>
             <slot />
           </span>
         </span>

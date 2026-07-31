@@ -14,7 +14,7 @@ const findPanel = (node: any): any => {
   if (typeof node === 'object') {
     const props = node.props || {};
     const cls = props.class || props.className || '';
-    if (props.role === 'tooltip' || (typeof cls === 'string' && cls.includes('panel'))) return node;
+    if (props.role === 'dialog' || (typeof cls === 'string' && cls.includes('panel'))) return node;
 
     const children = props.children || node.children;
     if (children) return findPanel(children);

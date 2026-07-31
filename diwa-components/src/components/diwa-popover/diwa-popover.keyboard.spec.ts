@@ -32,7 +32,7 @@ describe('diwa-popover (keyboard accessibility)', () => {
     const trigger = findTrigger(vnode);
 
     if (trigger) {
-      expect(trigger.props['aria-haspopup']).toBe('true');
+      expect(trigger.props['aria-haspopup']).toBe('dialog');
       expect(trigger.props['aria-expanded']).toBe(String((p as any).isOpen));
 
       // call the click handler if present, otherwise fall back to toggle()
