@@ -28,7 +28,7 @@ ${ISSUES_LIST}`,
     title: 'Prepare a deterministic report',
     description: 'Include exact versions and a reproducible sequence.',
     code: `### Environment
-- @diwacopilot/components: x.y.z
+- @diwa-design-system/components: x.y.z
 - Framework + version:
 - Browser + version:
 

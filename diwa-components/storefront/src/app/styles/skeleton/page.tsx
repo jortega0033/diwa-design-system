@@ -149,7 +149,7 @@ export default function StylesSkeletonPage() {
           stylesheet-based projects. Always include the reduced-motion reset.
         </p>
         <CodeSnippet code={`// JS
-import { getSkeletonStyle } from '@diwacopilot/components/styles';
+import { getSkeletonStyle } from '@diwa-design-system/components/styles';
 
 // Returns a CSS-in-JS object with the shimmer gradient + animation
 const lightSkeleton = getSkeletonStyle({ theme: 'light' });
@@ -212,7 +212,7 @@ const darkSkeleton  = getSkeletonStyle({ theme: 'dark' });
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwacopilot/components/styles' as *;
+            code: `@use '@diwa-design-system/components/styles' as *;
 
 @keyframes diwa-skeleton-pulse {
   0%   { background-position: -200% center; }
@@ -237,7 +237,7 @@ const darkSkeleton  = getSkeletonStyle({ theme: 'dark' });
           },
           {
             label: 'React',
-            code: `import { getSkeletonStyle } from '@diwacopilot/components/styles';
+            code: `import { getSkeletonStyle } from '@diwa-design-system/components/styles';
 
 const skeletonStyle = getSkeletonStyle({ theme: 'dark' });
 

@@ -13,11 +13,11 @@ export const MUST_KNOW_DOCS: Record<string, DocDetail> = {
       {
         title: 'Install required packages',
         description: 'Install the core package and framework adapters when needed.',
-        code: `npm install @diwacopilot/components
+        code: `npm install @diwa-design-system/components
 # optional framework wrappers:
-# npm install @diwacopilot/components-react
-# npm install @diwacopilot/components-angular
-# npm install @diwacopilot/components-vue`,
+# npm install @diwa-design-system/components-react
+# npm install @diwa-design-system/components-angular
+# npm install @diwa-design-system/components-vue`,
       },
       {
         title: 'Load styles and register custom elements',
@@ -73,7 +73,7 @@ await node?.componentOnReady?.();`,
       {
         title: 'Register components once and early',
         description: 'Avoid duplicate registration calls and keep startup deterministic.',
-        code: `import { defineCustomElements } from '@diwacopilot/components/loader';
+        code: `import { defineCustomElements } from '@diwa-design-system/components/loader';
 
 let didRegister = false;
 
@@ -343,7 +343,7 @@ npm test`,
       {
         title: 'Validate upgrades before merge',
         description: 'Run critical verification gates whenever dependency or package version changes are introduced.',
-        code: `npm install @diwacopilot/components@latest
+        code: `npm install @diwa-design-system/components@latest
 npm run test
 npm run build:storefront`,
       },

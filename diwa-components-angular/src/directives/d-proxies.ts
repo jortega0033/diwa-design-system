@@ -7,7 +7,7 @@
  * CUSTOM_ELEMENTS_SCHEMA allows the inner `<diwa-*>` tag in each template.
  *
  * Usage:
- *   import { DButton } from '@diwacopilot/components-angular';
+ *   import { DButton } from '@diwa-design-system/components-angular';
  *
  *   @Component({
  *     standalone: true,

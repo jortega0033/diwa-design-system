@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import type { ToastMessage } from '@diwacopilot/components';
+import type { ToastMessage } from '@diwa-design-system/components';
 
 /**
  * Injectable service for queuing toast notifications.

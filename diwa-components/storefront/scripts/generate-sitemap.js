@@ -2,7 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = (process.env.SITE_URL || 'https://designsystem.diwacopilot.com').replace(/\/$/, '');
+const publicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const SITE_URL = (publicSiteUrl || 'http://localhost:3000').replace(/\/$/, '');
 const publicDir = path.join(__dirname, '..', 'public');
 const outPath = path.join(publicDir, 'sitemap.xml');
 const now = new Date().toISOString().split('T')[0];
@@ -120,7 +121,7 @@ for (const slug of COMPONENT_SLUGS) {
 entries.sort((a, b) => a.url.localeCompare(b.url));
 
 // ── Render XML ───────────────────────────────────────────────────────────────
-const xmlUrls = entries
+const xmlUrls = (publicSiteUrl ? entries : [])
   .map(
     ({ url, changefreq, priority }) =>
       `  <url>\n    <loc>${url}</loc>\n    <lastmod>${now}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
@@ -131,11 +132,13 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.s
 
 if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
 fs.writeFileSync(outPath, xml, 'utf8');
-console.log(`✓ Wrote sitemap to ${outPath} (${entries.length} URLs)`);
+console.log(`✓ Wrote sitemap to ${outPath} (${publicSiteUrl ? entries.length : 0} URLs)`);
 
 // ── robots.txt ───────────────────────────────────────────────────────────────
 const robotsPath = path.join(publicDir, 'robots.txt');
-const robotsTxt = `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`;
+const robotsTxt = publicSiteUrl
+  ? `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`
+  : 'User-agent: *\nDisallow: /\n';
 fs.writeFileSync(robotsPath, robotsTxt, 'utf8');
 console.log(`✓ Wrote robots.txt to ${robotsPath}`);
 

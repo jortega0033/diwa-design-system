@@ -23,7 +23,7 @@
 - Reworked global semantic token defaults in `diwa-components/src/global/app.css` for the new dark-green-forward theme direction.
 - Updated typography foundation to the new display/body profile based on the coming-soon direction.
 - Updated shape system toward square-first controls and set `--diwa-button-radius: 0` to remove rounded button corners.
-- Bumped all publishable packages to `3.0.0` and aligned wrapper peer dependency ranges to `@diwacopilot/components@^3.0.0`.
+- Bumped all publishable packages to `3.0.0` and aligned wrapper peer dependency ranges with the core package at version 3.0.0.
 
 ## 2.0.0 - 2026-03-29
 

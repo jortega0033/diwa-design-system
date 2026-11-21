@@ -18,7 +18,7 @@ export function generateReactMarkup(
   const diwaImports = collectDiwaComponents(filtered);
   const importLine =
     diwaImports.length > 0
-      ? `import { ${diwaImports.join(', ')} } from '@diwacopilot/components-react';`
+      ? `import { ${diwaImports.join(', ')} } from '@diwa-design-system/components-react';`
       : null;
 
   return [

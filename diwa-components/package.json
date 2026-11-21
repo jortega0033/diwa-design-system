@@ -1,9 +1,9 @@
 {
-  "name": "@diwacopilot/components",
+  "name": "@diwa-design-system/components",
   "version": "3.1.3",
   "description": "Diwa Design System - Framework-agnostic Web Components built with Stencil.js",
   "license": "MIT",
-  "homepage": "https://designsystem.diwacopilot.com/",
+  "homepage": "https://github.com/jortega0033/diwa-design-system",
   "publishConfig": {
     "access": "public"
   },

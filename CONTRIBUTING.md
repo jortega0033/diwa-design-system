@@ -48,10 +48,10 @@ npm run dev
 
 ## Package boundary
 
-- `@diwacopilot/components` is published from `diwa-components`.
-- `@diwacopilot/components-react` is published from `diwa-components-react`.
-- `@diwacopilot/components-vue` is published from `diwa-components-vue`.
-- `@diwacopilot/components-angular` is published from `diwa-components-angular`.
+- `@diwa-design-system/components` is published from `diwa-components`.
+- `@diwa-design-system/components-react` is published from `diwa-components-react`.
+- `@diwa-design-system/components-vue` is published from `diwa-components-vue`.
+- `@diwa-design-system/components-angular` is published from `diwa-components-angular`.
 
 ## Local-only governance files
 
