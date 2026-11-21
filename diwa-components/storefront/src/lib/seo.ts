@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://designsystem.diwacopilot.com'
-).replace(/\/$/, '');
+const publicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+export const IS_PUBLIC_SITE = Boolean(publicSiteUrl);
+export const SITE_URL = (publicSiteUrl || 'http://localhost:3000').replace(/\/$/, '');
 
 export const SITE_NAME = 'Diwa Design System';
 
@@ -52,7 +53,7 @@ export function buildMetadata({
       description,
       images: [image],
     },
-    robots: noIndex
+    robots: noIndex || !IS_PUBLIC_SITE
       ? { index: false, follow: false }
       : { index: true, follow: true },
   };

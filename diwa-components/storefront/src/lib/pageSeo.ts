@@ -49,21 +49,21 @@ export const pageSeo: Record<string, Metadata> = {
   '/developing/react': buildMetadata({
     title: 'React',
     description:
-      'Use Diwa web components in React 18+ with the @diwacopilot/components-react wrapper and full TypeScript prop types.',
+      'Use Diwa web components in React 18+ with the @diwa-design-system/components-react wrapper and full TypeScript prop types.',
     pathname: '/developing/react',
     ogSection: 'developing',
   }),
   '/developing/angular': buildMetadata({
     title: 'Angular',
     description:
-      'Integrate Diwa with the Angular schematics wrapper and @diwacopilot/components-angular for typed two-way binding.',
+      'Integrate Diwa with the Angular schematics wrapper and @diwa-design-system/components-angular for typed two-way binding.',
     pathname: '/developing/angular',
     ogSection: 'developing',
   }),
   '/developing/vue': buildMetadata({
     title: 'Vue',
     description:
-      'Use @diwacopilot/components-vue in a Vue 3 project with typed props, v-model support, and scoped slot compatibility.',
+      'Use @diwa-design-system/components-vue in a Vue 3 project with typed props, v-model support, and scoped slot compatibility.',
     pathname: '/developing/vue',
     ogSection: 'developing',
   }),

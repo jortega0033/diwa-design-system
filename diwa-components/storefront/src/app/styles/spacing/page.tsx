@@ -199,7 +199,7 @@ import {
   spacingFluidXs,  spacingFluidSm, spacingFluidMd,
   spacingFluidLg,  spacingFluidXl,
   spacingFluid2xl, spacingFluid3xl,
-} from '@diwacopilot/components/styles';
+} from '@diwa-design-system/components/styles';
 
 // JS — static
 import {
@@ -208,7 +208,7 @@ import {
   spacingStatic4,  spacingStatic5,  spacingStatic6,
   spacingStatic7,  spacingStatic8,  spacingStatic9,
   spacingStatic10, spacingStatic11, spacingStatic12,
-} from '@diwacopilot/components/styles';
+} from '@diwa-design-system/components/styles';
 
 /* ─── CSS — fluid (layout-level) ─────────────────────────────────────── */
 .page-section {
@@ -237,7 +237,7 @@ import {
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwacopilot/components/styles' as *;
+            code: `@use '@diwa-design-system/components/styles' as *;
 
 /* Layout-level — fluid spacing */
 .page-section {
@@ -265,7 +265,7 @@ import {
             code: `import {
   spacingFluidXl, spacingFluidLg, spacingFluid2xl,
   spacingStatic9, spacingStatic7, spacingStatic3,
-} from '@diwacopilot/components/styles';
+} from '@diwa-design-system/components/styles';
 
 function PageSection({ children }: { children: React.ReactNode }) {
   return (

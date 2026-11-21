@@ -147,10 +147,10 @@ export default function StylesGridPage() {
       <Section title="Styles">
         <p className="text-sm text-[var(--diwa-text-secondary)] mb-4 leading-relaxed">
           Import the grid style helper from{' '}
-          <code className="font-mono text-[var(--diwa-accent)]">@diwacopilot/components/styles</code>, or
+          <code className="font-mono text-[var(--diwa-accent)]">@diwa-design-system/components/styles</code>, or
           use the CSS tokens directly for full control:
         </p>
-        <CodeSnippet code={`import { gridStyle } from '@diwacopilot/components/styles';
+        <CodeSnippet code={`import { gridStyle } from '@diwa-design-system/components/styles';
 
 // Returns { display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '...' }
 const grid = gridStyle();
@@ -189,7 +189,7 @@ const grid = gridStyle();
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwacopilot/components/styles' as *;
+            code: `@use '@diwa-design-system/components/styles' as *;
 
 .page {
   display: grid;
@@ -209,7 +209,7 @@ const grid = gridStyle();
           },
           {
             label: 'React',
-            code: `import { gridStyle } from '@diwacopilot/components/styles';
+            code: `import { gridStyle } from '@diwa-design-system/components/styles';
 
 const grid = gridStyle();
 // { display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '...' }

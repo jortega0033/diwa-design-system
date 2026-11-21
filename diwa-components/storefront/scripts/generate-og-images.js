@@ -167,7 +167,7 @@ function makeSvg({ t1, t2, d1, d2 }) {
   <!-- URL -->
   <text x="81" y="565"
         font-family="${FONT}" font-size="15" fill="#444"
-        letter-spacing="0.3">designsystem.diwacopilot.com</text>
+        letter-spacing="0.3">github.com/jortega0033/diwa-design-system</text>
 
   <!-- bottom accent bar -->
   <rect x="0"  y="622" width="1200" height="8" fill="#10a37f" opacity="0.08"/>

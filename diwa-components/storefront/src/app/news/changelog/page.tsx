@@ -172,7 +172,7 @@ const RELEASES: Release[] = [
     ],
     changed: [
       'Bumped Diwa package versions to the next minor release across core and wrappers.',
-      'Updated wrapper peer dependency ranges to align with @diwacopilot/components v1.4.0.',
+      'Updated wrapper peer dependency ranges to align with @diwa-design-system/components v1.4.0.',
     ],
     fixed: [],
     deprecated: [],

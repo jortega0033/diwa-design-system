@@ -31,7 +31,7 @@ function App() {
   );
 }`,
   angular: `import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DiwaToast, ToastManager } from '@diwacopilot/components-angular';
+import { DiwaToast, ToastManager } from '@diwa-design-system/components-angular';
 
 // Add <diwa-toast> once in your app shell (e.g. app.component.html)
 // then inject ToastManager wherever you need it.

@@ -121,7 +121,7 @@ export default function StylesFrostedGlassPage() {
       <Section title="Styles">
         <p className="text-sm text-[var(--diwa-text-secondary)] mb-4 leading-relaxed">
           Use the CSS tokens directly, or import the pre-composed JS style object from{' '}
-          <code className="font-mono text-[var(--diwa-accent)]">@diwacopilot/components/styles</code>:
+          <code className="font-mono text-[var(--diwa-accent)]">@diwa-design-system/components/styles</code>:
         </p>
         <CodeSnippet code={`/* CSS */
 .nav-bar {
@@ -132,7 +132,7 @@ export default function StylesFrostedGlassPage() {
 }
 
 /* JS — JSS / styled-components / inline styles */
-import { frostedGlassStyle } from '@diwacopilot/components/styles';
+import { frostedGlassStyle } from '@diwa-design-system/components/styles';
 
 // Returns:
 // {
@@ -145,7 +145,7 @@ import { frostedGlassStyle } from '@diwacopilot/components/styles';
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwacopilot/components/styles' as *;
+            code: `@use '@diwa-design-system/components/styles' as *;
 
 .nav-bar {
   background: $diwa-bg-frosted;
@@ -162,7 +162,7 @@ import { frostedGlassStyle } from '@diwacopilot/components/styles';
           },
           {
             label: 'React',
-            code: `import { frostedGlassStyle } from '@diwacopilot/components/styles';
+            code: `import { frostedGlassStyle } from '@diwa-design-system/components/styles';
 
 function NavBar({ children }: { children: React.ReactNode }) {
   return <nav style={frostedGlassStyle}>{children}</nav>;

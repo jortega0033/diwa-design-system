@@ -1,5 +1,5 @@
 {
-  "name": "@diwacopilot/components-vue",
+  "name": "@diwa-design-system/components-vue",
   "version": "3.1.3",
   "description": "Vue wrapper package for Diwa Web Components.",
   "license": "MIT",
@@ -21,16 +21,16 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@diwacopilot/components": "^3.1.3",
+    "@diwa-design-system/components": "^3.1.3",
     "vue": "^3.4.0"
   },
   "devDependencies": {
-    "@diwacopilot/components": "file:../diwa-components",
+    "@diwa-design-system/components": "file:../diwa-components",
     "typescript": "^5.7.2",
     "vue": "^3.5.13"
   },
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://designsystem.diwacopilot.com/"
+  "homepage": "https://github.com/jortega0033/diwa-design-system"
 }

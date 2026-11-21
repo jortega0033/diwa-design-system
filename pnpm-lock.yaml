@@ -59,7 +59,7 @@ importers:
       '@angular/core':
         specifier: ^20.3.10
         version: 20.3.18(rxjs@7.8.2)
-      '@diwacopilot/components':
+      '@diwa-design-system/components':
         specifier: file:../diwa-components
         version: link:../diwa-components
       rxjs:
@@ -71,7 +71,7 @@ importers:
 
   diwa-components-react:
     devDependencies:
-      '@diwacopilot/components':
+      '@diwa-design-system/components':
         specifier: file:../diwa-components
         version: link:../diwa-components
       '@types/node':
@@ -95,7 +95,7 @@ importers:
 
   diwa-components-vue:
     devDependencies:
-      '@diwacopilot/components':
+      '@diwa-design-system/components':
         specifier: file:../diwa-components
         version: link:../diwa-components
       typescript:

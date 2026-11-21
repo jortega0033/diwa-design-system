@@ -16,7 +16,7 @@ const errorStory: Story<'diwa-input-url'> = {
 
 const successStory: Story<'diwa-input-url'> = {
   state: {},
-  generator: () => [{ tag: 'diwa-input-url' as const, properties: { label: 'Website URL', value: 'https://diwacopilot.com', state: 'success', message: 'URL is reachable.' } }],
+  generator: () => [{ tag: 'diwa-input-url' as const, properties: { label: 'Website URL', value: 'https://example.com', state: 'success', message: 'URL is reachable.' } }],
 };
 
 const compactStory: Story<'diwa-input-url'> = {

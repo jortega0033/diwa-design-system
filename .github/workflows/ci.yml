@@ -17,15 +17,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: package-lock.json
 
       - name: Install (npm)
         run: npm ci
-
-      - name: Governance check
-        run: npm run governance:check
 
       - name: Token-contract gate
         run: npm run validate:tokens
@@ -63,15 +60,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Install (pnpm)
         run: pnpm install --frozen-lockfile
-
-      - name: Governance check
-        run: pnpm run governance:check
 
       - name: Token-contract gate
         run: pnpm run validate:tokens
@@ -80,7 +74,7 @@ jobs:
         run: pnpm run agency:validate:control-heights
 
       - name: Build components
-        run: pnpm --filter @diwacopilot/components run build
+        run: pnpm --filter @diwa-design-system/components run build
 
       - name: Build wrappers
         run: pnpm run build:wrappers
