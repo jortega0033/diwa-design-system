@@ -20,6 +20,7 @@ Diwa Design System is a multi-package workspace with one source of truth for com
    - `diwa-components-react/src/components.ts`
    - `diwa-components-vue/src/components.ts`
    - `diwa-components-angular/src/directives/proxies.ts`
+   - `diwa-components-angular/src/directives/index.ts`
    Regenerate via Stencil build.
 3. Do not edit generated distribution artifacts directly:
    - `diwa-components/dist-custom-elements/*`
@@ -29,6 +30,12 @@ Diwa Design System is a multi-package workspace with one source of truth for com
 5. Preserve accessibility contracts and interaction states (focus, hover, active, reduced motion).
 6. Keep token-first styling with `--diwa-*` variables. Avoid hardcoded ad-hoc colors in component styles unless explicitly justified.
 7. Run quality gates relevant to your change before claiming completion.
+
+## Related Documents
+
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): how a component travels from source to packages and the docs site, data ownership, CI invariants, and where older plans no longer match the source.
+- [`CLAUDE.md`](CLAUDE.md): Claude Code setup, the check list CI runs, Git workflow, and the evidence to capture before calling a ticket done. It imports this file.
+- [`LOOP.md`](LOOP.md): Loop Engineering issue triage, fixed at L1 report-only.
 
 ## DESIGN.md Integration
 
@@ -72,6 +79,8 @@ User-invocable specialists:
 - `Diwa DS QA Tester`
 - `Diwa DS Release Automator`
 - `Diwa DS Technical Writer`
+
+Claude Code does not load `.github/agents/*.agent.md`. For Claude Code, `.claude/agents/` holds pinned general-purpose roles (see [`.claude/agency-agents/README.md`](.claude/agency-agents/README.md)); they follow this file like any contributor.
 
 ## When To Use Which Agent
 
