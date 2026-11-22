@@ -100,7 +100,8 @@ Put this in the pull request description:
    the checks above that cover the files you changed; for a component change that is the
    full list.
 3. `git status --short` after `npm run build`. Until #105 is fixed, the two `@ts-nocheck`
-   files named above are expected; anything else must be explained.
+   files named above are expected, and on Windows the twelve generated files with no
+   content diff; anything else must be explained.
 4. For generated files: the regenerating command, not a manual edit.
 5. For UI changes: a screenshot or recording from the storefront, in dark and in
    `data-theme="light"`, plus keyboard and focus behavior.
@@ -124,7 +125,7 @@ sentence at the end of each role's `description` is what triggers it.
 
 | When | Roles |
 |---|---|
-| Before coding | `Codebase Onboarding Engineer` (unfamiliar area); `Software Architect` (package entry point, output target, build pipeline, public API or dependency change) |
+| Before coding | `Codebase Onboarding Engineer` (unfamiliar area); `Software Architect` (package entry point, Stencil output target, build pipeline, peer range, public API or dependency change) |
 | While coding | The role that matches the files being changed: `Frontend Developer`, `UI Designer`, `UX Architect`, `Technical Writer` |
 | After coding | `Accessibility Auditor`, when UI, keyboard handling, focus order or markup changed |
 | Every ticket, whatever its size | Review gate: `Code Reviewer` on the full diff, repeated until no material finding is left. Acceptance gate: each acceptance criterion checked against the recorded evidence |
@@ -132,6 +133,11 @@ sentence at the end of each role's `description` is what triggers it.
 - `Code Reviewer`, `Software Architect` and `Codebase Onboarding Engineer` are read-only
   (`tools: Read, Grep, Glob`). They cannot run commands: give them the diff, the acceptance
   criteria and the recorded command output.
+- The `Software Architect` description still carries the generic trigger (module boundary,
+  data model, storage schema), and this repository has no data model or storage schema. The
+  table above and the playbook's "Before coding" table are the trigger here: delegate to it
+  for entry-point, output-target, build-pipeline and peer-range tickets even though the
+  description does not name them.
 - The session or role that wrote a change does not count as its reviewer.
 - List the roles that ran and their verdicts in the pull request description (item 7 above).
 - In a session started from a checkout that contains these files they shadow same-named

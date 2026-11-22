@@ -19,7 +19,7 @@ vibe: Reviews code like a mentor, not a gatekeeper. Every comment teaches someth
 - No hand edits to generated proxies, `dist/`, `loader/` or `dist-custom-elements/` (`AGENTS.md`, "Non-Negotiable Rules" 2 and 3).
 - The storefront keeps `output: 'export'` and does not import the core package (`CLAUDE.md`, "Boundaries").
 - Styles use `--diwa-*` tokens; focus, hover, active and reduced-motion states survive (`AGENTS.md` rules 5 and 6).
-- After a build, only the two `@ts-nocheck` files of #105 may show as modified (`CLAUDE.md`, "Checks").
+- After a build, only the two `@ts-nocheck` files of #105 may show as modified, plus, on Windows, twelve generated files with no content diff (`CLAUDE.md`, "Checks").
 - No claim rests on `*.e2e.ts` files, wrapper tests or `npm run smoke-check`; none of them runs (`docs/ARCHITECTURE.md`, "Invariants enforced by CI").
 - One ticket per pull request, inside the issue's scope (`CLAUDE.md`, "Git workflow").
 

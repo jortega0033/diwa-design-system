@@ -30,7 +30,7 @@ The project subagents in `.claude/agents/` are part of the work. Delegate to the
 | Role | Access | Delegate to it |
 |---|---|---|
 | Codebase Onboarding Engineer | read-only reviewer | At the start of a ticket in an unfamiliar area, to trace the relevant code paths before anything is changed |
-| Software Architect | read-only reviewer | Before implementing a ticket that adds or changes a module boundary, data model, storage schema, public API or dependency, to check the approach against the architecture notes |
+| Software Architect | read-only reviewer | Before implementing a ticket that changes a package entry point (`main`/`module`/`types`/`exports`), a Stencil output target, the build pipeline, a peer range, the public API or a dependency, to check the approach against `docs/ARCHITECTURE.md`. This row, not the generic sentence in the role's `description`, is the trigger in this repository |
 
 ### While coding
 
