@@ -26,6 +26,7 @@ file in that folder as an agent definition.
 | `testing-accessibility-auditor.md` | Accessibility Auditor | `testing/testing-accessibility-auditor.md` | `350dc3d468b96015a6b3cdefbb06f4a33f673cb1` | none |
 | `design-ux-architect.md` | UX Architect | `design/design-ux-architect.md` | `27a951fd63ef3981f54a3e35c64666e86ea901db` | none |
 | `design-ui-designer.md` | UI Designer | `design/design-ui-designer.md` | `6744e81bf2d64a4b22881eace74d8438045dca6e` | none |
+| `testing-reality-checker.md` | Reality Checker | `testing/testing-reality-checker.md` | `e534cfbd20d3115d5265387f19db7d3b25649421` | added `tools: Read, Grep, Glob`, the "Use proactively" sentence and an "In this repository" section (2026-11-22) |
 
 The only edit to any upstream file is one added frontmatter line, `tools: Read, Grep, Glob`,
 on the three review roles. Unmodified files hash to the upstream blob SHA
@@ -105,3 +106,16 @@ This supersedes any statement above that a role file is unmodified or that the `
 The steps at which each role runs are in `.claude/skills/implement-ticket/SKILL.md`.
 
 Verified on 2026-11-22 with Claude Code 2.1.323, from the repository root: `claude -p "List every project subagent defined in .claude/agents with its exact name and tools, say for each whether its instructions begin with a section titled In this repository, and say whether a skill named implement-ticket is available. Plain list, no commentary." --model haiku` listed all eight roles and `loop-verifier`; `Code Reviewer`, `Software Architect` and `Codebase Onboarding Engineer` with `Read, Grep, Glob` and the other five with no `tools` line; "In this repository" present on all eight roles and absent on `loop-verifier`; skill `implement-ticket` available. The check read the files; it did not launch each role.
+
+## Local change: SDLC kit (2026-11-22)
+
+This pass added the delivery workflow around the roles. No role text other than the lines named below was changed.
+
+- Reality Checker installed as the acceptance gate, from upstream revision `8ae6164602c95ca78828b148b9052460ee426885` (blob `e534cfbd20d3115d5265387f19db7d3b25649421`), with the three local additions listed in the table above.
+- Review gate hook `.claude/hooks/role-gate.mjs` (gate roles: Code Reviewer, Reality Checker) and `.claude/settings.json` (permissions and hooks); `.claude/state/` is git-ignored.
+- `.claude/skills/next-ticket/` (owner-started driver), changes to `.claude/skills/implement-ticket/`, and the copies of `ui-ux-pro-max` and `unslop` with their `PROVENANCE.md` files.
+- One checklist line naming `docs/ui-quality.md` in the "In this repository" section of Frontend Developer, UI Designer, UX Architect, Accessibility Auditor and Code Reviewer.
+- `.github/` pull request template, issue template, CODEOWNERS and Dependabot; `SECURITY.md`, `docs/ui-quality.md` and `docs/owner-decisions.md`. `docs/RELEASING.md` was skipped because open issue #173 owns it. `CHANGELOG.md` already existed.
+- A "Delivery workflow" part in `CLAUDE.md` and a note in `LOOP.md` that ticket work is not a loop run.
+
+The existing CI workflow was not changed.

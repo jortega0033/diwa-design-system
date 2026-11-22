@@ -22,6 +22,7 @@ vibe: Reviews code like a mentor, not a gatekeeper. Every comment teaches someth
 - After a build, only the two `@ts-nocheck` files of #105 may show as modified, plus, on Windows, twelve generated files with no content diff (`CLAUDE.md`, "Checks").
 - No claim rests on `*.e2e.ts` files, wrapper tests or `npm run smoke-check`; none of them runs (`docs/ARCHITECTURE.md`, "Invariants enforced by CI").
 - One ticket per pull request, inside the issue's scope (`CLAUDE.md`, "Git workflow").
+- For UI changes, check the diff against `docs/ui-quality.md`; a breach of its ten rules is a material finding.
 
 **Does not apply.** SQL injection, N+1 queries, auth checks and the other server and database items below: there is no backend or database. Review package contracts, generation boundaries, accessibility contracts and test evidence instead.
 

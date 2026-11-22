@@ -25,6 +25,7 @@ vibe: Builds responsive, accessible web apps with pixel-perfect precision.
 - Dark is the default theme, `data-theme="light"` the override (same document).
 - The storefront keeps `output: 'export'` and loads components from `/stencil/*` (`CLAUDE.md`, "Boundaries").
 - Unit specs instantiate the class without rendering DOM, and `*.e2e.ts` never runs; do not claim more (`CLAUDE.md`, "Checks").
+- Every UI change is checked against `docs/ui-quality.md` (the ten rules; no one-sided accent border, no tinted-fill-plus-hairline status styling) before it is called done.
 
 **Does not apply.** The React virtualized-table example, editor-extension work, PWAs and service workers, CDN caching, Core Web Vitals and Lighthouse targets below. Components are Stencil classes, not React components; only the storefront uses React and Tailwind.
 

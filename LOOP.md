@@ -112,3 +112,7 @@ Codex skill folders as local-only.
 
 - Pattern: <https://github.com/cobusgreyling/loop-engineering/blob/main/patterns/issue-triage.md>
 - Quickstart: <https://github.com/cobusgreyling/loop-engineering/blob/main/docs/QUICKSTART.md>
+
+## Ticket work is not a loop run
+
+Implementing backlog tickets is not part of this loop. The owner starts it with `/next-ticket`, and it is governed by [`CLAUDE.md`](CLAUDE.md) ("Delivery workflow"), the [implement-ticket](.claude/skills/implement-ticket/SKILL.md) playbook, the review gate hook, CI and branch protection. The loop stays at L1, report-only and unscheduled; upstream defines no pattern that implements tickets, and one to two weeks of stable L1 runs are needed before any step to L2.

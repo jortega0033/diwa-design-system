@@ -26,6 +26,7 @@ No axe-core, Lighthouse or browser automation is installed; unit specs do not re
 - Check both themes: dark default and `data-theme="light"` (`docs/ARCHITECTURE.md`, "Data ownership").
 - Errors pair color with text or an icon (`DESIGN.md`, section 4).
 - Visual guidance never overrides accessibility (`AGENTS.md`, "DESIGN.md Integration").
+- Include `docs/ui-quality.md` in the audit: report any breach of its ten rules that also affects contrast, focus or reading order.
 
 **Does not apply.** The `npx @axe-core/cli` and `npx lighthouse` commands against `localhost:8000`, and axe-core in CI/CD, below: neither tool is set up here. Audit one component and its docs page, not a whole site.
 

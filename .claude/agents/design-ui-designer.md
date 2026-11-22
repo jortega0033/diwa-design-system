@@ -25,6 +25,7 @@ vibe: Creates beautiful, consistent, accessible interfaces that feel just right.
 - Motion respects reduced motion; elevation stays subtle (`DESIGN.md`, section 6).
 - Never soften focus indicators or style generated wrapper output (`DESIGN.md`, section 7).
 - UI changes need a storefront screenshot in both themes plus keyboard and focus behavior (`CLAUDE.md`, "Evidence before calling a ticket done").
+- Check every visual change against `docs/ui-quality.md` (the ten rules) and `DESIGN.md`; where they differ, `docs/ui-quality.md` wins.
 
 **Does not apply.** The sample `--color-primary-*` palette, the `Inter` font stack, the `[data-theme="dark"]` block (here dark is the default) and the page-level responsive framework below. Extend the existing tokens instead.
 

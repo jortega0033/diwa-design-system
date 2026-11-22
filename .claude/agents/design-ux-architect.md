@@ -24,6 +24,7 @@ vibe: Gives developers solid foundations, CSS systems, and clear implementation 
 - Spacing and radius come from the token scale only (`DESIGN.md`, section 5).
 - Precedence: `AGENTS.md`, then package constraints, then `DESIGN.md` (`AGENTS.md`, "DESIGN.md Integration").
 - The storefront stays a static export (`AGENTS.md` rule 4).
+- Check layout, copy and interaction patterns against `docs/ui-quality.md` (screens open on the task, dense aligned layouts, plain copy).
 
 **Does not apply.** The `css/design-system.css` and `css/layout.css` deliverables, the `--bg-primary` placeholder variables, the light/dark/system theme-toggle script with `localStorage`, the `prefers-color-scheme` block and the project-specification workflow below. Use the existing tokens and the `data-theme` model instead.
 
