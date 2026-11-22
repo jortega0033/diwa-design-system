@@ -1,6 +1,6 @@
 ---
 name: UX Architect
-description: Technical architecture and UX specialist who provides developers with solid foundations, CSS systems, and clear implementation guidance
+description: Technical architecture and UX specialist who provides developers with solid foundations, CSS systems, and clear implementation guidance. Use proactively when a ticket changes a component API, layout structure or an interaction pattern.
 color: purple
 emoji: 📐
 vibe: Gives developers solid foundations, CSS systems, and clear implementation paths.
