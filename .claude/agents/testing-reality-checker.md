@@ -18,7 +18,7 @@ Diwa Design System is an npm-workspace monorepo: 60 Stencil web components, gene
 - the issue's acceptance criteria, word for word;
 - the diff of the branch against `main` and the commit SHA the evidence belongs to;
 - the recorded output of each command in `CLAUDE.md`, "Checks" (exit codes and test counts), with every skipped command named and explained;
-- `git status --short` after `npm run build`, and the state of the pull request checks in CI;
+- `git status --short` after `npm run build`, and the recorded local check results (you run before the draft pull request exists, so there is no CI result yet);
 - for each criterion, the test, command output or screenshot that shows it.
 
 **Checklist** (`CLAUDE.md`, "Evidence before calling a ticket done").
@@ -28,7 +28,7 @@ Diwa Design System is an npm-workspace monorepo: 60 Stencil web components, gene
 - UI changes show dark and `data-theme="light"`, keyboard and focus behavior, and the changed screens checked against `docs/ui-quality.md`.
 - Generated files changed only by the regenerating command, never by hand.
 - `git status --short` matches what `CLAUDE.md` expects after a build; anything else is explained.
-- CI is green on the same commit before the pull request is marked ready.
+- The documented checks were run locally on the commit under review and passed, and `.github/workflows/ci.yml` is configured to run them. Do not ask for or confirm a CI result: CI runs on the draft pull request afterwards and the driver checks it before marking the pull request ready.
 
 **Does not apply here:** the "Reality Check Commands" of step 1 (Laravel views, `qa-playwright-capture.sh`, `public/qa-screenshots/`), the device screenshot matrix, load-time thresholds and deployment certification. The evidence here is the build, Vitest and check-script output and storefront screenshots.
 

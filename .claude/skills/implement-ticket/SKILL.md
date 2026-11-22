@@ -20,9 +20,9 @@ The project subagents in `.claude/agents/` are part of the work. Delegate to the
 6. **Test.** Add or change tests for every acceptance criterion and material edge case, then run the checks listed in `CLAUDE.md`. Record each command and its result.
 7. **Specialist review.** Run every role in the table "After coding" whose trigger matches the change. For a UI ticket, check every changed screen and component against the ten rules in [docs/ui-quality.md](../../../docs/ui-quality.md), in dark and `data-theme="light"`, and fix or justify each breach.
 8. **Review gate, always.** Run Code Reviewer on the full diff. Fix every material finding, re-run the checks, and have the reviewer look again until no material finding is left.
-9. **Acceptance gate, always.** Run Reality Checker with the ticket's acceptance criteria and the evidence you produced. Do not call the ticket done unless it passes.
+9. **Acceptance gate, always.** Run Reality Checker with the ticket's acceptance criteria and the recorded local evidence. It checks that the documented checks ran locally and passed and that CI is configured to run them; it does not confirm a CI result, which does not exist yet. Do not open the pull request unless it passes.
 10. **Pull request text.** Add a line under Unreleased in `CHANGELOG.md`. Run the `unslop` skill on the user-facing copy, the documentation and the pull request description you wrote. Fill in the pull request template `.github/pull_request_template.md`: ticket, evidence, "Agent roles run", risks and rollback.
-11. **Hand off.** Capture the evidence `CLAUDE.md` asks for. The review gate hook blocks `gh pr create` and `gh pr ready` until both gate roles ran after the last code edit. Pushing the branch and opening the pull request, as a draft, is part of this step when the owner asked for it in the current session; a `/next-ticket` run counts as that request. Mark the pull request ready only when both gates passed on the current diff and both CI jobs are green on the current commit; never open or mark one ready with a gate open. **Only the owner merges.** Do not merge, release or enable auto-merge.
+11. **Hand off.** Capture the evidence `CLAUDE.md` asks for. The review gate hook blocks `gh pr create` and `gh pr ready` until both gate roles ran after the last code edit. Pushing the branch and opening the pull request, as a draft, is part of this step when the owner asked for it in the current session; a `/next-ticket` run counts as that request. Order: local checks, both gates, draft pull request, CI. Open the draft only when local checks passed and both gates passed on the current diff. If CI fails, fix, re-run local checks and both gates, and push. Mark the pull request ready (`gh pr ready`) only when both CI jobs are green on the current commit, and comment on the issue with the CI run link; the driver checks CI, not Reality Checker. Never open a pull request, draft or ready, with a gate not run. **Only the owner merges.** Do not merge, release or enable auto-merge.
 
 ## Roles
 
@@ -52,8 +52,8 @@ The project subagents in `.claude/agents/` are part of the work. Delegate to the
 
 | Role | Access | Delegate to it |
 |---|---|---|
-| Code Reviewer | read-only reviewer | After implementing or changing code for a ticket, before the work is called done or a pull request is opened (review gate) |
-| Reality Checker | read-only reviewer | Last step of every ticket: each acceptance criterion against the evidence that was produced, including CI state (acceptance gate) |
+| Code Reviewer | read-only reviewer | After implementing or changing code for a ticket, before the draft pull request is opened (review gate) |
+| Reality Checker | read-only reviewer | Last step of every ticket: each acceptance criterion against the local evidence that was produced, and that CI is configured to run the checks; not a CI result (acceptance gate) |
 
 ## Rules
 
