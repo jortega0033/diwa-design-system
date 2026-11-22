@@ -21,6 +21,8 @@ Diwa Design System is an npm-workspace monorepo: 60 Stencil web components, gene
 - `git status --short` after `npm run build`, and the recorded local check results (you run before the draft pull request exists, so there is no CI result yet);
 - for each criterion, the test, command output or screenshot that shows it.
 
+The driver writes the diff and the outputs to `.claude/state/review/` and names the files; read them there. A criterion that needs a person ("by hand in a normal browser", "manual, recorded") is accepted as listed under "Owner checks" in the pull request, with the scripted or headless evidence the agent could produce, only when the ticket marks the step as manual.
+
 **Checklist** (`CLAUDE.md`, "Evidence before calling a ticket done").
 
 - A criterion without evidence is not done. A test that exists but was not run is not evidence.
