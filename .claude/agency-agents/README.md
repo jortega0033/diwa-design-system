@@ -28,8 +28,9 @@ file in that folder as an agent definition.
 | `design-ui-designer.md` | UI Designer | `design/design-ui-designer.md` | `6744e81bf2d64a4b22881eace74d8438045dca6e` | none |
 | `testing-reality-checker.md` | Reality Checker | `testing/testing-reality-checker.md` | `e534cfbd20d3115d5265387f19db7d3b25649421` | added `tools: Read, Grep, Glob`, the "Use proactively" sentence and an "In this repository" section (2026-11-22) |
 
-The only edit to any upstream file is one added frontmatter line, `tools: Read, Grep, Glob`,
-on the three review roles. Unmodified files hash to the upstream blob SHA
+The only edit to most upstream files is one added frontmatter line, `tools: Read, Grep, Glob`,
+on the review roles. Reality Checker, the fourth review role, also carries two further local
+additions (see its row above and the "Local change: SDLC kit" section). Unmodified files hash to the upstream blob SHA
 (`git hash-object <file>`).
 
 ## Why these roles

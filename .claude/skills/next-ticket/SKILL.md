@@ -32,6 +32,6 @@ Repository: `jortega0033/diwa-design-system`. Epic: #169. Labels: `status:ready`
 - the ticket names an open owner decision with no stated default ([docs/owner-decisions.md](../../../docs/owner-decisions.md) lists the ones already settled);
 - a decision recorded there blocks the work;
 - a gate fails twice on the same finding, or CI stays red for a reason outside the ticket;
-- the ticket needs a change to generated files by hand, a package publish, a deploy, or the open pull requests #165, #166 or #167, which `CLAUDE.md` and the epic keep out of scope.
+- the ticket needs a change to generated files by hand, a package publish, a deploy, or work that overlaps open pull request #165 or #166 (the epic says they do not overlap; leave them alone), or that edits files pull request #167 touches (handle it with the #105 default in the epic and `docs/owner-decisions.md`).
 
 Say what is blocked and why, put `needs-decision` on the issue if that label fits, and end the run.
