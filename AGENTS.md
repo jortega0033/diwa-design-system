@@ -80,7 +80,9 @@ User-invocable specialists:
 - `Diwa DS Release Automator`
 - `Diwa DS Technical Writer`
 
-Claude Code does not load `.github/agents/*.agent.md`. For Claude Code, `.claude/agents/` holds pinned general-purpose roles (see [`.claude/agency-agents/README.md`](.claude/agency-agents/README.md)); they follow this file like any contributor.
+Claude Code does not load `.github/agents/*.agent.md`. For Claude Code, `.claude/agents/` holds pinned general-purpose roles (see [`.claude/agency-agents/README.md`](.claude/agency-agents/README.md)); they follow this file like any contributor. Each role file starts with an "In this repository" section tailored to this project.
+
+Ticket workflow for every coding agent: follow [`.claude/skills/implement-ticket/SKILL.md`](.claude/skills/implement-ticket/SKILL.md) (plain Markdown). An independent code review and an acceptance-criteria check run on every ticket; [`CLAUDE.md`](CLAUDE.md) lists which role runs when and the evidence a pull request needs.
 
 ## When To Use Which Agent
 

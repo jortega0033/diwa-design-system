@@ -96,8 +96,12 @@ launched `Code Reviewer` replied `Read, Grep, Glob`.
 
 ## Local change: automatic delegation (2026-11-22)
 
-One sentence beginning "Use proactively" was appended to the `description:` line of every Agency Agents role in `.claude/agents/` (not to `loop-verifier`). Claude Code uses that field to decide when to delegate, so the roles now run during ticket work without being named. Nothing else in the role files changed.
+One sentence beginning "Use proactively" was appended to the `description:` line of every Agency Agents role in `.claude/agents/` (not to `loop-verifier`). Claude Code uses that field to decide when to delegate, so the roles now run during ticket work without being named.
 
-This supersedes any statement above that a role file is unmodified or that the `tools:` line is the only local change. To compare a role with the pinned upstream file, remove that sentence (and the `tools:` line where one was added) first.
+A section headed `## In this repository` was also inserted directly after the frontmatter of every Agency Agents role (not `loop-verifier`), before the upstream text. It is project-specific text written for this repository, not upstream text: the stack and constraints, the paths the role owns or reviews, its commands, a checklist of this project's invariants, the generic advice that does not apply here, and what the role must hand back. It ends with the sentence "This section and CLAUDE.md override the generic text below wherever they differ." The upstream text below it is unchanged.
+
+This supersedes any statement above that a role file is unmodified or that the `tools:` line is the only local change, including the "Local change" column of the table. To compare a role with the pinned upstream file, first remove the "Use proactively" sentence, the whole "In this repository" section with the blank line after it, and the `tools:` line where one was added. When updating to a new upstream revision, re-apply all three and re-check each "In this repository" section against the source.
 
 The steps at which each role runs are in `.claude/skills/implement-ticket/SKILL.md`.
+
+Verified on 2026-11-22 with Claude Code 2.1.323, from the repository root: `claude -p "List every project subagent defined in .claude/agents with its exact name and tools, say for each whether its instructions begin with a section titled In this repository, and say whether a skill named implement-ticket is available. Plain list, no commentary." --model haiku` listed all eight roles and `loop-verifier`; `Code Reviewer`, `Software Architect` and `Codebase Onboarding Engineer` with `Read, Grep, Glob` and the other five with no `tools` line; "In this repository" present on all eight roles and absent on `loop-verifier`; skill `implement-ticket` available. The check read the files; it did not launch each role.
