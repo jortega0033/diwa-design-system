@@ -12,7 +12,7 @@ The project subagents in `.claude/agents/` are part of the work. Delegate to the
 
 ## Steps
 
-1. **Read the ticket.** `gh issue view <number>` and the epic it belongs to. Work only on a leaf ticket: one labelled `tracking`, or with open sub-issues, is a container; take its next open sub-issue instead. Check that every prerequisite issue is closed and that no owner decision named in the ticket is still open. If the ticket is blocked, stop and say what blocks it.
+1. **Read the ticket.** `gh issue view <number>` and the epic it belongs to. Work only on a leaf ticket: if the ticket is labelled `tracking` or has open sub-issues, stop, list its open sub-issues and ask the owner which one to take (or start `/next-ticket`). Check that every prerequisite issue is closed and that no owner decision named in the ticket is still open. If the ticket is blocked, stop and say what blocks it.
 2. **Read the rules.** `CLAUDE.md`, then the architecture notes it links to. A ticket never changes agent configuration (`.claude/agents`, `skills`, `hooks`, `settings.json`, `agency-agents`), by tool or by shell command.
 3. **Orient and check the approach.** Delegate as the table "Before coding" says. Settle open design questions before writing code. For a ticket that changes a screen or component visuals, start with the `ui-ux-pro-max` skill (`python .claude/skills/ui-ux-pro-max/scripts/search.py "design system component library" --design-system`) and read [docs/ui-quality.md](../../../docs/ui-quality.md).
 4. **Branch** as the Git workflow in `CLAUDE.md` says. Never work on the default branch.
