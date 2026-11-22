@@ -1,4 +1,9 @@
 # Diwa Design System — Comprehensive Ticket Velocity Plan
+
+> **Status, 2026-11-21: historical.** This plan was written for the DS-001…DS-032 round in April 2026.
+> DS-001–005, DS-013, DS-031 and DS-032 are merged; DS-006, DS-007, DS-014 and DS-025 are open as issues #13, #14, #15 and #16; the other IDs were never filed.
+> The backlog is GitHub issues, the current batch is epic [#169](https://github.com/jortega0033/diwa-design-system/issues/169), and the current workflow and evidence rules are in [`CLAUDE.md`](CLAUDE.md) and [`AGENTS.md`](AGENTS.md).
+> See the drift table in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md#documentation-drift).
 ## 32 Tickets Organized for AI Development Execution
 
 **Scope:** 26 audit findings + 4 completed items + 2 new items (input refactor + link compact removal)  
