@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@diwa-design-system/components": "file:../diwa-components",
-    "@types/node": "^22.0.0",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "react": "^19.2.0",
