@@ -107,6 +107,7 @@ export class DiwaInlineNotification {
   };
 
   private handleAction = (): void => {
+    if (this.actionLoading) return;
     this.action.emit();
   };
 
