@@ -141,7 +141,7 @@ export default function StylesFocusPage() {
 }
 
 /* JS — JSS / styled-components / inline styles */
-import { getFocusStyle } from '@diwacopilot/components/styles';
+import { getFocusStyle } from '@diwa-design-system/components/styles';
 
 // Default: { outline: 'var(--diwa-focus-ring-width) solid var(--diwa-border-focus)', outlineOffset: 'var(--diwa-focus-ring-offset)' }
 const style = getFocusStyle();
@@ -151,7 +151,7 @@ const customStyle = getFocusStyle('4px');`} />
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwacopilot/components/styles' as *;
+            code: `@use '@diwa-design-system/components/styles' as *;
 
 /* Focus ring is applied globally by Diwa */
 /* Override inside a custom Shadow DOM component */
@@ -162,7 +162,7 @@ const customStyle = getFocusStyle('4px');`} />
           },
           {
             label: 'React',
-            code: `import { getFocusStyle } from '@diwacopilot/components/styles';
+            code: `import { getFocusStyle } from '@diwa-design-system/components/styles';
 
 // Default focus ring
 const focusStyle = getFocusStyle();

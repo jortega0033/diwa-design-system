@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 
 import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 
-import { Components } from '@diwacopilot/components';
+import { Components } from '@diwa-design-system/components';
 
 
 @ProxyCmp({
@@ -219,8 +219,8 @@ export class DiwaDropdown {
 }
 
 
-import type { DropdownToggleEventDetail as IDiwaDropdownDropdownToggleEventDetail } from '@diwacopilot/components';
-import type { DropdownSelectEventDetail as IDiwaDropdownDropdownSelectEventDetail } from '@diwacopilot/components';
+import type { DropdownToggleEventDetail as IDiwaDropdownDropdownToggleEventDetail } from '@diwa-design-system/components';
+import type { DropdownSelectEventDetail as IDiwaDropdownDropdownSelectEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaDropdown extends Components.DiwaDropdown {
 
@@ -838,8 +838,8 @@ export class DiwaMultiSelect {
 }
 
 
-import type { MultiSelectChangeEventDetail as IDiwaMultiSelectMultiSelectChangeEventDetail } from '@diwacopilot/components';
-import type { MultiSelectToggleEventDetail as IDiwaMultiSelectMultiSelectToggleEventDetail } from '@diwacopilot/components';
+import type { MultiSelectChangeEventDetail as IDiwaMultiSelectMultiSelectChangeEventDetail } from '@diwa-design-system/components';
+import type { MultiSelectToggleEventDetail as IDiwaMultiSelectMultiSelectToggleEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaMultiSelect extends Components.DiwaMultiSelect {
   /**
@@ -907,7 +907,7 @@ export class DiwaPagination {
 }
 
 
-import type { PaginationUpdateEventDetail as IDiwaPaginationPaginationUpdateEventDetail } from '@diwacopilot/components';
+import type { PaginationUpdateEventDetail as IDiwaPaginationPaginationUpdateEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaPagination extends Components.DiwaPagination {
   /**
@@ -942,7 +942,7 @@ export class DiwaPinCode {
 }
 
 
-import type { PinCodeUpdateEventDetail as IDiwaPinCodePinCodeUpdateEventDetail } from '@diwacopilot/components';
+import type { PinCodeUpdateEventDetail as IDiwaPinCodePinCodeUpdateEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaPinCode extends Components.DiwaPinCode {
   /**
@@ -994,7 +994,7 @@ export class DiwaRadioGroup {
 }
 
 
-import type { RadioGroupUpdateEventDetail as IDiwaRadioGroupRadioGroupUpdateEventDetail } from '@diwacopilot/components';
+import type { RadioGroupUpdateEventDetail as IDiwaRadioGroupRadioGroupUpdateEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaRadioGroup extends Components.DiwaRadioGroup {
   /**
@@ -1076,7 +1076,7 @@ export class DiwaSegmentedControl {
 }
 
 
-import type { SegmentedControlUpdateEventDetail as IDiwaSegmentedControlSegmentedControlUpdateEventDetail } from '@diwacopilot/components';
+import type { SegmentedControlUpdateEventDetail as IDiwaSegmentedControlSegmentedControlUpdateEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaSegmentedControl extends Components.DiwaSegmentedControl {
   /**
@@ -1136,8 +1136,8 @@ export class DiwaSelect {
 }
 
 
-import type { SelectChangeEventDetail as IDiwaSelectSelectChangeEventDetail } from '@diwacopilot/components';
-import type { SelectToggleEventDetail as IDiwaSelectSelectToggleEventDetail } from '@diwacopilot/components';
+import type { SelectChangeEventDetail as IDiwaSelectSelectChangeEventDetail } from '@diwa-design-system/components';
+import type { SelectToggleEventDetail as IDiwaSelectSelectToggleEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaSelect extends Components.DiwaSelect {
   /**
@@ -1227,7 +1227,7 @@ export class DiwaStepperHorizontal {
 }
 
 
-import type { StepperHorizontalUpdateEventDetail as IDiwaStepperHorizontalStepperHorizontalUpdateEventDetail } from '@diwacopilot/components';
+import type { StepperHorizontalUpdateEventDetail as IDiwaStepperHorizontalStepperHorizontalUpdateEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaStepperHorizontal extends Components.DiwaStepperHorizontal {
   /**
@@ -1281,7 +1281,7 @@ export class DiwaSwitch {
 }
 
 
-import type { SwitchUpdateEventDetail as IDiwaSwitchSwitchUpdateEventDetail } from '@diwacopilot/components';
+import type { SwitchUpdateEventDetail as IDiwaSwitchSwitchUpdateEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaSwitch extends Components.DiwaSwitch {
   /**
@@ -1311,7 +1311,7 @@ export class DiwaTable {
 }
 
 
-import type { TableUpdateEventDetail as IDiwaTableTableUpdateEventDetail } from '@diwacopilot/components';
+import type { TableUpdateEventDetail as IDiwaTableTableUpdateEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaTable extends Components.DiwaTable {
 
@@ -1449,7 +1449,7 @@ export class DiwaTabs {
 }
 
 
-import type { TabsUpdateEventDetail as IDiwaTabsTabsUpdateEventDetail } from '@diwacopilot/components';
+import type { TabsUpdateEventDetail as IDiwaTabsTabsUpdateEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaTabs extends Components.DiwaTabs {
   /**
@@ -1479,7 +1479,7 @@ export class DiwaTabsBar {
 }
 
 
-import type { TabsBarUpdateEventDetail as IDiwaTabsBarTabsBarUpdateEventDetail } from '@diwacopilot/components';
+import type { TabsBarUpdateEventDetail as IDiwaTabsBarTabsBarUpdateEventDetail } from '@diwa-design-system/components';
 
 export declare interface DiwaTabsBar extends Components.DiwaTabsBar {
   /**

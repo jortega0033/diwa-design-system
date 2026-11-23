@@ -4,7 +4,7 @@
 [![Last Commit](https://img.shields.io/github/last-commit/jortega0033/diwa-design-system)](https://github.com/jortega0033/diwa-design-system/commits/main)
 [![Issues](https://img.shields.io/github/issues/jortega0033/diwa-design-system)](https://github.com/jortega0033/diwa-design-system/issues)
 
-Diwa is an accessibility-first UI system built with Web Components (Stencil), generated framework wrappers, and a Next.js documentation storefront.
+Diwa is an accessibility-first UI system built with Web Components (Stencil), generated framework wrappers, and a Next.js documentation storefront. This repository is the standalone MIT project.
 
 ## Workspace model
 
@@ -13,16 +13,16 @@ Diwa is an accessibility-first UI system built with Web Components (Stencil), ge
 ```text
 diwa-design-system/
   package.json                 # Root workspace orchestration
-  diwa-components/             # Publishable package: @diwacopilot/components
+  diwa-components/             # Publishable package: @diwa-design-system/components
   diwa-components/storefront/  # Docs app workspace
-  diwa-components-react/       # Publishable package: @diwacopilot/components-react
-  diwa-components-vue/         # Publishable package: @diwacopilot/components-vue
-  diwa-components-angular/     # Publishable package: @diwacopilot/components-angular
+  diwa-components-react/       # Publishable package: @diwa-design-system/components-react
+  diwa-components-vue/         # Publishable package: @diwa-design-system/components-vue
+  diwa-components-angular/     # Publishable package: @diwa-design-system/components-angular
 ```
 
 ## Requirements
 
-- Node.js `>=20`
+- Node.js 22.13 or newer on the 22.x line (the documented local build environment)
 - npm `>=10`
 - pnpm (optional, supported)
 
@@ -62,6 +62,10 @@ pnpm run build
 pnpm run build:storefront
 ```
 
+## Local documentation and static export
+
+`npm run dev` runs the documentation and Stencil rebuilds locally. `npm run build:storefront:release` writes a static site to `diwa-components/storefront/out`. The build uses the existing system font fallback stacks. For a public release, set `NEXT_PUBLIC_SITE_URL` to the real docs site URL before building. Without it the output is for local preview, with search indexing disabled.
+
 ## Legacy compatibility flow
 
 The original subpackage command surface is still available for compatibility:
@@ -76,20 +80,22 @@ npm run dev
 ## Publishing boundary
 
 - Publishable packages:
-  - `@diwacopilot/components` from `diwa-components/package.json`
-  - `@diwacopilot/components-react` from `diwa-components-react/package.json`
-  - `@diwacopilot/components-vue` from `diwa-components-vue/package.json`
-  - `@diwacopilot/components-angular` from `diwa-components-angular/package.json`
+  - `@diwa-design-system/components` from `diwa-components/package.json`
+  - `@diwa-design-system/components-react` from `diwa-components-react/package.json`
+  - `@diwa-design-system/components-vue` from `diwa-components-vue/package.json`
+  - `@diwa-design-system/components-angular` from `diwa-components-angular/package.json`
 - Runtime component APIs, props, events, and token contracts are unchanged.
 
 ## Using Diwa in apps
 
+The `@diwa-design-system/*` package names are prepared for a future release. Use the source build above until the packages are published. Existing consumers should update their imports and dependencies together when they move to the standalone packages. Element names, tokens and framework exports use the same APIs.
+
 ```bash
-npm install @diwacopilot/components
+npm install @diwa-design-system/components
 ```
 
 ```ts
-import { defineCustomElements } from "@diwacopilot/components/loader";
+import { defineCustomElements } from "@diwa-design-system/components/loader";
 
 defineCustomElements();
 ```
@@ -103,9 +109,9 @@ defineCustomElements();
 Install only the wrapper you need:
 
 ```bash
-npm install @diwacopilot/components @diwacopilot/components-react
-npm install @diwacopilot/components @diwacopilot/components-vue
-npm install @diwacopilot/components @diwacopilot/components-angular
+npm install @diwa-design-system/components @diwa-design-system/components-react
+npm install @diwa-design-system/components @diwa-design-system/components-vue
+npm install @diwa-design-system/components @diwa-design-system/components-angular
 ```
 
 ## Quality baseline

@@ -25,7 +25,7 @@ export default function ToastConfiguratorPage() {
     // Angular uses the ToastManager service — auto-generated markup omits the
     // imperative addMessage() call, so we provide a hand-written snippet instead.
     angular: `import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DiwaToast, ToastManager } from '@diwacopilot/components-angular';
+import { DiwaToast, ToastManager } from '@diwa-design-system/components-angular';
 
 @Component({
   selector: 'app-root',

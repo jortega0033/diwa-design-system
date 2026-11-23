@@ -1,5 +1,5 @@
 /**
- * @diwacopilot/components-react/server
+ * @diwa-design-system/components-react/server
  *
  * RSC-safe (React Server Component-safe) exports.
  *
@@ -16,7 +16,7 @@
  *
  * Interactive components (DButton, DInput*, DModal, DFlyout, …) are intentionally
  * excluded — they rely on refs, DOM event delegation, and the custom element
- * registry. Import them from '@diwacopilot/components-react' inside a 'use client'
+ * registry. Import them from '@diwa-design-system/components-react' inside a 'use client'
  * file as before.
  */
 

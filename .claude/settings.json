@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git switch *)",
+      "Bash(git checkout *)",
+      "Bash(git fetch *)",
+      "Bash(git worktree *)",
+      "Bash(git push -u origin *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr ready *)",
+      "Bash(npm ci)",
+      "Bash(npm run validate:tokens *)",
+      "Bash(npm run agency:validate:control-heights *)",
+      "Bash(npm run build *)",
+      "Bash(npm run test *)",
+      "Bash(npm run test:ux *)",
+      "Bash(npm run type-check *)",
+      "Bash(npm run build:storefront:release *)",
+      "Bash(npm run dev *)",
+      "Bash(git restore diwa-components-react/src diwa-components-vue/src diwa-components-angular/src)",
+      "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py *)",
+      "Bash(node .claude/hooks/role-gate.mjs --self-test)"
+    ],
+    "ask": [
+      "Edit(/.github/**)",
+      "Edit(/.claude/agents/**)",
+      "Edit(/.claude/skills/**)",
+      "Edit(/.claude/hooks/**)",
+      "Edit(/.claude/settings.json)",
+      "Edit(/.claude/agency-agents/**)",
+      "Edit(**/.claude/agents/**)",
+      "Edit(**/.claude/skills/**)",
+      "Edit(**/.claude/hooks/**)",
+      "Edit(**/.claude/settings.json)",
+      "Edit(**/.claude/agency-agents/**)",
+      "Write(**/.claude/agents/**)",
+      "Write(**/.claude/skills/**)",
+      "Write(**/.claude/hooks/**)",
+      "Write(**/.claude/settings.json)",
+      "Write(**/.claude/agency-agents/**)",
+      "Edit(/CLAUDE.md)",
+      "Edit(/AGENTS.md)",
+      "Edit(/LOOP.md)",
+      "Edit(/loop-constraints.md)",
+      "Edit(/loop-budget.md)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git push --force-with-lease *)",
+      "Bash(git push origin main)",
+      "Bash(git push origin main *)",
+      "Bash(git push origin HEAD:main *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh repo delete *)",
+      "Bash(gh release create *)",
+      "PowerShell(git push --force *)",
+      "PowerShell(git push -f *)",
+      "PowerShell(git push origin main *)",
+      "PowerShell(gh pr merge *)",
+      "PowerShell(gh repo delete *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/role-gate.mjs",
+              "check"
+            ],
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/role-gate.mjs",
+              "record"
+            ],
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

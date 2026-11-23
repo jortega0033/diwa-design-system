@@ -72,7 +72,7 @@ export default function StylesIntroductionPage() {
   color: var(--diwa-text-primary);
 }`} />
           <CodeSnippet code={`// JS / TS
-import { borderRadiusLg, space4, getFocusStyle } from '@diwacopilot/components/styles';
+import { borderRadiusLg, space4, getFocusStyle } from '@diwa-design-system/components/styles';
 
 const cardStyle = {
   borderRadius: borderRadiusLg,

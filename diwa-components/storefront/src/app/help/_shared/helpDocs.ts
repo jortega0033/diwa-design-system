@@ -12,7 +12,7 @@ export const HELP_DOCS: Record<string, DocDetail> = {
     title: 'Help: Support',
     intro: 'Use Support when integration or runtime behavior blocks delivery. Keep requests reproducible so maintainers can triage quickly.',
     prerequisites: [
-      'Current `@diwacopilot/*` package versions and framework/runtime details.',
+      'Current `@diwa-design-system/*` package versions and framework/runtime details.',
       'A minimal reproduction (repo, route, or snippet) that fails consistently.',
       'Expected result, actual result, and the business impact.',
     ],
@@ -27,8 +27,8 @@ ${ISSUES_LIST}`,
         title: 'Prepare a deterministic support report',
         description: 'Use a structured template with exact versions, route context, and repeatable steps.',
         code: `### Environment
-- @diwacopilot/components: x.y.z
-- @diwacopilot/components-react|angular|vue: x.y.z
+- @diwa-design-system/components: x.y.z
+- @diwa-design-system/components-react|angular|vue: x.y.z
 - Framework + version:
 - Browser + version:
 

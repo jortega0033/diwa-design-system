@@ -11,7 +11,7 @@ const QUICK_START = [
   {
     title: 'Install packages',
     description: 'Install the Diwa component package in your app.',
-    code: 'npm install @diwacopilot/components',
+    code: 'npm install @diwa-design-system/components',
     language: 'bash',
   },
   {

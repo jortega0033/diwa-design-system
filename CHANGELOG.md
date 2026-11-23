@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added the delivery workflow for agent-assisted ticket work: review gate hook, `/next-ticket` driver, pull request and issue templates, `docs/ui-quality.md` and `docs/owner-decisions.md`. No runtime or package change.
 - Breaking change: removed `compact` from `diwa-link`. Migrate `compact={true}` to `size="sm"`, and `compact={false}` (or omitted) to default `size="md"`.
 - Improved `diwa-flyout` accessibility: Tab/Shift+Tab focus is now trapped inside the open panel, and focus still returns to the trigger on close.
 - Fixed keyboard flow for `diwa-select` and `diwa-multi-select`: pressing Tab/Shift+Tab while open now closes the dropdown and preserves native browser focus progression; Escape still closes and restores trigger focus.
@@ -23,7 +24,7 @@
 - Reworked global semantic token defaults in `diwa-components/src/global/app.css` for the new dark-green-forward theme direction.
 - Updated typography foundation to the new display/body profile based on the coming-soon direction.
 - Updated shape system toward square-first controls and set `--diwa-button-radius: 0` to remove rounded button corners.
-- Bumped all publishable packages to `3.0.0` and aligned wrapper peer dependency ranges to `@diwacopilot/components@^3.0.0`.
+- Bumped all publishable packages to `3.0.0` and aligned wrapper peer dependency ranges with the core package at version 3.0.0.
 
 ## 2.0.0 - 2026-03-29
 

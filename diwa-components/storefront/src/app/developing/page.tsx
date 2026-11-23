@@ -10,31 +10,31 @@ export const metadata: Metadata = pageSeo['/developing'];
 const SUPPORT_ROWS = [
   {
     framework: 'Vanilla JS',
-    packageName: '@diwacopilot/components',
+    packageName: '@diwa-design-system/components',
     route: '/developing/vanilla-js',
     status: 'Supported',
   },
   {
     framework: 'Next.js',
-    packageName: '@diwacopilot/components',
+    packageName: '@diwa-design-system/components',
     route: '/developing/next-js',
     status: 'Supported',
   },
   {
     framework: 'React',
-    packageName: '@diwacopilot/components + @diwacopilot/components-react',
+    packageName: '@diwa-design-system/components + @diwa-design-system/components-react',
     route: '/developing/react',
     status: 'Supported',
   },
   {
     framework: 'Angular',
-    packageName: '@diwacopilot/components + @diwacopilot/components-angular',
+    packageName: '@diwa-design-system/components + @diwa-design-system/components-angular',
     route: '/developing/angular',
     status: 'Supported',
   },
   {
     framework: 'Vue',
-    packageName: '@diwacopilot/components + @diwacopilot/components-vue',
+    packageName: '@diwa-design-system/components + @diwa-design-system/components-vue',
     route: '/developing/vue',
     status: 'Supported',
   },
@@ -123,16 +123,16 @@ export default function DevelopingIntroductionPage() {
           Use this quick rule set when deciding between direct custom elements and framework wrappers.
         </p>
         <CodeSnippet code={`if (framework === 'vanilla' || framework === 'next-custom-elements') {
-  install('@diwacopilot/components');
+  install('@diwa-design-system/components');
   registerWithLoader();
 } else if (framework === 'react') {
-  install('@diwacopilot/components @diwacopilot/components-react');
+  install('@diwa-design-system/components @diwa-design-system/components-react');
   useReactWrappers();
 } else if (framework === 'angular') {
-  install('@diwacopilot/components @diwacopilot/components-angular');
+  install('@diwa-design-system/components @diwa-design-system/components-angular');
   useAngularProxies();
 } else if (framework === 'vue') {
-  install('@diwacopilot/components @diwacopilot/components-vue');
+  install('@diwa-design-system/components @diwa-design-system/components-vue');
   useVueWrappers();
 }`} />
       </Section>

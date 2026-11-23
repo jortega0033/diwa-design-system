@@ -12,6 +12,7 @@
 **/.stencil/
 **/storybook-static/
 diwa-components/storefront/public/stencil/
+diwa-components/storefront/public/.stencil-*/
 **/npm-debug.log*
 **/pnpm-debug.log*
 **/yarn-debug.log*
@@ -19,3 +20,15 @@ diwa-components/storefront/public/stencil/
 firebase-debug.log*
 .DS_Store
 Thumbs.db
+
+# Generated storefront files
+*.tsbuildinfo
+diwa-components/storefront/public/robots.txt
+diwa-components/storefront/public/sitemap.xml
+
+# Claude Code local state (project agents and skills under .claude/ are tracked)
+.claude/worktrees/
+.claude/settings.local.json
+
+# Review gate ledger (local)
+.claude/state/

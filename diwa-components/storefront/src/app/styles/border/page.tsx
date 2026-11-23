@@ -152,10 +152,10 @@ export default function StylesBorderPage() {
       <Section title="Styles">
         <p className="text-sm text-[var(--diwa-text-secondary)] mb-4 leading-relaxed">
           All border tokens are available as typed JS constants from{' '}
-          <code className="font-mono text-[var(--diwa-accent)]">@diwacopilot/components/styles</code>
+          <code className="font-mono text-[var(--diwa-accent)]">@diwa-design-system/components/styles</code>
           for use in JSS, styled-components, Framer Motion, or inline styles:
         </p>
-        <CodeSnippet code={`import {\n  ${JS_EXPORTS.join(',\n  ')},\n} from '@diwacopilot/components/styles';`} />
+        <CodeSnippet code={`import {\n  ${JS_EXPORTS.join(',\n  ')},\n} from '@diwa-design-system/components/styles';`} />
         <div className="mt-4 flex flex-wrap gap-2">
           {JS_EXPORTS.map((name) => (
             <code
@@ -168,7 +168,7 @@ export default function StylesBorderPage() {
         </div>        <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwacopilot/components/styles' as *;
+            code: `@use '@diwa-design-system/components/styles' as *;
 
 .badge {
   border-radius: $diwa-border-radius-full;
@@ -190,7 +190,7 @@ export default function StylesBorderPage() {
             code: `import {
   borderRadiusMd, borderRadiusXl, borderRadiusFull,
   borderWidthThin, borderWidthBase,
-} from '@diwacopilot/components/styles';
+} from '@diwa-design-system/components/styles';
 
 const cardStyle = {
   borderRadius: borderRadiusMd,

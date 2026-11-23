@@ -263,7 +263,7 @@ document.documentElement.removeAttribute('data-theme');
           name. Use CSS custom properties directly in stylesheets — they resolve automatically for
           the active theme.
         </p>
-        <CodeSnippet code={`import { getFocusStyle, space4 } from '@diwacopilot/components/styles';
+        <CodeSnippet code={`import { getFocusStyle, space4 } from '@diwa-design-system/components/styles';
 
 const cardStyle = {
   padding: space4,

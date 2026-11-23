@@ -127,7 +127,7 @@ export default function StylesGradientPage() {
       <Section title="Styles">
         <p className="text-sm text-[var(--diwa-text-secondary)] mb-4 leading-relaxed">
           All gradient tokens are available as JS constants from{' '}
-          <code className="font-mono text-[var(--diwa-accent)]">@diwacopilot/components/styles</code>:
+          <code className="font-mono text-[var(--diwa-accent)]">@diwa-design-system/components/styles</code>:
         </p>
         <CodeSnippet code={`import {
   gradientToTopStyle,
@@ -135,7 +135,7 @@ export default function StylesGradientPage() {
   gradientToLeftStyle,
   gradientToRightStyle,
   gradientAccent,
-} from '@diwacopilot/components/styles';
+} from '@diwa-design-system/components/styles';
 
 /* CSS */
 .image-card::after {
@@ -152,7 +152,7 @@ export default function StylesGradientPage() {
         <CodeTabs tabs={[
           {
             label: 'Angular',
-            code: `@use '@diwacopilot/components/styles' as *;
+            code: `@use '@diwa-design-system/components/styles' as *;
 
 .hero-cta {
   background: $diwa-gradient-accent;
@@ -174,7 +174,7 @@ export default function StylesGradientPage() {
             code: `import {
   gradientToBottomStyle,
   gradientAccent,
-} from '@diwacopilot/components/styles';
+} from '@diwa-design-system/components/styles';
 
 function HeroCta({ children }: { children: React.ReactNode }) {
   return (

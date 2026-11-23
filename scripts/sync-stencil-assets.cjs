@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const os = require('os');
 
 const sourceDir = path.join(__dirname, '..', 'diwa-components', 'dist', 'diwa-components');
 const targetDir = path.join(__dirname, '..', 'diwa-components', 'storefront', 'public', 'stencil');
@@ -10,8 +9,8 @@ if (!fs.existsSync(sourceDir)) {
   process.exit(1);
 }
 
-// Stage to a temp directory first so a failed copy never leaves targetDir empty.
-const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'diwa-stencil-'));
+// Stage beside the target so the final rename stays on the same volume.
+const tmpDir = fs.mkdtempSync(path.join(path.dirname(targetDir), '.stencil-'));
 try {
   fs.cpSync(sourceDir, tmpDir, { recursive: true, force: true });
 } catch (err) {
@@ -20,7 +19,7 @@ try {
   process.exit(1);
 }
 
-// Atomically replace targetDir only after staging succeeded.
+// Replace targetDir only after staging succeeded.
 if (fs.existsSync(targetDir)) {
   fs.rmSync(targetDir, { recursive: true });
 }
